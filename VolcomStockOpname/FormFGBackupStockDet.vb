@@ -329,8 +329,8 @@ Public Class FormFGBackupStockDet
                         mb.ExportInfo.ExportTriggers = False
                         mb.ExportInfo.ExportEvents = False
                         mb.ExportInfo.ExportViews = False
-                        mb.ExportInfo.EnableEncryption = False
-                        'mb.ExportInfo.EncryptionPassword = "csmtafc"
+                        mb.ExportInfo.EnableEncryption = True
+                        mb.ExportInfo.EncryptionPassword = "csmtafc"
                         mb.ExportToFile(file)
                     End Using
                 End Using

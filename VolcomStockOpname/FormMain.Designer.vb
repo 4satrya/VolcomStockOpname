@@ -20,6 +20,7 @@ Partial Class FormMain
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
         Me.NBMain = New DevExpress.XtraNavBar.NavBarControl()
         Me.NBGGeneral = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBExport = New DevExpress.XtraNavBar.NavBarItem()
@@ -27,6 +28,7 @@ Partial Class FormMain
         Me.PCLeft = New DevExpress.XtraEditors.PanelControl()
         Me.XtraTabbedMdiManager1 = New DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(Me.components)
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomStockOpname.WaitForm1), True, True)
+        Me.NBStock = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.NBMain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCLeft.SuspendLayout()
@@ -43,7 +45,7 @@ Partial Class FormMain
         Me.NBMain.Appearance.Item.Options.UseForeColor = True
         Me.NBMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.NBMain.Groups.AddRange(New DevExpress.XtraNavBar.NavBarGroup() {Me.NBGGeneral})
-        Me.NBMain.Items.AddRange(New DevExpress.XtraNavBar.NavBarItem() {Me.NBExport, Me.NBImport})
+        Me.NBMain.Items.AddRange(New DevExpress.XtraNavBar.NavBarItem() {Me.NBExport, Me.NBImport, Me.NBStock})
         Me.NBMain.Location = New System.Drawing.Point(0, 0)
         Me.NBMain.LookAndFeel.SkinName = "DevExpress Dark Style"
         Me.NBMain.LookAndFeel.UseDefaultLookAndFeel = False
@@ -58,18 +60,20 @@ Partial Class FormMain
         '
         Me.NBGGeneral.Caption = "Main Menu"
         Me.NBGGeneral.Expanded = True
-        Me.NBGGeneral.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBExport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBImport)})
+        Me.NBGGeneral.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBExport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBImport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBStock)})
         Me.NBGGeneral.Name = "NBGGeneral"
         '
         'NBExport
         '
         Me.NBExport.Caption = "Export Data"
         Me.NBExport.Name = "NBExport"
+        Me.NBExport.SmallImage = CType(resources.GetObject("NBExport.SmallImage"), System.Drawing.Image)
         '
         'NBImport
         '
-        Me.NBImport.Caption = "Import Data"
+        Me.NBImport.Caption = "Setup Database"
         Me.NBImport.Name = "NBImport"
+        Me.NBImport.SmallImage = CType(resources.GetObject("NBImport.SmallImage"), System.Drawing.Image)
         '
         'PCLeft
         '
@@ -88,6 +92,12 @@ Partial Class FormMain
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
+        '
+        'NBStock
+        '
+        Me.NBStock.Caption = "Stock on Hand"
+        Me.NBStock.Name = "NBStock"
+        Me.NBStock.SmallImage = CType(resources.GetObject("NBStock.SmallImage"), System.Drawing.Image)
         '
         'FormMain
         '
@@ -118,4 +128,5 @@ Partial Class FormMain
     Friend WithEvents PCLeft As DevExpress.XtraEditors.PanelControl
     Friend WithEvents XtraTabbedMdiManager1 As DevExpress.XtraTabbedMdi.XtraTabbedMdiManager
     Friend WithEvents SplashScreenManager1 As DevExpress.XtraSplashScreen.SplashScreenManager
+    Friend WithEvents NBStock As DevExpress.XtraNavBar.NavBarItem
 End Class

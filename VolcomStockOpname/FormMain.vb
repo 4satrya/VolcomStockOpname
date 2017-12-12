@@ -11,4 +11,24 @@
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        actionLoad()
+    End Sub
+
+    Sub actionLoad()
+        Try
+            read_database_configuration()
+            check_connection(True, "", "", "", "")
+        Catch ex As Exception
+            FormDatabase.ShowDialog()
+        End Try
+    End Sub
+
+    Private Sub NBImport_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBImport.LinkClicked
+        Cursor = Cursors.WaitCursor
+        FormDatabase.show = True
+        FormDatabase.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class

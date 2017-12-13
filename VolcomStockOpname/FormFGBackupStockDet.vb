@@ -34,7 +34,7 @@ Public Class FormFGBackupStockDet
         Catch ex As Exception
         End Try
         Dim query As String = "SELECT c.id_comp, c.comp_number, c.comp_name, ('No') AS `is_select`,
-        IFNULL(stc.qty,0) As `qty_soh` , c.id_drawer_def, c.id_comp_cat
+        IFNULL(stc.qty,0) As `qty_soh` , c.id_drawer_def, c.id_comp_cat, cat.comp_cat_name AS `comp_cat`
         FROM tb_m_comp c 
         LEFT JOIN (
 	        SELECT f.id_wh_drawer,
@@ -43,6 +43,7 @@ Public Class FormFGBackupStockDet
 	        WHERE DATE(f.storage_product_datetime)<=DATE('" + date_until_selected + "')
 	        GROUP BY f.id_wh_drawer
         ) stc ON stc.id_wh_drawer = c.id_drawer_def 
+        INNER JOIN tb_m_comp_cat cat ON cat.id_comp_cat = c.id_comp_cat 
         WHERE (c.id_comp_cat=5 Or c.id_comp_cat=6)
         ORDER BY c.comp_number  "
         Dim data As DataTable = execute_query(query, -1, False, app_host_main, app_username_main, app_password_main, app_database_main)
@@ -159,7 +160,8 @@ Public Class FormFGBackupStockDet
 	            GROUP BY a.id_design
             ) prc ON prc.id_design = p.id_design
             WHERE DATE(f.storage_product_datetime)<=DATE('" + date_stock + "')
-            GROUP BY f.id_wh_drawer, f.id_product "
+            GROUP BY f.id_wh_drawer, f.id_product 
+            HAVING qty>0"
             execute_non_query(query_ins, False, app_host_main, app_username_main, app_password_main, app_database_main)
             dic.Add("tb_st_stock", "SELECT * FROM tb_st_stock")
             '-- unique

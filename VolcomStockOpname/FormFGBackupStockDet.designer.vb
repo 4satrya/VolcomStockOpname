@@ -36,9 +36,10 @@ Partial Class FormFGBackupStockDet
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnDrawer = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTCDetail = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridColumnCat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCompCat = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -140,7 +141,7 @@ Partial Class FormFGBackupStockDet
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumnSOH, Me.GridColumn5, Me.GridColumnDrawer, Me.GridColumnCat})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumnSOH, Me.GridColumn5, Me.GridColumnDrawer, Me.GridColumnCat, Me.GridColumnCompCat})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_soh", Me.GridColumnSOH, "{0:N0}")})
         Me.GVData.Name = "GVData"
@@ -164,7 +165,7 @@ Partial Class FormFGBackupStockDet
         Me.GridColumn2.OptionsColumn.AllowEdit = False
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
-        Me.GridColumn2.Width = 91
+        Me.GridColumn2.Width = 176
         '
         'GridColumn3
         '
@@ -174,7 +175,7 @@ Partial Class FormFGBackupStockDet
         Me.GridColumn3.OptionsColumn.AllowEdit = False
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
-        Me.GridColumn3.Width = 472
+        Me.GridColumn3.Width = 913
         '
         'GridColumnSOH
         '
@@ -186,8 +187,8 @@ Partial Class FormFGBackupStockDet
         Me.GridColumnSOH.OptionsColumn.AllowEdit = False
         Me.GridColumnSOH.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_soh", "{0:N0}")})
         Me.GridColumnSOH.Visible = True
-        Me.GridColumnSOH.VisibleIndex = 2
-        Me.GridColumnSOH.Width = 110
+        Me.GridColumnSOH.VisibleIndex = 3
+        Me.GridColumnSOH.Width = 236
         '
         'GridColumn5
         '
@@ -200,8 +201,8 @@ Partial Class FormFGBackupStockDet
         Me.GridColumn5.FieldName = "is_select"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 3
-        Me.GridColumn5.Width = 87
+        Me.GridColumn5.VisibleIndex = 4
+        Me.GridColumn5.Width = 190
         '
         'RepositoryItemCheckEdit1
         '
@@ -215,6 +216,12 @@ Partial Class FormFGBackupStockDet
         Me.GridColumnDrawer.Caption = "Drawer"
         Me.GridColumnDrawer.FieldName = "id_drawer_def"
         Me.GridColumnDrawer.Name = "GridColumnDrawer"
+        '
+        'GridColumnCat
+        '
+        Me.GridColumnCat.Caption = "Cat"
+        Me.GridColumnCat.FieldName = "id_comp_cat"
+        Me.GridColumnCat.Name = "GridColumnCat"
         '
         'XTCDetail
         '
@@ -233,11 +240,14 @@ Partial Class FormFGBackupStockDet
         Me.XTPSummary.Size = New System.Drawing.Size(772, 336)
         Me.XTPSummary.Text = "Summary"
         '
-        'GridColumnCat
+        'GridColumnCompCat
         '
-        Me.GridColumnCat.Caption = "Cat"
-        Me.GridColumnCat.FieldName = "id_comp_cat"
-        Me.GridColumnCat.Name = "GridColumnCat"
+        Me.GridColumnCompCat.Caption = "Category"
+        Me.GridColumnCompCat.FieldName = "comp_cat"
+        Me.GridColumnCompCat.Name = "GridColumnCompCat"
+        Me.GridColumnCompCat.Visible = True
+        Me.GridColumnCompCat.VisibleIndex = 2
+        Me.GridColumnCompCat.Width = 101
         '
         'FormFGBackupStockDet
         '
@@ -288,4 +298,5 @@ Partial Class FormFGBackupStockDet
     Friend WithEvents XTPSummary As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GridColumnDrawer As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCat As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCompCat As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -27,8 +27,21 @@
 
     Private Sub NBImport_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBImport.LinkClicked
         Cursor = Cursors.WaitCursor
-        FormDatabase.show = True
+        FormDatabase.showx = True
         FormDatabase.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBStock_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBStock.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormStock.MdiParent = Me
+            FormStock.Show()
+            FormStock.WindowState = FormWindowState.Maximized
+            FormStock.Focus()
+        Catch ex As Exception
+            errorConnection()
+        End Try
         Cursor = Cursors.Default
     End Sub
 End Class

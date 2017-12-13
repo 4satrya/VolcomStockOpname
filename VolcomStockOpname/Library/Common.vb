@@ -1703,10 +1703,12 @@ Module Common
 
     Public Function get_company_by_code_no_limit(ByVal code_par As String, ByVal cond_par As String)
         code_par = addSlashes(code_par)
-        Dim query As String = "SELECT comp.*, cont.id_comp_contact, getCompByContact(cont.id_comp_contact,4) AS `id_wh_drawer`,getCompByContact(cont.id_comp_contact,6) AS `id_wh_rack`, getCompByContact(cont.id_comp_contact,7) AS `id_wh_locator`, cont.contact_person, cont.contact_number, cont.is_default "
+        Dim query As String = "SELECT comp.* "
         query += "FROM tb_m_comp comp "
-        query += "INNER JOIN tb_m_comp_contact cont ON cont.id_comp = comp.id_comp AND cont.is_default='1' "
-        query += "WHERE comp.comp_number='" + code_par + "' "
+        query += "WHERE comp.id_comp>0 "
+        If code_par <> "" Then
+            query += "AND comp.comp_number='" + code_par + "'  "
+        End If
         If cond_par <> "-1" Then
             query += cond_par + " "
         End If
@@ -2638,15 +2640,12 @@ Module Common
     End Function
 
     '==============FUNCTION QUERY==========================='
-    Function getQueryWH() As String
+    Function getQueryWHDrawer() As String
         Dim query As String = ""
-        query += "SELECT ('0') AS id_comp, ('-') AS comp_number, ('All WH') AS comp_name, ('ALL WH') AS comp_name_label UNION ALL "
-        query += "SELECT e.id_comp, e.comp_number, e.comp_name, CONCAT_WS(' - ', e.comp_number, e.comp_name) AS comp_name_label FROM tb_storage_fg a "
-        query += "INNER JOIN tb_m_wh_drawer b ON a.id_wh_drawer = b.id_wh_drawer "
-        query += "INNER JOIN tb_m_wh_rack c ON b.id_wh_rack = c.id_wh_rack "
-        query += "INNER JOIN tb_m_wh_locator d ON c.id_wh_locator = d.id_wh_locator "
-        query += "INNER JOIN tb_m_comp e ON e.id_comp = d.id_comp "
-        query += "GROUP BY e.id_comp "
+        query += "SELECT ('0') AS id_drawer_def, ('-') AS comp_number, ('All WH') AS comp_name, ('ALL WH') AS comp_name_label UNION ALL "
+        query += "SELECT e.id_drawer_def, e.comp_number, e.comp_name, CONCAT_WS(' - ', e.comp_number, e.comp_name) AS comp_name_label FROM tb_st_stock a "
+        query += "INNER JOIN tb_m_comp e ON e.id_drawer_def = a.id_wh_drawer "
+        query += "GROUP BY e.id_drawer_def "
         Return query
     End Function
 

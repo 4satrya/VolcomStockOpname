@@ -90,6 +90,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassDesign.vb" />
     <Compile Include="ClassStockTake.vb" />
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
@@ -126,6 +127,18 @@
       <DependentUpon>FormMain.vb</DependentUpon>
     </Compile>
     <Compile Include="FormMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMasterCompanyDouble.designer.vb">
+      <DependentUpon>FormMasterCompanyDouble.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterCompanyDouble.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStock.Designer.vb">
+      <DependentUpon>FormStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStock.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Library\Common.vb" />
@@ -167,6 +180,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterCompanyDouble.resx">
+      <DependentUpon>FormMasterCompanyDouble.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStock.resx">
+      <DependentUpon>FormStock.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">

@@ -4,7 +4,7 @@ Imports MySql.Data.MySqlClient
 Public Class FormDatabase
     Private connect_state As Boolean = False
     Public id_type As String = "-1"
-    Public show As Boolean = False
+    Public showx As Boolean = False
     Dim url_import As String = ""
 
     Sub view_database(ByVal host As String, ByVal username As String, ByVal password As String)
@@ -48,7 +48,7 @@ Public Class FormDatabase
 
     Private Sub FormDatabase_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ActiveControl = TxtHost
-        If show Then
+        If showx Then
             TxtHost.Enabled = False
             TxtUsername.Enabled = False
             TxtPass.Enabled = False

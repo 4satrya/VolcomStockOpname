@@ -25,10 +25,10 @@ Partial Class FormMain
         Me.NBGGeneral = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBExport = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBImport = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBStock = New DevExpress.XtraNavBar.NavBarItem()
         Me.PCLeft = New DevExpress.XtraEditors.PanelControl()
         Me.XtraTabbedMdiManager1 = New DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(Me.components)
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomStockOpname.WaitForm1), True, True)
-        Me.NBStock = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.NBMain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCLeft.SuspendLayout()
@@ -75,6 +75,12 @@ Partial Class FormMain
         Me.NBImport.Name = "NBImport"
         Me.NBImport.SmallImage = CType(resources.GetObject("NBImport.SmallImage"), System.Drawing.Image)
         '
+        'NBStock
+        '
+        Me.NBStock.Caption = "Stock on Hand"
+        Me.NBStock.Name = "NBStock"
+        Me.NBStock.SmallImage = CType(resources.GetObject("NBStock.SmallImage"), System.Drawing.Image)
+        '
         'PCLeft
         '
         Me.PCLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -92,12 +98,6 @@ Partial Class FormMain
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'NBStock
-        '
-        Me.NBStock.Caption = "Stock on Hand"
-        Me.NBStock.Name = "NBStock"
-        Me.NBStock.SmallImage = CType(resources.GetObject("NBStock.SmallImage"), System.Drawing.Image)
         '
         'FormMain
         '

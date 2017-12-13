@@ -1,4 +1,5 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Imports DevExpress.XtraPrinting
+Imports MySql.Data.MySqlClient
 
 Public Class FormFGBackupStockDet
     Public id_st_period As String = "-1"
@@ -93,9 +94,10 @@ Public Class FormFGBackupStockDet
             Next
 
             'connection string
-            Dim date_stock = DateTime.Parse(DEStock.EditValue.ToString).ToString("yyyyMMdd")
+            Dim date_stock_DB = DateTime.Parse(DEStock.EditValue.ToString).ToString("yyyy-MM-dd") + "_" + getIdSt()
+            Dim date_stock = DateTime.Parse(DEStock.EditValue.ToString).ToString("yyyyMMdd") + "_" + getIdSt()
             Dim constring As String = "server=" + app_host_main + ";user=" + app_username_main + ";pwd=" + app_password_main + ";database=" + app_database_main + ";allow zero datetime=yes;"
-            Dim path_root As String = Application.StartupPath + "\download"
+            Dim path_root As String = Application.StartupPath + "\download\" + date_stock
             'create directory if not exist
             If Not IO.Directory.Exists(path_root) Then
                 System.IO.Directory.CreateDirectory(path_root)
@@ -155,11 +157,11 @@ Public Class FormFGBackupStockDet
 	            INNER JOIN tb_lookup_currency curr ON curr.id_currency = price.id_currency 
 	            INNER JOIN tb_m_user `user` ON user.id_user = price.id_user 
 	            INNER JOIN tb_m_employee emp ON emp.id_employee = user.id_employee 
-	            WHERE price.is_active_wh=1 AND price.design_price_start_date <= DATE('2017-12-11')
+	            WHERE price.is_active_wh=1 AND price.design_price_start_date <= DATE('" + date_stock_DB + "')
 	            ORDER BY price.design_price_start_date DESC, price.id_design_price DESC ) a
 	            GROUP BY a.id_design
             ) prc ON prc.id_design = p.id_design
-            WHERE DATE(f.storage_product_datetime)<=DATE('" + date_stock + "')
+            WHERE DATE(f.storage_product_datetime)<=DATE('" + date_stock_DB + "')
             GROUP BY f.id_wh_drawer, f.id_product 
             HAVING qty>0"
             execute_non_query(query_ins, False, app_host_main, app_username_main, app_password_main, app_database_main)
@@ -338,8 +340,62 @@ Public Class FormFGBackupStockDet
                 End Using
             End Using
 
+            'create pdf
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Creating pdf report")
+            Dim fileNamePdf As String = date_stock + ".pdf"
+            Dim reportPath As String = IO.Path.Combine(path_root, fileNamePdf)
+            ReportFGBackupStock.comp = comp
+            Using report As New ReportFGBackupStock()
+                report.LabelSOH.Text = "STOCK ON HAND " + date_stock
+
+                ' Specify PDF-specific export options.
+                Dim pdfOptions As PdfExportOptions = report.ExportOptions.Pdf
+
+                ' Specify the pages to be exported.
+                'pdfOptions.PageRange = "1, 3-5"
+
+                ' Specify the quality of exported images.
+                pdfOptions.ConvertImagesToJpeg = False
+                pdfOptions.ImageQuality = PdfJpegImageQuality.Medium
+
+                ' Specify the PDF/A-compatibility.
+                pdfOptions.PdfACompatibility = PdfACompatibility.PdfA2b
+
+                ' The following options are not compatible with PDF/A.
+                ' The use of these options will result in errors on PDF validation.
+                'pdfOptions.NeverEmbeddedFonts = "Tahoma;Courier New";
+                'pdfOptions.ShowPrintDialogOnOpen = true;
+
+                ' If required, you can specify the security and signature options. 
+                'pdfOptions.PasswordSecurityOptions
+                'pdfOptions.SignatureOptions
+
+                ' If required, specify necessary metadata and attachments
+                ' (e.g., to produce a ZUGFeRD-compatible PDF).
+                'pdfOptions.AdditionalMetadata
+                'pdfOptions.Attachments
+
+                ' Specify the document options.
+                pdfOptions.DocumentOptions.Application = "Volcom ERP"
+                pdfOptions.DocumentOptions.Author = "PT Volcom Indonesia"
+                pdfOptions.DocumentOptions.Keywords = "SOH, Stock Take, PDF"
+                'pdfOptions.DocumentOptions.Producer = Environment.UserName.ToString()
+                pdfOptions.DocumentOptions.Subject = "Data SOH Stock Take : " + date_stock
+                pdfOptions.DocumentOptions.Title = "SOH Stock Take : " + date_stock
+
+                ' Checks the validity of PDF export options 
+                ' and return a list of any detected inconsistencies.
+                'Dim result As IList(Of String) = pdfOptions.Validate()
+                'If result.Count > 0 Then
+                '    Console.WriteLine(String.Join(Environment.NewLine, result))
+                'Else
+                '    report.ExportToPdf(reportPath, pdfOptions)
+                'End If
+                report.ExportToPdf(reportPath, pdfOptions)
+            End Using
+
             FormMain.SplashScreenManager1.CloseWaitForm()
-            openFile()
+            openFile("\" + date_stock)
         End If
     End Sub
 
@@ -348,12 +404,12 @@ Public Class FormFGBackupStockDet
     End Sub
 
     Private Sub BtnOpenFileLoc_Click(sender As Object, e As EventArgs) Handles BtnOpenFileLoc.Click
-        openFile()
+        openFile("")
     End Sub
 
-    Sub openFile()
+    Sub openFile(ByVal additional As String)
         Cursor = Cursors.WaitCursor
-        Dim path_root As String = Application.StartupPath + "\download"
+        Dim path_root As String = Application.StartupPath + "\download" + additional
         Process.Start(path_root)
         Cursor = Cursors.Default
     End Sub

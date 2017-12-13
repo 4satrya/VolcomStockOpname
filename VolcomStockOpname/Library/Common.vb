@@ -3034,4 +3034,11 @@ Module Common
         If (dob > start.AddYears(-age)) Then age -= 1
         Return age
     End Function
+
+    Public Function getIdSt()
+        Dim id As String = execute_query("SELECT st_inc FROM tb_opt", 0, False, app_host_main, app_username_main, app_password_main, app_database_main)
+        Dim query As String = "UPDATE tb_opt SET st_inc=(tb_opt.st_inc+1)"
+        execute_non_query(query, False, app_host_main, app_username_main, app_password_main, app_database_main)
+        Return id
+    End Function
 End Module

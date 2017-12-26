@@ -18,8 +18,12 @@
 
     Sub actionLoad()
         Try
+            apply_skin()
             read_database_configuration()
             check_connection(True, "", "", "", "")
+            If id_user = "" Then
+                FormLogin.ShowDialog()
+            End If
         Catch ex As Exception
             FormDatabase.ShowDialog()
         End Try
@@ -43,5 +47,49 @@
             errorConnection()
         End Try
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBStockTake_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBStockTake.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormStockTake.MdiParent = Me
+            FormStockTake.Show()
+            FormStockTake.WindowState = FormWindowState.Maximized
+            FormStockTake.Focus()
+        Catch ex As Exception
+            errorConnection()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub logOutCmd()
+        Cursor = Cursors.WaitCursor
+        Try
+            'close all form
+            For Each frm In MdiChildren
+                If frm.Name <> "FormMain" Then
+                    frm.Close()
+                End If
+            Next
+
+            id_user = Nothing
+            id_role_login = Nothing
+            username_user = Nothing
+            name_user = Nothing
+            position_user = Nothing
+            is_change_pass_user = Nothing
+            Opacity = 0
+            FormLogin.ShowDialog()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles SimpleButton2.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to logout this system?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = DialogResult.Yes Then
+            logOutCmd()
+        End If
     End Sub
 End Class

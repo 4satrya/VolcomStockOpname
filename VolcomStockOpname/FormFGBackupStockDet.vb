@@ -137,6 +137,12 @@ Public Class FormFGBackupStockDet
             dic.Add("tb_lookup_design_cat", "SELECT * FROM tb_lookup_design_cat")
             dic.Add("tb_lookup_design_price_type", "SELECT * FROM tb_lookup_design_price_type")
             dic.Add("tb_m_design_price", "SELECT * FROM tb_m_design_price")
+            '-- user
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Backup user data")
+            dic.Add("tb_m_user", "SELECT u.* FROM tb_m_user u INNER JOIN tb_st_user s ON s.id_user = u.id_user ")
+            dic.Add("tb_m_employee", "SELECT e.* FROM tb_m_user u INNER JOIN tb_st_user s ON s.id_user = u.id_user 
+            INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee ")
+            dic.Add("tb_st_user", "SELECT s.* FROM tb_st_user s ")
             '-- stock
             FormMain.SplashScreenManager1.SetWaitFormDescription("Backup stock")
             execute_non_query("TRUNCATE `tb_st_stock`", False, app_host_main, app_username_main, app_password_main, app_database_main)

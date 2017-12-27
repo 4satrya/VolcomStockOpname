@@ -32,6 +32,12 @@ Partial Class FormStockTake
         Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
         Me.GCCombine = New DevExpress.XtraGrid.GridControl()
         Me.GVCombine = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnId = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNumberScan = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCreatedScan = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnLastUpdate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnUpdatedBy = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCStockTake, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStockTake.SuspendLayout()
         Me.XTPScan.SuspendLayout()
@@ -75,6 +81,7 @@ Partial Class FormStockTake
         '
         'GVScan
         '
+        Me.GVScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnNumberScan, Me.GridColumnCreatedScan, Me.GridColumnLastUpdate, Me.GridColumnUpdatedBy, Me.GridColumn1})
         Me.GVScan.GridControl = Me.GCScan
         Me.GVScan.Name = "GVScan"
         Me.GVScan.OptionsBehavior.AutoExpandAllGroups = True
@@ -162,6 +169,61 @@ Partial Class FormStockTake
         Me.GVCombine.OptionsView.ShowGroupedColumns = True
         Me.GVCombine.OptionsView.ShowGroupPanel = False
         '
+        'GridColumnId
+        '
+        Me.GridColumnId.Caption = "Id"
+        Me.GridColumnId.FieldName = "id_st_trans"
+        Me.GridColumnId.Name = "GridColumnId"
+        '
+        'GridColumnNumberScan
+        '
+        Me.GridColumnNumberScan.Caption = "Number"
+        Me.GridColumnNumberScan.FieldName = "st_trans_number"
+        Me.GridColumnNumberScan.Name = "GridColumnNumberScan"
+        Me.GridColumnNumberScan.Visible = True
+        Me.GridColumnNumberScan.VisibleIndex = 0
+        Me.GridColumnNumberScan.Width = 147
+        '
+        'GridColumnCreatedScan
+        '
+        Me.GridColumnCreatedScan.Caption = "Created Date"
+        Me.GridColumnCreatedScan.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnCreatedScan.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnCreatedScan.FieldName = "st_trans_date"
+        Me.GridColumnCreatedScan.Name = "GridColumnCreatedScan"
+        Me.GridColumnCreatedScan.Visible = True
+        Me.GridColumnCreatedScan.VisibleIndex = 1
+        Me.GridColumnCreatedScan.Width = 457
+        '
+        'GridColumnLastUpdate
+        '
+        Me.GridColumnLastUpdate.Caption = "Last Updated"
+        Me.GridColumnLastUpdate.DisplayFormat.FormatString = "dd MMMM yyyy hh:mm tt"
+        Me.GridColumnLastUpdate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnLastUpdate.FieldName = "st_trans_updated"
+        Me.GridColumnLastUpdate.Name = "GridColumnLastUpdate"
+        Me.GridColumnLastUpdate.Visible = True
+        Me.GridColumnLastUpdate.VisibleIndex = 2
+        Me.GridColumnLastUpdate.Width = 466
+        '
+        'GridColumnUpdatedBy
+        '
+        Me.GridColumnUpdatedBy.Caption = "Updated By"
+        Me.GridColumnUpdatedBy.FieldName = "employee_name"
+        Me.GridColumnUpdatedBy.Name = "GridColumnUpdatedBy"
+        Me.GridColumnUpdatedBy.Visible = True
+        Me.GridColumnUpdatedBy.VisibleIndex = 3
+        Me.GridColumnUpdatedBy.Width = 222
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Status"
+        Me.GridColumn1.FieldName = "report_status"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 4
+        Me.GridColumn1.Width = 324
+        '
         'FormStockTake
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -197,4 +259,10 @@ Partial Class FormStockTake
     Friend WithEvents BtnExport As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnRefresh As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnNew As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnId As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnNumberScan As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCreatedScan As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnLastUpdate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnUpdatedBy As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

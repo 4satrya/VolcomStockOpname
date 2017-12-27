@@ -11,7 +11,7 @@
         Else
             condition = ""
         End If
-        Dim query As String = "SELECT st.id_st_period, st.st_period_date, st.st_period_created_date, st.st_period_created_date, 
+        Dim query As String = "SELECT st.id_wh_drawer,st.id_st_period, st.st_period_date, st.st_period_created_date, st.st_period_created_date, 
         st.st_period_update_date, st.st_period_update_by, e.employee_name, st.st_period_description 
         FROM tb_st_period st 
         INNER JOIN tb_m_user u ON u.id_user = st.st_period_update_by
@@ -34,13 +34,18 @@
         Else
             condition = ""
         End If
-        Dim query As String = "SELECT st.id_st_trans, st.st_trans_number, st.st_trans_date, 
+        Dim query As String = "SELECT st.id_wh_drawer, c.comp_number, c.comp_name, CONCAT(c.comp_number,' - ', c.comp_name) AS `comp`,st.id_st_trans, st.st_trans_number, 
+        st.st_trans_date, st.st_trans_by, ep.employee_code AS `prepared_by_code`, ep.employee_name AS `prepared_by`, 
         st.st_trans_updated_by, e.employee_code, e.employee_name, 
         st.st_trans_updated, st.is_combine, st.id_report_status, rs.report_status
         FROM tb_st_trans st
         INNER JOIN tb_lookup_report_status rs ON rs.id_report_status = st.id_report_status
-        INNER JOIN tb_m_user u ON u.id_user = st.st_trans_updated_by
-        INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee "
+        LEFT JOIN tb_m_user u ON u.id_user = st.st_trans_updated_by
+        LEFT JOIN tb_m_employee e ON e.id_employee = u.id_employee 
+        INNER JOIN tb_m_user up ON up.id_user = st.st_trans_by
+        INNER JOIN tb_m_employee ep ON ep.id_employee = up.id_employee 
+        INNER JOIN tb_m_comp c ON c.id_drawer_def = st.id_wh_drawer
+        WHERE st.id_st_trans>0 "
         query += condition + " "
         query += "ORDER BY st.id_st_trans " + order_type
         Return query

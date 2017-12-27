@@ -181,6 +181,12 @@
     <Compile Include="FormStockTakeFaik.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormStockTakeNew.Designer.vb">
+      <DependentUpon>FormStockTakeNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockTakeNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Library\Common.vb" />
     <Compile Include="Library\Database.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -247,6 +253,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockTakeFaik.resx">
       <DependentUpon>FormStockTakeFaik.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStockTakeNew.resx">
+      <DependentUpon>FormStockTakeNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">

@@ -37,7 +37,7 @@ Module Common
         ret_var = ""
 
         Try
-            query = "SELECT " & field & " FROM tb_opt LIMIT 1"
+            query = "SELECT " & field & " FROM tb_st_opt LIMIT 1"
             ret_var = execute_query(query, 0, True, "", "", "", "")
         Catch ex As Exception
             ret_var = ""
@@ -131,47 +131,8 @@ Module Common
         header_number_x = ""
 
         If opt = "1" Then
-            header_number_x = combine_header_number(get_setup_field("purc_sample_code_head"), Integer.Parse(get_setup_field("purc_sample_code_inc")), Integer.Parse(get_setup_field("purc_sample_code_digit")))
-        ElseIf opt = "2" Then
-            header_number_x = combine_header_number(get_setup_field("rec_sample_code_head"), Integer.Parse(get_setup_field("rec_sample_code_inc")), Integer.Parse(get_setup_field("rec_sample_code_digit")))
-        ElseIf opt = "3" Then
-            header_number_x = combine_header_number(get_setup_field("pl_sample_code_head"), Integer.Parse(get_setup_field("pl_sample_code_inc")), Integer.Parse(get_setup_field("pl_sample_code_digit")))
-        ElseIf opt = "4" Then
-            header_number_x = combine_header_number(get_setup_field("pr_sample_code_head"), Integer.Parse(get_setup_field("pr_sample_code_inc")), Integer.Parse(get_setup_field("pr_sample_code_digit")))
-        ElseIf opt = "5" Then
-            header_number_x = combine_header_number(get_setup_field("receipt_sample_code_head"), Integer.Parse(get_setup_field("receipt_sample_code_inc")), Integer.Parse(get_setup_field("receipt_sample_code_digit")))
-        ElseIf opt = "6" Then
-            header_number_x = combine_header_number(get_setup_field("ret_out_sample_code_head"), Integer.Parse(get_setup_field("ret_out_sample_code_inc")), Integer.Parse(get_setup_field("ret_out_sample_code_digit")))
-        ElseIf opt = "7" Then
-            header_number_x = combine_header_number(get_setup_field("ret_in_sample_code_head"), Integer.Parse(get_setup_field("ret_in_sample_code_inc")), Integer.Parse(get_setup_field("ret_in_sample_code_digit")))
-        ElseIf opt = "8" Then
-            header_number_x = combine_header_number(get_setup_field("pl_sample_del_code_head"), Integer.Parse(get_setup_field("pl_sample_del_code_inc")), Integer.Parse(get_setup_field("pl_sample_del_code_digit")))
-        ElseIf opt = "9" Then
-            header_number_x = combine_header_number(get_setup_field("req_sample_del_code_head"), Integer.Parse(get_setup_field("req_sample_del_code_inc")), Integer.Parse(get_setup_field("req_sample_del_code_digit")))
-        ElseIf opt = "10" Then
-            header_number_x = combine_header_number(get_setup_field("plan_sample_code_head"), Integer.Parse(get_setup_field("plan_sample_code_inc")), Integer.Parse(get_setup_field("plan_sample_code_digit")))
-        ElseIf opt = "11" Then
-            header_number_x = combine_header_number(get_setup_field("sample_return_code_head"), Integer.Parse(get_setup_field("sample_return_code_inc")), Integer.Parse(get_setup_field("sample_return_code_digit")))
-        ElseIf opt = "12" Then
-            header_number_x = combine_header_number(get_setup_field("sample_adj_in_code_head"), Integer.Parse(get_setup_field("sample_adj_in_code_inc")), Integer.Parse(get_setup_field("sample_adj_in_code_digit")))
-        ElseIf opt = "13" Then
-            header_number_x = combine_header_number(get_setup_field("sample_adj_out_code_head"), Integer.Parse(get_setup_field("sample_adj_out_code_inc")), Integer.Parse(get_setup_field("sample_adj_out_code_digit")))
-        ElseIf opt = "14" Then
-            header_number_x = combine_header_number(get_setup_field("sample_del_code_head"), Integer.Parse(get_setup_field("sample_del_code_inc")), Integer.Parse(get_setup_field("sample_del_code_digit")))
-        ElseIf opt = "15" Then
-            header_number_x = combine_header_number(get_setup_field("sample_del_rec_code_head"), Integer.Parse(get_setup_field("sample_del_rec_code_inc")), Integer.Parse(get_setup_field("sample_del_rec_code_digit")))
-        ElseIf opt = "16" Then
-            header_number_x = combine_header_number(get_setup_field("sample_order_code_head"), Integer.Parse(get_setup_field("sample_order_code_inc")), Integer.Parse(get_setup_field("sample_order_code_digit")))
-        ElseIf opt = "17" Then
-            header_number_x = combine_header_number(get_setup_field("sample_del_order_code_head"), Integer.Parse(get_setup_field("sample_del_order_code_inc")), Integer.Parse(get_setup_field("sample_del_order_code_digit")))
-        ElseIf opt = "18" Then
-            header_number_x = combine_header_number(get_setup_field("sample_so_code_head"), Integer.Parse(get_setup_field("sample_so_code_inc")), Integer.Parse(get_setup_field("sample_so_code_digit")))
-        ElseIf opt = "19" Then
-            header_number_x = combine_header_number(get_setup_field("sample_pl_code_head"), Integer.Parse(get_setup_field("sample_pl_code_inc")), Integer.Parse(get_setup_field("sample_pl_code_digit")))
-        ElseIf opt = "20" Then
-            header_number_x = combine_header_number(get_setup_field("sample_price_code_head"), Integer.Parse(get_setup_field("sample_price_code_inc")), Integer.Parse(get_setup_field("sample_price_code_digit")))
-        ElseIf opt = "21" Then
-            header_number_x = combine_header_number(get_setup_field("sample_pl_ret_code_head"), Integer.Parse(get_setup_field("sample_pl_ret_code_inc")), Integer.Parse(get_setup_field("sample_pl_ret_code_digit")))
+            header_number_x = combine_header_number(st_user_code, Integer.Parse(get_setup_field("st_inc")), 5)
+            increase_inc("1")
         End If
 
         Return header_number_x
@@ -182,67 +143,7 @@ Module Common
         query = ""
 
         If opt = "1" Then
-            query = "UPDATE tb_opt SET purc_sample_code_inc=(tb_opt.purc_sample_code_inc+1)"
-            execute_non_query(query, True, "", "", "", "")
-        ElseIf opt = "2" Then
-            query = "UPDATE tb_opt SET rec_sample_code_inc=(tb_opt.rec_sample_code_inc+1)"
-            execute_non_query(query, True, "", "", "", "")
-        ElseIf opt = "3" Then
-            query = "UPDATE tb_opt SET pl_sample_code_inc=(tb_opt.pl_sample_code_inc+1)"
-            execute_non_query(query, True, "", "", "", "")
-        ElseIf opt = "4" Then
-            query = "UPDATE tb_opt SET pr_sample_code_inc=(tb_opt.pr_sample_code_inc+1)"
-            execute_non_query(query, True, "", "", "", "")
-        ElseIf opt = "5" Then
-            query = "UPDATE tb_opt SET receipt_sample_code_inc=(tb_opt.receipt_sample_code_inc+1)"
-            execute_non_query(query, True, "", "", "", "")
-        ElseIf opt = "6" Then
-            query = "UPDATE tb_opt SET ret_out_sample_code_inc=(tb_opt.ret_out_sample_code_inc+1)"
-            execute_non_query(query, True, "", "", "", "")
-        ElseIf opt = "7" Then
-            query = "UPDATE tb_opt SET ret_in_sample_code_inc=(tb_opt.ret_in_sample_code_inc+1)"
-            execute_non_query(query, True, "", "", "", "")
-        ElseIf opt = "8" Then
-            query = "UPDATE tb_opt SET pl_sample_del_code_inc=(tb_opt.pl_sample_del_code_inc+1)"
-            execute_non_query(query, True, "", "", "", "")
-        ElseIf opt = "9" Then
-            query = "UPDATE tb_opt SET req_sample_del_code_inc=(tb_opt.req_sample_del_code_inc+1)"
-            execute_non_query(query, True, "", "", "", "")
-        ElseIf opt = "10" Then
-            query = "UPDATE tb_opt SET plan_sample_code_inc=(tb_opt.plan_sample_code_inc+1)"
-            execute_non_query(query, True, "", "", "", "")
-        ElseIf opt = "11" Then
-            query = "UPDATE tb_opt SET sample_return_code_inc=(tb_opt.sample_return_code_inc+1)"
-            execute_non_query(query, True, "", "", "", "")
-        ElseIf opt = "12" Then
-            query = "UPDATE tb_opt SET sample_adj_in_code_inc=(tb_opt.sample_adj_in_code_inc+1)"
-            execute_non_query(query, True, "", "", "", "")
-        ElseIf opt = "13" Then
-            query = "UPDATE tb_opt SET sample_adj_out_code_inc=(tb_opt.sample_adj_out_code_inc+1)"
-            execute_non_query(query, True, "", "", "", "")
-        ElseIf opt = "14" Then
-            query = "UPDATE tb_opt SET sample_del_code_inc=(tb_opt.sample_del_code_inc+1)"
-            execute_non_query(query, True, "", "", "", "")
-        ElseIf opt = "15" Then
-            query = "UPDATE tb_opt SET sample_del_rec_code_inc=(tb_opt.sample_del_rec_code_inc+1)"
-            execute_non_query(query, True, "", "", "", "")
-        ElseIf opt = "16" Then
-            query = "UPDATE tb_opt SET sample_order_code_inc=(tb_opt.sample_order_code_inc+1)"
-            execute_non_query(query, True, "", "", "", "")
-        ElseIf opt = "17" Then
-            query = "UPDATE tb_opt SET sample_del_order_code_inc=(tb_opt.sample_del_order_code_inc+1)"
-            execute_non_query(query, True, "", "", "", "")
-        ElseIf opt = "18" Then
-            query = "UPDATE tb_opt SET sample_so_code_inc=(tb_opt.sample_so_code_inc+1)"
-            execute_non_query(query, True, "", "", "", "")
-        ElseIf opt = "19" Then
-            query = "UPDATE tb_opt SET sample_pl_code_inc=(tb_opt.sample_pl_code_inc+1)"
-            execute_non_query(query, True, "", "", "", "")
-        ElseIf opt = "20" Then
-            query = "UPDATE tb_opt SET sample_price_code_inc=(tb_opt.sample_price_code_inc+1)"
-            execute_non_query(query, True, "", "", "", "")
-        ElseIf opt = "21" Then
-            query = "UPDATE tb_opt SET sample_pl_ret_code_inc=(tb_opt.sample_pl_ret_code_inc+1)"
+            query = "UPDATE tb_st_opt SET st_inc=(tb_st_opt.st_inc+1)"
             execute_non_query(query, True, "", "", "", "")
         End If
     End Sub

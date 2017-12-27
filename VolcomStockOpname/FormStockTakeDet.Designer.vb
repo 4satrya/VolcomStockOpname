@@ -23,8 +23,8 @@ Partial Class FormStockTakeDet
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControlTopLeft = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.DECreated = New DevExpress.XtraEditors.DateEdit()
+        Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEWHStockSum = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView14 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -40,6 +40,19 @@ Partial Class FormStockTakeDet
         Me.XTPScan = New DevExpress.XtraTab.XtraTabPage()
         Me.GCScan = New DevExpress.XtraGrid.GridControl()
         Me.GVScan = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDescription = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNoStock = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnNoMaster = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSale = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdProduct = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
@@ -48,25 +61,13 @@ Partial Class FormStockTakeDet
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnDescription = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnPrice = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnNoStock = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnNoMaster = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnSale = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIdPrice = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIdProduct = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopLeft.SuspendLayout()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEWHStockSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,6 +80,7 @@ Partial Class FormStockTakeDet
         Me.XTPScan.SuspendLayout()
         CType(Me.GCScan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVScan, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
         CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -103,8 +105,8 @@ Partial Class FormStockTakeDet
         '
         Me.PanelControlTopLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControlTopLeft.Controls.Add(Me.LabelControl3)
-        Me.PanelControlTopLeft.Controls.Add(Me.DateEdit1)
-        Me.PanelControlTopLeft.Controls.Add(Me.TextEdit1)
+        Me.PanelControlTopLeft.Controls.Add(Me.DECreated)
+        Me.PanelControlTopLeft.Controls.Add(Me.TxtNumber)
         Me.PanelControlTopLeft.Controls.Add(Me.LabelControl2)
         Me.PanelControlTopLeft.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControlTopLeft.Location = New System.Drawing.Point(755, 2)
@@ -120,23 +122,24 @@ Partial Class FormStockTakeDet
         Me.LabelControl3.TabIndex = 8905
         Me.LabelControl3.Text = "Created Date"
         '
-        'DateEdit1
+        'DECreated
         '
-        Me.DateEdit1.EditValue = Nothing
-        Me.DateEdit1.Location = New System.Drawing.Point(97, 37)
-        Me.DateEdit1.Name = "DateEdit1"
-        Me.DateEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Size = New System.Drawing.Size(173, 20)
-        Me.DateEdit1.TabIndex = 8903
+        Me.DECreated.EditValue = Nothing
+        Me.DECreated.Enabled = False
+        Me.DECreated.Location = New System.Drawing.Point(97, 37)
+        Me.DECreated.Name = "DECreated"
+        Me.DECreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECreated.Size = New System.Drawing.Size(173, 20)
+        Me.DECreated.TabIndex = 8903
         '
-        'TextEdit1
+        'TxtNumber
         '
-        Me.TextEdit1.Enabled = False
-        Me.TextEdit1.Location = New System.Drawing.Point(97, 11)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Size = New System.Drawing.Size(173, 20)
-        Me.TextEdit1.TabIndex = 8904
+        Me.TxtNumber.Enabled = False
+        Me.TxtNumber.Location = New System.Drawing.Point(97, 11)
+        Me.TxtNumber.Name = "TxtNumber"
+        Me.TxtNumber.Size = New System.Drawing.Size(173, 20)
+        Me.TxtNumber.TabIndex = 8904
         '
         'LabelControl2
         '
@@ -264,6 +267,7 @@ Partial Class FormStockTakeDet
         Me.GCScan.Location = New System.Drawing.Point(0, 46)
         Me.GCScan.MainView = Me.GVScan
         Me.GCScan.Name = "GCScan"
+        Me.GCScan.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
         Me.GCScan.Size = New System.Drawing.Size(1014, 381)
         Me.GCScan.TabIndex = 1
         Me.GCScan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScan})
@@ -278,6 +282,135 @@ Partial Class FormStockTakeDet
         Me.GVScan.OptionsView.ShowFooter = True
         Me.GVScan.OptionsView.ShowGroupedColumns = True
         Me.GVScan.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnNo
+        '
+        Me.GridColumnNo.Caption = "No"
+        Me.GridColumnNo.FieldName = "no"
+        Me.GridColumnNo.Name = "GridColumnNo"
+        Me.GridColumnNo.Visible = True
+        Me.GridColumnNo.VisibleIndex = 0
+        Me.GridColumnNo.Width = 54
+        '
+        'GridColumnCode
+        '
+        Me.GridColumnCode.Caption = "Code"
+        Me.GridColumnCode.FieldName = "code"
+        Me.GridColumnCode.Name = "GridColumnCode"
+        Me.GridColumnCode.Visible = True
+        Me.GridColumnCode.VisibleIndex = 1
+        Me.GridColumnCode.Width = 202
+        '
+        'GridColumnDescription
+        '
+        Me.GridColumnDescription.Caption = "Description"
+        Me.GridColumnDescription.FieldName = "name"
+        Me.GridColumnDescription.Name = "GridColumnDescription"
+        Me.GridColumnDescription.Visible = True
+        Me.GridColumnDescription.VisibleIndex = 2
+        Me.GridColumnDescription.Width = 497
+        '
+        'GridColumnSize
+        '
+        Me.GridColumnSize.Caption = "Size"
+        Me.GridColumnSize.FieldName = "size"
+        Me.GridColumnSize.Name = "GridColumnSize"
+        Me.GridColumnSize.Visible = True
+        Me.GridColumnSize.VisibleIndex = 3
+        Me.GridColumnSize.Width = 49
+        '
+        'GridColumnQty
+        '
+        Me.GridColumnQty.Caption = "Qty"
+        Me.GridColumnQty.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty.FieldName = "qty"
+        Me.GridColumnQty.Name = "GridColumnQty"
+        Me.GridColumnQty.Visible = True
+        Me.GridColumnQty.VisibleIndex = 4
+        Me.GridColumnQty.Width = 85
+        '
+        'GridColumnPrice
+        '
+        Me.GridColumnPrice.Caption = "Price"
+        Me.GridColumnPrice.DisplayFormat.FormatString = "N2"
+        Me.GridColumnPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnPrice.FieldName = "design_price"
+        Me.GridColumnPrice.Name = "GridColumnPrice"
+        Me.GridColumnPrice.Visible = True
+        Me.GridColumnPrice.VisibleIndex = 5
+        Me.GridColumnPrice.Width = 172
+        '
+        'GridColumnAmount
+        '
+        Me.GridColumnAmount.Caption = "Amount"
+        Me.GridColumnAmount.DisplayFormat.FormatString = "n2"
+        Me.GridColumnAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnAmount.FieldName = "amount"
+        Me.GridColumnAmount.Name = "GridColumnAmount"
+        Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:n2}")})
+        Me.GridColumnAmount.UnboundExpression = "[design_price] * [qty]"
+        Me.GridColumnAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnAmount.Visible = True
+        Me.GridColumnAmount.VisibleIndex = 6
+        Me.GridColumnAmount.Width = 287
+        '
+        'GridColumnNoStock
+        '
+        Me.GridColumnNoStock.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnNoStock.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnNoStock.Caption = "No Stock"
+        Me.GridColumnNoStock.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.GridColumnNoStock.FieldName = "is_no_stock_v"
+        Me.GridColumnNoStock.Name = "GridColumnNoStock"
+        Me.GridColumnNoStock.Visible = True
+        Me.GridColumnNoStock.VisibleIndex = 7
+        Me.GridColumnNoStock.Width = 83
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
+        '
+        'GridColumnNoMaster
+        '
+        Me.GridColumnNoMaster.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnNoMaster.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnNoMaster.Caption = "No master"
+        Me.GridColumnNoMaster.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.GridColumnNoMaster.FieldName = "is_no_master_v"
+        Me.GridColumnNoMaster.Name = "GridColumnNoMaster"
+        Me.GridColumnNoMaster.Visible = True
+        Me.GridColumnNoMaster.VisibleIndex = 8
+        Me.GridColumnNoMaster.Width = 91
+        '
+        'GridColumnSale
+        '
+        Me.GridColumnSale.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnSale.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnSale.Caption = "Sale"
+        Me.GridColumnSale.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.GridColumnSale.FieldName = "is_sale_v"
+        Me.GridColumnSale.Name = "GridColumnSale"
+        Me.GridColumnSale.Visible = True
+        Me.GridColumnSale.VisibleIndex = 9
+        Me.GridColumnSale.Width = 96
+        '
+        'GridColumnIdPrice
+        '
+        Me.GridColumnIdPrice.Caption = "Id Price"
+        Me.GridColumnIdPrice.FieldName = "id_design_price"
+        Me.GridColumnIdPrice.Name = "GridColumnIdPrice"
+        Me.GridColumnIdPrice.Width = 159
+        '
+        'GridColumnIdProduct
+        '
+        Me.GridColumnIdProduct.Caption = "Id Product"
+        Me.GridColumnIdProduct.FieldName = "id_product"
+        Me.GridColumnIdProduct.Name = "GridColumnIdProduct"
+        Me.GridColumnIdProduct.Width = 194
         '
         'PanelControlNav
         '
@@ -353,97 +486,6 @@ Partial Class FormStockTakeDet
         Me.GridView1.OptionsView.ShowGroupedColumns = True
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
-        'GridColumnNo
-        '
-        Me.GridColumnNo.Caption = "No"
-        Me.GridColumnNo.Name = "GridColumnNo"
-        Me.GridColumnNo.Visible = True
-        Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 57
-        '
-        'GridColumnCode
-        '
-        Me.GridColumnCode.Caption = "Code"
-        Me.GridColumnCode.Name = "GridColumnCode"
-        Me.GridColumnCode.Visible = True
-        Me.GridColumnCode.VisibleIndex = 1
-        Me.GridColumnCode.Width = 212
-        '
-        'GridColumnDescription
-        '
-        Me.GridColumnDescription.Caption = "Description"
-        Me.GridColumnDescription.Name = "GridColumnDescription"
-        Me.GridColumnDescription.Visible = True
-        Me.GridColumnDescription.VisibleIndex = 2
-        Me.GridColumnDescription.Width = 616
-        '
-        'GridColumnSize
-        '
-        Me.GridColumnSize.Caption = "Size"
-        Me.GridColumnSize.Name = "GridColumnSize"
-        Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 3
-        Me.GridColumnSize.Width = 47
-        '
-        'GridColumnQty
-        '
-        Me.GridColumnQty.Caption = "Qty"
-        Me.GridColumnQty.Name = "GridColumnQty"
-        Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 4
-        Me.GridColumnQty.Width = 60
-        '
-        'GridColumnPrice
-        '
-        Me.GridColumnPrice.Caption = "Price"
-        Me.GridColumnPrice.Name = "GridColumnPrice"
-        Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 5
-        Me.GridColumnPrice.Width = 241
-        '
-        'GridColumnNoStock
-        '
-        Me.GridColumnNoStock.Caption = "No Stock"
-        Me.GridColumnNoStock.Name = "GridColumnNoStock"
-        Me.GridColumnNoStock.Visible = True
-        Me.GridColumnNoStock.VisibleIndex = 6
-        Me.GridColumnNoStock.Width = 125
-        '
-        'GridColumnNoMaster
-        '
-        Me.GridColumnNoMaster.Caption = "No master"
-        Me.GridColumnNoMaster.Name = "GridColumnNoMaster"
-        Me.GridColumnNoMaster.Visible = True
-        Me.GridColumnNoMaster.VisibleIndex = 7
-        Me.GridColumnNoMaster.Width = 120
-        '
-        'GridColumnSale
-        '
-        Me.GridColumnSale.Caption = "Sale"
-        Me.GridColumnSale.Name = "GridColumnSale"
-        Me.GridColumnSale.Visible = True
-        Me.GridColumnSale.VisibleIndex = 8
-        Me.GridColumnSale.Width = 138
-        '
-        'GridColumnIdPrice
-        '
-        Me.GridColumnIdPrice.Caption = "Id Price"
-        Me.GridColumnIdPrice.Name = "GridColumnIdPrice"
-        Me.GridColumnIdPrice.Width = 159
-        '
-        'GridColumnIdProduct
-        '
-        Me.GridColumnIdProduct.Caption = "Id Product"
-        Me.GridColumnIdProduct.Name = "GridColumnIdProduct"
-        Me.GridColumnIdProduct.Width = 194
-        '
-        'GridColumnAmount
-        '
-        Me.GridColumnAmount.Caption = "Amount"
-        Me.GridColumnAmount.Name = "GridColumnAmount"
-        Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 9
-        '
         'FormStockTakeDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -463,9 +505,9 @@ Partial Class FormStockTakeDet
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopLeft.ResumeLayout(False)
         Me.PanelControlTopLeft.PerformLayout()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEWHStockSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -479,6 +521,7 @@ Partial Class FormStockTakeDet
         Me.XTPScan.ResumeLayout(False)
         CType(Me.GCScan, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVScan, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
         Me.PanelControlNav.PerformLayout()
@@ -503,8 +546,8 @@ Partial Class FormStockTakeDet
     Friend WithEvents GridView14 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents PanelControlTopLeft As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents DateEdit1 As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents DECreated As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents TxtNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControlNav As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
@@ -530,4 +573,5 @@ Partial Class FormStockTakeDet
     Friend WithEvents GridColumnSale As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdPrice As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdProduct As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class

@@ -146,6 +146,9 @@ Public Class FormFGBackupStockDet
             '-- report status
             FormMain.SplashScreenManager1.SetWaitFormDescription("Backup report status")
             dic.Add("tb_lookup_report_status", "SELECT * FROM tb_lookup_report_status ")
+            '-- tb_st_opt
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Backup option table")
+            dic.Add("tb_st_opt", "SELECT * FROM tb_st_opt ")
             '-- transaction
             FormMain.SplashScreenManager1.SetWaitFormDescription("Creating transaction table")
             dic.Add("tb_st_trans", "SELECT * FROM tb_st_trans ")

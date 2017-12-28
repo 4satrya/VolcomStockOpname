@@ -142,7 +142,13 @@
     Private Sub TxtScan_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtScan.KeyDown
         If e.KeyCode = Keys.Enter Then
             Dim code As String = addSlashes(TxtScan.Text)
-
+            Dim code_check As String = ""
+            If code.Length > 12 Then
+                code_check = code.Substring(0, 12)
+            Else
+                code_check = code
+            End If
+            MsgBox(code_check)
         End If
     End Sub
 End Class

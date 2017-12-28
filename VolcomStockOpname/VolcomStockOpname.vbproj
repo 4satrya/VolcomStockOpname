@@ -169,6 +169,12 @@
     <Compile Include="FormStockTake.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormStockTakeDel.Designer.vb">
+      <DependentUpon>FormStockTakeDel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockTakeDel.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormStockTakeDet.Designer.vb">
       <DependentUpon>FormStockTakeDet.vb</DependentUpon>
     </Compile>
@@ -247,6 +253,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockTake.resx">
       <DependentUpon>FormStockTake.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStockTakeDel.resx">
+      <DependentUpon>FormStockTakeDel.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockTakeDet.resx">
       <DependentUpon>FormStockTakeDet.vb</DependentUpon>

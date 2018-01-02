@@ -62,6 +62,7 @@ Partial Class FormStockTakeDet
         Me.GridColumnproductStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIniqueNotFound = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
+        Me.CheckEditReject = New DevExpress.XtraEditors.CheckEdit()
         Me.TxtScan = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
@@ -69,7 +70,6 @@ Partial Class FormStockTakeDet
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.CheckEditReject = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -93,11 +93,11 @@ Partial Class FormStockTakeDet
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
+        CType(Me.CheckEditReject.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtScan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPSummary.SuspendLayout()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CheckEditReject.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -344,6 +344,7 @@ Partial Class FormStockTakeDet
         Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnQty.FieldName = "qty"
         Me.GridColumnQty.Name = "GridColumnQty"
+        Me.GridColumnQty.OptionsColumn.AllowEdit = False
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumnQty.Visible = True
         Me.GridColumnQty.VisibleIndex = 4
@@ -509,6 +510,14 @@ Partial Class FormStockTakeDet
         Me.PanelControlNav.Size = New System.Drawing.Size(1014, 46)
         Me.PanelControlNav.TabIndex = 0
         '
+        'CheckEditReject
+        '
+        Me.CheckEditReject.Location = New System.Drawing.Point(308, 14)
+        Me.CheckEditReject.Name = "CheckEditReject"
+        Me.CheckEditReject.Properties.Caption = "Reject Product"
+        Me.CheckEditReject.Size = New System.Drawing.Size(98, 19)
+        Me.CheckEditReject.TabIndex = 8906
+        '
         'TxtScan
         '
         Me.TxtScan.Location = New System.Drawing.Point(101, 13)
@@ -571,14 +580,6 @@ Partial Class FormStockTakeDet
         Me.GridView1.OptionsView.ShowGroupedColumns = True
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
-        'CheckEditReject
-        '
-        Me.CheckEditReject.Location = New System.Drawing.Point(308, 14)
-        Me.CheckEditReject.Name = "CheckEditReject"
-        Me.CheckEditReject.Properties.Caption = "Reject Product"
-        Me.CheckEditReject.Size = New System.Drawing.Size(98, 19)
-        Me.CheckEditReject.TabIndex = 8906
-        '
         'FormStockTakeDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -620,11 +621,11 @@ Partial Class FormStockTakeDet
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
         Me.PanelControlNav.PerformLayout()
+        CType(Me.CheckEditReject.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtScan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPSummary.ResumeLayout(False)
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CheckEditReject.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

@@ -60,6 +60,7 @@ Partial Class FormStockTakeDet
         Me.GridColumnOK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnReject = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnproductStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIniqueNotFound = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.TxtScan = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
@@ -68,7 +69,7 @@ Partial Class FormStockTakeDet
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnIniqueNotFound = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CheckEditReject = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -96,6 +97,7 @@ Partial Class FormStockTakeDet
         Me.XTPSummary.SuspendLayout()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CheckEditReject.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -482,8 +484,21 @@ Partial Class FormStockTakeDet
         Me.GridColumnproductStatus.VisibleIndex = 7
         Me.GridColumnproductStatus.Width = 72
         '
+        'GridColumnIniqueNotFound
+        '
+        Me.GridColumnIniqueNotFound.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnIniqueNotFound.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnIniqueNotFound.Caption = "Unique Not Found"
+        Me.GridColumnIniqueNotFound.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.GridColumnIniqueNotFound.FieldName = "is_unique_not_found_v"
+        Me.GridColumnIniqueNotFound.Name = "GridColumnIniqueNotFound"
+        Me.GridColumnIniqueNotFound.Visible = True
+        Me.GridColumnIniqueNotFound.VisibleIndex = 13
+        Me.GridColumnIniqueNotFound.Width = 113
+        '
         'PanelControlNav
         '
+        Me.PanelControlNav.Controls.Add(Me.CheckEditReject)
         Me.PanelControlNav.Controls.Add(Me.TxtScan)
         Me.PanelControlNav.Controls.Add(Me.LabelControl4)
         Me.PanelControlNav.Controls.Add(Me.SimpleButton3)
@@ -556,17 +571,13 @@ Partial Class FormStockTakeDet
         Me.GridView1.OptionsView.ShowGroupedColumns = True
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
-        'GridColumnIniqueNotFound
+        'CheckEditReject
         '
-        Me.GridColumnIniqueNotFound.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnIniqueNotFound.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnIniqueNotFound.Caption = "Unique Not Found"
-        Me.GridColumnIniqueNotFound.ColumnEdit = Me.RepositoryItemCheckEdit1
-        Me.GridColumnIniqueNotFound.FieldName = "is_unique_not_found_v"
-        Me.GridColumnIniqueNotFound.Name = "GridColumnIniqueNotFound"
-        Me.GridColumnIniqueNotFound.Visible = True
-        Me.GridColumnIniqueNotFound.VisibleIndex = 13
-        Me.GridColumnIniqueNotFound.Width = 113
+        Me.CheckEditReject.Location = New System.Drawing.Point(308, 14)
+        Me.CheckEditReject.Name = "CheckEditReject"
+        Me.CheckEditReject.Properties.Caption = "Reject Product"
+        Me.CheckEditReject.Size = New System.Drawing.Size(98, 19)
+        Me.CheckEditReject.TabIndex = 8906
         '
         'FormStockTakeDet
         '
@@ -613,6 +624,7 @@ Partial Class FormStockTakeDet
         Me.XTPSummary.ResumeLayout(False)
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CheckEditReject.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -665,4 +677,5 @@ Partial Class FormStockTakeDet
     Friend WithEvents GridColumnReject As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnproductStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIniqueNotFound As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CheckEditReject As DevExpress.XtraEditors.CheckEdit
 End Class

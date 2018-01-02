@@ -558,7 +558,7 @@ Partial Class FormStockTakeDet
         Me.XTPSummary.Controls.Add(Me.GridControl1)
         Me.XTPSummary.Name = "XTPSummary"
         Me.XTPSummary.Size = New System.Drawing.Size(1014, 427)
-        Me.XTPSummary.Text = "Summary"
+        Me.XTPSummary.Text = "Summary By Product"
         '
         'GridControl1
         '

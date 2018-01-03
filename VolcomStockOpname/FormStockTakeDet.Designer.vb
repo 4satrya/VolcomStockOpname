@@ -68,8 +68,18 @@ Partial Class FormStockTakeDet
         Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCSummaryScan = New DevExpress.XtraGrid.GridControl()
+        Me.GVSummaryScan = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnNoSmr = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdProductSmr = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnProductCodeSmr = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnScannedCodeSMR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNameSMR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSizeSMR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQtySMR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnpriceSMR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAmountSMR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -96,8 +106,9 @@ Partial Class FormStockTakeDet
         CType(Me.CheckEditReject.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtScan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPSummary.SuspendLayout()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCSummaryScan, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVSummaryScan, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -555,30 +566,128 @@ Partial Class FormStockTakeDet
         '
         'XTPSummary
         '
-        Me.XTPSummary.Controls.Add(Me.GridControl1)
+        Me.XTPSummary.Controls.Add(Me.GCSummaryScan)
         Me.XTPSummary.Name = "XTPSummary"
         Me.XTPSummary.Size = New System.Drawing.Size(1014, 427)
         Me.XTPSummary.Text = "Summary By Product"
         '
-        'GridControl1
+        'GCSummaryScan
         '
-        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl1.Location = New System.Drawing.Point(0, 0)
-        Me.GridControl1.MainView = Me.GridView1
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(1014, 427)
-        Me.GridControl1.TabIndex = 1
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        Me.GCSummaryScan.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSummaryScan.Location = New System.Drawing.Point(0, 0)
+        Me.GCSummaryScan.MainView = Me.GVSummaryScan
+        Me.GCSummaryScan.Name = "GCSummaryScan"
+        Me.GCSummaryScan.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1})
+        Me.GCSummaryScan.Size = New System.Drawing.Size(1014, 427)
+        Me.GCSummaryScan.TabIndex = 1
+        Me.GCSummaryScan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummaryScan})
         '
-        'GridView1
+        'GVSummaryScan
         '
-        Me.GridView1.GridControl = Me.GridControl1
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GridView1.OptionsBehavior.Editable = False
-        Me.GridView1.OptionsView.ShowFooter = True
-        Me.GridView1.OptionsView.ShowGroupedColumns = True
-        Me.GridView1.OptionsView.ShowGroupPanel = False
+        Me.GVSummaryScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoSmr, Me.GridColumnIdProductSmr, Me.GridColumnProductCodeSmr, Me.GridColumnScannedCodeSMR, Me.GridColumnNameSMR, Me.GridColumnSizeSMR, Me.GridColumnQtySMR, Me.GridColumnpriceSMR, Me.GridColumnAmountSMR})
+        Me.GVSummaryScan.GridControl = Me.GCSummaryScan
+        Me.GVSummaryScan.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQtySMR, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmountSMR, "{0:N2}")})
+        Me.GVSummaryScan.Name = "GVSummaryScan"
+        Me.GVSummaryScan.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVSummaryScan.OptionsBehavior.Editable = False
+        Me.GVSummaryScan.OptionsView.ShowFooter = True
+        Me.GVSummaryScan.OptionsView.ShowGroupedColumns = True
+        Me.GVSummaryScan.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnNoSmr
+        '
+        Me.GridColumnNoSmr.Caption = "No"
+        Me.GridColumnNoSmr.FieldName = "no"
+        Me.GridColumnNoSmr.Name = "GridColumnNoSmr"
+        Me.GridColumnNoSmr.Visible = True
+        Me.GridColumnNoSmr.VisibleIndex = 0
+        Me.GridColumnNoSmr.Width = 61
+        '
+        'GridColumnIdProductSmr
+        '
+        Me.GridColumnIdProductSmr.Caption = "Id Product"
+        Me.GridColumnIdProductSmr.FieldName = "id_product"
+        Me.GridColumnIdProductSmr.Name = "GridColumnIdProductSmr"
+        '
+        'GridColumnProductCodeSmr
+        '
+        Me.GridColumnProductCodeSmr.Caption = "Product Code"
+        Me.GridColumnProductCodeSmr.ColumnEdit = Me.RepositoryItemTextEdit1
+        Me.GridColumnProductCodeSmr.FieldName = "product_code"
+        Me.GridColumnProductCodeSmr.Name = "GridColumnProductCodeSmr"
+        Me.GridColumnProductCodeSmr.Visible = True
+        Me.GridColumnProductCodeSmr.VisibleIndex = 1
+        Me.GridColumnProductCodeSmr.Width = 231
+        '
+        'GridColumnScannedCodeSMR
+        '
+        Me.GridColumnScannedCodeSMR.Caption = "Scanned Code"
+        Me.GridColumnScannedCodeSMR.FieldName = "scanned_code"
+        Me.GridColumnScannedCodeSMR.Name = "GridColumnScannedCodeSMR"
+        Me.GridColumnScannedCodeSMR.Visible = True
+        Me.GridColumnScannedCodeSMR.VisibleIndex = 2
+        Me.GridColumnScannedCodeSMR.Width = 227
+        '
+        'GridColumnNameSMR
+        '
+        Me.GridColumnNameSMR.Caption = "Description"
+        Me.GridColumnNameSMR.FieldName = "name"
+        Me.GridColumnNameSMR.Name = "GridColumnNameSMR"
+        Me.GridColumnNameSMR.Visible = True
+        Me.GridColumnNameSMR.VisibleIndex = 3
+        Me.GridColumnNameSMR.Width = 433
+        '
+        'GridColumnSizeSMR
+        '
+        Me.GridColumnSizeSMR.Caption = "Size"
+        Me.GridColumnSizeSMR.FieldName = "size"
+        Me.GridColumnSizeSMR.Name = "GridColumnSizeSMR"
+        Me.GridColumnSizeSMR.Visible = True
+        Me.GridColumnSizeSMR.VisibleIndex = 4
+        Me.GridColumnSizeSMR.Width = 52
+        '
+        'GridColumnQtySMR
+        '
+        Me.GridColumnQtySMR.Caption = "Qty"
+        Me.GridColumnQtySMR.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQtySMR.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQtySMR.FieldName = "qty"
+        Me.GridColumnQtySMR.Name = "GridColumnQtySMR"
+        Me.GridColumnQtySMR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
+        Me.GridColumnQtySMR.Visible = True
+        Me.GridColumnQtySMR.VisibleIndex = 5
+        Me.GridColumnQtySMR.Width = 85
+        '
+        'GridColumnpriceSMR
+        '
+        Me.GridColumnpriceSMR.Caption = "Price"
+        Me.GridColumnpriceSMR.DisplayFormat.FormatString = "N2"
+        Me.GridColumnpriceSMR.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnpriceSMR.FieldName = "design_price"
+        Me.GridColumnpriceSMR.Name = "GridColumnpriceSMR"
+        Me.GridColumnpriceSMR.Visible = True
+        Me.GridColumnpriceSMR.VisibleIndex = 6
+        Me.GridColumnpriceSMR.Width = 113
+        '
+        'GridColumnAmountSMR
+        '
+        Me.GridColumnAmountSMR.Caption = "Amount"
+        Me.GridColumnAmountSMR.DisplayFormat.FormatString = "N2"
+        Me.GridColumnAmountSMR.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnAmountSMR.FieldName = "amount"
+        Me.GridColumnAmountSMR.Name = "GridColumnAmountSMR"
+        Me.GridColumnAmountSMR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
+        Me.GridColumnAmountSMR.UnboundExpression = "[qty] * [design_price]"
+        Me.GridColumnAmountSMR.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnAmountSMR.Visible = True
+        Me.GridColumnAmountSMR.VisibleIndex = 7
+        Me.GridColumnAmountSMR.Width = 414
+        '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        Me.RepositoryItemTextEdit1.NullText = "-"
         '
         'FormStockTakeDet
         '
@@ -624,8 +733,9 @@ Partial Class FormStockTakeDet
         CType(Me.CheckEditReject.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtScan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPSummary.ResumeLayout(False)
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCSummaryScan, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVSummaryScan, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -652,8 +762,8 @@ Partial Class FormStockTakeDet
     Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCScan As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVScan As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCSummaryScan As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVSummaryScan As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents BtnSetStatus As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LEStatus As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
@@ -679,4 +789,14 @@ Partial Class FormStockTakeDet
     Friend WithEvents GridColumnproductStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIniqueNotFound As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CheckEditReject As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GridColumnNoSmr As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdProductSmr As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnProductCodeSmr As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnScannedCodeSMR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnNameSMR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSizeSMR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQtySMR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnpriceSMR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAmountSMR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class

@@ -73,6 +73,19 @@
         GCScan.DataSource = data
     End Sub
 
+    Sub viewSummary()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT Std.id_product, p.product_full_code AS `product_code`, std.code AS `scanned_code`, std.name, std.size, 
+        SUM(std.qty) AS `qty`, std.design_price
+        FROM tb_st_trans_det std
+        LEFT JOIN tb_m_product p ON p.id_product = std.id_product
+        WHERE std.id_st_trans=" + id_st_trans + "
+        GROUP BY std.id_product "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSummaryScan.DataSource = data
+        Cursor = Cursors.Default
+    End Sub
+
     Sub allow_status()
 
         If id_report_status = "5" Or id_report_status = "6" Then
@@ -260,6 +273,19 @@
     Private Sub GVScan_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVScan.CustomColumnDisplayText
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub GVSummaryScan_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVSummaryScan.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub XTCStockTake_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCStockTake.SelectedPageChanged
+        If XTCStockTake.SelectedTabPageIndex = 0 Then
+        ElseIf XTCStockTake.SelectedTabPageIndex = 1 Then
+            viewSummary()
         End If
     End Sub
 End Class

@@ -73,13 +73,13 @@ Partial Class FormStockTakeDet
         Me.GridColumnNoSmr = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdProductSmr = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnProductCodeSmr = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnScannedCodeSMR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNameSMR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSizeSMR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtySMR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnpriceSMR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAmountSMR = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -619,6 +619,12 @@ Partial Class FormStockTakeDet
         Me.GridColumnProductCodeSmr.VisibleIndex = 1
         Me.GridColumnProductCodeSmr.Width = 231
         '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        Me.RepositoryItemTextEdit1.NullText = "-"
+        '
         'GridColumnScannedCodeSMR
         '
         Me.GridColumnScannedCodeSMR.Caption = "Scanned Code"
@@ -682,12 +688,6 @@ Partial Class FormStockTakeDet
         Me.GridColumnAmountSMR.Visible = True
         Me.GridColumnAmountSMR.VisibleIndex = 7
         Me.GridColumnAmountSMR.Width = 414
-        '
-        'RepositoryItemTextEdit1
-        '
-        Me.RepositoryItemTextEdit1.AutoHeight = False
-        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
-        Me.RepositoryItemTextEdit1.NullText = "-"
         '
         'FormStockTakeDet
         '

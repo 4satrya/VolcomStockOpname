@@ -97,7 +97,7 @@ Public Class FormFGBackupStockDet
             Dim date_stock_DB = DateTime.Parse(DEStock.EditValue.ToString).ToString("yyyy-MM-dd") + "_" + getIdSt()
             Dim date_stock = DateTime.Parse(DEStock.EditValue.ToString).ToString("yyyyMMdd") + "_" + getIdSt()
             Dim constring As String = "server=" + app_host_main + ";user=" + app_username_main + ";pwd=" + app_password_main + ";database=" + app_database_main + ";allow zero datetime=yes;"
-            Dim path_root As String = Application.StartupPath + "\download\" + date_stock
+            Dim path_root As String = Application.StartupPath + "\download\database\" + date_stock
             'create directory if not exist
             If Not IO.Directory.Exists(path_root) Then
                 System.IO.Directory.CreateDirectory(path_root)
@@ -426,7 +426,7 @@ Public Class FormFGBackupStockDet
 
     Sub openFile(ByVal additional As String)
         Cursor = Cursors.WaitCursor
-        Dim path_root As String = Application.StartupPath + "\download" + additional
+        Dim path_root As String = Application.StartupPath + "\download\database" + additional
         Process.Start(path_root)
         Cursor = Cursors.Default
     End Sub

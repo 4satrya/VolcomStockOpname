@@ -104,7 +104,7 @@
     Private Sub BtnSetStatus_Click(sender As Object, e As EventArgs) Handles BtnSetStatus.Click
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to " + LEStatus.Text.ToLower + " this transaction ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = DialogResult.Yes Then
-            Dim query As String = "UPDATE tb_st_trans SET id_report_status ='" + LEStatus.EditValue.ToString + "' WHERE id_st_trans='" + id_st_trans + "' "
+            Dim query As String = "UPDATE tb_st_trans SET id_report_status ='" + LEStatus.EditValue.ToString + "', st_trans_updated_by=" + id_user + " WHERE id_st_trans='" + id_st_trans + "' "
             execute_non_query(query, True, "", "", "", "")
             FormStockTake.viewScan()
             FormStockTake.GVScan.FocusedRowHandle = find_row(FormStockTake.GVScan, "id_st_trans", id_st_trans)
@@ -122,10 +122,16 @@
     End Sub
 
     Sub print()
-
+        Cursor = Cursors.WaitCursor
+        If XTCStockTake.SelectedTabPageIndex = 0 Then
+            print_raw(GCScan, "")
+        ElseIf XTCStockTake.SelectedTabPageIndex = 1 Then
+            print_raw(GCSummaryScan, "")
+        End If
+        Cursor = Cursors.Default
     End Sub
 
-    Private Sub FormStockTakeDet_KeyUp(sender As Object, e As KeyEventArgs) Handles MyBase.KeyUp
+    Private Sub FormStockTakeDet_Keydown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         If e.KeyCode = Keys.F2 Then
             add()
         ElseIf e.KeyCode = Keys.F3 Then
@@ -149,6 +155,7 @@
             If confirm = DialogResult.Yes Then
                 Dim query As String = "DELETE FROM tb_st_trans_det WHERE id_st_trans_det='" + GVScan.GetFocusedRowCellValue("id_st_trans_det").ToString + "' "
                 execute_non_query(query, True, "", "", "", "")
+                updatedBy()
                 viewDetail()
             End If
         End If
@@ -252,6 +259,7 @@
                 Dim query_ins As String = "INSERT INTO tb_st_trans_det(id_st_trans, is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, id_product, code, name, size, qty, id_design_price, design_price) 
                 VALUES ('" + id_st_trans + "', '" + is_ok + "', '" + dt_check.Rows(0)("is_no_stock").ToString + "', '" + dt_check.Rows(0)("is_no_master").ToString + "', '" + dt_check.Rows(0)("is_sale").ToString + "','" + is_reject + "', '" + is_unique_not_found + "', '" + dt_check.Rows(0)("id_product").ToString + "','" + code_saved + "', '" + dt_check.Rows(0)("name").ToString + "','" + dt_check.Rows(0)("size").ToString + "', 1, '" + dt_check.Rows(0)("id_design_price").ToString + "', '" + decimalSQL(dt_check.Rows(0)("design_price").ToString) + "') "
                 execute_non_query(query_ins, True, "", "", "", "")
+                updatedBy()
                 viewDetail()
                 GVScan.FocusedRowHandle = GVScan.RowCount - 1
                 TxtScan.Text = ""
@@ -287,5 +295,16 @@
         ElseIf XTCStockTake.SelectedTabPageIndex = 1 Then
             viewSummary()
         End If
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        print()
+    End Sub
+
+    Sub updatedBy()
+        Dim query As String = "UPDATE tb_st_trans SET st_trans_updated_by=" + id_user + ", st_trans_updated=NOW() WHERE id_st_trans='" + id_st_trans + "' "
+        execute_non_query(query, True, "", "", "", "")
+        FormStockTake.viewScan()
+        FormStockTake.GVScan.FocusedRowHandle = find_row(FormStockTake.GVScan, "id_st_trans", id_st_trans)
     End Sub
 End Class

@@ -10,6 +10,7 @@
             Else
                 Dim query As String = "DELETE FROM tb_st_trans_det WHERE id_st_trans_det='" + FormStockTakeDet.GVScan.GetFocusedRowCellValue("id_st_trans_det").ToString + "' "
                 execute_non_query(query, True, "", "", "", "")
+                FormStockTakeDet.updatedBy()
                 FormStockTakeDet.viewDetail()
                 FormStockTakeDet.GVScan.ActiveFilterString = ""
                 FormStockTakeDet.GVScan.FocusedRowHandle = FormStockTakeDet.GVScan.RowCount - 1

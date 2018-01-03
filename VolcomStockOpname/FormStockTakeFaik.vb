@@ -33,6 +33,7 @@ Public Class FormStockTakeFaik
             Dim query_ins As String = "INSERT INTO tb_st_trans_det(id_st_trans, is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, code, name, size, qty, design_price) 
             VALUES ('" + FormStockTakeDet.id_st_trans + "', '2', '2', '1', '2','2', '2','" + code + "', '" + description + "','" + size + "', 1, '" + price + "') "
             execute_non_query(query_ins, True, "", "", "", "")
+            FormStockTakeDet.updatedBy()
             FormStockTakeDet.viewDetail()
             FormStockTakeDet.GVScan.FocusedRowHandle = FormStockTakeDet.GVScan.RowCount - 1
             Close()

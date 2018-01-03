@@ -174,13 +174,18 @@ Public Class FormStockTake
                 End Using
 
                 'copying data
-                FormMain.SplashScreenManager1.SetWaitFormDescription("Copying data ...")
-                Dim query_ins As String = "INSERT INTO tb_st_trans(id_wh_drawer, st_trans_number, st_trans_date, st_trans_by, st_trans_updated, st_trans_updated_by, is_combine, id_report_status) 
-                SELECT id_wh_drawer, st_trans_number, st_trans_date, st_trans_by, st_trans_updated, st_trans_updated_by, is_combine, id_report_status FROM tb_st_trans_" + code_user_restore.ToLower + "; SELECT LAST_INSERT_ID(); "
-                Dim id_st_new As String = execute_query(query_ins, 0, True, "", "", "", "")
-                Dim query_ins_det As String = "INSERT INTO tb_st_trans_det(id_st_trans, is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, id_product, code, name, size, qty, id_design_price, design_price) 
-                SELECT '" + id_st_new + "', is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, id_product, code, name, size, qty, id_design_price, design_price FROM tb_st_trans_det_" + code_user_restore.ToLower + ";"
-                execute_non_query(query_ins_det, True, "", "", "", "")
+                Dim qv As String = "SELECT * FROM tb_st_trans_" + code_user_restore
+                Dim dv As DataTable = execute_query(qv, -1, True, "", "", "", "")
+                Dim jv As Integer = dv.Rows.Count
+                For j As Integer = 0 To dv.Rows.Count - 1
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Copying data " + (j + 1).ToString + " of " + jv.ToString + " ...")
+                    Dim query_ins As String = "INSERT INTO tb_st_trans(id_wh_drawer, st_trans_number, st_trans_date, st_trans_by, st_trans_updated, st_trans_updated_by, is_combine, id_report_status) 
+                    SELECT id_wh_drawer, st_trans_number, st_trans_date, st_trans_by, st_trans_updated, st_trans_updated_by, is_combine, id_report_status FROM tb_st_trans_" + code_user_restore.ToLower + " WHERE id_st_trans=" + dv.Rows(j)("id_st_trans").ToString + "; SELECT LAST_INSERT_ID(); "
+                    Dim id_st_new As String = execute_query(query_ins, 0, True, "", "", "", "")
+                    Dim query_ins_det As String = "INSERT INTO tb_st_trans_det(id_st_trans, is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, id_product, code, name, size, qty, id_design_price, design_price) 
+                    SELECT '" + id_st_new + "', is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, id_product, code, name, size, qty, id_design_price, design_price FROM tb_st_trans_det_" + code_user_restore.ToLower + " WHERE id_st_trans=" + dv.Rows(j)("id_st_trans").ToString + ";"
+                    execute_non_query(query_ins_det, True, "", "", "", "")
+                Next
                 viewScan()
                 FormMain.SplashScreenManager1.CloseWaitForm()
             Catch ex As Exception

@@ -43,12 +43,15 @@
             If confirm = DialogResult.Yes Then
                 Cursor = Cursors.WaitCursor
                 Dim id_st_trans As String = ""
+                Dim id_st_trans_det As String = ""
                 For i As Integer = 0 To ((GVCheck.RowCount - 1) - GetGroupRowCount(GVCheck))
                     If GVCheck.GetRowCellValue(i, "is_select").ToString = "Yes" Then
                         If i > 0 Then
                             id_st_trans += "OR "
+                            id_st_trans_det += "OR "
                         End If
                         id_st_trans += "id_st_trans='" + GVCheck.GetRowCellValue(i, "id_st_trans").ToString + "' "
+                        id_st_trans_det += "st.id_st_trans='" + GVCheck.GetRowCellValue(i, "id_st_trans").ToString + "' "
                     End If
                 Next
 
@@ -60,6 +63,15 @@
                 'update
                 Dim query_upd As String = "UPDATE tb_st_trans SET id_combine=" + id_new + " WHERE id_st_trans>0 AND (" + id_st_trans + ") "
                 execute_non_query(query_upd, True, "", "", "", "")
+
+                'insert detail
+                Dim qd As String = "INSERT INTO tb_st_trans_det(id_st_trans, is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, id_product, code, name, size, qty, id_design_price, design_price) 
+                SELECT '" + id_new + "', is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, id_product, code, name, size, qty, id_design_price, design_price 
+                FROM tb_st_trans_det std
+                INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans 
+                WHERE st.id_st_trans>0 AND (" + id_st_trans_det + ") "
+                execute_non_query(qd, True, "", "", "", "")
+
 
                 FormStockTake.viewCombine()
                 FormStockTakeDet.action = "upd"

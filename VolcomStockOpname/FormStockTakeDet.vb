@@ -70,11 +70,12 @@
         LEFT JOIN tb_m_design_price prc ON prc.id_design_price = std.id_design_price
         LEFT JOIN tb_lookup_design_price_type typ ON typ.id_design_price_type = prc.id_design_price_type
         LEFT JOIN tb_lookup_design_cat cat ON cat.id_design_cat = typ.id_design_cat "
-        If is_combine = "2" Then
-            query += "WHERE std.id_st_trans=" + id_st_trans + " ORDER BY std.id_st_trans_det ASC "
-        ElseIf is_combine = "1" Then
-            query += "WHERE st.id_combine=" + id_st_trans + " ORDER BY std.id_st_trans_det ASC "
-        End If
+        query += "WHERE std.id_st_trans=" + id_st_trans + " ORDER BY std.id_st_trans_det ASC "
+        'If is_combine = "2" Then
+        '    query += "WHERE std.id_st_trans=" + id_st_trans + " ORDER BY std.id_st_trans_det ASC "
+        'ElseIf is_combine = "1" Then
+        '    query += "WHERE st.id_combine=" + id_st_trans + " ORDER BY std.id_st_trans_det ASC "
+        'End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCScan.DataSource = data
     End Sub
@@ -86,11 +87,7 @@
         FROM tb_st_trans_det std
         INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
         INNER JOIN tb_m_product p ON p.id_product = std.id_product "
-        If is_combine = "2" Then
-            query += "WHERE std.id_st_trans=" + id_st_trans + " "
-        ElseIf is_combine = "1" Then
-            query += "WHERE st.id_combine=" + id_st_trans + " "
-        End If
+        query += "WHERE std.id_st_trans=" + id_st_trans + " "
         query += "AND !ISNULL(std.id_product) GROUP BY std.id_product 
         UNION ALL 
         SELECT Std.id_product, NULL AS `product_code`, std.code AS `scanned_code`, std.name, std.size, 
@@ -98,16 +95,88 @@
         FROM tb_st_trans_det std
         INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans 
         WHERE ISNULL(std.id_product) "
-        If is_combine = "2" Then
-            query += "AND std.id_st_trans=" + id_st_trans + " "
-        ElseIf is_combine = "1" Then
-            query += "AND st.id_combine=" + id_st_trans + " "
-        End If
+        query += "AND std.id_st_trans=" + id_st_trans + " "
         query += "GROUP BY std.id_st_trans_det "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSummaryScan.DataSource = data
         Cursor = Cursors.Default
     End Sub
+
+    Sub viewSummaryCat()
+        Dim cond_where As String = ""
+        cond_where = "std.id_st_trans=" + id_st_trans + " "
+        Dim query As String = "SELECT 'OK' AS `cat`,COUNT(*) AS `cat_val`
+        FROM tb_st_trans_det std 
+        INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
+        WHERE " + cond_where + " AND std.is_ok=1
+        UNION ALL 
+        SELECT 'No Stock' AS `cat`,COUNT(*) AS `cat_val`
+        FROM tb_st_trans_det std 
+        INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
+        WHERE " + cond_where + " AND std.is_no_stock=1
+        UNION ALL
+        SELECT 'No Master' AS `cat`,COUNT(*) AS `cat_val`
+        FROM tb_st_trans_det std 
+        INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
+        WHERE " + cond_where + " AND std.is_no_master=1
+        UNION ALL
+        SELECT 'Sale' AS `cat`,COUNT(*) AS `cat_val`
+        FROM tb_st_trans_det std 
+        INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
+        WHERE " + cond_where + " AND std.is_sale=1
+        UNION ALL
+        SELECT 'Reject' AS `cat`,COUNT(*) AS `cat_val`
+        FROM tb_st_trans_det std 
+        INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
+        WHERE " + cond_where + " AND std.is_reject=1
+        UNION ALL
+        SELECT 'Unique not Found' AS `cat`,COUNT(*) AS `cat_val`
+        FROM tb_st_trans_det std 
+        INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
+        WHERE " + cond_where + " AND std.is_unique_not_found=1 "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCCat.DataSource = data
+    End Sub
+
+    Sub viewCompare()
+        gridBandStoreQty.Caption = SLEWHStockSum.Text.ToString
+        Dim query As String = "SELECT im.id_product, p.product_full_code AS `barcode`, d.design_code AS `code`, d.design_display_name AS `name`, cd.code_detail_name AS `size`, dc.design_cat,
+        im.id_design_price, im.design_price, im.qty_soh, im.qty_scan
+        FROM (
+	        SELECT s.id_product, s.id_design_price, s.design_price, SUM(s.qty) AS `qty_soh`, IFNULL(sc.qty_scan,0) AS `qty_scan`
+	        FROM tb_st_stock s 
+	        LEFT JOIN (
+		        SELECT std.id_product, SUM(std.qty) AS `qty_scan`
+		        FROM tb_st_trans_det std
+		        INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
+		        WHERE st.id_st_trans=" + id_st_trans + " AND std.is_no_stock=2 AND std.is_no_master=2
+		        GROUP BY std.id_product
+	        ) sc ON sc.id_product = s.id_product
+	        WHERE s.id_wh_drawer=" + id_drawer + "
+	        GROUP BY s.id_product
+	        UNION ALL 
+	        SELECT std.id_product, std.id_design_price, std.design_price, 0 as `qty_soh`, SUM(std.qty) AS `qty_scan`
+	        FROM tb_st_trans_det std
+	        INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
+	        WHERE st.id_st_trans=" + id_st_trans + " AND std.is_no_stock=1 
+	        GROUP BY std.id_product
+        ) im
+        INNER JOIN tb_m_product p ON p.id_product = im.id_product
+        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+        INNER JOIN tb_m_design d ON d.id_design = p.id_design
+        INNER JOIN tb_m_design_price prc ON prc.id_design_price = im.id_design_price
+        INNER JOIN tb_lookup_design_price_type prct ON prct.id_design_price_type = prc.id_design_price_type
+        INNER JOIN tb_lookup_design_cat dc ON dc.id_design_cat = prct.id_design_cat
+        UNION ALL
+        SELECT std.id_product, std.code AS `barcode`, std.code, std.name, std.size, '' AS `design_cat`,std.id_design_price, std.design_price,  0 AS `qty_soh`,std.qty AS `qty_scan`
+        FROM tb_st_trans_det std
+        INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
+        WHERE st.id_st_trans=" + id_st_trans + " AND std.is_no_master=1 "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCCompare.DataSource = data
+    End Sub
+
 
     Sub allow_status()
         If is_combine = "2" Then
@@ -124,6 +193,7 @@
             End If
         Else
             PanelControlNav.Visible = False
+            XTPCompare.PageVisible = True
             If id_report_status = "5" Or id_report_status = "6" Then
                 LEStatus.Enabled = False
                 BtnSetStatus.Enabled = False
@@ -139,8 +209,18 @@
         If confirm = DialogResult.Yes Then
             Dim query As String = "UPDATE tb_st_trans SET id_report_status ='" + LEStatus.EditValue.ToString + "', st_trans_updated_by=" + id_user + " WHERE id_st_trans='" + id_st_trans + "' "
             execute_non_query(query, True, "", "", "", "")
-            FormStockTake.viewScan()
-            FormStockTake.GVScan.FocusedRowHandle = find_row(FormStockTake.GVScan, "id_st_trans", id_st_trans)
+
+            If is_combine = "1" And LEStatus.EditValue.ToString = "5" Then
+                Dim query_upd As String = "UPDATE tb_st_trans SET id_combine=NULL WHERE id_combine=" + id_st_trans + " "
+                execute_non_query(query_upd, True, "", "", "", "")
+                FormStockTake.viewCombine()
+                FormStockTake.GVCombine.FocusedRowHandle = find_row(FormStockTake.GVScan, "id_st_trans", id_st_trans)
+            Else
+                FormStockTake.viewScan()
+                FormStockTake.GVScan.FocusedRowHandle = find_row(FormStockTake.GVScan, "id_st_trans", id_st_trans)
+            End If
+
+            XTCStockTake.SelectedTabPageIndex = 0
             action = "upd"
             actionLoad()
         End If
@@ -160,6 +240,10 @@
             print_raw(GCScan, "")
         ElseIf XTCStockTake.SelectedTabPageIndex = 1 Then
             print_raw(GCSummaryScan, "")
+        ElseIf XTCStockTake.SelectedTabPageIndex = 2 Then
+            print_raw(GCCat, "")
+        ElseIf XTCStockTake.SelectedTabPageIndex = 3 Then
+            print_raw(GCCompare, "")
         End If
         Cursor = Cursors.Default
     End Sub
@@ -325,8 +409,13 @@
 
     Private Sub XTCStockTake_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCStockTake.SelectedPageChanged
         If XTCStockTake.SelectedTabPageIndex = 0 Then
+            viewDetail()
         ElseIf XTCStockTake.SelectedTabPageIndex = 1 Then
             viewSummary()
+        ElseIf XTCStockTake.SelectedTabPageIndex = 2 Then
+            viewSummaryCat()
+        ElseIf XTCStockTake.SelectedTabPageIndex = 3 Then
+            viewCompare()
         End If
     End Sub
 
@@ -343,5 +432,11 @@
 
     Private Sub FormStockTakeDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub GVCat_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVCat.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
     End Sub
 End Class

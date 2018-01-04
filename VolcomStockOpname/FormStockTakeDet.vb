@@ -1,7 +1,7 @@
 ﻿Public Class FormStockTakeDet
     Public id_st_trans As String = "-1"
     Public action As String = ""
-    Public is_combine As String = "2"
+    Dim is_combine As String = "2"
     Dim id_report_status As String = "-1"
     Dim id_comp As String = "-1'"
     Dim id_drawer As String = "-1"
@@ -51,6 +51,7 @@
             id_report_status = data.Rows(0)("id_report_status").ToString
             id_comp = data.Rows(0)("id_comp").ToString
             id_drawer = data.Rows(0)("id_wh_drawer").ToString
+            is_combine = data.Rows(0)("is_combine").ToString
 
             viewDetail()
             allow_status()
@@ -63,12 +64,17 @@
         std.id_product, std.code, std.name, std.size, std.qty, 
         std.id_design_price, std.design_price, d.is_old_design, cat.id_design_cat, cat.design_cat
         FROM tb_st_trans_det std
+        INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
         LEFT JOIN tb_m_product p ON p.id_product = std.id_product
         LEFT JOIN tb_m_design d ON d.id_design = p.id_design
         LEFT JOIN tb_m_design_price prc ON prc.id_design_price = std.id_design_price
         LEFT JOIN tb_lookup_design_price_type typ ON typ.id_design_price_type = prc.id_design_price_type
-        LEFT JOIN tb_lookup_design_cat cat ON cat.id_design_cat = typ.id_design_cat
-        WHERE std.id_st_trans=" + id_st_trans + " ORDER BY std.id_st_trans_det ASC "
+        LEFT JOIN tb_lookup_design_cat cat ON cat.id_design_cat = typ.id_design_cat "
+        If is_combine = "2" Then
+            query += "WHERE std.id_st_trans=" + id_st_trans + " ORDER BY std.id_st_trans_det ASC "
+        ElseIf is_combine = "1" Then
+            query += "WHERE st.id_combine=" + id_st_trans + " ORDER BY std.id_st_trans_det ASC "
+        End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCScan.DataSource = data
     End Sub
@@ -78,26 +84,53 @@
         Dim query As String = "SELECT Std.id_product, p.product_full_code AS `product_code`, std.code AS `scanned_code`, std.name, std.size, 
         SUM(std.qty) AS `qty`, std.design_price
         FROM tb_st_trans_det std
-        LEFT JOIN tb_m_product p ON p.id_product = std.id_product
-        WHERE std.id_st_trans=" + id_st_trans + "
-        GROUP BY std.id_product "
+        INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
+        INNER JOIN tb_m_product p ON p.id_product = std.id_product "
+        If is_combine = "2" Then
+            query += "WHERE std.id_st_trans=" + id_st_trans + " "
+        ElseIf is_combine = "1" Then
+            query += "WHERE st.id_combine=" + id_st_trans + " "
+        End If
+        query += "AND !ISNULL(std.id_product) GROUP BY std.id_product 
+        UNION ALL 
+        SELECT Std.id_product, NULL AS `product_code`, std.code AS `scanned_code`, std.name, std.size, 
+        SUM(std.qty) AS `qty`, std.design_price
+        FROM tb_st_trans_det std
+        INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans 
+        WHERE ISNULL(std.id_product) "
+        If is_combine = "2" Then
+            query += "AND std.id_st_trans=" + id_st_trans + " "
+        ElseIf is_combine = "1" Then
+            query += "AND st.id_combine=" + id_st_trans + " "
+        End If
+        query += "GROUP BY std.id_st_trans_det "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSummaryScan.DataSource = data
         Cursor = Cursors.Default
     End Sub
 
     Sub allow_status()
-
-        If id_report_status = "5" Or id_report_status = "6" Then
-            LEStatus.Enabled = False
-            BtnSetStatus.Enabled = False
-            PanelControlNav.Visible = False
-            'BtnSave.Enabled = False
+        If is_combine = "2" Then
+            If id_report_status = "5" Or id_report_status = "6" Then
+                LEStatus.Enabled = False
+                BtnSetStatus.Enabled = False
+                PanelControlNav.Visible = False
+                'BtnSave.Enabled = False
+            Else
+                LEStatus.Enabled = True
+                BtnSetStatus.Enabled = True
+                PanelControlNav.Visible = True
+                'BtnSave.Enabled = True
+            End If
         Else
-            LEStatus.Enabled = True
-            BtnSetStatus.Enabled = True
-            PanelControlNav.Visible = True
-            'BtnSave.Enabled = True
+            PanelControlNav.Visible = False
+            If id_report_status = "5" Or id_report_status = "6" Then
+                LEStatus.Enabled = False
+                BtnSetStatus.Enabled = False
+            Else
+                LEStatus.Enabled = True
+                BtnSetStatus.Enabled = True
+            End If
         End If
     End Sub
 
@@ -306,5 +339,9 @@
         execute_non_query(query, True, "", "", "", "")
         FormStockTake.viewScan()
         FormStockTake.GVScan.FocusedRowHandle = find_row(FormStockTake.GVScan, "id_st_trans", id_st_trans)
+    End Sub
+
+    Private Sub FormStockTakeDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
     End Sub
 End Class

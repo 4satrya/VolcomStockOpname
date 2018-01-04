@@ -13,19 +13,23 @@ Public Class FormStockTake
     End Sub
 
     Sub viewScan()
+        Cursor = Cursors.WaitCursor
         Dim stake As New ClassStockTake()
         Dim query As String = stake.queryTransMain("AND st.is_combine=2 ", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCScan.DataSource = data
         GVScan.FocusedRowHandle = 0
         noEdit()
+        Cursor = Cursors.Default
     End Sub
 
     Sub viewCombine()
+        Cursor = Cursors.WaitCursor
         Dim stake As New ClassStockTake()
         Dim query As String = stake.queryTransMain("AND st.is_combine=1 ", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCombine.DataSource = data
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnRefresh_Click(sender As Object, e As EventArgs) Handles BtnRefresh.Click
@@ -207,7 +211,7 @@ Public Class FormStockTake
     Private Sub CheckEdit1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEdit1.CheckedChanged
         If GVScan.RowCount > 0 Then
             Dim cek As String = CheckEdit1.EditValue.ToString
-            For i As Integer = ((GVScan.RowCount - 1) - GetGroupRowCount(GVScan)) To 0 Step -1
+            For i As Integer = 0 To ((GVScan.RowCount - 1) - GetGroupRowCount(GVScan))
                 Dim id_report_status As String = GVScan.GetRowCellValue(i, "id_report_status").ToString
                 If cek And id_report_status = "6" Then
                     GVScan.SetRowCellValue(i, "is_select", "Yes")
@@ -215,6 +219,48 @@ Public Class FormStockTake
                     GVScan.SetRowCellValue(i, "is_select", "No")
                 End If
             Next
+        End If
+    End Sub
+
+    Private Sub BtnCombine_Click(sender As Object, e As EventArgs)
+        makeSafeGV(GVScan)
+        GVScan.ActiveFilterString = "[is_select]='Yes' "
+        If GVScan.RowCount > 0 Then
+            FormStockTakeCombine.ShowDialog()
+            makeSafeGV(GVScan)
+        Else
+            stopCustom("Please select data first !")
+            makeSafeGV(GVScan)
+        End If
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        print_raw(GCScan, "")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnRefCom_Click(sender As Object, e As EventArgs) Handles BtnRefCom.Click
+        viewCombine()
+    End Sub
+
+    Private Sub BtnPrintCom_Click(sender As Object, e As EventArgs) Handles BtnPrintCom.Click
+        Cursor = Cursors.WaitCursor
+        print_raw(GCCombine, "")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnCreateCom_Click(sender As Object, e As EventArgs) Handles BtnCreateCom.Click
+        Cursor = Cursors.WaitCursor
+        FormStockTakeCombine.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVCombine_DoubleClick(sender As Object, e As EventArgs) Handles GVCombine.DoubleClick
+        If GVCombine.RowCount > 0 And GVCombine.FocusedRowHandle >= 0 Then
+            FormStockTakeDet.action = "upd"
+            FormStockTakeDet.id_st_trans = GVCombine.GetFocusedRowCellValue("id_st_trans").ToString
+            FormStockTakeDet.ShowDialog()
         End If
     End Sub
 End Class

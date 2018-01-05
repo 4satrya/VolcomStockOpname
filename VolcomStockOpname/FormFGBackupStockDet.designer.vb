@@ -21,6 +21,7 @@ Partial Class FormFGBackupStockDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFGBackupStockDet))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.CESelectAll = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnOpenFileLoc = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
@@ -37,9 +38,9 @@ Partial Class FormFGBackupStockDet
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnDrawer = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCompCat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTCDetail = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridColumnCompCat = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -58,6 +59,7 @@ Partial Class FormFGBackupStockDet
         'PanelControl1
         '
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl1.Controls.Add(Me.SimpleButton1)
         Me.PanelControl1.Controls.Add(Me.CESelectAll)
         Me.PanelControl1.Controls.Add(Me.BtnOpenFileLoc)
         Me.PanelControl1.Controls.Add(Me.BtnSave)
@@ -66,6 +68,16 @@ Partial Class FormFGBackupStockDet
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(778, 40)
         Me.PanelControl1.TabIndex = 2
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
+        Me.SimpleButton1.Location = New System.Drawing.Point(408, 0)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(111, 40)
+        Me.SimpleButton1.TabIndex = 3
+        Me.SimpleButton1.Text = "Setup Data"
         '
         'CESelectAll
         '
@@ -79,7 +91,7 @@ Partial Class FormFGBackupStockDet
         '
         Me.BtnOpenFileLoc.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnOpenFileLoc.Image = CType(resources.GetObject("BtnOpenFileLoc.Image"), System.Drawing.Image)
-        Me.BtnOpenFileLoc.Location = New System.Drawing.Point(536, 0)
+        Me.BtnOpenFileLoc.Location = New System.Drawing.Point(519, 0)
         Me.BtnOpenFileLoc.Name = "BtnOpenFileLoc"
         Me.BtnOpenFileLoc.Size = New System.Drawing.Size(136, 40)
         Me.BtnOpenFileLoc.TabIndex = 1
@@ -89,11 +101,11 @@ Partial Class FormFGBackupStockDet
         '
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSave.Image = CType(resources.GetObject("BtnSave.Image"), System.Drawing.Image)
-        Me.BtnSave.Location = New System.Drawing.Point(672, 0)
+        Me.BtnSave.Location = New System.Drawing.Point(655, 0)
         Me.BtnSave.Name = "BtnSave"
-        Me.BtnSave.Size = New System.Drawing.Size(106, 40)
+        Me.BtnSave.Size = New System.Drawing.Size(123, 40)
         Me.BtnSave.TabIndex = 0
-        Me.BtnSave.Text = "Export Data"
+        Me.BtnSave.Text = "Download Data"
         '
         'PanelControl2
         '
@@ -223,6 +235,15 @@ Partial Class FormFGBackupStockDet
         Me.GridColumnCat.FieldName = "id_comp_cat"
         Me.GridColumnCat.Name = "GridColumnCat"
         '
+        'GridColumnCompCat
+        '
+        Me.GridColumnCompCat.Caption = "Category"
+        Me.GridColumnCompCat.FieldName = "comp_cat"
+        Me.GridColumnCompCat.Name = "GridColumnCompCat"
+        Me.GridColumnCompCat.Visible = True
+        Me.GridColumnCompCat.VisibleIndex = 2
+        Me.GridColumnCompCat.Width = 101
+        '
         'XTCDetail
         '
         Me.XTCDetail.Dock = System.Windows.Forms.DockStyle.Fill
@@ -239,15 +260,6 @@ Partial Class FormFGBackupStockDet
         Me.XTPSummary.Name = "XTPSummary"
         Me.XTPSummary.Size = New System.Drawing.Size(772, 336)
         Me.XTPSummary.Text = "Summary"
-        '
-        'GridColumnCompCat
-        '
-        Me.GridColumnCompCat.Caption = "Category"
-        Me.GridColumnCompCat.FieldName = "comp_cat"
-        Me.GridColumnCompCat.Name = "GridColumnCompCat"
-        Me.GridColumnCompCat.Visible = True
-        Me.GridColumnCompCat.VisibleIndex = 2
-        Me.GridColumnCompCat.Width = 101
         '
         'FormFGBackupStockDet
         '
@@ -299,4 +311,5 @@ Partial Class FormFGBackupStockDet
     Friend WithEvents GridColumnDrawer As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCat As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCompCat As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -2944,4 +2944,13 @@ Module Common
         execute_non_query(query, False, app_host_main, app_username_main, app_password_main, app_database_main)
         Return id
     End Function
+
+    Public Sub initialServerCentre()
+        Dim query As String = "SELECT * FROM tb_opt"
+        Dim data As DataTable = execute_query(query, -1, False, app_host, app_username, app_password, "db_opt")
+        app_host_main = data.Rows(0)("host_main").ToString
+        app_username_main = data.Rows(0)("user_main").ToString
+        app_password_main = data.Rows(0)("password_main").ToString
+        app_database_main = data.Rows(0)("db_main").ToString
+    End Sub
 End Module

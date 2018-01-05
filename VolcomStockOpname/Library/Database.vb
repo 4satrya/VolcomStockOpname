@@ -11,10 +11,10 @@ Module Database
     Public app_password As String = ""
 
     Public app_database As String
-    Public app_host_main As String = "localhost"
-    Public app_username_main As String = "root"
+    Public app_host_main As String = ""
+    Public app_username_main As String = ""
     Public app_password_main As String = ""
-    Public app_database_main As String = "db_volcom_mrp"
+    Public app_database_main As String = ""
 
     Function execute_non_query(ByVal command_text As String, ByVal is_local As Boolean, ByVal host As String, ByVal username As String, ByVal password As String, ByVal database As String)
         If is_local = True Then

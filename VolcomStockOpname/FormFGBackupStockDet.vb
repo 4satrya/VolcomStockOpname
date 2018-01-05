@@ -7,6 +7,10 @@ Public Class FormFGBackupStockDet
 
     Private Sub FormFGBackupStockDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ActiveControl = DEStock
+        If app_host_main = "" Then
+            initialServerCentre()
+        End If
+        MsgBox(app_host_main)
         actionLoad()
     End Sub
 
@@ -52,7 +56,11 @@ Public Class FormFGBackupStockDet
     End Sub
 
     Private Sub DEStock_EditValueChanged(sender As Object, e As EventArgs) Handles DEStock.EditValueChanged
-        viewComp()
+        Try
+            viewComp()
+        Catch ex As Exception
+            GCData.DataSource = Nothing
+        End Try
     End Sub
 
     Private Sub CESelectAll_CheckedChanged(sender As Object, e As EventArgs) Handles CESelectAll.CheckedChanged
@@ -428,6 +436,13 @@ Public Class FormFGBackupStockDet
         Cursor = Cursors.WaitCursor
         Dim path_root As String = Application.StartupPath + "\download\database" + additional
         Process.Start(path_root)
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        Cursor = Cursors.WaitCursor
+        FormDatabase.showx = True
+        FormDatabase.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class

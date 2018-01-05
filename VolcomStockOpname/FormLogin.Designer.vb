@@ -63,6 +63,7 @@ Partial Class FormLogin
         Me.TxtPass.Name = "TxtPass"
         Me.TxtPass.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtPass.Properties.Appearance.Options.UseFont = True
+        Me.TxtPass.Properties.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.TxtPass.Size = New System.Drawing.Size(338, 22)
         Me.TxtPass.TabIndex = 3
         '
@@ -97,7 +98,7 @@ Partial Class FormLogin
         Me.KeyPreview = True
         Me.LookAndFeel.SkinName = "Metropolis Dark"
         Me.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormLogin"

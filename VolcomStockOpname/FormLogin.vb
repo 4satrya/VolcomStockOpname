@@ -1,4 +1,7 @@
 ﻿Public Class FormLogin
+    Public is_first As Boolean = False
+    Public id_menu As String = ""
+
     Private Sub FormLogin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
@@ -23,7 +26,11 @@
             Try
                 Cursor = Cursors.WaitCursor
                 query = String.Format("SELECT * FROM tb_m_user a INNER JOIN tb_m_employee b ON a.id_employee = b.id_employee INNER JOIN tb_st_user s ON s.id_user = a.id_user WHERE a.username = '{0}' AND a.password=MD5('{1}') AND b.id_employee_active=1", username, password)
-                data = execute_query(query, -1, True, "", "", "", "")
+                If Not is_first Then
+                    data = execute_query(query, -1, True, "", "", "", "")
+                Else
+                    data = execute_query(query, -1, False, app_host_main, app_username_main, app_password_main, app_database_main)
+                End If
                 If data.Rows.Count > 0 Then
                     id_user = data.Rows(0)("id_user").ToString
                     id_role_login = data.Rows(0)("id_role").ToString
@@ -44,12 +51,17 @@
                     'u.logLogin("1")
 
                     Close()
-
-                    FormMain.TxtName.Text = name_user.ToUpper
-                    FormMain.TxtPosition.Text = position_user.ToUpper
-                    FormMain.Opacity = 100
-                    FormMain.BringToFront()
-                    FormMain.Focus()
+                    If Not is_first Then
+                        FormMain.TxtName.Text = name_user.ToUpper
+                        FormMain.TxtPosition.Text = position_user.ToUpper
+                        FormMain.Opacity = 100
+                        FormMain.BringToFront()
+                        FormMain.Focus()
+                    Else
+                        If id_menu = "1" Then
+                            FormFGBackupStockDet.ShowDialog()
+                        End If
+                    End If
                 Else
                     stopCustom("Login failure, please check your input !")
                 End If

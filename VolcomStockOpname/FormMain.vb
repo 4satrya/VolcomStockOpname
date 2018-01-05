@@ -21,12 +21,22 @@
             apply_skin()
             read_database_configuration()
             check_connection(True, "", "", "", "")
-            If id_user = "" Then
+            If id_user = "" And app_database <> "db_opt" Then
+                FormLogin.ShowDialog()
+            Else
+                'initial server centre
+                initialServerCentre()
+                FormLogin.id_menu = "1"
+                FormLogin.is_first = "1"
                 FormLogin.ShowDialog()
             End If
         Catch ex As Exception
             FormDatabase.ShowDialog()
         End Try
+    End Sub
+
+    Sub optionMenu()
+
     End Sub
 
     Private Sub NBImport_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBImport.LinkClicked

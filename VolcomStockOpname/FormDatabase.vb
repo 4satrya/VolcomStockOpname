@@ -73,24 +73,22 @@ Public Class FormDatabase
         Try
             write_database_configuration(TxtHost.Text, TxtUsername.Text, TxtPass.Text, GVData.GetFocusedRowCellDisplayText("Database").ToString)
             read_database_configuration()
-            FormMain.actionLoad()
+            Try
+                FormFGBackupStockDet.Close()
+            Catch ex As Exception
+            End Try
+            Close()
+            FormMain.logOutCmd()
             'FormMain.LoginToolStripMenuItem.Visible = True
         Catch ex As Exception
             XtraMessageBox.Show("Connection failed : " + ex.ToString + "", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
         Cursor = Cursors.Default
-
-        If id_type = "1" Then
-            'jika logout
-        Else
-            Close()
-        End If
     End Sub
 
     Private Sub FormDatabase_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
-        FormMain.actionLoad()
     End Sub
 
     Private Sub BtnImport_Click(sender As Object, e As EventArgs) Handles BtnImport.Click

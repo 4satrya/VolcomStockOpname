@@ -29,7 +29,7 @@ Partial Class FormMain
         Me.NBStock = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBStockTake = New DevExpress.XtraNavBar.NavBarItem()
         Me.PCLeft = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControlInfo = New DevExpress.XtraEditors.PanelControl()
         Me.TxtPosition = New DevExpress.XtraEditors.LabelControl()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
@@ -40,8 +40,8 @@ Partial Class FormMain
         CType(Me.NBMain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCLeft.SuspendLayout()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
+        CType(Me.PanelControlInfo, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlInfo.SuspendLayout()
         CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -108,29 +108,29 @@ Partial Class FormMain
         '
         Me.PCLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PCLeft.Controls.Add(Me.NBMain)
-        Me.PCLeft.Controls.Add(Me.PanelControl1)
+        Me.PCLeft.Controls.Add(Me.PanelControlInfo)
         Me.PCLeft.Dock = System.Windows.Forms.DockStyle.Left
         Me.PCLeft.Location = New System.Drawing.Point(0, 0)
         Me.PCLeft.Name = "PCLeft"
         Me.PCLeft.Size = New System.Drawing.Size(241, 573)
         Me.PCLeft.TabIndex = 2
         '
-        'PanelControl1
+        'PanelControlInfo
         '
-        Me.PanelControl1.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.PanelControl1.Appearance.Options.UseBackColor = True
-        Me.PanelControl1.Controls.Add(Me.TxtPosition)
-        Me.PanelControl1.Controls.Add(Me.SimpleButton1)
-        Me.PanelControl1.Controls.Add(Me.SimpleButton2)
-        Me.PanelControl1.Controls.Add(Me.TxtName)
-        Me.PanelControl1.Controls.Add(Me.PictureEdit1)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.PanelControl1.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(241, 168)
-        Me.PanelControl1.TabIndex = 2
+        Me.PanelControlInfo.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.PanelControlInfo.Appearance.Options.UseBackColor = True
+        Me.PanelControlInfo.Controls.Add(Me.TxtPosition)
+        Me.PanelControlInfo.Controls.Add(Me.SimpleButton1)
+        Me.PanelControlInfo.Controls.Add(Me.SimpleButton2)
+        Me.PanelControlInfo.Controls.Add(Me.TxtName)
+        Me.PanelControlInfo.Controls.Add(Me.PictureEdit1)
+        Me.PanelControlInfo.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlInfo.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControlInfo.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.PanelControlInfo.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.PanelControlInfo.Name = "PanelControlInfo"
+        Me.PanelControlInfo.Size = New System.Drawing.Size(241, 168)
+        Me.PanelControlInfo.TabIndex = 2
         '
         'TxtPosition
         '
@@ -227,8 +227,8 @@ Partial Class FormMain
         CType(Me.NBMain, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCLeft.ResumeLayout(False)
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
+        CType(Me.PanelControlInfo, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlInfo.ResumeLayout(False)
         CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -243,7 +243,7 @@ Partial Class FormMain
     Friend WithEvents SplashScreenManager1 As DevExpress.XtraSplashScreen.SplashScreenManager
     Friend WithEvents NBStock As DevExpress.XtraNavBar.NavBarItem
     Friend WithEvents NBStockTake As DevExpress.XtraNavBar.NavBarItem
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControlInfo As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TxtName As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PictureEdit1 As DevExpress.XtraEditors.PictureEdit
     Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton

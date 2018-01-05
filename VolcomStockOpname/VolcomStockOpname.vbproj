@@ -157,6 +157,12 @@
     <Compile Include="FormMasterCompanyDouble.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormStart.Designer.vb">
+      <DependentUpon>FormStart.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStart.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormStock.Designer.vb">
       <DependentUpon>FormStock.vb</DependentUpon>
     </Compile>
@@ -253,6 +259,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterCompanyDouble.resx">
       <DependentUpon>FormMasterCompanyDouble.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStart.resx">
+      <DependentUpon>FormStart.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStock.resx">
       <DependentUpon>FormStock.vb</DependentUpon>

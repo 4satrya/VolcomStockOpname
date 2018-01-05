@@ -300,8 +300,8 @@
 
             'check di master
             Dim query_check As String = "SELECT p.id_product, p.product_full_code AS `code`, d.design_code, d.design_display_name AS `name`, cd.code_detail_name AS `size`, d.is_old_design, IFNULL(st.qty,0) AS `qty`,
-            comp.id_comp_cat,IF(comp.id_comp_cat=5,wtyp.id_wh_type, styp.id_store_type) AS `id_acc_type` , prc.id_design_price, IFNULL(prc.design_price,0) AS `design_price`, prc.id_design_cat, prc.design_cat,
-            IF(IFNULL(st.qty,0)<=0,'1','2') AS `is_no_stock`, IF((IF(comp.id_comp_cat=5,wtyp.id_wh_type, styp.id_store_type))=1 AND prc.id_design_cat<>1 AND !ISNULL(prc.id_design_price),1,2) AS `is_sale`, '2' AS `is_no_master`
+            comp.id_comp_cat,IF(comp.id_comp_cat=5,wtyp.id_wh_type, styp.id_store_type) AS `id_acc_type` , st.id_design_price, IFNULL(st.design_price,0) AS `design_price`, cat.id_design_cat, cat.design_cat,
+            IF(IFNULL(st.qty,0)<=0,'1','2') AS `is_no_stock`, IF((IF(comp.id_comp_cat=5,wtyp.id_wh_type, styp.id_store_type))=1 AND cat.id_design_cat<>1 AND !ISNULL(prc.id_design_price),1,2) AS `is_sale`, '2' AS `is_no_master`
             FROM tb_m_product p 
             INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
             INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
@@ -310,18 +310,9 @@
             LEFT JOIN tb_m_comp comp ON comp.id_drawer_def = st.id_wh_drawer
             LEFT JOIN tb_lookup_store_type styp ON styp.id_store_type = comp.id_store_type
             LEFT JOIN tb_lookup_wh_type wtyp ON wtyp.id_wh_type = comp.id_wh_type
-            LEFT JOIN (
-	            SELECT id_design, id_design_price, design_price, id_design_cat, design_cat
-	            FROM (
-		            SELECT p.id_design, p.id_design_price, p.design_price, pt.design_price_type, cat.id_design_cat, cat.design_cat   
-		            FROM tb_m_design_price p
-		            INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = p.id_design_price_type 
-		            INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = pt.id_design_cat
-		            WHERE p.design_price_start_date<=DATE(NOW()) AND p.is_active_wh = '1' AND p.is_design_cost='0'
-		            ORDER BY p.design_price_start_date DESC, p.id_design_price DESC
-	            ) prc
-	            GROUP BY id_design
-            ) prc ON prc.id_design = d.id_design
+            LEFT JOIN tb_m_design_price prc ON prc.id_design_price = st.id_design_price
+            LEFT JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = prc.id_design_price_type 
+		    LEFT JOIN tb_lookup_design_cat cat ON cat.id_design_cat = pt.id_design_cat
             WHERE p.product_full_code='" + code_check + "' "
             Dim dt_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
             If dt_check.Rows.Count > 0 Then

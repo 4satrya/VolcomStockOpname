@@ -102,6 +102,7 @@ Partial Class FormLogin
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormLogin"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Volcom Stock Take"
         CType(Me.TxtUsername.Properties, System.ComponentModel.ISupportInitialize).EndInit()

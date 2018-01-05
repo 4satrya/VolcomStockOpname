@@ -210,9 +210,11 @@
             Dim query As String = "UPDATE tb_st_trans SET id_report_status ='" + LEStatus.EditValue.ToString + "', st_trans_updated_by=" + id_user + " WHERE id_st_trans='" + id_st_trans + "' "
             execute_non_query(query, True, "", "", "", "")
 
-            If is_combine = "1" And LEStatus.EditValue.ToString = "5" Then
-                Dim query_upd As String = "UPDATE tb_st_trans SET id_combine=NULL WHERE id_combine=" + id_st_trans + " "
-                execute_non_query(query_upd, True, "", "", "", "")
+            If is_combine = "1" Then
+                If LEStatus.EditValue.ToString = "5" Then
+                    Dim query_upd As String = "UPDATE tb_st_trans SET id_combine=NULL WHERE id_combine=" + id_st_trans + " "
+                    execute_non_query(query_upd, True, "", "", "", "")
+                End If
                 FormStockTake.viewCombine()
                 FormStockTake.GVCombine.FocusedRowHandle = find_row(FormStockTake.GVScan, "id_st_trans", id_st_trans)
             Else
@@ -361,7 +363,7 @@
                     is_ok = "2"
                     Dim err As String = "PROBLEM PRODUCT : " + System.Environment.NewLine
                     If dt_check.Rows(0)("is_no_stock").ToString = "1" Then
-                        err += "- NO STOCK "
+                        err += "- NO STOCK " + System.Environment.NewLine
                     End If
                     If dt_check.Rows(0)("is_sale").ToString = "1" Then
                         err += "- PRODUCT SALE " + System.Environment.NewLine

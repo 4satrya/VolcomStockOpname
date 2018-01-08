@@ -10,7 +10,6 @@ Public Class FormFGBackupStockDet
         If app_host_main = "" Then
             initialServerCentre()
         End If
-        MsgBox(app_host_main)
         actionLoad()
     End Sub
 

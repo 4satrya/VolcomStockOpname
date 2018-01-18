@@ -34,7 +34,7 @@
         Else
             condition = ""
         End If
-        Dim query As String = "SELECT st.id_wh_drawer, c.id_comp,c.comp_number, c.comp_name, CONCAT(c.comp_number,' - ', c.comp_name) AS `comp`,st.id_st_trans, st.st_trans_number, 
+        Dim query As String = "SELECT st.id_wh_drawer, st.remark, c.id_comp,c.comp_number, c.comp_name, CONCAT(c.comp_number,' - ', c.comp_name) AS `comp`,st.id_st_trans, st.st_trans_number, 
         st.st_trans_date, st.st_trans_by, ep.employee_code AS `prepared_by_code`, ep.employee_name AS `prepared_by`, 
         st.st_trans_updated_by, e.employee_code, e.employee_name, 
         st.st_trans_updated, st.is_combine, st.id_report_status, rs.report_status, IFNULL(q.qty,0) AS `qty`, 'No' AS `is_select`, IFNULL(st.id_combine,0) AS `id_combine`

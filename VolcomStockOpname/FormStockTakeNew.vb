@@ -17,14 +17,14 @@
 
     Private Sub SLEWHStockSum_KeyDown(sender As Object, e As KeyEventArgs) Handles SLEWHStockSum.KeyDown
         If e.KeyCode = Keys.Enter Then
-            BtnCreate.Focus()
+            MERemark.Focus()
         End If
     End Sub
 
     Private Sub BtnCreate_Click(sender As Object, e As EventArgs) Handles BtnCreate.Click
         Cursor = Cursors.WaitCursor
-        Dim query As String = "INSERT INTO tb_st_trans (id_wh_drawer, st_trans_number, st_trans_date, st_trans_by, is_combine) 
-        VALUES ('" + SLEWHStockSum.EditValue.ToString + "', '" + header_number("1") + "', NOW(), '" + id_user + "', 2); SELECT LAST_INSERT_ID(); "
+        Dim query As String = "INSERT INTO tb_st_trans (id_wh_drawer, st_trans_number, remark, st_trans_date, st_trans_by, is_combine) 
+        VALUES ('" + SLEWHStockSum.EditValue.ToString + "', '" + header_number("1") + "', '" + addSlashes(MERemark.Text.ToString) + "', NOW(), '" + id_user + "', 2); SELECT LAST_INSERT_ID(); "
         Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
         FormStockTake.viewScan()
         FormStockTakeDet.action = "upd"
@@ -36,5 +36,11 @@
 
     Private Sub FormStockTakeNew_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub MERemark_KeyDown(sender As Object, e As KeyEventArgs) Handles MERemark.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            BtnCreate.Focus()
+        End If
     End Sub
 End Class

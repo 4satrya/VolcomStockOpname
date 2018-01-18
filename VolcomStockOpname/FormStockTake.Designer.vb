@@ -36,6 +36,7 @@ Partial Class FormStockTake
         Me.GridColumnIsSelect = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnIdReportStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
@@ -61,6 +62,7 @@ Partial Class FormStockTake
         Me.BtnRefCom = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrintCom = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreateCom = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnRmk = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCStockTake, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStockTake.SuspendLayout()
         Me.XTPScan.SuspendLayout()
@@ -110,7 +112,7 @@ Partial Class FormStockTake
         '
         'GVScan
         '
-        Me.GVScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnNumberScan, Me.GridColumnCreatedScan, Me.GridColumnPreparedBy, Me.GridColumnLastUpdate, Me.GridColumnUpdatedBy, Me.GridColumn1, Me.GridColumnComp, Me.GridColumnqty, Me.GridColumnIsSelect, Me.GridColumnIdReportStatus})
+        Me.GVScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnNumberScan, Me.GridColumnCreatedScan, Me.GridColumnPreparedBy, Me.GridColumnLastUpdate, Me.GridColumnUpdatedBy, Me.GridColumn1, Me.GridColumnComp, Me.GridColumnqty, Me.GridColumnIsSelect, Me.GridColumnIdReportStatus, Me.GridColumnRemark})
         Me.GVScan.GridControl = Me.GCScan
         Me.GVScan.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnqty, "{0:n0}")})
         Me.GVScan.Name = "GVScan"
@@ -134,7 +136,7 @@ Partial Class FormStockTake
         Me.GridColumnNumberScan.OptionsColumn.AllowEdit = False
         Me.GridColumnNumberScan.Visible = True
         Me.GridColumnNumberScan.VisibleIndex = 0
-        Me.GridColumnNumberScan.Width = 121
+        Me.GridColumnNumberScan.Width = 115
         '
         'GridColumnCreatedScan
         '
@@ -145,8 +147,8 @@ Partial Class FormStockTake
         Me.GridColumnCreatedScan.Name = "GridColumnCreatedScan"
         Me.GridColumnCreatedScan.OptionsColumn.AllowEdit = False
         Me.GridColumnCreatedScan.Visible = True
-        Me.GridColumnCreatedScan.VisibleIndex = 3
-        Me.GridColumnCreatedScan.Width = 305
+        Me.GridColumnCreatedScan.VisibleIndex = 4
+        Me.GridColumnCreatedScan.Width = 267
         '
         'GridColumnPreparedBy
         '
@@ -155,8 +157,8 @@ Partial Class FormStockTake
         Me.GridColumnPreparedBy.Name = "GridColumnPreparedBy"
         Me.GridColumnPreparedBy.OptionsColumn.AllowEdit = False
         Me.GridColumnPreparedBy.Visible = True
-        Me.GridColumnPreparedBy.VisibleIndex = 4
-        Me.GridColumnPreparedBy.Width = 183
+        Me.GridColumnPreparedBy.VisibleIndex = 5
+        Me.GridColumnPreparedBy.Width = 159
         '
         'GridColumnLastUpdate
         '
@@ -167,8 +169,8 @@ Partial Class FormStockTake
         Me.GridColumnLastUpdate.Name = "GridColumnLastUpdate"
         Me.GridColumnLastUpdate.OptionsColumn.AllowEdit = False
         Me.GridColumnLastUpdate.Visible = True
-        Me.GridColumnLastUpdate.VisibleIndex = 5
-        Me.GridColumnLastUpdate.Width = 296
+        Me.GridColumnLastUpdate.VisibleIndex = 6
+        Me.GridColumnLastUpdate.Width = 259
         '
         'GridColumnUpdatedBy
         '
@@ -177,8 +179,8 @@ Partial Class FormStockTake
         Me.GridColumnUpdatedBy.Name = "GridColumnUpdatedBy"
         Me.GridColumnUpdatedBy.OptionsColumn.AllowEdit = False
         Me.GridColumnUpdatedBy.Visible = True
-        Me.GridColumnUpdatedBy.VisibleIndex = 6
-        Me.GridColumnUpdatedBy.Width = 139
+        Me.GridColumnUpdatedBy.VisibleIndex = 7
+        Me.GridColumnUpdatedBy.Width = 120
         '
         'GridColumn1
         '
@@ -187,8 +189,8 @@ Partial Class FormStockTake
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.OptionsColumn.AllowEdit = False
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 7
-        Me.GridColumn1.Width = 225
+        Me.GridColumn1.VisibleIndex = 8
+        Me.GridColumn1.Width = 197
         '
         'GridColumnComp
         '
@@ -198,7 +200,7 @@ Partial Class FormStockTake
         Me.GridColumnComp.OptionsColumn.AllowEdit = False
         Me.GridColumnComp.Visible = True
         Me.GridColumnComp.VisibleIndex = 1
-        Me.GridColumnComp.Width = 213
+        Me.GridColumnComp.Width = 203
         '
         'GridColumnqty
         '
@@ -210,8 +212,8 @@ Partial Class FormStockTake
         Me.GridColumnqty.OptionsColumn.AllowEdit = False
         Me.GridColumnqty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumnqty.Visible = True
-        Me.GridColumnqty.VisibleIndex = 2
-        Me.GridColumnqty.Width = 68
+        Me.GridColumnqty.VisibleIndex = 3
+        Me.GridColumnqty.Width = 58
         '
         'GridColumnIsSelect
         '
@@ -222,8 +224,8 @@ Partial Class FormStockTake
         Me.GridColumnIsSelect.FieldName = "is_select"
         Me.GridColumnIsSelect.Name = "GridColumnIsSelect"
         Me.GridColumnIsSelect.Visible = True
-        Me.GridColumnIsSelect.VisibleIndex = 8
-        Me.GridColumnIsSelect.Width = 66
+        Me.GridColumnIsSelect.VisibleIndex = 9
+        Me.GridColumnIsSelect.Width = 70
         '
         'RepositoryItemCheckEdit1
         '
@@ -237,6 +239,15 @@ Partial Class FormStockTake
         Me.GridColumnIdReportStatus.Caption = "Id Report Status"
         Me.GridColumnIdReportStatus.FieldName = "id_report_status"
         Me.GridColumnIdReportStatus.Name = "GridColumnIdReportStatus"
+        '
+        'GridColumnRemark
+        '
+        Me.GridColumnRemark.Caption = "Remark"
+        Me.GridColumnRemark.FieldName = "remark"
+        Me.GridColumnRemark.Name = "GridColumnRemark"
+        Me.GridColumnRemark.Visible = True
+        Me.GridColumnRemark.VisibleIndex = 2
+        Me.GridColumnRemark.Width = 168
         '
         'PanelControl1
         '
@@ -331,7 +342,7 @@ Partial Class FormStockTake
         '
         'GVCombine
         '
-        Me.GVCombine.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn12})
+        Me.GVCombine.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn12, Me.GridColumnRmk})
         Me.GVCombine.GridControl = Me.GCCombine
         Me.GVCombine.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumn10, "{0:n0}")})
         Me.GVCombine.Name = "GVCombine"
@@ -355,7 +366,7 @@ Partial Class FormStockTake
         Me.GridColumn3.OptionsColumn.AllowEdit = False
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 0
-        Me.GridColumn3.Width = 121
+        Me.GridColumn3.Width = 120
         '
         'GridColumn4
         '
@@ -366,8 +377,8 @@ Partial Class FormStockTake
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.OptionsColumn.AllowEdit = False
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
-        Me.GridColumn4.Width = 305
+        Me.GridColumn4.VisibleIndex = 4
+        Me.GridColumn4.Width = 280
         '
         'GridColumn5
         '
@@ -376,8 +387,8 @@ Partial Class FormStockTake
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.OptionsColumn.AllowEdit = False
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
-        Me.GridColumn5.Width = 183
+        Me.GridColumn5.VisibleIndex = 5
+        Me.GridColumn5.Width = 166
         '
         'GridColumn6
         '
@@ -388,8 +399,8 @@ Partial Class FormStockTake
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 5
-        Me.GridColumn6.Width = 296
+        Me.GridColumn6.VisibleIndex = 6
+        Me.GridColumn6.Width = 271
         '
         'GridColumn7
         '
@@ -398,8 +409,8 @@ Partial Class FormStockTake
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.OptionsColumn.AllowEdit = False
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 6
-        Me.GridColumn7.Width = 139
+        Me.GridColumn7.VisibleIndex = 7
+        Me.GridColumn7.Width = 127
         '
         'GridColumn8
         '
@@ -408,8 +419,8 @@ Partial Class FormStockTake
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.OptionsColumn.AllowEdit = False
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 7
-        Me.GridColumn8.Width = 225
+        Me.GridColumn8.VisibleIndex = 8
+        Me.GridColumn8.Width = 215
         '
         'GridColumn9
         '
@@ -419,7 +430,7 @@ Partial Class FormStockTake
         Me.GridColumn9.OptionsColumn.AllowEdit = False
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 1
-        Me.GridColumn9.Width = 213
+        Me.GridColumn9.Width = 211
         '
         'GridColumn10
         '
@@ -431,8 +442,8 @@ Partial Class FormStockTake
         Me.GridColumn10.OptionsColumn.AllowEdit = False
         Me.GridColumn10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 2
-        Me.GridColumn10.Width = 68
+        Me.GridColumn10.VisibleIndex = 3
+        Me.GridColumn10.Width = 61
         '
         'GridColumn12
         '
@@ -487,6 +498,15 @@ Partial Class FormStockTake
         Me.BtnCreateCom.Size = New System.Drawing.Size(109, 38)
         Me.BtnCreateCom.TabIndex = 3
         Me.BtnCreateCom.Text = "Create New "
+        '
+        'GridColumnRmk
+        '
+        Me.GridColumnRmk.Caption = "Remark"
+        Me.GridColumnRmk.FieldName = "remark"
+        Me.GridColumnRmk.Name = "GridColumnRmk"
+        Me.GridColumnRmk.Visible = True
+        Me.GridColumnRmk.VisibleIndex = 2
+        Me.GridColumnRmk.Width = 165
         '
         'FormStockTake
         '
@@ -557,4 +577,6 @@ Partial Class FormStockTake
     Friend WithEvents BtnRefCom As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnCreateCom As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnPrintCom As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnRemark As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnRmk As DevExpress.XtraGrid.Columns.GridColumn
 End Class

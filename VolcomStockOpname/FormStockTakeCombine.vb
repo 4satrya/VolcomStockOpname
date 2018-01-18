@@ -12,7 +12,7 @@
         Catch ex As Exception
         End Try
         Dim stake As New ClassStockTake()
-        Dim query As String = stake.queryTransMain("AND st.is_combine=2 AND ISNULL(st.id_combine) AND st.id_report_status=6 AND st.id_wh_drawer=" + id_wh_drawer + " ", "2")
+        Dim query As String = stake.queryTransMain("AND st.is_combine=2 AND ISNULL(st.id_combine) AND st.id_report_status!=5 AND st.id_wh_drawer=" + id_wh_drawer + " ", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCheck.DataSource = data
         GVCheck.FocusedRowHandle = 0
@@ -56,8 +56,8 @@
                 Next
 
                 'insert
-                Dim query As String = "INSERT INTO tb_st_trans (id_wh_drawer, st_trans_number, st_trans_date, st_trans_by, is_combine) 
-                VALUES ('" + SLEWHStockSum.EditValue.ToString + "', '" + header_number("1") + "', NOW(), '" + id_user + "', 1); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_st_trans (id_wh_drawer, st_trans_number, remark, st_trans_date, st_trans_by, is_combine) 
+                VALUES ('" + SLEWHStockSum.EditValue.ToString + "', '" + header_number("1") + "', '" + MERemark.Text + "', NOW(), '" + id_user + "', 1); SELECT LAST_INSERT_ID(); "
                 Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
 
                 'update

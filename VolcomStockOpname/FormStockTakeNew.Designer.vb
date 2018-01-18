@@ -23,8 +23,11 @@ Partial Class FormStockTakeNew
         Me.GridView14 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnCreate = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.MERemark = New DevExpress.XtraEditors.MemoEdit()
         CType(Me.SLEWHStockSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView14, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SLEWHStockSum
@@ -55,17 +58,34 @@ Partial Class FormStockTakeNew
         '
         'BtnCreate
         '
-        Me.BtnCreate.Location = New System.Drawing.Point(228, 66)
+        Me.BtnCreate.Location = New System.Drawing.Point(228, 132)
         Me.BtnCreate.Name = "BtnCreate"
         Me.BtnCreate.Size = New System.Drawing.Size(75, 23)
         Me.BtnCreate.TabIndex = 8904
         Me.BtnCreate.Text = "Create"
         '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(24, 66)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(36, 13)
+        Me.LabelControl2.TabIndex = 8905
+        Me.LabelControl2.Text = "Remark"
+        '
+        'MERemark
+        '
+        Me.MERemark.Location = New System.Drawing.Point(24, 85)
+        Me.MERemark.Name = "MERemark"
+        Me.MERemark.Size = New System.Drawing.Size(279, 41)
+        Me.MERemark.TabIndex = 8906
+        '
         'FormStockTakeNew
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(335, 105)
+        Me.ClientSize = New System.Drawing.Size(331, 166)
+        Me.Controls.Add(Me.MERemark)
+        Me.Controls.Add(Me.LabelControl2)
         Me.Controls.Add(Me.BtnCreate)
         Me.Controls.Add(Me.SLEWHStockSum)
         Me.Controls.Add(Me.LabelControl1)
@@ -77,6 +97,7 @@ Partial Class FormStockTakeNew
         Me.Text = "Create New"
         CType(Me.SLEWHStockSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView14, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -86,4 +107,6 @@ Partial Class FormStockTakeNew
     Friend WithEvents GridView14 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BtnCreate As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents MERemark As DevExpress.XtraEditors.MemoEdit
 End Class

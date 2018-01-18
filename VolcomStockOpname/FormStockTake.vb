@@ -40,7 +40,7 @@ Public Class FormStockTake
     Sub noEdit()
         If GVScan.RowCount > 0 Then
             Dim alloc_cek As String = GVScan.GetFocusedRowCellValue("id_report_status").ToString
-            If alloc_cek <> "6" Then
+            If alloc_cek = "5" Then
                 GVScan.Columns("is_select").OptionsColumn.AllowEdit = False
             Else
                 GVScan.Columns("is_select").OptionsColumn.AllowEdit = True

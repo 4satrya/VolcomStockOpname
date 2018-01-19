@@ -142,6 +142,7 @@ Public Class FormDatabase
                 read_database_configuration()
                 FormMain.SplashScreenManager1.CloseWaitForm()
                 Close()
+                FormMain.logOutCmd()
             Catch ex As Exception
                 FormMain.SplashScreenManager1.CloseWaitForm()
                 errorCustom(ex.ToString)

@@ -15,7 +15,7 @@ Public Class FormFGBackupStockDet
 
     Sub actionLoad()
         If action = "ins" Then
-            Dim dt As DataTable = execute_query("SELECT DATE_SUB(DATE(NOW()),INTERVAL 1 DAY) AS `date_now` ", -1, False, app_host_main, app_username_main, app_password_main, app_database_main)
+            Dim dt As DataTable = execute_query("SELECT DATE(NOW()) AS `date_now` ", -1, False, app_host_main, app_username_main, app_password_main, app_database_main)
             DEStock.EditValue = dt.Rows(0)("date_now")
         ElseIf action = "upd" Then
             BtnOpenFileLoc.Visible = True
@@ -370,7 +370,6 @@ Public Class FormFGBackupStockDet
             Dim reportPath As String = IO.Path.Combine(path_root, fileNamePdf)
             ReportFGBackupStock.comp = comp
             Using report As New ReportFGBackupStock()
-                report.LabelSOH.Text = "STOCK ON HAND " + date_stock
 
                 ' Specify PDF-specific export options.
                 Dim pdfOptions As PdfExportOptions = report.ExportOptions.Pdf
@@ -417,6 +416,18 @@ Public Class FormFGBackupStockDet
                 'End If
                 report.ExportToPdf(reportPath, pdfOptions)
             End Using
+
+            'create xls
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Creating xls report")
+            Dim fileNameXls As String = date_stock + ".xls"
+            Dim reportPathXls As String = IO.Path.Combine(path_root, fileNameXls)
+            ReportFGBackupStock.comp = comp
+            Dim reportxls As New ReportFGBackupStock()
+            'Specify XLS-specific export options.
+            Dim xlsOptions As XlsExportOptions = reportxls.ExportOptions.Xls
+            xlsOptions.ExportHyperlinks = False
+            xlsOptions.ExportMode = XlsExportMode.SingleFile
+            reportxls.ExportToXls(reportPathXls, xlsOptions)
 
             FormMain.SplashScreenManager1.CloseWaitForm()
             openFile("\" + date_stock)

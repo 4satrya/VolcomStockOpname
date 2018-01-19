@@ -32,6 +32,7 @@
         GVRsv.Columns("8").Caption = "8" + System.Environment.NewLine + "XXL"
         GVRsv.Columns("9").Caption = "9" + System.Environment.NewLine + "ALL"
         GVRsv.Columns("0").Caption = "0" + System.Environment.NewLine + "SM"
+        GVRsv.Columns("comp_number").GroupIndex = 0
         GVRsv.RefreshData()
     End Sub
 End Class

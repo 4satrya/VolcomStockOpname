@@ -316,7 +316,7 @@
 
             'check di master
             Dim query_check As String = "SELECT p.id_product, p.product_full_code AS `code`, d.design_code, d.design_display_name AS `name`, cd.code_detail_name AS `size`, d.is_old_design, IFNULL(st.qty,0) AS `qty`,
-             comp.id_comp_cat,IF(comp.id_comp_cat=5,wtyp.id_wh_type, styp.id_store_type) AS `id_acc_type` , prc.id_design_price, IFNULL(prc.design_price,0) AS `design_price`, prc.id_design_cat, prc.design_cat,
+             comp.id_comp_cat,IF(comp.id_comp_cat=5,wtyp.id_wh_type, styp.id_store_type) AS `id_acc_type` , prc.id_design_price, IF(comp.id_store_type=1,IFNULL(fd.design_price,0),IFNULL(prc.design_price,0)) AS `design_price`, prc.id_design_cat, prc.design_cat,
             IF(IFNULL(st.qty,0)<=0,'1','2') AS `is_no_stock`, IF((IF(comp.id_comp_cat=5,wtyp.id_wh_type, styp.id_store_type))=1 AND prc.id_design_cat<>1 AND !ISNULL(prc.id_design_price),1,2) AS `is_sale`, '2' AS `is_no_master`
             FROM tb_m_product p 
             INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
@@ -338,6 +338,7 @@
 	            ) prc
 	            GROUP BY id_design
             ) prc ON prc.id_design = d.id_design
+            LEFT JOIN tb_m_design_first_del fd ON fd.id_design = d.id_design AND fd.id_comp = comp.id_comp
             WHERE p.product_full_code='" + code_check + "' "
             Dim dt_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
             If dt_check.Rows.Count > 0 Then

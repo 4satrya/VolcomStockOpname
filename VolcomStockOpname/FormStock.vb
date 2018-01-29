@@ -84,13 +84,14 @@
             End If
             bcounter += 1
         End While
-        query += "SUM(s.qty) AS `total_qty` , s.design_price, c.comp_name, c.comp_number
+        query += "SUM(s.qty) AS `total_qty` , IF(c.id_store_type=1, fd.design_price,s.design_price) AS `design_price`, c.comp_name, c.comp_number
         FROM tb_st_stock s
         INNER JOIN tb_m_product p ON p.id_product = s.id_product
         INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
         INNER JOIN tb_m_design d ON d.id_design = p.id_design
         INNER JOIN tb_m_comp c ON c.id_drawer_def = s.id_wh_drawer
+        LEFT JOIN tb_m_design_first_del fd ON fd.id_design = d.id_design AND fd.id_comp = c.id_comp
         WHERE 1=1 "
         If SLEWHStockSum.EditValue.ToString <> "0" Then
             query += "AND s.id_wh_drawer='" + SLEWHStockSum.EditValue.ToString + "' "

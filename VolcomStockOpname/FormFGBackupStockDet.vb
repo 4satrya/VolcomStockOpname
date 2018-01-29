@@ -101,7 +101,7 @@ Public Class FormFGBackupStockDet
             Next
 
             'connection string
-            Dim date_stock_DB = DateTime.Parse(DEStock.EditValue.ToString).ToString("yyyy-MM-dd") + "_" + getIdSt()
+            Dim date_stock_DB = DateTime.Parse(DEStock.EditValue.ToString).ToString("yyyy-MM-dd")
             Dim date_stock = DateTime.Parse(DEStock.EditValue.ToString).ToString("yyyyMMdd") + "_" + getIdSt()
             Dim constring As String = "server=" + app_host_main + ";user=" + app_username_main + ";pwd=" + app_password_main + ";database=" + app_database_main + ";allow zero datetime=yes;"
             Dim path_root As String = Application.StartupPath + "\download\database\" + date_stock
@@ -144,6 +144,7 @@ Public Class FormFGBackupStockDet
             dic.Add("tb_lookup_design_cat", "SELECT * FROM tb_lookup_design_cat")
             dic.Add("tb_lookup_design_price_type", "SELECT * FROM tb_lookup_design_price_type")
             dic.Add("tb_m_design_price", "SELECT * FROM tb_m_design_price")
+            dic.Add("tb_m_design_first_del", "SELECT * FROM tb_m_design_first_del f WHERE (" + comp_u + ") ")
             '-- user
             FormMain.SplashScreenManager1.SetWaitFormDescription("Backup user data")
             dic.Add("tb_m_user", "SELECT u.* FROM tb_m_user u INNER JOIN tb_st_user s ON s.id_user = u.id_user ")

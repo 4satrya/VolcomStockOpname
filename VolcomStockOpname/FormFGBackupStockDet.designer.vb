@@ -24,6 +24,7 @@ Partial Class FormFGBackupStockDet
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.CESelectAll = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnOpenFileLoc = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnBOFData = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.DEStock = New DevExpress.XtraEditors.DateEdit()
@@ -62,6 +63,7 @@ Partial Class FormFGBackupStockDet
         Me.PanelControl1.Controls.Add(Me.SimpleButton1)
         Me.PanelControl1.Controls.Add(Me.CESelectAll)
         Me.PanelControl1.Controls.Add(Me.BtnOpenFileLoc)
+        Me.PanelControl1.Controls.Add(Me.BtnBOFData)
         Me.PanelControl1.Controls.Add(Me.BtnSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 416)
@@ -73,7 +75,7 @@ Partial Class FormFGBackupStockDet
         '
         Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
         Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
-        Me.SimpleButton1.Location = New System.Drawing.Point(408, 0)
+        Me.SimpleButton1.Location = New System.Drawing.Point(285, 0)
         Me.SimpleButton1.Name = "SimpleButton1"
         Me.SimpleButton1.Size = New System.Drawing.Size(111, 40)
         Me.SimpleButton1.TabIndex = 3
@@ -91,11 +93,21 @@ Partial Class FormFGBackupStockDet
         '
         Me.BtnOpenFileLoc.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnOpenFileLoc.Image = CType(resources.GetObject("BtnOpenFileLoc.Image"), System.Drawing.Image)
-        Me.BtnOpenFileLoc.Location = New System.Drawing.Point(519, 0)
+        Me.BtnOpenFileLoc.Location = New System.Drawing.Point(396, 0)
         Me.BtnOpenFileLoc.Name = "BtnOpenFileLoc"
         Me.BtnOpenFileLoc.Size = New System.Drawing.Size(136, 40)
         Me.BtnOpenFileLoc.TabIndex = 1
         Me.BtnOpenFileLoc.Text = "Open File Location"
+        '
+        'BtnBOFData
+        '
+        Me.BtnBOFData.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnBOFData.Image = CType(resources.GetObject("BtnBOFData.Image"), System.Drawing.Image)
+        Me.BtnBOFData.Location = New System.Drawing.Point(532, 0)
+        Me.BtnBOFData.Name = "BtnBOFData"
+        Me.BtnBOFData.Size = New System.Drawing.Size(123, 40)
+        Me.BtnBOFData.TabIndex = 4
+        Me.BtnBOFData.Text = "Import SOH BOF"
         '
         'BtnSave
         '
@@ -312,4 +324,5 @@ Partial Class FormFGBackupStockDet
     Friend WithEvents GridColumnCat As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCompCat As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnBOFData As DevExpress.XtraEditors.SimpleButton
 End Class

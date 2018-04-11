@@ -13,6 +13,7 @@
     Dim comp_name As String = ""
     Dim soh_period As String = ""
     Dim sales_until_period As String = ""
+    Dim is_record_unreg As String = ""
 
     Private Sub FormStockTakeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewWHStockSum()
@@ -90,6 +91,7 @@
             Dim dto As DataTable = execute_query("SELECT * FROM tb_st_opt", -1, True, "", "", "", "")
             soh_period = DateTime.Parse(dto.Rows(0)("soh_period")).ToString("dd\/MM\/yyyy")
             sales_until_period = DateTime.Parse(dto.Rows(0)("sales_until_period")).ToString("dd\/MM\/yyyy")
+            is_record_unreg = dto.Rows(0)("is_record_unreg").ToString
 
             viewDetail()
             allow_status()
@@ -558,18 +560,21 @@
                 TxtScan.Text = ""
                 TxtScan.Focus()
             Else
-                stopCustom("PRODUCT NOT FOUND IN MASTER LIST !")
-                TxtScan.Text = ""
-                TxtScan.Focus()
-                'Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("PRODUCT NOT FOUND IN MASTER LIST !" + System.Environment.NewLine + "DO YOU WANT TO RECORD THIS PRODUCT ?", "SCAN FAILED", MessageBoxButtons.YesNo, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button3)
-                'If confirm = DialogResult.Yes Then
-                '    FormStockTakeFaik.ShowDialog()
-                '    TxtScan.Text = ""
-                '    TxtScan.Focus()
-                'Else
-                '    TxtScan.Text = ""
-                '    TxtScan.Focus()
-                'End If
+                If is_record_unreg = "2" Then
+                    stopCustom("PRODUCT NOT FOUND IN MASTER LIST !")
+                    TxtScan.Text = ""
+                    TxtScan.Focus()
+                Else
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("PRODUCT NOT FOUND IN MASTER LIST !" + System.Environment.NewLine + "DO YOU WANT TO RECORD THIS PRODUCT ?", "SCAN FAILED", MessageBoxButtons.YesNo, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button3)
+                    If confirm = DialogResult.Yes Then
+                        FormStockTakeFaik.ShowDialog()
+                        TxtScan.Text = ""
+                        TxtScan.Focus()
+                    Else
+                        TxtScan.Text = ""
+                        TxtScan.Focus()
+                    End If
+                End If
             End If
         End If
     End Sub

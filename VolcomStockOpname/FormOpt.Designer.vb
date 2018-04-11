@@ -21,8 +21,8 @@ Partial Class FormOpt
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormOpt))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -37,14 +37,6 @@ Partial Class FormOpt
         Me.PanelControl1.Size = New System.Drawing.Size(242, 41)
         Me.PanelControl1.TabIndex = 0
         '
-        'CheckEdit1
-        '
-        Me.CheckEdit1.Location = New System.Drawing.Point(12, 12)
-        Me.CheckEdit1.Name = "CheckEdit1"
-        Me.CheckEdit1.Properties.Caption = "Manual record for unregistered product"
-        Me.CheckEdit1.Size = New System.Drawing.Size(211, 19)
-        Me.CheckEdit1.TabIndex = 5
-        '
         'SimpleButton1
         '
         Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
@@ -55,6 +47,14 @@ Partial Class FormOpt
         Me.SimpleButton1.TabIndex = 0
         Me.SimpleButton1.Text = "Save"
         '
+        'CheckEdit1
+        '
+        Me.CheckEdit1.Location = New System.Drawing.Point(12, 12)
+        Me.CheckEdit1.Name = "CheckEdit1"
+        Me.CheckEdit1.Properties.Caption = "Manual record for unregistered product"
+        Me.CheckEdit1.Size = New System.Drawing.Size(211, 19)
+        Me.CheckEdit1.TabIndex = 5
+        '
         'FormOpt
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -62,6 +62,7 @@ Partial Class FormOpt
         Me.ClientSize = New System.Drawing.Size(242, 88)
         Me.Controls.Add(Me.CheckEdit1)
         Me.Controls.Add(Me.PanelControl1)
+        Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormOpt"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

@@ -102,4 +102,14 @@
             logOutCmd()
         End If
     End Sub
+
+    Private Sub NBOpt_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBOpt.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormOpt.ShowDialog()
+        Catch ex As Exception
+            errorConnection()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class

@@ -133,6 +133,9 @@ Module Common
         If opt = "1" Then
             header_number_x = combine_header_number(st_user_code, Integer.Parse(get_setup_field("st_inc")), 5)
             increase_inc("1")
+        ElseIf opt = "2" Then
+            header_number_x = combine_header_number("IA", Integer.Parse(get_setup_field("st_inc")), 5)
+            increase_inc("1")
         End If
 
         Return header_number_x

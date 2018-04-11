@@ -166,17 +166,17 @@
   </data>
   <data name="NBOpt.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAIBSURBVFhH7ZS/SwJhGMfliBCRiAgRkYZokIZoaoiGcIiG
-        aIiIhoiIcIrmBrf+oIimpkAFp4aMCNEWz/wV/sjzPPU87fvI4yEnRZ3ndh948N7neXy/z/vc857DxsbG
-        5j/EYjGh0+nsa5p23+12bzOZjED+drsdxPqOfuPx+MA3FaLRqADxrz7o9Xp9FBNqNps+PBeHPhSxy+nT
-        AQU8kxhBgjCFl4O1LMvLnGoN9XrdrarqSavVWpckaQUiIuuRoArTeElrrdFoeOh/kUhESCQSk78OiF/S
-        yUYNXXii9y2K4myhUHDiVezB98axd9gLTMJ/z3kb82CjpFEcbXZxWAfdWUAsZciNc9g8OOkONvvkLtOQ
-        bXNoDHTimNMGBeBmPHBoMhRFWeJTqdR2do9RLpd9LI7uq1fpdNqaK4lTbwwLyOfzPxZQqVT8XEAV19PL
-        7snAScIkTBsTv91z5J5xGhXxgdwtDpmHBon3HID1K4ZwnsM69EFCTL+iBGbgkcPmwakuuP0aTKFnCCUx
-        cIelUsmD9+5Fzin8IufphpwD3sY8tVrNhdMFcrmcE8MYMIqMGgqTq9WqF3lrED/KZrMzvI014Gu4aRCV
-        Ye1RH4bUzenWg1aHRsSK6IyfBg3P+ucYvlVOtx4M3yIGK0zDBuEgu6mwG/hS+L1G++fYbWNjY/MHHI5v
-        BKSDZsiMTsQAAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        xAAADsQBlSsOGwAAAgFJREFUWEftlL9LAmEYx+WIEJGICBGRhmiQhmhqiIZwiIZoiIiGiIhwiuYGt/6g
+        iKamQAWnhowI0RbP/BX+yPM89Tzt+8jjISdFned2H3jw3ud5fL/P+9zznsPGxsbmP8RiMaHT6exrmnbf
+        7XZvM5mMQP52ux3E+o5+4/H4wDcVotGoAPGvPuj1en0UE2o2mz48F4c+FLHL6dMBBTyTGEGCMIWXg7Us
+        y8ucag31et2tqupJq9ValyRpBSIi65GgCtN4SWut0Wh46H+RSERIJBKTvw6IX9LJRg1deKL3LYribKFQ
+        cOJV7MH3xrF32AtMwn/PeRvzYKOkURxtdnFYB91ZQCxlyI1z2Dw46Q42++Qu05Btc2gMdOKY0wYF4GY8
+        cGgyFEVZ4lOp1HZ2j1Eul30sju6rV+l02poriVNvDAvI5/M/FlCpVPxcQBXX08vuycBJwiRMGxO/3XPk
+        nnEaFfGB3C0OmYcGifccgPUrhnCewzr0QUJMv6IEZuCRw+bBqS64/RpMoWcIJTFwh6VSyYP37kXOKfwi
+        5+mGnAPexjy1Ws2F0wVyuZwTwxgwiowaCpOr1aoXeWsQP8pmszO8jTXga7hpEJVh7VEfhtTN6daDVodG
+        xIrojJ8GDc/65xi+VU63HgzfIgYrTMMG4SC7qbAb+FL4vUb759htY2Nj8wccjm8EpINmyIxOxAAAAABJ
+        RU5ErkJggg==
 </value>
   </data>
   <data name="NBStockTake.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

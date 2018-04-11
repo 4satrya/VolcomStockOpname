@@ -228,10 +228,22 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ReportCompare.Designer.vb">
+      <DependentUpon>ReportCompare.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportCompare.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportFGBackupStock.Designer.vb">
       <DependentUpon>ReportFGBackupStock.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportFGBackupStock.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportScan.Designer.vb">
+      <DependentUpon>ReportScan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportScan.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="WaitForm1.Designer.vb">
@@ -300,8 +312,14 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportCompare.resx">
+      <DependentUpon>ReportCompare.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportFGBackupStock.resx">
       <DependentUpon>ReportFGBackupStock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportScan.resx">
+      <DependentUpon>ReportScan.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitForm1.resx">
       <DependentUpon>WaitForm1.vb</DependentUpon>

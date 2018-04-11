@@ -5,6 +5,14 @@
     Dim id_report_status As String = "-1"
     Dim id_comp As String = "-1'"
     Dim id_drawer As String = "-1"
+    Dim prepared_by As String = "-1"
+    Dim prepared_position As String = ""
+    Dim ack_position As String = ""
+    Dim address_primary As String = ""
+    Dim comp_number As String = ""
+    Dim comp_name As String = ""
+    Dim soh_period As String = ""
+    Dim sales_until_period As String = ""
 
     Private Sub FormStockTakeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewWHStockSum()
@@ -70,7 +78,18 @@
             is_combine = data.Rows(0)("is_combine").ToString
             'acknowledge_by
             LEAck.ItemIndex = LEAck.Properties.GetDataSourceRowIndex("id_user", data.Rows(0)("acknowledge_by").ToString)
+            ack_position = data.Rows(0)("ack_position").ToString
             TxtApp.Text = data.Rows(0)("approved_by").ToString
+            prepared_by = data.Rows(0)("prepared_by").ToString
+            prepared_position = data.Rows(0)("prepared_position").ToString
+            address_primary = data.Rows(0)("address_primary").ToString
+            comp_number = data.Rows(0)("comp_number").ToString
+            comp_name = data.Rows(0)("comp_name").ToString
+
+            'soh period
+            Dim dto As DataTable = execute_query("SELECT * FROM tb_st_opt", -1, True, "", "", "", "")
+            soh_period = DateTime.Parse(dto.Rows(0)("soh_period")).ToString("dd\/MM\/yyyy")
+            sales_until_period = DateTime.Parse(dto.Rows(0)("sales_until_period")).ToString("dd\/MM\/yyyy")
 
             viewDetail()
             allow_status()
@@ -164,7 +183,7 @@
     End Sub
 
     Sub viewCompare()
-        gridBandStoreQty.Caption = SLEWHStockSum.Text.ToString
+        gridBandStoreQty.Caption = comp_number
         Dim query As String = "SELECT im.id_product, p.product_full_code AS `barcode`, d.design_code AS `code`, d.design_display_name AS `name`, cd.code_detail_name AS `size`, dc.design_cat,
         im.id_design_price, im.design_price, im.qty_soh, im.qty_scan
         FROM (
@@ -283,13 +302,115 @@
     Sub print()
         Cursor = Cursors.WaitCursor
         If XTCStockTake.SelectedTabPageIndex = 0 Then
-            print_raw(GCScan, "")
+            Cursor = Cursors.WaitCursor
+            ReportScan.dt = GCScan.DataSource
+            ReportScan.id_report = id_st_trans
+            Dim Report As New ReportScan()
+
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVScan.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVScan.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            'Grid Detail
+            ReportStyleGridview(Report.GVScan)
+
+            'Parse val
+            Report.LabelNo.Text = TxtNumber.Text
+            Report.LabelOutlet.Text = SLEWHStockSum.Text
+            Report.LabelAlamat.Text = address_primary
+            Report.LabelCreatedDate.Text = DECreated.Text
+            Report.LabelSOHPeriode.Text = soh_period
+            Report.LabelSalesUntil.Text = sales_until_period
+            Report.LabelPrepare.Text = prepared_by
+            Report.LabelPreparePosition.Text = prepared_position
+            Report.LabelAck.Text = LEAck.Text
+            Report.LabelAckPosition.Text = ack_position
+            Report.LabelApp.Text = TxtApp.Text
+            Report.LabelAppPosition.Text = comp_name
+
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
+            Cursor = Cursors.Default
         ElseIf XTCStockTake.SelectedTabPageIndex = 1 Then
-            print_raw(GCSummaryScan, "")
+            Cursor = Cursors.WaitCursor
+            ReportScan.dt = GCSummaryScan.DataSource
+            ReportScan.id_report = id_st_trans
+            Dim Report As New ReportScan()
+
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVSummaryScan.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVScan.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            'Grid Detail
+            ReportStyleGridview(Report.GVScan)
+
+            'Parse val
+            Report.LabelNo.Text = TxtNumber.Text
+            Report.LabelOutlet.Text = SLEWHStockSum.Text
+            Report.LabelAlamat.Text = address_primary
+            Report.LabelCreatedDate.Text = DECreated.Text
+            Report.LabelSOHPeriode.Text = soh_period
+            Report.LabelSalesUntil.Text = sales_until_period
+            Report.LabelPrepare.Text = prepared_by
+            Report.LabelPreparePosition.Text = prepared_position
+            Report.LabelAck.Text = LEAck.Text
+            Report.LabelAckPosition.Text = ack_position
+            Report.LabelApp.Text = TxtApp.Text
+            Report.LabelAppPosition.Text = comp_name
+
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
+            Cursor = Cursors.Default
         ElseIf XTCStockTake.SelectedTabPageIndex = 2 Then
             print_raw(GCCat, "")
         ElseIf XTCStockTake.SelectedTabPageIndex = 3 Then
-            print_raw(GCCompare, "")
+            Cursor = Cursors.WaitCursor
+            ReportCompare.dt = GCCompare.DataSource
+            ReportCompare.id_report = id_st_trans
+            Dim Report As New ReportCompare()
+
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            BGVCompare.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.BGVCompare.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            'Grid Detail
+            ReportStyleGridview(Report.BGVCompare)
+
+            'Parse val
+            Report.LabelNo.Text = TxtNumber.Text
+            Report.LabelOutlet.Text = SLEWHStockSum.Text
+            Report.LabelAlamat.Text = address_primary
+            Report.LabelCreatedDate.Text = DECreated.Text
+            Report.LabelSOHPeriode.Text = soh_period
+            Report.LabelSalesUntil.Text = sales_until_period
+            Report.LabelPrepare.Text = prepared_by
+            Report.LabelPreparePosition.Text = prepared_position
+            Report.LabelAck.Text = LEAck.Text
+            Report.LabelAckPosition.Text = ack_position
+            Report.LabelApp.Text = TxtApp.Text
+            Report.LabelAppPosition.Text = comp_name
+
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
+            Cursor = Cursors.Default
         End If
         Cursor = Cursors.Default
     End Sub

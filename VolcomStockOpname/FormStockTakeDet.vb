@@ -369,7 +369,7 @@
                 ElseIf dt_check.Rows(0)("is_old_design") = "3" Then 'unique code peralihan
                     code_saved = code
                 Else
-                    code_saved = code_check
+                    code_saved = code
                 End If
 
                 'check status

@@ -64,6 +64,7 @@ Partial Class FormStockTakeDet
         Me.GridColumnproductStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIniqueNotFound = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNoTag = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPrcType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.CheckEditNoTag = New DevExpress.XtraEditors.CheckEdit()
         Me.CheckEditReject = New DevExpress.XtraEditors.CheckEdit()
@@ -111,7 +112,8 @@ Partial Class FormStockTakeDet
         Me.BandedGridColumnDiffQty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnDiffValue = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnNote = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnPrcType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRefNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -357,7 +359,7 @@ Partial Class FormStockTakeDet
         '
         'GVScan
         '
-        Me.GVScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnDescription, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnNoStock, Me.GridColumnNoMaster, Me.GridColumnSale, Me.GridColumnIdPrice, Me.GridColumnIdProduct, Me.GridColumnIsUniqueCode, Me.GridColumnIdTransDet, Me.GridColumnOK, Me.GridColumnReject, Me.GridColumnproductStatus, Me.GridColumnIniqueNotFound, Me.GridColumnNoTag, Me.GridColumnPrcType})
+        Me.GVScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnDescription, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnNoStock, Me.GridColumnNoMaster, Me.GridColumnSale, Me.GridColumnIdPrice, Me.GridColumnIdProduct, Me.GridColumnIsUniqueCode, Me.GridColumnIdTransDet, Me.GridColumnOK, Me.GridColumnReject, Me.GridColumnproductStatus, Me.GridColumnIniqueNotFound, Me.GridColumnNoTag, Me.GridColumnPrcType, Me.GridColumnRemark, Me.GridColumnRefNumber})
         Me.GVScan.GridControl = Me.GCScan
         Me.GVScan.Name = "GVScan"
         Me.GVScan.OptionsBehavior.AutoExpandAllGroups = True
@@ -577,6 +579,15 @@ Partial Class FormStockTakeDet
         Me.GridColumnNoTag.Visible = True
         Me.GridColumnNoTag.VisibleIndex = 13
         Me.GridColumnNoTag.Width = 69
+        '
+        'GridColumnPrcType
+        '
+        Me.GridColumnPrcType.Caption = "Price Type"
+        Me.GridColumnPrcType.FieldName = "design_price_type"
+        Me.GridColumnPrcType.Name = "GridColumnPrcType"
+        Me.GridColumnPrcType.Visible = True
+        Me.GridColumnPrcType.VisibleIndex = 7
+        Me.GridColumnPrcType.Width = 72
         '
         'PanelControlNav
         '
@@ -1037,14 +1048,22 @@ Partial Class FormStockTakeDet
         Me.BandedGridColumnNote.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.BandedGridColumnNote.Visible = True
         '
-        'GridColumnPrcType
+        'GridColumnRemark
         '
-        Me.GridColumnPrcType.Caption = "Price Type"
-        Me.GridColumnPrcType.FieldName = "design_price_type"
-        Me.GridColumnPrcType.Name = "GridColumnPrcType"
-        Me.GridColumnPrcType.Visible = True
-        Me.GridColumnPrcType.VisibleIndex = 7
-        Me.GridColumnPrcType.Width = 72
+        Me.GridColumnRemark.Caption = "Remark"
+        Me.GridColumnRemark.FieldName = "remark_ref"
+        Me.GridColumnRemark.Name = "GridColumnRemark"
+        Me.GridColumnRemark.OptionsColumn.AllowEdit = False
+        Me.GridColumnRemark.Visible = True
+        Me.GridColumnRemark.VisibleIndex = 16
+        '
+        'GridColumnRefNumber
+        '
+        Me.GridColumnRefNumber.Caption = "Ref#"
+        Me.GridColumnRefNumber.FieldName = "ref_number"
+        Me.GridColumnRefNumber.Name = "GridColumnRefNumber"
+        Me.GridColumnRefNumber.Visible = True
+        Me.GridColumnRefNumber.VisibleIndex = 15
         '
         'FormStockTakeDet
         '
@@ -1197,4 +1216,6 @@ Partial Class FormStockTakeDet
     Friend WithEvents CheckEditNoTag As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents GridColumnNoTag As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPrcType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnRemark As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnRefNumber As DevExpress.XtraGrid.Columns.GridColumn
 End Class

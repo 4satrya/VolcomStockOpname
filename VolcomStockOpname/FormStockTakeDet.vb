@@ -8,8 +8,9 @@
 
     Private Sub FormStockTakeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewWHStockSum()
-        actionLoad()
         viewReportStatus()
+        viewAck()
+        actionLoad()
     End Sub
 
     Sub viewReportStatus()
@@ -20,6 +21,15 @@
             query = "SELECT * FROM tb_lookup_report_status s WHERE s.id_report_status=1 OR s.id_report_status=3 OR s.id_report_status=5 OR s.id_report_status=6 "
         End If
         viewLookupQuery(LEStatus, query, 0, "report_status", "id_report_status")
+    End Sub
+
+    Sub viewAck()
+        Dim query As String = "
+        SELECT 0 AS `id_user`, '-' AS `employee_name`
+        UNION ALL
+        SELECT u.id_user, e.employee_name FROM tb_m_user u
+        INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee "
+        viewLookupQuery(LEAck, query, 0, "employee_name", "id_user")
     End Sub
 
     Sub viewWHStockSum()
@@ -58,6 +68,9 @@
             id_comp = data.Rows(0)("id_comp").ToString
             id_drawer = data.Rows(0)("id_wh_drawer").ToString
             is_combine = data.Rows(0)("is_combine").ToString
+            'acknowledge_by
+            LEAck.ItemIndex = LEAck.Properties.GetDataSourceRowIndex("id_user", data.Rows(0)("acknowledge_by").ToString)
+            TxtApp.Text = data.Rows(0)("approved_by").ToString
 
             viewDetail()
             allow_status()
@@ -194,11 +207,15 @@
         If is_combine = "2" Then
             If id_report_status = "5" Or id_report_status = "6" Then
                 LEStatus.Enabled = False
+                LEAck.Enabled = False
+                TxtApp.Enabled = False
                 BtnSetStatus.Enabled = False
                 PanelControlNav.Visible = False
                 MERemark.Enabled = False
             Else
                 LEStatus.Enabled = True
+                LEAck.Enabled = True
+                TxtApp.Enabled = True
                 BtnSetStatus.Enabled = True
                 PanelControlNav.Visible = True
                 MERemark.Enabled = True
@@ -208,10 +225,14 @@
             XTPCompare.PageVisible = True
             If id_report_status = "5" Or id_report_status = "6" Then
                 LEStatus.Enabled = False
+                LEAck.Enabled = False
+                TxtApp.Enabled = False
                 BtnSetStatus.Enabled = False
                 MERemark.Enabled = False
             Else
                 LEStatus.Enabled = True
+                LEAck.Enabled = True
+                TxtApp.Enabled = True
                 BtnSetStatus.Enabled = True
                 MERemark.Enabled = True
             End If
@@ -221,7 +242,16 @@
     Private Sub BtnSetStatus_Click(sender As Object, e As EventArgs) Handles BtnSetStatus.Click
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to " + LEStatus.Text.ToLower + " this transaction ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = DialogResult.Yes Then
-            Dim query As String = "UPDATE tb_st_trans SET id_report_status ='" + LEStatus.EditValue.ToString + "', st_trans_updated_by=" + id_user + " WHERE id_st_trans='" + id_st_trans + "' "
+            Dim acknowledge_by As String = "0"
+            Try
+                acknowledge_by = LEAck.EditValue.ToString
+            Catch ex As Exception
+            End Try
+            If acknowledge_by = "" Or acknowledge_by = "0" Then
+                acknowledge_by = "NULL"
+            End If
+            Dim approved_by As String = addSlashes(TxtApp.Text)
+            Dim query As String = "UPDATE tb_st_trans SET id_report_status ='" + LEStatus.EditValue.ToString + "', st_trans_updated_by=" + id_user + ", acknowledge_by=" + acknowledge_by + ", approved_by='" + approved_by + "' WHERE id_st_trans='" + id_st_trans + "' "
             execute_non_query(query, True, "", "", "", "")
 
             If is_combine = "1" Then

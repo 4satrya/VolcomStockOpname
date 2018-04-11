@@ -33,6 +33,10 @@ Partial Class FormStockTakeDet
         Me.GridView14 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.TxtApp = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEAck = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnSetStatus = New DevExpress.XtraEditors.SimpleButton()
         Me.LEStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
@@ -65,6 +69,8 @@ Partial Class FormStockTakeDet
         Me.GridColumnIniqueNotFound = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNoTag = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPrcType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRefNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.CheckEditNoTag = New DevExpress.XtraEditors.CheckEdit()
         Me.CheckEditReject = New DevExpress.XtraEditors.CheckEdit()
@@ -112,8 +118,6 @@ Partial Class FormStockTakeDet
         Me.BandedGridColumnDiffQty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnDiffValue = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnNote = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnRefNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -126,6 +130,8 @@ Partial Class FormStockTakeDet
         CType(Me.GridView14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
+        CType(Me.TxtApp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEAck.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
@@ -260,6 +266,10 @@ Partial Class FormStockTakeDet
         'GroupControl2
         '
         Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl2.Controls.Add(Me.TxtApp)
+        Me.GroupControl2.Controls.Add(Me.LabelControl8)
+        Me.GroupControl2.Controls.Add(Me.LEAck)
+        Me.GroupControl2.Controls.Add(Me.LabelControl7)
         Me.GroupControl2.Controls.Add(Me.BtnSetStatus)
         Me.GroupControl2.Controls.Add(Me.LEStatus)
         Me.GroupControl2.Controls.Add(Me.LabelControl5)
@@ -270,9 +280,42 @@ Partial Class FormStockTakeDet
         Me.GroupControl2.Size = New System.Drawing.Size(1042, 45)
         Me.GroupControl2.TabIndex = 1
         '
+        'TxtApp
+        '
+        Me.TxtApp.Location = New System.Drawing.Point(523, 13)
+        Me.TxtApp.Name = "TxtApp"
+        Me.TxtApp.Size = New System.Drawing.Size(174, 20)
+        Me.TxtApp.TabIndex = 8910
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(455, 16)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(62, 13)
+        Me.LabelControl8.TabIndex = 8909
+        Me.LabelControl8.Text = "Approved By"
+        '
+        'LEAck
+        '
+        Me.LEAck.Location = New System.Drawing.Point(275, 13)
+        Me.LEAck.Name = "LEAck"
+        Me.LEAck.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEAck.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_user", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("employee_name", "Name")})
+        Me.LEAck.Properties.NullText = "-Select-"
+        Me.LEAck.Size = New System.Drawing.Size(174, 20)
+        Me.LEAck.TabIndex = 8908
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Location = New System.Drawing.Point(191, 16)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(78, 13)
+        Me.LabelControl7.TabIndex = 8907
+        Me.LabelControl7.Text = "Acknowledge By"
+        '
         'BtnSetStatus
         '
-        Me.BtnSetStatus.Location = New System.Drawing.Point(296, 13)
+        Me.BtnSetStatus.Location = New System.Drawing.Point(703, 13)
         Me.BtnSetStatus.Name = "BtnSetStatus"
         Me.BtnSetStatus.Size = New System.Drawing.Size(75, 20)
         Me.BtnSetStatus.TabIndex = 8906
@@ -284,7 +327,7 @@ Partial Class FormStockTakeDet
         Me.LEStatus.Name = "LEStatus"
         Me.LEStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Status")})
-        Me.LEStatus.Size = New System.Drawing.Size(217, 20)
+        Me.LEStatus.Size = New System.Drawing.Size(112, 20)
         Me.LEStatus.TabIndex = 8905
         '
         'LabelControl5
@@ -588,6 +631,23 @@ Partial Class FormStockTakeDet
         Me.GridColumnPrcType.Visible = True
         Me.GridColumnPrcType.VisibleIndex = 7
         Me.GridColumnPrcType.Width = 72
+        '
+        'GridColumnRemark
+        '
+        Me.GridColumnRemark.Caption = "Remark"
+        Me.GridColumnRemark.FieldName = "remark_ref"
+        Me.GridColumnRemark.Name = "GridColumnRemark"
+        Me.GridColumnRemark.OptionsColumn.AllowEdit = False
+        Me.GridColumnRemark.Visible = True
+        Me.GridColumnRemark.VisibleIndex = 16
+        '
+        'GridColumnRefNumber
+        '
+        Me.GridColumnRefNumber.Caption = "Ref#"
+        Me.GridColumnRefNumber.FieldName = "ref_number"
+        Me.GridColumnRefNumber.Name = "GridColumnRefNumber"
+        Me.GridColumnRefNumber.Visible = True
+        Me.GridColumnRefNumber.VisibleIndex = 15
         '
         'PanelControlNav
         '
@@ -1048,23 +1108,6 @@ Partial Class FormStockTakeDet
         Me.BandedGridColumnNote.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.BandedGridColumnNote.Visible = True
         '
-        'GridColumnRemark
-        '
-        Me.GridColumnRemark.Caption = "Remark"
-        Me.GridColumnRemark.FieldName = "remark_ref"
-        Me.GridColumnRemark.Name = "GridColumnRemark"
-        Me.GridColumnRemark.OptionsColumn.AllowEdit = False
-        Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 16
-        '
-        'GridColumnRefNumber
-        '
-        Me.GridColumnRefNumber.Caption = "Ref#"
-        Me.GridColumnRefNumber.FieldName = "ref_number"
-        Me.GridColumnRefNumber.Name = "GridColumnRefNumber"
-        Me.GridColumnRefNumber.Visible = True
-        Me.GridColumnRefNumber.VisibleIndex = 15
-        '
         'FormStockTakeDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1094,6 +1137,8 @@ Partial Class FormStockTakeDet
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         Me.GroupControl2.PerformLayout()
+        CType(Me.TxtApp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEAck.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
@@ -1218,4 +1263,8 @@ Partial Class FormStockTakeDet
     Friend WithEvents GridColumnPrcType As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnRemark As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnRefNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LEAck As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtApp As DevExpress.XtraEditors.TextEdit
 End Class

@@ -64,7 +64,9 @@ Public Class FormDatabase
     End Sub
 
     Sub setDB()
-        TxtDB.Text = GVData.GetFocusedRowCellValue("Database").ToString
+        If GVData.RowCount > 0 Then
+            TxtDB.Text = GVData.GetFocusedRowCellValue("Database").ToString
+        End If
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
@@ -77,8 +79,8 @@ Public Class FormDatabase
                 FormFGBackupStockDet.Close()
             Catch ex As Exception
             End Try
-            Close()
-            FormMain.logOutCmd()
+            infoCustom("Setup database success, please open again this application")
+            Application.Exit()
             'FormMain.LoginToolStripMenuItem.Visible = True
         Catch ex As Exception
             XtraMessageBox.Show("Connection failed : " + ex.ToString + "", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -141,13 +143,30 @@ Public Class FormDatabase
                 write_database_configuration(TxtHost.Text, TxtUsername.Text, TxtPass.Text, db_new)
                 read_database_configuration()
                 FormMain.SplashScreenManager1.CloseWaitForm()
-                Close()
-                FormMain.logOutCmd()
+                infoCustom("Setup database success, please open again this application")
+                Application.Exit()
+                'FormMain.logOutCmd()
+                'Close()
             Catch ex As Exception
                 FormMain.SplashScreenManager1.CloseWaitForm()
                 errorCustom(ex.ToString)
             End Try
         End If
         fdlg.Dispose()
+    End Sub
+
+    Private Sub SimpleButton1_Click_1(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        Cursor = Cursors.WaitCursor
+        GCData.DataSource = Nothing
+        TxtDB.Text = ""
+        TxtDB.Enabled = True
+        TxtHost.Text = ""
+        TxtHost.Enabled = True
+        TxtPass.Text = ""
+        TxtPass.Enabled = True
+        TxtUsername.Text = ""
+        TxtUsername.Enabled = True
+        TxtHost.Focus()
+        Cursor = Cursors.Default
     End Sub
 End Class

@@ -137,8 +137,10 @@ Public Class FormFGBackupStockDet
                     '-- processing bof xls
                     FormMain.SplashScreenManager1.SetWaitFormDescription("Processing XLS bof")
                     load_excel_data(id_comp_bof)
+                    FormMain.SplashScreenManager1.CloseWaitForm()
                 End If
 
+                FormMain.SplashScreenManager1.ShowWaitForm()
                 '-- company/store/wh
                 FormMain.SplashScreenManager1.SetWaitFormDescription("Backup master store/wh")
                 Dim dic As New Dictionary(Of String, String)()
@@ -504,6 +506,7 @@ Public Class FormFGBackupStockDet
         Cursor = Cursors.WaitCursor
         FormDatabase.showx = True
         FormDatabase.ShowDialog()
+        Close()
         Cursor = Cursors.Default
     End Sub
 

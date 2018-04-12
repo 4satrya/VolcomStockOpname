@@ -91,7 +91,7 @@
             Opacity = 0
             FormLogin.ShowDialog()
         Catch ex As Exception
-            errorProcess()
+            stopCustom(ex.ToString)
         End Try
         Cursor = Cursors.Default
     End Sub

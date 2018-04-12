@@ -35,6 +35,7 @@ Partial Class FormDatabase
         Me.BtnConnect = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImport = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -69,6 +70,7 @@ Partial Class FormDatabase
         'PanelControl2
         '
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.SimpleButton1)
         Me.PanelControl2.Controls.Add(Me.BtnSave)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 375)
@@ -113,6 +115,7 @@ Partial Class FormDatabase
         '
         Me.TxtPass.Location = New System.Drawing.Point(24, 122)
         Me.TxtPass.Name = "TxtPass"
+        Me.TxtPass.Properties.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.TxtPass.Size = New System.Drawing.Size(311, 20)
         Me.TxtPass.TabIndex = 5
         '
@@ -183,6 +186,16 @@ Partial Class FormDatabase
         Me.PanelControl1.Size = New System.Drawing.Size(359, 209)
         Me.PanelControl1.TabIndex = 7
         '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
+        Me.SimpleButton1.Location = New System.Drawing.Point(203, 0)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(78, 36)
+        Me.SimpleButton1.TabIndex = 11
+        Me.SimpleButton1.Text = "Reset"
+        '
         'FormDatabase
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -227,4 +240,5 @@ Partial Class FormDatabase
     Friend WithEvents BtnConnect As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnImport As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
 End Class

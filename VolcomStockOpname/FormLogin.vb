@@ -67,8 +67,7 @@
                 End If
                 Cursor = Cursors.Default
             Catch ex As Exception
-                errorConnection()
-                Close()
+                stopCustom(ex.ToString)
             End Try
         End If
     End Sub

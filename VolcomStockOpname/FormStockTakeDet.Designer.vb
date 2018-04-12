@@ -118,6 +118,8 @@ Partial Class FormStockTakeDet
         Me.BandedGridColumnDiffQty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnDiffValue = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnNote = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.ContextMenuStripCompare = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -158,6 +160,7 @@ Partial Class FormStockTakeDet
         Me.XTPCompare.SuspendLayout()
         CType(Me.GCCompare, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BGVCompare, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStripCompare.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -915,6 +918,7 @@ Partial Class FormStockTakeDet
         '
         'GCCompare
         '
+        Me.GCCompare.ContextMenuStrip = Me.ContextMenuStripCompare
         Me.GCCompare.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCCompare.Location = New System.Drawing.Point(0, 0)
         Me.GCCompare.MainView = Me.BGVCompare
@@ -1108,6 +1112,18 @@ Partial Class FormStockTakeDet
         Me.BandedGridColumnNote.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.BandedGridColumnNote.Visible = True
         '
+        'ContextMenuStripCompare
+        '
+        Me.ContextMenuStripCompare.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem})
+        Me.ContextMenuStripCompare.Name = "ContextMenuStripCompare"
+        Me.ContextMenuStripCompare.Size = New System.Drawing.Size(153, 48)
+        '
+        'ViewDetailToolStripMenuItem
+        '
+        Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
+        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ViewDetailToolStripMenuItem.Text = "View Detail"
+        '
         'FormStockTakeDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1166,6 +1182,7 @@ Partial Class FormStockTakeDet
         Me.XTPCompare.ResumeLayout(False)
         CType(Me.GCCompare, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BGVCompare, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStripCompare.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1267,4 +1284,6 @@ Partial Class FormStockTakeDet
     Friend WithEvents LEAck As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtApp As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents ContextMenuStripCompare As ContextMenuStrip
+    Friend WithEvents ViewDetailToolStripMenuItem As ToolStripMenuItem
 End Class

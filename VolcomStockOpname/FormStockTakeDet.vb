@@ -102,7 +102,7 @@
         Dim query As String = "SELECT std.id_st_trans_det, std.id_st_trans, 
         std.is_ok, IF(std.is_ok=1,'Yes', 'No') AS `is_ok_v`,std.is_no_stock, IF(std.is_no_stock=1,'Yes', 'No') AS `is_no_stock_v`, std.is_no_master, IF(std.is_no_master=1,'Yes', 'No') AS `is_no_master_v`, std.is_sale, IF(std.is_sale=1,'Yes', 'No') AS `is_sale_v`, std.is_reject, IF(std.is_reject=1,'Yes', 'No') AS `is_reject_v`,std.is_no_tag, IF(std.is_no_tag=1,'Yes', 'No') AS `is_no_tag_v`, std.is_unique_not_found, IF(std.is_unique_not_found=1,'Yes', 'No') AS `is_unique_not_found_v`,
         std.id_product, std.code, std.name, std.size, std.qty, 
-        std.id_design_price, std.design_price, d.is_old_design, cat.id_design_cat, cat.design_cat, typ.design_price_type, r.st_trans_number AS `ref_number`, r.remark AS `remark_ref`
+        std.id_design_price, std.design_price, d.is_old_design, cat.id_design_cat, cat.design_cat, typ.design_price_type, r.st_trans_number AS `ref_number`, r.remark AS `remark_ref`, p.product_full_code
         FROM tb_st_trans_det std
         INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
         LEFT JOIN tb_m_product p ON p.id_product = std.id_product
@@ -615,10 +615,13 @@
             viewDetail()
         ElseIf XTCStockTake.SelectedTabPageIndex = 1 Then
             viewSummary()
+            GVScan.ActiveFilterString = ""
         ElseIf XTCStockTake.SelectedTabPageIndex = 2 Then
             viewSummaryCat()
+            GVScan.ActiveFilterString = ""
         ElseIf XTCStockTake.SelectedTabPageIndex = 3 Then
             viewCompare()
+            GVScan.ActiveFilterString = ""
         End If
     End Sub
 
@@ -659,5 +662,14 @@
             FormStockTake.GVScan.FocusedRowHandle = find_row(FormStockTake.GVScan, "id_st_trans", id_st_trans)
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub ViewDetailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewDetailToolStripMenuItem.Click
+        If BGVCompare.RowCount > 0 And BGVCompare.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            XTCStockTake.SelectedTabPageIndex = 0
+            GVScan.ActiveFilterString = "[product_full_code]='" + BGVCompare.GetFocusedRowCellValue("barcode").ToString + "'"
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class

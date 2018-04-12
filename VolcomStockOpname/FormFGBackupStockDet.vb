@@ -524,7 +524,7 @@ Public Class FormFGBackupStockDet
         oledbconn.ConnectionString = strConn
         Dim MyCommand As OleDbDataAdapter
         Try
-            MyCommand = New OleDbDataAdapter("select * from [" & bof_xls_ws & "]", oledbconn)
+            MyCommand = New OleDbDataAdapter("select * from [" & bof_xls_ws & "] WHERE not ([code1]='')", oledbconn)
             MyCommand.Fill(data_temp)
             MyCommand.Dispose()
         Catch ex As Exception

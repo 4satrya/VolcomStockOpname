@@ -414,9 +414,9 @@ Public Class FormFGBackupStockDet
                 FormMain.SplashScreenManager1.SetWaitFormDescription("Creating pdf report")
                 Dim fileNamePdf As String = date_stock + ".pdf"
                 Dim reportPath As String = IO.Path.Combine(path_root, fileNamePdf)
-                ReportFGBackupStock.comp = comp
-                ReportFGBackupStock.is_bof = is_bof
-                Using report As New ReportFGBackupStock()
+                ReportFGStockBar.comp = comp
+                ReportFGStockBar.is_bof = is_bof
+                Using report As New ReportFGStockBar()
 
                     ' Specify PDF-specific export options.
                     Dim pdfOptions As PdfExportOptions = report.ExportOptions.Pdf
@@ -468,9 +468,9 @@ Public Class FormFGBackupStockDet
                 FormMain.SplashScreenManager1.SetWaitFormDescription("Creating xls report")
                 Dim fileNameXls As String = date_stock + ".xls"
                 Dim reportPathXls As String = IO.Path.Combine(path_root, fileNameXls)
-                ReportFGBackupStock.comp = comp
-                ReportFGBackupStock.is_bof = is_bof
-                Dim reportxls As New ReportFGBackupStock()
+                ReportFGStockBar.comp = comp
+                ReportFGStockBar.is_bof = is_bof
+                Dim reportxls As New ReportFGStockBar()
                 'Specify XLS-specific export options.
                 Dim xlsOptions As XlsExportOptions = reportxls.ExportOptions.Xls
                 xlsOptions.ExportHyperlinks = False

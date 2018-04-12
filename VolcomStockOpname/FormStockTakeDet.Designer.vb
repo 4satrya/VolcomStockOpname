@@ -419,7 +419,7 @@ Partial Class FormStockTakeDet
         Me.GridColumnNo.OptionsColumn.AllowEdit = False
         Me.GridColumnNo.Visible = True
         Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 42
+        Me.GridColumnNo.Width = 44
         '
         'GridColumnCode
         '
@@ -429,7 +429,7 @@ Partial Class FormStockTakeDet
         Me.GridColumnCode.OptionsColumn.AllowEdit = False
         Me.GridColumnCode.Visible = True
         Me.GridColumnCode.VisibleIndex = 1
-        Me.GridColumnCode.Width = 161
+        Me.GridColumnCode.Width = 170
         '
         'GridColumnDescription
         '
@@ -439,7 +439,7 @@ Partial Class FormStockTakeDet
         Me.GridColumnDescription.OptionsColumn.AllowEdit = False
         Me.GridColumnDescription.Visible = True
         Me.GridColumnDescription.VisibleIndex = 2
-        Me.GridColumnDescription.Width = 320
+        Me.GridColumnDescription.Width = 338
         '
         'GridColumnSize
         '
@@ -449,7 +449,7 @@ Partial Class FormStockTakeDet
         Me.GridColumnSize.OptionsColumn.AllowEdit = False
         Me.GridColumnSize.Visible = True
         Me.GridColumnSize.VisibleIndex = 3
-        Me.GridColumnSize.Width = 67
+        Me.GridColumnSize.Width = 70
         '
         'GridColumnQty
         '
@@ -471,7 +471,7 @@ Partial Class FormStockTakeDet
         Me.GridColumnPrice.Name = "GridColumnPrice"
         Me.GridColumnPrice.Visible = True
         Me.GridColumnPrice.VisibleIndex = 4
-        Me.GridColumnPrice.Width = 141
+        Me.GridColumnPrice.Width = 149
         '
         'GridColumnAmount
         '
@@ -497,7 +497,7 @@ Partial Class FormStockTakeDet
         Me.GridColumnNoStock.OptionsColumn.AllowEdit = False
         Me.GridColumnNoStock.Visible = True
         Me.GridColumnNoStock.VisibleIndex = 8
-        Me.GridColumnNoStock.Width = 71
+        Me.GridColumnNoStock.Width = 78
         '
         'RepositoryItemCheckEdit1
         '
@@ -515,7 +515,9 @@ Partial Class FormStockTakeDet
         Me.GridColumnNoMaster.FieldName = "is_no_master_v"
         Me.GridColumnNoMaster.Name = "GridColumnNoMaster"
         Me.GridColumnNoMaster.OptionsColumn.AllowEdit = False
-        Me.GridColumnNoMaster.Width = 85
+        Me.GridColumnNoMaster.Visible = True
+        Me.GridColumnNoMaster.VisibleIndex = 13
+        Me.GridColumnNoMaster.Width = 67
         '
         'GridColumnSale
         '
@@ -528,7 +530,7 @@ Partial Class FormStockTakeDet
         Me.GridColumnSale.OptionsColumn.AllowEdit = False
         Me.GridColumnSale.Visible = True
         Me.GridColumnSale.VisibleIndex = 9
-        Me.GridColumnSale.Width = 50
+        Me.GridColumnSale.Width = 54
         '
         'GridColumnIdPrice
         '
@@ -570,7 +572,7 @@ Partial Class FormStockTakeDet
         Me.GridColumnOK.Name = "GridColumnOK"
         Me.GridColumnOK.Visible = True
         Me.GridColumnOK.VisibleIndex = 7
-        Me.GridColumnOK.Width = 60
+        Me.GridColumnOK.Width = 63
         '
         'GridColumnReject
         '
@@ -582,7 +584,7 @@ Partial Class FormStockTakeDet
         Me.GridColumnReject.Name = "GridColumnReject"
         Me.GridColumnReject.Visible = True
         Me.GridColumnReject.VisibleIndex = 10
-        Me.GridColumnReject.Width = 57
+        Me.GridColumnReject.Width = 62
         '
         'GridColumnproductStatus
         '
@@ -591,7 +593,7 @@ Partial Class FormStockTakeDet
         Me.GridColumnproductStatus.Name = "GridColumnproductStatus"
         Me.GridColumnproductStatus.Visible = True
         Me.GridColumnproductStatus.VisibleIndex = 6
-        Me.GridColumnproductStatus.Width = 86
+        Me.GridColumnproductStatus.Width = 90
         '
         'GridColumnIniqueNotFound
         '
@@ -603,7 +605,7 @@ Partial Class FormStockTakeDet
         Me.GridColumnIniqueNotFound.Name = "GridColumnIniqueNotFound"
         Me.GridColumnIniqueNotFound.Visible = True
         Me.GridColumnIniqueNotFound.VisibleIndex = 12
-        Me.GridColumnIniqueNotFound.Width = 112
+        Me.GridColumnIniqueNotFound.Width = 122
         '
         'GridColumnNoTag
         '
@@ -617,7 +619,7 @@ Partial Class FormStockTakeDet
         Me.GridColumnNoTag.Name = "GridColumnNoTag"
         Me.GridColumnNoTag.Visible = True
         Me.GridColumnNoTag.VisibleIndex = 11
-        Me.GridColumnNoTag.Width = 69
+        Me.GridColumnNoTag.Width = 74
         '
         'GridColumnPrcType
         '
@@ -626,7 +628,7 @@ Partial Class FormStockTakeDet
         Me.GridColumnPrcType.Name = "GridColumnPrcType"
         Me.GridColumnPrcType.Visible = True
         Me.GridColumnPrcType.VisibleIndex = 5
-        Me.GridColumnPrcType.Width = 72
+        Me.GridColumnPrcType.Width = 76
         '
         'GridColumnRemark
         '
@@ -635,7 +637,8 @@ Partial Class FormStockTakeDet
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.OptionsColumn.AllowEdit = False
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 14
+        Me.GridColumnRemark.VisibleIndex = 15
+        Me.GridColumnRemark.Width = 93
         '
         'GridColumnRefNumber
         '
@@ -643,7 +646,8 @@ Partial Class FormStockTakeDet
         Me.GridColumnRefNumber.FieldName = "ref_number"
         Me.GridColumnRefNumber.Name = "GridColumnRefNumber"
         Me.GridColumnRefNumber.Visible = True
-        Me.GridColumnRefNumber.VisibleIndex = 13
+        Me.GridColumnRefNumber.VisibleIndex = 14
+        Me.GridColumnRefNumber.Width = 82
         '
         'PanelControlNav
         '

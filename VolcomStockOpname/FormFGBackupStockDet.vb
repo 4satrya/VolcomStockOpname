@@ -19,6 +19,7 @@ Public Class FormFGBackupStockDet
         If action = "ins" Then
             Dim dt As DataTable = execute_query("SELECT DATE(NOW()) AS `date_now` ", -1, False, app_host_main, app_username_main, app_password_main, app_database_main)
             DEStock.EditValue = dt.Rows(0)("date_now")
+            DESalesUntil.EditValue = dt.Rows(0)("date_now")
         ElseIf action = "upd" Then
             BtnOpenFileLoc.Visible = True
 
@@ -113,6 +114,13 @@ Public Class FormFGBackupStockDet
 
                 'connection string
                 Dim date_stock_DB = DateTime.Parse(DEStock.EditValue.ToString).ToString("yyyy-MM-dd")
+                Dim date_sales_DB = DateTime.Parse(DESalesUntil.EditValue.ToString).ToString("yyyy-MM-dd")
+                Dim is_record_unreg As String = ""
+                If CEManualRecord.Checked = True Then
+                    is_record_unreg = "1"
+                Else
+                    is_record_unreg = "2"
+                End If
                 Dim date_stock = DateTime.Parse(DEStock.EditValue.ToString).ToString("yyyyMMdd") + "_" + getIdSt()
                 Dim constring As String = "server=" + app_host_main + ";user=" + app_username_main + ";pwd=" + app_password_main + ";database=" + app_database_main + ";allow zero datetime=yes;"
                 Dim path_root As String = Application.StartupPath + "\download\database\" + date_stock
@@ -127,7 +135,7 @@ Public Class FormFGBackupStockDet
 
                 If is_bof Then
                     '-- processing bof xls
-                    FormMain.SplashScreenManager1.SetWaitFormDescription("Processing XLS bof ...")
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Processing XLS bof")
                     load_excel_data(id_comp_bof)
                 End If
 
@@ -185,6 +193,7 @@ Public Class FormFGBackupStockDet
                 dic.Add("tb_lookup_report_status", "SELECT * FROM tb_lookup_report_status ")
                 '-- tb_st_opt
                 FormMain.SplashScreenManager1.SetWaitFormDescription("Backup option table")
+                execute_non_query("UPDATE tb_st_opt SET soh_period='" + date_stock_DB + "', sales_until_period='" + date_sales_DB + "', is_record_unreg='" + is_record_unreg + "' ", False, app_host_main, app_username_main, app_password_main, app_database_main)
                 dic.Add("tb_st_opt", "SELECT * FROM tb_st_opt ")
                 '-- transaction
                 FormMain.SplashScreenManager1.SetWaitFormDescription("Creating transaction table")

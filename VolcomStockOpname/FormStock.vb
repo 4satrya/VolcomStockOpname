@@ -62,7 +62,11 @@
 
     Private Sub BtnViewRsv_Click(sender As Object, e As EventArgs) Handles BtnViewRsv.Click
         If CheckEditAllDsgRsv.EditValue = True Then
-            viewRsv()
+            If XTCStock.SelectedTabPageIndex = 0 Then
+                viewRsv()
+            Else
+                viewRsvBarcode()
+            End If
         Else
             If id_design_rsv = "-1" Then
                 stopCustom("Design can't blank")
@@ -70,6 +74,30 @@
                 viewRsv()
             End If
         End If
+    End Sub
+
+    Sub viewRsvBarcode()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT p.product_full_code AS `barcode`,d.design_code AS `code`, d.design_display_name AS `name`, cd.code_detail_name AS `size`, "
+        query += "s.qty, IF(c.id_store_type=1, fd.design_price,s.design_price) AS `design_price`, c.comp_name, c.comp_number
+        FROM tb_st_stock s
+        INNER JOIN tb_m_product p ON p.id_product = s.id_product
+        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+        INNER JOIN tb_m_design d ON d.id_design = p.id_design
+        INNER JOIN tb_m_comp c ON c.id_drawer_def = s.id_wh_drawer
+        LEFT JOIN tb_m_design_first_del fd ON fd.id_design = d.id_design AND fd.id_comp = c.id_comp
+        WHERE 1=1 "
+        If SLEWHStockSum.EditValue.ToString <> "0" Then
+            query += "AND s.id_wh_drawer='" + SLEWHStockSum.EditValue.ToString + "' "
+        End If
+        If id_design_rsv <> "0" Then
+            query += "AND p.id_design='" + id_design_rsv + "' "
+        End If
+        query += "ORDER BY s.id_product ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCRsvBar.DataSource = data
+        Cursor = Cursors.Default
     End Sub
 
     Sub viewRsv()
@@ -123,7 +151,11 @@
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
-        print_raw(GCRsv, "")
+        If XTCStock.SelectedTabPageIndex = 0 Then
+            print_raw(GCRsv, "")
+        Else
+            print_raw(GCRsvBar, "")
+        End If
         Cursor = Cursors.Default
     End Sub
 

@@ -179,7 +179,12 @@
         SELECT 'Unique not Found' AS `cat`,COUNT(*) AS `cat_val`
         FROM tb_st_trans_det std 
         INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
-        WHERE " + cond_where + " AND std.is_unique_not_found=1 "
+        WHERE " + cond_where + " AND std.is_unique_not_found=1 
+        UNION ALL
+        SELECT 'No Master' AS `cat`,COUNT(*) AS `cat_val`
+        FROM tb_st_trans_det std 
+        INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
+        WHERE " + cond_where + " AND std.is_no_master=1 "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCat.DataSource = data
     End Sub
@@ -527,8 +532,22 @@
                     End If
                 ElseIf dt_check.Rows(0)("is_old_design") = "3" Then 'unique code peralihan
                     code_saved = code
-                Else
+                Else '
                     code_saved = code
+                    If code.Length > 12 Then 'jika tidak 12 digit dicek duplikat
+                        makeSafeGV(GVScan)
+                        GVScan.ActiveFilterString = "[code]='" + code + "' "
+                        If GVScan.RowCount > 0 Then
+                            stopCustom("Duplicate scan !")
+                            makeSafeGV(GVScan)
+                            GVScan.FocusedRowHandle = GVScan.RowCount - 1
+                            TxtScan.Text = ""
+                            TxtScan.Focus()
+                            Exit Sub
+                        Else
+                            makeSafeGV(GVScan)
+                        End If
+                    End If
                 End If
 
                 'check status

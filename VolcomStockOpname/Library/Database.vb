@@ -6,14 +6,15 @@ Imports System.Xml
 Imports MySql.Data.MySqlClient
 
 Module Database
-    Public app_host As String
-    Public app_username As String
-    Public app_password As String
+    Public app_host As String = "localhost"
+    Public app_username As String = "root"
+    Public app_password As String = ""
+
     Public app_database As String
-    Public app_host_main As String = "localhost"
-    Public app_username_main As String = "root"
+    Public app_host_main As String = ""
+    Public app_username_main As String = ""
     Public app_password_main As String = ""
-    Public app_database_main As String = "db_volcom_mrp"
+    Public app_database_main As String = ""
 
     Function execute_non_query(ByVal command_text As String, ByVal is_local As Boolean, ByVal host As String, ByVal username As String, ByVal password As String, ByVal database As String)
         If is_local = True Then
@@ -24,7 +25,7 @@ Module Database
         End If
 
         'Enable when developing
-        Console.WriteLine(command_text)
+        'Console.WriteLine(command_text)
 
         Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True; Allow User Variables=True;", host, username, password, database)
 
@@ -59,7 +60,7 @@ Module Database
         Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True", host, username, password, database)
 
         'Enable when developing
-        Console.WriteLine(command_text)
+        'Console.WriteLine(command_text)
 
         If col_index < 0 Then 'return data table
             Dim connection As New MySqlConnection(connection_string)
@@ -133,46 +134,46 @@ Module Database
     End Function
 
     Sub write_database_configuration(ByVal ip As String, ByVal un As String, ByVal ps As String, ByVal db As String)
-        'Dim path As String = My.Application.Info.DirectoryPath.ToString & "\DatabaseConfiguration.xml"
+        Dim path As String = My.Application.Info.DirectoryPath.ToString & "\DatabaseConfiguration.xml"
 
-        'Dim xml_writer As New XmlTextWriter(path, System.Text.Encoding.UTF8)
-        'xml_writer.WriteStartDocument(True)
-        'xml_writer.Formatting = Formatting.Indented
-        'xml_writer.Indentation = 2
-        'xml_writer.WriteStartElement("database_config")
-        'xml_writer.WriteStartElement("ip_address")
-        'xml_writer.WriteString(ip)
-        'xml_writer.WriteEndElement()
-        'xml_writer.WriteStartElement("username")
-        'xml_writer.WriteString(un)
-        'xml_writer.WriteEndElement()
-        'xml_writer.WriteStartElement("password")
-        'xml_writer.WriteString(ps)
-        'xml_writer.WriteEndElement()
-        'xml_writer.WriteStartElement("database")
-        'xml_writer.WriteString(db)
-        'xml_writer.WriteEndElement()
-        'xml_writer.WriteEndElement()
-        'xml_writer.WriteEndDocument()
-        'xml_writer.Close()
+        Dim xml_writer As New XmlTextWriter(path, System.Text.Encoding.UTF8)
+        xml_writer.WriteStartDocument(True)
+        xml_writer.Formatting = Formatting.Indented
+        xml_writer.Indentation = 2
+        xml_writer.WriteStartElement("database_config")
+        xml_writer.WriteStartElement("ip_address")
+        xml_writer.WriteString(ip)
+        xml_writer.WriteEndElement()
+        xml_writer.WriteStartElement("username")
+        xml_writer.WriteString(un)
+        xml_writer.WriteEndElement()
+        xml_writer.WriteStartElement("password")
+        xml_writer.WriteString(ps)
+        xml_writer.WriteEndElement()
+        xml_writer.WriteStartElement("database")
+        xml_writer.WriteString(db)
+        xml_writer.WriteEndElement()
+        xml_writer.WriteEndElement()
+        xml_writer.WriteEndDocument()
+        xml_writer.Close()
 
-        'Dim xmldoc As New XmlDocument()
-        'xmldoc.Load(path)
-        'Dim sharedkey As New TripleDESCryptoServiceProvider()
-        'Dim md5 As New MD5CryptoServiceProvider()
-        'sharedkey.Key = md5.ComputeHash(System.Text.Encoding.Unicode.GetBytes("csmtafc"))
+        Dim xmldoc As New XmlDocument()
+        xmldoc.Load(path)
+        Dim sharedkey As New TripleDESCryptoServiceProvider()
+        Dim md5 As New MD5CryptoServiceProvider()
+        sharedkey.Key = md5.ComputeHash(System.Text.Encoding.Unicode.GetBytes("csmtafc"))
 
-        'Dim exml As EncryptedXml = New EncryptedXml(xmldoc)
-        'Dim encryptElement As XmlElement = CType(xmldoc.SelectSingleNode("/database_config"), XmlElement)
-        'Dim encryptXML As Byte() = exml.EncryptData(encryptElement, sharedkey, False)
-        'Dim ed As New EncryptedData()
-        'ed.Type = EncryptedXml.XmlEncElementUrl
-        'ed.EncryptionMethod = New EncryptionMethod(EncryptedXml.XmlEncTripleDESUrl)
-        'ed.CipherData = New CipherData()
-        'ed.CipherData.CipherValue = encryptXML
-        'EncryptedXml.ReplaceElement(encryptElement, ed, False)
+        Dim exml As EncryptedXml = New EncryptedXml(xmldoc)
+        Dim encryptElement As XmlElement = CType(xmldoc.SelectSingleNode("/database_config"), XmlElement)
+        Dim encryptXML As Byte() = exml.EncryptData(encryptElement, sharedkey, False)
+        Dim ed As New EncryptedData()
+        ed.Type = EncryptedXml.XmlEncElementUrl
+        ed.EncryptionMethod = New EncryptionMethod(EncryptedXml.XmlEncTripleDESUrl)
+        ed.CipherData = New CipherData()
+        ed.CipherData.CipherValue = encryptXML
+        EncryptedXml.ReplaceElement(encryptElement, ed, False)
 
-        'xmldoc.Save(path)
+        xmldoc.Save(path)
     End Sub
 
     Sub read_database_configuration()

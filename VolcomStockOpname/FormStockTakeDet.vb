@@ -128,15 +128,16 @@
 
     Sub viewSummary()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT Std.id_product, p.product_full_code AS `product_code`, std.code AS `scanned_code`, std.name, std.size, 
+        Dim query As String = "SELECT Std.id_product, d.design_code AS `product_code`, p.product_full_code AS `barcode`, std.name, std.size, 
         SUM(std.qty) AS `qty`, std.design_price
         FROM tb_st_trans_det std
         INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
-        INNER JOIN tb_m_product p ON p.id_product = std.id_product "
+        INNER JOIN tb_m_product p ON p.id_product = std.id_product 
+        INNER JOIN tb_m_design d ON d.id_design = p.id_design "
         query += "WHERE std.id_st_trans=" + id_st_trans + " "
         query += "AND !ISNULL(std.id_product) GROUP BY std.id_product 
         UNION ALL 
-        SELECT Std.id_product, NULL AS `product_code`, std.code AS `scanned_code`, std.name, std.size, 
+        SELECT Std.id_product, NULL AS `product_code`, std.code AS `barcode`, std.name, std.size, 
         SUM(std.qty) AS `qty`, std.design_price
         FROM tb_st_trans_det std
         INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans 
@@ -571,7 +572,7 @@
 
                 'insert 
                 Dim query_ins As String = "INSERT INTO tb_st_trans_det(id_st_trans, is_ok, is_no_stock, is_no_tag, is_sale, is_reject, is_unique_not_found, id_product, code, name, size, qty, id_design_price, design_price) 
-                VALUES ('" + id_st_trans + "', '" + is_ok + "', '" + dt_check.Rows(0)("is_no_stock").ToString + "', '" + is_no_tag + "', '" + dt_check.Rows(0)("is_sale").ToString + "','" + is_reject + "', '" + is_unique_not_found + "', '" + dt_check.Rows(0)("id_product").ToString + "','" + code_saved + "', '" + dt_check.Rows(0)("name").ToString + "','" + dt_check.Rows(0)("size").ToString + "', 1, '" + dt_check.Rows(0)("id_design_price").ToString + "', '" + decimalSQL(dt_check.Rows(0)("design_price").ToString) + "') "
+                VALUES ('" + id_st_trans + "', '" + is_ok + "', '" + dt_check.Rows(0)("is_no_stock").ToString + "', '" + is_no_tag + "', '" + dt_check.Rows(0)("is_sale").ToString + "','" + is_reject + "', '" + is_unique_not_found + "', '" + dt_check.Rows(0)("id_product").ToString + "','" + addSlashes(code_saved) + "', '" + addSlashes(dt_check.Rows(0)("name").ToString) + "','" + addSlashes(dt_check.Rows(0)("size").ToString) + "', 1, '" + dt_check.Rows(0)("id_design_price").ToString + "', '" + decimalSQL(dt_check.Rows(0)("design_price").ToString) + "') "
                 execute_non_query(query_ins, True, "", "", "", "")
                 updatedBy()
                 viewDetail()

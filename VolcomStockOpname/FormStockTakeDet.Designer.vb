@@ -100,6 +100,8 @@ Partial Class FormStockTakeDet
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.XTPCompare = New DevExpress.XtraTab.XtraTabPage()
         Me.GCCompare = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStripCompare = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BGVCompare = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.gridBandInfo = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnBarcode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -118,8 +120,6 @@ Partial Class FormStockTakeDet
         Me.BandedGridColumnDiffQty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnDiffValue = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnNote = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.ContextMenuStripCompare = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -159,8 +159,8 @@ Partial Class FormStockTakeDet
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPCompare.SuspendLayout()
         CType(Me.GCCompare, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BGVCompare, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStripCompare.SuspendLayout()
+        CType(Me.BGVCompare, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -764,12 +764,12 @@ Partial Class FormStockTakeDet
         '
         'GridColumnProductCodeSmr
         '
-        Me.GridColumnProductCodeSmr.Caption = "Product Code"
+        Me.GridColumnProductCodeSmr.Caption = "Code"
         Me.GridColumnProductCodeSmr.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnProductCodeSmr.FieldName = "product_code"
         Me.GridColumnProductCodeSmr.Name = "GridColumnProductCodeSmr"
         Me.GridColumnProductCodeSmr.Visible = True
-        Me.GridColumnProductCodeSmr.VisibleIndex = 1
+        Me.GridColumnProductCodeSmr.VisibleIndex = 2
         Me.GridColumnProductCodeSmr.Width = 231
         '
         'RepositoryItemTextEdit1
@@ -780,11 +780,11 @@ Partial Class FormStockTakeDet
         '
         'GridColumnScannedCodeSMR
         '
-        Me.GridColumnScannedCodeSMR.Caption = "Scanned Code"
-        Me.GridColumnScannedCodeSMR.FieldName = "scanned_code"
+        Me.GridColumnScannedCodeSMR.Caption = "Barcode"
+        Me.GridColumnScannedCodeSMR.FieldName = "barcode"
         Me.GridColumnScannedCodeSMR.Name = "GridColumnScannedCodeSMR"
         Me.GridColumnScannedCodeSMR.Visible = True
-        Me.GridColumnScannedCodeSMR.VisibleIndex = 2
+        Me.GridColumnScannedCodeSMR.VisibleIndex = 1
         Me.GridColumnScannedCodeSMR.Width = 227
         '
         'GridColumnNameSMR
@@ -926,6 +926,18 @@ Partial Class FormStockTakeDet
         Me.GCCompare.Size = New System.Drawing.Size(1014, 409)
         Me.GCCompare.TabIndex = 0
         Me.GCCompare.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVCompare})
+        '
+        'ContextMenuStripCompare
+        '
+        Me.ContextMenuStripCompare.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem})
+        Me.ContextMenuStripCompare.Name = "ContextMenuStripCompare"
+        Me.ContextMenuStripCompare.Size = New System.Drawing.Size(133, 26)
+        '
+        'ViewDetailToolStripMenuItem
+        '
+        Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
+        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
+        Me.ViewDetailToolStripMenuItem.Text = "View Detail"
         '
         'BGVCompare
         '
@@ -1112,18 +1124,6 @@ Partial Class FormStockTakeDet
         Me.BandedGridColumnNote.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.BandedGridColumnNote.Visible = True
         '
-        'ContextMenuStripCompare
-        '
-        Me.ContextMenuStripCompare.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem})
-        Me.ContextMenuStripCompare.Name = "ContextMenuStripCompare"
-        Me.ContextMenuStripCompare.Size = New System.Drawing.Size(153, 48)
-        '
-        'ViewDetailToolStripMenuItem
-        '
-        Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
-        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.ViewDetailToolStripMenuItem.Text = "View Detail"
-        '
         'FormStockTakeDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1181,8 +1181,8 @@ Partial Class FormStockTakeDet
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPCompare.ResumeLayout(False)
         CType(Me.GCCompare, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BGVCompare, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStripCompare.ResumeLayout(False)
+        CType(Me.BGVCompare, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

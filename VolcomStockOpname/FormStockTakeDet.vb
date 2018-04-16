@@ -191,19 +191,27 @@
     End Sub
 
     Sub viewCompare()
+        Cursor = Cursors.WaitCursor
         gridBandStoreQty.Caption = comp_number
         Dim query As String = "SELECT im.id_product, p.product_full_code AS `barcode`, d.design_code AS `code`, d.design_display_name AS `name`, cd.code_detail_name AS `size`, dc.design_cat,
         im.id_design_price, im.design_price, im.qty_soh, im.qty_scan
         FROM (
-	        SELECT s.id_product, s.id_design_price, s.design_price, SUM(s.qty) AS `qty_soh`, IFNULL(sc.qty_scan,0) AS `qty_scan`
+	        SELECT s.id_product, 
+            IF(!ISNULL(sc.id_design_price), sc.id_design_price, IF(c.id_store_type=1, fd.id_design_price,s.id_design_price)) AS `id_design_price`, 
+            IF(!ISNULL(sc.design_price), sc.design_price, IF(c.id_store_type=1, fd.design_price,s.design_price)) AS `design_price`, 
+            SUM(s.qty) AS `qty_soh`, IFNULL(sc.qty_scan,0) AS `qty_scan`
 	        FROM tb_st_stock s 
 	        LEFT JOIN (
-		        SELECT std.id_product, SUM(std.qty) AS `qty_scan`
+		        SELECT std.id_product, SUM(std.qty) AS `qty_scan`, std.id_design_price, std.design_price
 		        FROM tb_st_trans_det std
 		        INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
 		        WHERE st.id_st_trans=" + id_st_trans + " AND std.is_no_stock=2 AND std.is_no_master=2
 		        GROUP BY std.id_product
 	        ) sc ON sc.id_product = s.id_product
+            INNER JOIN tb_m_product p ON p.id_product = s.id_product
+            INNER JOIN tb_m_design d ON d.id_design = p.id_design
+            INNER JOIN tb_m_comp c ON c.id_drawer_def = s.id_wh_drawer
+            LEFT JOIN tb_m_design_first_del fd ON fd.id_design = d.id_design AND fd.id_comp = c.id_comp
 	        WHERE s.id_wh_drawer=" + id_drawer + "
 	        GROUP BY s.id_product
 	        UNION ALL 
@@ -227,6 +235,7 @@
         WHERE st.id_st_trans=" + id_st_trans + " AND std.is_no_master=1 "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCompare.DataSource = data
+        Cursor = Cursors.Default
     End Sub
 
 
@@ -311,6 +320,7 @@
         Cursor = Cursors.WaitCursor
         If XTCStockTake.SelectedTabPageIndex = 0 Then
             Cursor = Cursors.WaitCursor
+            GVScan.BestFitColumns()
             ReportScan.dt = GCScan.DataSource
             ReportScan.id_report = id_st_trans
             Dim Report As New ReportScan()
@@ -347,6 +357,7 @@
             Cursor = Cursors.Default
         ElseIf XTCStockTake.SelectedTabPageIndex = 1 Then
             Cursor = Cursors.WaitCursor
+            GVSummaryScan.BestFitColumns()
             ReportScan.dt = GCSummaryScan.DataSource
             ReportScan.id_report = id_st_trans
             Dim Report As New ReportScan()
@@ -382,9 +393,11 @@
             Tool.ShowPreviewDialog()
             Cursor = Cursors.Default
         ElseIf XTCStockTake.SelectedTabPageIndex = 2 Then
+            GVCat.BestFitColumns()
             print_raw(GCCat, "")
         ElseIf XTCStockTake.SelectedTabPageIndex = 3 Then
             Cursor = Cursors.WaitCursor
+            BGVCompare.BestFitColumns()
             ReportCompare.dt = GCCompare.DataSource
             ReportCompare.id_report = id_st_trans
             Dim Report As New ReportCompare()
@@ -522,7 +535,7 @@
                     makeSafeGV(GVScan)
                     GVScan.ActiveFilterString = "[code]='" + code + "' "
                     If GVScan.RowCount > 0 Then
-                        stopCustom("Duplicate scan !")
+                        stopCustomDialog("Duplicate scan !")
                         makeSafeGV(GVScan)
                         GVScan.FocusedRowHandle = GVScan.RowCount - 1
                         TxtScan.Text = ""
@@ -539,7 +552,7 @@
                         makeSafeGV(GVScan)
                         GVScan.ActiveFilterString = "[code]='" + code + "' "
                         If GVScan.RowCount > 0 Then
-                            stopCustom("Duplicate scan !")
+                            stopCustomDialog("Duplicate scan !")
                             makeSafeGV(GVScan)
                             GVScan.FocusedRowHandle = GVScan.RowCount - 1
                             TxtScan.Text = ""
@@ -557,7 +570,8 @@
                     is_ok = "1"
                 Else
                     is_ok = "2"
-                    Dim err As String = "PROBLEM PRODUCT : " + System.Environment.NewLine
+                    Dim err_head As String = "PROBLEM PRODUCT : " + System.Environment.NewLine
+                    Dim err As String = ""
                     If dt_check.Rows(0)("is_no_stock").ToString = "1" Then
                         err += "- NO STOCK " + System.Environment.NewLine
                     End If
@@ -567,7 +581,10 @@
                     If is_unique_not_found = "1" Then
                         err += "- UNIQUE CODE NOT FOUND " + System.Environment.NewLine
                     End If
-                    stopCustom(err)
+                    If err <> "" Then
+                        stopCustomDialog(err_head + err)
+                    End If
+
                 End If
 
                 'insert 
@@ -581,7 +598,7 @@
                 TxtScan.Focus()
             Else
                 If is_record_unreg = "2" Then
-                    stopCustom("PRODUCT NOT FOUND IN MASTER LIST !")
+                    stopCustomDialog("PRODUCT NOT FOUND IN MASTER LIST !")
                     TxtScan.Text = ""
                     TxtScan.Focus()
                 Else
@@ -671,6 +688,28 @@
             XTCStockTake.SelectedTabPageIndex = 0
             GVScan.ActiveFilterString = "[product_full_code]='" + BGVCompare.GetFocusedRowCellValue("barcode").ToString + "'"
             Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub SetQtyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetQtyToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        If GVScan.RowCount > 0 And GVScan.FocusedRowHandle >= 0 And GVScan.GetFocusedRowCellValue("design_price") = 0 Then
+            FormStockTakeDetQty.id_detail = GVScan.GetFocusedRowCellValue("id_st_trans_det").ToString
+            FormStockTakeDetQty.ShowDialog()
+            TxtScan.Text = ""
+            TxtScan.Focus()
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BGVCompare_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles BGVCompare.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        ElseIf (e.Column.FieldName = "qty_soh" Or e.Column.FieldName = "qty_scan" Or e.Column.FieldName = "val_soh" Or e.Column.FieldName = "val_scan" Or e.Column.FieldName = "qty_diff" Or e.Column.FieldName = "val_diff") Then
+            Dim qty As Decimal = Convert.ToDecimal(e.Value)
+            If qty = 0 Then
+                e.DisplayText = "-"
+            End If
         End If
     End Sub
 End Class

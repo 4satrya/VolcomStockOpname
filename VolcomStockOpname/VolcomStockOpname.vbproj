@@ -115,6 +115,12 @@
     <Compile Include="FormDatabase.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormError.Designer.vb">
+      <DependentUpon>FormError.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormError.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormExport.Designer.vb">
       <DependentUpon>FormExport.vb</DependentUpon>
     </Compile>
@@ -199,10 +205,22 @@
     <Compile Include="FormStockTakeDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormStockTakeDetQty.Designer.vb">
+      <DependentUpon>FormStockTakeDetQty.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockTakeDetQty.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormStockTakeFaik.Designer.vb">
       <DependentUpon>FormStockTakeFaik.vb</DependentUpon>
     </Compile>
     <Compile Include="FormStockTakeFaik.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStockTakeList.Designer.vb">
+      <DependentUpon>FormStockTakeList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockTakeList.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormStockTakeNew.Designer.vb">
@@ -263,6 +281,9 @@
     <EmbeddedResource Include="FormDatabase.resx">
       <DependentUpon>FormDatabase.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormError.resx">
+      <DependentUpon>FormError.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormExport.resx">
       <DependentUpon>FormExport.vb</DependentUpon>
     </EmbeddedResource>
@@ -305,8 +326,14 @@
     <EmbeddedResource Include="FormStockTakeDet.resx">
       <DependentUpon>FormStockTakeDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormStockTakeDetQty.resx">
+      <DependentUpon>FormStockTakeDetQty.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormStockTakeFaik.resx">
       <DependentUpon>FormStockTakeFaik.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStockTakeList.resx">
+      <DependentUpon>FormStockTakeList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockTakeNew.resx">
       <DependentUpon>FormStockTakeNew.vb</DependentUpon>

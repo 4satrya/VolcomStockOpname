@@ -21,67 +21,67 @@
     End Sub
 
     Sub viewSummary()
-        'Cursor = Cursors.WaitCursor
-        'Dim query As String = "SELECT Std.id_product, d.design_code AS `product_code`, p.product_full_code AS `barcode`, std.name, std.size, 
-        'SUM(std.qty) AS `qty`, std.design_price
-        'FROM tb_st_trans_det std
-        'INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
-        'INNER JOIN tb_m_product p ON p.id_product = std.id_product 
-        'INNER JOIN tb_m_design d ON d.id_design = p.id_design "
-        'query += "WHERE std.id_st_trans=" + id_st_trans + " "
-        'query += "AND !ISNULL(std.id_product) GROUP BY std.id_product 
-        'UNION ALL 
-        'SELECT Std.id_product, NULL AS `product_code`, std.code AS `barcode`, std.name, std.size, 
-        'SUM(std.qty) AS `qty`, std.design_price
-        'FROM tb_st_trans_det std
-        'INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans 
-        'WHERE ISNULL(std.id_product) "
-        'query += "AND std.id_st_trans=" + id_st_trans + " "
-        'query += "GROUP BY std.id_st_trans_det "
-        'Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        'GCSummaryScan.DataSource = data
-        'Cursor = Cursors.Default
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT st.st_trans_number, st.remark,std.id_product, d.design_code AS `product_code`, p.product_full_code AS `barcode`, std.name, std.size, 
+        SUM(std.qty) AS `qty`, std.design_price
+        FROM tb_st_trans_det std
+        INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
+        INNER JOIN tb_m_product p ON p.id_product = std.id_product 
+        INNER JOIN tb_m_design d ON d.id_design = p.id_design "
+        query += "WHERE st.id_report_status!=5 AND st.is_combine=2 "
+        query += "AND !ISNULL(std.id_product) GROUP BY std.id_product 
+        UNION ALL 
+        SELECT st.st_trans_number, st.remark,std.id_product, NULL AS `product_code`, std.code AS `barcode`, std.name, std.size, 
+        SUM(std.qty) AS `qty`, std.design_price
+        FROM tb_st_trans_det std
+        INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans 
+        WHERE ISNULL(std.id_product) "
+        query += "AND st.id_report_status!=5 AND st.is_combine=2 "
+        query += "GROUP BY std.id_st_trans_det "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSummaryScan.DataSource = data
+        Cursor = Cursors.Default
     End Sub
 
     Sub viewSummaryCat()
-        'Dim cond_where As String = ""
-        'cond_where = "std.id_st_trans=" + id_st_trans + " "
-        'Dim query As String = "SELECT 'OK' AS `cat`,COUNT(*) AS `cat_val`
-        'FROM tb_st_trans_det std 
-        'INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
-        'WHERE " + cond_where + " AND std.is_ok=1
-        'UNION ALL 
-        'SELECT 'No Stock' AS `cat`,COUNT(*) AS `cat_val`
-        'FROM tb_st_trans_det std 
-        'INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
-        'WHERE " + cond_where + " AND std.is_no_stock=1
-        'UNION ALL
-        'SELECT 'Sale' AS `cat`,COUNT(*) AS `cat_val`
-        'FROM tb_st_trans_det std 
-        'INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
-        'WHERE " + cond_where + " AND std.is_sale=1
-        'UNION ALL
-        'SELECT 'Reject' AS `cat`,COUNT(*) AS `cat_val`
-        'FROM tb_st_trans_det std 
-        'INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
-        'WHERE " + cond_where + " AND std.is_reject=1
-        'UNION ALL
-        'SELECT 'No Tag' AS `cat`,COUNT(*) AS `cat_val`
-        'FROM tb_st_trans_det std 
-        'INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
-        'WHERE " + cond_where + " AND std.is_no_tag=1
-        'UNION ALL
-        'SELECT 'Unique not Found' AS `cat`,COUNT(*) AS `cat_val`
-        'FROM tb_st_trans_det std 
-        'INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
-        'WHERE " + cond_where + " AND std.is_unique_not_found=1 
-        'UNION ALL
-        'SELECT 'No Master' AS `cat`,COUNT(*) AS `cat_val`
-        'FROM tb_st_trans_det std 
-        'INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
-        'WHERE " + cond_where + " AND std.is_no_master=1 "
-        'Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        'GCCat.DataSource = data
+        Dim cond_where As String = ""
+        cond_where = "st.id_report_status!=5 AND st.is_combine=2 "
+        Dim query As String = "SELECT 'OK' AS `cat`,SUM(std.qty) AS `cat_val`
+        FROM tb_st_trans_det std 
+        INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
+        WHERE " + cond_where + " AND std.is_ok=1
+        UNION ALL 
+        SELECT 'No Stock' AS `cat`,SUM(std.qty) AS `cat_val`
+        FROM tb_st_trans_det std 
+        INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
+        WHERE " + cond_where + " AND std.is_no_stock=1
+        UNION ALL
+        SELECT 'Sale' AS `cat`,SUM(std.qty) AS `cat_val`
+        FROM tb_st_trans_det std 
+        INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
+        WHERE " + cond_where + " AND std.is_sale=1
+        UNION ALL
+        SELECT 'Reject' AS `cat`,SUM(std.qty) AS `cat_val`
+        FROM tb_st_trans_det std 
+        INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
+        WHERE " + cond_where + " AND std.is_reject=1
+        UNION ALL
+        SELECT 'No Tag' AS `cat`,SUM(std.qty) AS `cat_val`
+        FROM tb_st_trans_det std 
+        INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
+        WHERE " + cond_where + " AND std.is_no_tag=1
+        UNION ALL
+        SELECT 'Unique not Found' AS `cat`,SUM(std.qty) AS `cat_val`
+        FROM tb_st_trans_det std 
+        INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
+        WHERE " + cond_where + " AND std.is_unique_not_found=1 
+        UNION ALL
+        SELECT 'No Master' AS `cat`,SUM(std.qty) AS `cat_val`
+        FROM tb_st_trans_det std 
+        INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
+        WHERE " + cond_where + " AND std.is_no_master=1 "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCCat.DataSource = data
     End Sub
 
     Private Sub FormStockTakeList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -89,9 +89,55 @@
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        print()
+    End Sub
+
+    Sub print()
+        Cursor = Cursors.WaitCursor
         If XTCStockTake.SelectedTabPageIndex = 0 Then
             GVScan.BestFitColumns()
             print_raw(GCScan, "")
+        ElseIf XTCStockTake.SelectedTabPageIndex = 1 Then
+            GVSummaryScan.BestFitColumns()
+            print_raw(GCSummaryScan, "")
+        ElseIf XTCStockTake.SelectedTabPageIndex = 2 Then
+            GVCat.BestFitColumns()
+            print_raw(GCCat, "")
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub XTCStockTake_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCStockTake.SelectedPageChanged
+        If XTCStockTake.SelectedTabPageIndex = 0 Then
+            viewDetail()
+        ElseIf XTCStockTake.SelectedTabPageIndex = 1 Then
+            viewSummary()
+        ElseIf XTCStockTake.SelectedTabPageIndex = 2 Then
+            viewSummaryCat()
+        End If
+    End Sub
+
+    Private Sub GVScan_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVScan.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub GVSummaryScan_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVSummaryScan.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub FormStockTakeList_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+        If e.KeyCode = Keys.F4 Then
+            print()
+        End If
+    End Sub
+
+    Private Sub GVCat_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVCat.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
     End Sub
 End Class

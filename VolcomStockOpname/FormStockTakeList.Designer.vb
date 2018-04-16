@@ -62,6 +62,8 @@ Partial Class FormStockTakeList
         Me.GridColumnQtySMR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnpriceSMR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAmountSMR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNumberSmr = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRemarkSmr = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPCondition = New DevExpress.XtraTab.XtraTabPage()
         Me.GCCat = New DevExpress.XtraGrid.GridControl()
         Me.GVCat = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -69,6 +71,7 @@ Partial Class FormStockTakeList
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
         CType(Me.XTCStockTake, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -85,6 +88,7 @@ Partial Class FormStockTakeList
         CType(Me.GCCat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl2
@@ -372,7 +376,7 @@ Partial Class FormStockTakeList
         'GridColumnRemark
         '
         Me.GridColumnRemark.Caption = "Remark"
-        Me.GridColumnRemark.FieldName = "remark_ref"
+        Me.GridColumnRemark.FieldName = "remark"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.OptionsColumn.AllowEdit = False
         Me.GridColumnRemark.Visible = True
@@ -382,7 +386,7 @@ Partial Class FormStockTakeList
         'GridColumnRefNumber
         '
         Me.GridColumnRefNumber.Caption = "Number"
-        Me.GridColumnRefNumber.FieldName = "ref_number"
+        Me.GridColumnRefNumber.FieldName = "st_trans_number"
         Me.GridColumnRefNumber.Name = "GridColumnRefNumber"
         Me.GridColumnRefNumber.Visible = True
         Me.GridColumnRefNumber.VisibleIndex = 1
@@ -408,7 +412,7 @@ Partial Class FormStockTakeList
         '
         'GVSummaryScan
         '
-        Me.GVSummaryScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoSmr, Me.GridColumnIdProductSmr, Me.GridColumnProductCodeSmr, Me.GridColumnScannedCodeSMR, Me.GridColumnNameSMR, Me.GridColumnSizeSMR, Me.GridColumnQtySMR, Me.GridColumnpriceSMR, Me.GridColumnAmountSMR})
+        Me.GVSummaryScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoSmr, Me.GridColumnIdProductSmr, Me.GridColumnProductCodeSmr, Me.GridColumnScannedCodeSMR, Me.GridColumnNameSMR, Me.GridColumnSizeSMR, Me.GridColumnQtySMR, Me.GridColumnpriceSMR, Me.GridColumnAmountSMR, Me.GridColumnNumberSmr, Me.GridColumnRemarkSmr})
         Me.GVSummaryScan.GridControl = Me.GCSummaryScan
         Me.GVSummaryScan.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQtySMR, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmountSMR, "{0:N0}")})
         Me.GVSummaryScan.Name = "GVSummaryScan"
@@ -425,7 +429,7 @@ Partial Class FormStockTakeList
         Me.GridColumnNoSmr.Name = "GridColumnNoSmr"
         Me.GridColumnNoSmr.Visible = True
         Me.GridColumnNoSmr.VisibleIndex = 0
-        Me.GridColumnNoSmr.Width = 61
+        Me.GridColumnNoSmr.Width = 44
         '
         'GridColumnIdProductSmr
         '
@@ -440,8 +444,8 @@ Partial Class FormStockTakeList
         Me.GridColumnProductCodeSmr.FieldName = "product_code"
         Me.GridColumnProductCodeSmr.Name = "GridColumnProductCodeSmr"
         Me.GridColumnProductCodeSmr.Visible = True
-        Me.GridColumnProductCodeSmr.VisibleIndex = 2
-        Me.GridColumnProductCodeSmr.Width = 231
+        Me.GridColumnProductCodeSmr.VisibleIndex = 4
+        Me.GridColumnProductCodeSmr.Width = 210
         '
         'RepositoryItemTextEdit1
         '
@@ -455,8 +459,8 @@ Partial Class FormStockTakeList
         Me.GridColumnScannedCodeSMR.FieldName = "barcode"
         Me.GridColumnScannedCodeSMR.Name = "GridColumnScannedCodeSMR"
         Me.GridColumnScannedCodeSMR.Visible = True
-        Me.GridColumnScannedCodeSMR.VisibleIndex = 1
-        Me.GridColumnScannedCodeSMR.Width = 227
+        Me.GridColumnScannedCodeSMR.VisibleIndex = 3
+        Me.GridColumnScannedCodeSMR.Width = 206
         '
         'GridColumnNameSMR
         '
@@ -464,8 +468,8 @@ Partial Class FormStockTakeList
         Me.GridColumnNameSMR.FieldName = "name"
         Me.GridColumnNameSMR.Name = "GridColumnNameSMR"
         Me.GridColumnNameSMR.Visible = True
-        Me.GridColumnNameSMR.VisibleIndex = 3
-        Me.GridColumnNameSMR.Width = 433
+        Me.GridColumnNameSMR.VisibleIndex = 5
+        Me.GridColumnNameSMR.Width = 394
         '
         'GridColumnSizeSMR
         '
@@ -473,8 +477,8 @@ Partial Class FormStockTakeList
         Me.GridColumnSizeSMR.FieldName = "size"
         Me.GridColumnSizeSMR.Name = "GridColumnSizeSMR"
         Me.GridColumnSizeSMR.Visible = True
-        Me.GridColumnSizeSMR.VisibleIndex = 4
-        Me.GridColumnSizeSMR.Width = 52
+        Me.GridColumnSizeSMR.VisibleIndex = 6
+        Me.GridColumnSizeSMR.Width = 47
         '
         'GridColumnQtySMR
         '
@@ -485,8 +489,8 @@ Partial Class FormStockTakeList
         Me.GridColumnQtySMR.Name = "GridColumnQtySMR"
         Me.GridColumnQtySMR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumnQtySMR.Visible = True
-        Me.GridColumnQtySMR.VisibleIndex = 5
-        Me.GridColumnQtySMR.Width = 85
+        Me.GridColumnQtySMR.VisibleIndex = 7
+        Me.GridColumnQtySMR.Width = 76
         '
         'GridColumnpriceSMR
         '
@@ -496,8 +500,8 @@ Partial Class FormStockTakeList
         Me.GridColumnpriceSMR.FieldName = "design_price"
         Me.GridColumnpriceSMR.Name = "GridColumnpriceSMR"
         Me.GridColumnpriceSMR.Visible = True
-        Me.GridColumnpriceSMR.VisibleIndex = 6
-        Me.GridColumnpriceSMR.Width = 113
+        Me.GridColumnpriceSMR.VisibleIndex = 8
+        Me.GridColumnpriceSMR.Width = 102
         '
         'GridColumnAmountSMR
         '
@@ -510,8 +514,26 @@ Partial Class FormStockTakeList
         Me.GridColumnAmountSMR.UnboundExpression = "[qty] * [design_price]"
         Me.GridColumnAmountSMR.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnAmountSMR.Visible = True
-        Me.GridColumnAmountSMR.VisibleIndex = 7
-        Me.GridColumnAmountSMR.Width = 414
+        Me.GridColumnAmountSMR.VisibleIndex = 9
+        Me.GridColumnAmountSMR.Width = 390
+        '
+        'GridColumnNumberSmr
+        '
+        Me.GridColumnNumberSmr.Caption = "Number"
+        Me.GridColumnNumberSmr.FieldName = "st_trans_number"
+        Me.GridColumnNumberSmr.Name = "GridColumnNumberSmr"
+        Me.GridColumnNumberSmr.Visible = True
+        Me.GridColumnNumberSmr.VisibleIndex = 1
+        Me.GridColumnNumberSmr.Width = 96
+        '
+        'GridColumnRemarkSmr
+        '
+        Me.GridColumnRemarkSmr.Caption = "Remark"
+        Me.GridColumnRemarkSmr.FieldName = "remark"
+        Me.GridColumnRemarkSmr.Name = "GridColumnRemarkSmr"
+        Me.GridColumnRemarkSmr.Visible = True
+        Me.GridColumnRemarkSmr.VisibleIndex = 2
+        Me.GridColumnRemarkSmr.Width = 67
         '
         'XTPCondition
         '
@@ -526,7 +548,7 @@ Partial Class FormStockTakeList
         Me.GCCat.Location = New System.Drawing.Point(0, 0)
         Me.GCCat.MainView = Me.GVCat
         Me.GCCat.Name = "GCCat"
-        Me.GCCat.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit2})
+        Me.GCCat.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit2, Me.RepositoryItemTextEdit3})
         Me.GCCat.Size = New System.Drawing.Size(1100, 471)
         Me.GCCat.TabIndex = 2
         Me.GCCat.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCat})
@@ -566,6 +588,7 @@ Partial Class FormStockTakeList
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Qty"
+        Me.GridColumn3.ColumnEdit = Me.RepositoryItemTextEdit3
         Me.GridColumn3.FieldName = "cat_val"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.OptionsColumn.AllowEdit = False
@@ -579,6 +602,12 @@ Partial Class FormStockTakeList
         Me.RepositoryItemTextEdit2.Name = "RepositoryItemTextEdit2"
         Me.RepositoryItemTextEdit2.NullText = "-"
         '
+        'RepositoryItemTextEdit3
+        '
+        Me.RepositoryItemTextEdit3.AutoHeight = False
+        Me.RepositoryItemTextEdit3.Name = "RepositoryItemTextEdit3"
+        Me.RepositoryItemTextEdit3.NullText = "-"
+        '
         'FormStockTakeList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -586,6 +615,7 @@ Partial Class FormStockTakeList
         Me.ClientSize = New System.Drawing.Size(1106, 544)
         Me.Controls.Add(Me.XTCStockTake)
         Me.Controls.Add(Me.GroupControl2)
+        Me.KeyPreview = True
         Me.MinimizeBox = False
         Me.Name = "FormStockTakeList"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -606,6 +636,7 @@ Partial Class FormStockTakeList
         CType(Me.GCCat, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCat, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -659,4 +690,7 @@ Partial Class FormStockTakeList
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents GridColumnNumberSmr As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnRemarkSmr As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemTextEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class

@@ -152,37 +152,37 @@
     Sub viewSummaryCat()
         Dim cond_where As String = ""
         cond_where = "std.id_st_trans=" + id_st_trans + " "
-        Dim query As String = "SELECT 'OK' AS `cat`,COUNT(*) AS `cat_val`
+        Dim query As String = "SELECT 'OK' AS `cat`,SUM(std.qty) AS `cat_val`
         FROM tb_st_trans_det std 
         INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
         WHERE " + cond_where + " AND std.is_ok=1
         UNION ALL 
-        SELECT 'No Stock' AS `cat`,COUNT(*) AS `cat_val`
+        SELECT 'No Stock' AS `cat`,SUM(std.qty) AS `cat_val`
         FROM tb_st_trans_det std 
         INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
         WHERE " + cond_where + " AND std.is_no_stock=1
         UNION ALL
-        SELECT 'Sale' AS `cat`,COUNT(*) AS `cat_val`
+        SELECT 'Sale' AS `cat`,SUM(std.qty) AS `cat_val`
         FROM tb_st_trans_det std 
         INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
         WHERE " + cond_where + " AND std.is_sale=1
         UNION ALL
-        SELECT 'Reject' AS `cat`,COUNT(*) AS `cat_val`
+        SELECT 'Reject' AS `cat`,SUM(std.qty) AS `cat_val`
         FROM tb_st_trans_det std 
         INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
         WHERE " + cond_where + " AND std.is_reject=1
         UNION ALL
-        SELECT 'No Tag' AS `cat`,COUNT(*) AS `cat_val`
+        SELECT 'No Tag' AS `cat`,SUM(std.qty) AS `cat_val`
         FROM tb_st_trans_det std 
         INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
         WHERE " + cond_where + " AND std.is_no_tag=1
         UNION ALL
-        SELECT 'Unique not Found' AS `cat`,COUNT(*) AS `cat_val`
+        SELECT 'Unique not Found' AS `cat`,SUM(std.qty) AS `cat_val`
         FROM tb_st_trans_det std 
         INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
         WHERE " + cond_where + " AND std.is_unique_not_found=1 
         UNION ALL
-        SELECT 'No Master' AS `cat`,COUNT(*) AS `cat_val`
+        SELECT 'No Master' AS `cat`,SUM(std.qty) AS `cat_val`
         FROM tb_st_trans_det std 
         INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
         WHERE " + cond_where + " AND std.is_no_master=1 "

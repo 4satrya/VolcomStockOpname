@@ -572,7 +572,7 @@
 
                 'insert 
                 Dim query_ins As String = "INSERT INTO tb_st_trans_det(id_st_trans, is_ok, is_no_stock, is_no_tag, is_sale, is_reject, is_unique_not_found, id_product, code, name, size, qty, id_design_price, design_price) 
-                VALUES ('" + id_st_trans + "', '" + is_ok + "', '" + dt_check.Rows(0)("is_no_stock").ToString + "', '" + is_no_tag + "', '" + dt_check.Rows(0)("is_sale").ToString + "','" + is_reject + "', '" + is_unique_not_found + "', '" + dt_check.Rows(0)("id_product").ToString + "','" + code_saved + "', '" + dt_check.Rows(0)("name").ToString + "','" + dt_check.Rows(0)("size").ToString + "', 1, '" + dt_check.Rows(0)("id_design_price").ToString + "', '" + decimalSQL(dt_check.Rows(0)("design_price").ToString) + "') "
+                VALUES ('" + id_st_trans + "', '" + is_ok + "', '" + dt_check.Rows(0)("is_no_stock").ToString + "', '" + is_no_tag + "', '" + dt_check.Rows(0)("is_sale").ToString + "','" + is_reject + "', '" + is_unique_not_found + "', '" + dt_check.Rows(0)("id_product").ToString + "','" + addSlashes(code_saved) + "', '" + addSlashes(dt_check.Rows(0)("name").ToString) + "','" + addSlashes(dt_check.Rows(0)("size").ToString) + "', 1, '" + dt_check.Rows(0)("id_design_price").ToString + "', '" + decimalSQL(dt_check.Rows(0)("design_price").ToString) + "') "
                 execute_non_query(query_ins, True, "", "", "", "")
                 updatedBy()
                 viewDetail()

@@ -523,6 +523,7 @@
                 'ketemu
                 Dim code_saved As String = ""
                 Dim is_unique_not_found As String = "2"
+                Dim is_12_digit As String = "2"
                 If dt_check.Rows(0)("is_old_design") = "2" Then 'unique code
                     code_saved = code
                     Dim query_u As String = "SELECT IF(COUNT(*)>0,'2','1') AS `is_found` 
@@ -549,6 +550,7 @@
                 Else '
                     code_saved = code
                     If code.Length > 12 Then 'jika tidak 12 digit dicek duplikat
+                        is_12_digit = "2"
                         makeSafeGV(GVScan)
                         GVScan.ActiveFilterString = "[code]='" + code + "' "
                         If GVScan.RowCount > 0 Then
@@ -561,7 +563,14 @@
                         Else
                             makeSafeGV(GVScan)
                         End If
+                    Else
+                        is_12_digit = "1"
                     End If
+                End If
+
+                'temporary krn pake BOF
+                If is_12_digit = "1" Then
+                    stopCustomDialog("SCAN BARCODE 12 DIGIT ")
                 End If
 
                 'check status
@@ -584,7 +593,6 @@
                     If err <> "" Then
                         stopCustomDialog(err_head + err)
                     End If
-
                 End If
 
                 'insert 

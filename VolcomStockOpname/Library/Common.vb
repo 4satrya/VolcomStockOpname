@@ -2629,29 +2629,29 @@ Module Common
 
         BandedGridView1.AppearancePrint.BandPanel.BackColor = Color.Transparent
         BandedGridView1.AppearancePrint.BandPanel.ForeColor = Color.Black
-        BandedGridView1.AppearancePrint.BandPanel.Font = New Font("Segoe UI", 7, FontStyle.Bold)
+        BandedGridView1.AppearancePrint.BandPanel.Font = New Font("Segoe UI", 6.4, FontStyle.Bold)
 
         BandedGridView1.AppearancePrint.FilterPanel.BackColor = Color.Transparent
         BandedGridView1.AppearancePrint.FilterPanel.ForeColor = Color.Black
-        BandedGridView1.AppearancePrint.FilterPanel.Font = New Font("Segoe UI", 7, FontStyle.Regular)
+        BandedGridView1.AppearancePrint.FilterPanel.Font = New Font("Segoe UI", 6.4, FontStyle.Regular)
 
         BandedGridView1.AppearancePrint.GroupFooter.BackColor = Color.Transparent
         BandedGridView1.AppearancePrint.GroupFooter.ForeColor = Color.Black
-        BandedGridView1.AppearancePrint.GroupFooter.Font = New Font("Segoe UI", 7, FontStyle.Bold)
+        BandedGridView1.AppearancePrint.GroupFooter.Font = New Font("Segoe UI", 6.4, FontStyle.Bold)
 
         BandedGridView1.AppearancePrint.GroupRow.BackColor = Color.Transparent
         BandedGridView1.AppearancePrint.GroupRow.ForeColor = Color.Black
-        BandedGridView1.AppearancePrint.GroupRow.Font = New Font("Segoe UI", 7, FontStyle.Bold)
+        BandedGridView1.AppearancePrint.GroupRow.Font = New Font("Segoe UI", 6.4, FontStyle.Bold)
 
         BandedGridView1.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
         BandedGridView1.AppearancePrint.HeaderPanel.ForeColor = Color.Black
-        BandedGridView1.AppearancePrint.HeaderPanel.Font = New Font("Segoe UI", 7, FontStyle.Bold)
+        BandedGridView1.AppearancePrint.HeaderPanel.Font = New Font("Segoe UI", 6.4, FontStyle.Bold)
 
         BandedGridView1.AppearancePrint.FooterPanel.BackColor = Color.Transparent
         BandedGridView1.AppearancePrint.FooterPanel.ForeColor = Color.Black
-        BandedGridView1.AppearancePrint.FooterPanel.Font = New Font("Segoe UI", 7, FontStyle.Bold)
+        BandedGridView1.AppearancePrint.FooterPanel.Font = New Font("Segoe UI", 6.4, FontStyle.Bold)
 
-        BandedGridView1.AppearancePrint.Row.Font = New Font("Segoe UI", 7, FontStyle.Regular)
+        BandedGridView1.AppearancePrint.Row.Font = New Font("Segoe UI", 6.4, FontStyle.Regular)
 
         BandedGridView1.OptionsPrint.ExpandAllDetails = True
         BandedGridView1.OptionsPrint.UsePrintStyles = True

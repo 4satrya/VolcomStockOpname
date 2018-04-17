@@ -122,6 +122,7 @@ Partial Class FormStockTakeDet
         Me.BandedGridColumnDiffQty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnDiffValue = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnNote = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -163,6 +164,7 @@ Partial Class FormStockTakeDet
         CType(Me.GCCompare, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStripCompare.SuspendLayout()
         CType(Me.BGVCompare, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -758,7 +760,6 @@ Partial Class FormStockTakeDet
         Me.GVSummaryScan.OptionsView.ShowFooter = True
         Me.GVSummaryScan.OptionsView.ShowGroupedColumns = True
         Me.GVSummaryScan.OptionsView.ShowGroupPanel = False
-        Me.GVSummaryScan.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnProductCodeSmr, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnScannedCodeSMR, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumnNoSmr
         '
@@ -937,6 +938,7 @@ Partial Class FormStockTakeDet
         Me.GCCompare.Location = New System.Drawing.Point(0, 0)
         Me.GCCompare.MainView = Me.BGVCompare
         Me.GCCompare.Name = "GCCompare"
+        Me.GCCompare.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit3})
         Me.GCCompare.Size = New System.Drawing.Size(1014, 409)
         Me.GCCompare.TabIndex = 0
         Me.GCCompare.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVCompare})
@@ -962,9 +964,9 @@ Partial Class FormStockTakeDet
         Me.BGVCompare.Name = "BGVCompare"
         Me.BGVCompare.OptionsBehavior.AutoExpandAllGroups = True
         Me.BGVCompare.OptionsBehavior.Editable = False
+        Me.BGVCompare.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
         Me.BGVCompare.OptionsView.ShowFooter = True
         Me.BGVCompare.OptionsView.ShowGroupPanel = False
-        Me.BGVCompare.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumnCode, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumnBarcode, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'gridBandInfo
         '
@@ -978,7 +980,7 @@ Partial Class FormStockTakeDet
         Me.gridBandInfo.Columns.Add(Me.BandedGridColumnPrice)
         Me.gridBandInfo.Name = "gridBandInfo"
         Me.gridBandInfo.VisibleIndex = 0
-        Me.gridBandInfo.Width = 981
+        Me.gridBandInfo.Width = 805
         '
         'BandedGridColumnNo
         '
@@ -986,7 +988,7 @@ Partial Class FormStockTakeDet
         Me.BandedGridColumnNo.FieldName = "no"
         Me.BandedGridColumnNo.Name = "BandedGridColumnNo"
         Me.BandedGridColumnNo.Visible = True
-        Me.BandedGridColumnNo.Width = 38
+        Me.BandedGridColumnNo.Width = 37
         '
         'BandedGridColumnBarcode
         '
@@ -994,7 +996,7 @@ Partial Class FormStockTakeDet
         Me.BandedGridColumnBarcode.FieldName = "barcode"
         Me.BandedGridColumnBarcode.Name = "BandedGridColumnBarcode"
         Me.BandedGridColumnBarcode.Visible = True
-        Me.BandedGridColumnBarcode.Width = 189
+        Me.BandedGridColumnBarcode.Width = 143
         '
         'BandedGridColumnCode
         '
@@ -1002,15 +1004,17 @@ Partial Class FormStockTakeDet
         Me.BandedGridColumnCode.FieldName = "code"
         Me.BandedGridColumnCode.Name = "BandedGridColumnCode"
         Me.BandedGridColumnCode.Visible = True
-        Me.BandedGridColumnCode.Width = 171
+        Me.BandedGridColumnCode.Width = 108
         '
         'BandedGridColumnName
         '
+        Me.BandedGridColumnName.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnName.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.BandedGridColumnName.Caption = "Description"
         Me.BandedGridColumnName.FieldName = "name"
         Me.BandedGridColumnName.Name = "BandedGridColumnName"
         Me.BandedGridColumnName.Visible = True
-        Me.BandedGridColumnName.Width = 309
+        Me.BandedGridColumnName.Width = 262
         '
         'BandedGridColumnSize
         '
@@ -1018,7 +1022,7 @@ Partial Class FormStockTakeDet
         Me.BandedGridColumnSize.FieldName = "size"
         Me.BandedGridColumnSize.Name = "BandedGridColumnSize"
         Me.BandedGridColumnSize.Visible = True
-        Me.BandedGridColumnSize.Width = 74
+        Me.BandedGridColumnSize.Width = 38
         '
         'BandedGridColumnType
         '
@@ -1026,7 +1030,7 @@ Partial Class FormStockTakeDet
         Me.BandedGridColumnType.FieldName = "design_cat"
         Me.BandedGridColumnType.Name = "BandedGridColumnType"
         Me.BandedGridColumnType.Visible = True
-        Me.BandedGridColumnType.Width = 83
+        Me.BandedGridColumnType.Width = 51
         '
         'BandedGridColumnPrice
         '
@@ -1036,7 +1040,7 @@ Partial Class FormStockTakeDet
         Me.BandedGridColumnPrice.FieldName = "design_price"
         Me.BandedGridColumnPrice.Name = "BandedGridColumnPrice"
         Me.BandedGridColumnPrice.Visible = True
-        Me.BandedGridColumnPrice.Width = 117
+        Me.BandedGridColumnPrice.Width = 166
         '
         'gridBandVolcomQty
         '
@@ -1047,18 +1051,18 @@ Partial Class FormStockTakeDet
         Me.gridBandVolcomQty.Columns.Add(Me.BandedGridColumnSOHValue)
         Me.gridBandVolcomQty.Name = "gridBandVolcomQty"
         Me.gridBandVolcomQty.VisibleIndex = 1
-        Me.gridBandVolcomQty.Width = 185
+        Me.gridBandVolcomQty.Width = 217
         '
         'BandedGridColumnSOHQty
         '
-        Me.BandedGridColumnSOHQty.Caption = "SOH Qty"
+        Me.BandedGridColumnSOHQty.AutoFillDown = True
+        Me.BandedGridColumnSOHQty.Caption = "SOH"
         Me.BandedGridColumnSOHQty.DisplayFormat.FormatString = "N0"
         Me.BandedGridColumnSOHQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnSOHQty.FieldName = "qty_soh"
         Me.BandedGridColumnSOHQty.Name = "BandedGridColumnSOHQty"
         Me.BandedGridColumnSOHQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_soh", "{0:N0}")})
         Me.BandedGridColumnSOHQty.Visible = True
-        Me.BandedGridColumnSOHQty.Width = 91
         '
         'BandedGridColumnSOHValue
         '
@@ -1071,7 +1075,7 @@ Partial Class FormStockTakeDet
         Me.BandedGridColumnSOHValue.UnboundExpression = "[design_price] * [qty_soh]"
         Me.BandedGridColumnSOHValue.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnSOHValue.Visible = True
-        Me.BandedGridColumnSOHValue.Width = 94
+        Me.BandedGridColumnSOHValue.Width = 142
         '
         'gridBandStoreQty
         '
@@ -1082,18 +1086,18 @@ Partial Class FormStockTakeDet
         Me.gridBandStoreQty.Columns.Add(Me.BandedGridColumnScanValue)
         Me.gridBandStoreQty.Name = "gridBandStoreQty"
         Me.gridBandStoreQty.VisibleIndex = 2
-        Me.gridBandStoreQty.Width = 185
+        Me.gridBandStoreQty.Width = 227
         '
         'BandedGridColumnScanQty
         '
-        Me.BandedGridColumnScanQty.Caption = "Scan Qty"
+        Me.BandedGridColumnScanQty.Caption = "Scan"
         Me.BandedGridColumnScanQty.DisplayFormat.FormatString = "N0"
         Me.BandedGridColumnScanQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnScanQty.FieldName = "qty_scan"
         Me.BandedGridColumnScanQty.Name = "BandedGridColumnScanQty"
         Me.BandedGridColumnScanQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_scan", "{0:N0}")})
         Me.BandedGridColumnScanQty.Visible = True
-        Me.BandedGridColumnScanQty.Width = 91
+        Me.BandedGridColumnScanQty.Width = 71
         '
         'BandedGridColumnScanValue
         '
@@ -1106,7 +1110,7 @@ Partial Class FormStockTakeDet
         Me.BandedGridColumnScanValue.UnboundExpression = "[design_price] * [qty_scan]"
         Me.BandedGridColumnScanValue.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnScanValue.Visible = True
-        Me.BandedGridColumnScanValue.Width = 94
+        Me.BandedGridColumnScanValue.Width = 156
         '
         'gridBandKet
         '
@@ -1116,7 +1120,7 @@ Partial Class FormStockTakeDet
         Me.gridBandKet.Columns.Add(Me.BandedGridColumnNote)
         Me.gridBandKet.Name = "gridBandKet"
         Me.gridBandKet.VisibleIndex = 3
-        Me.gridBandKet.Width = 281
+        Me.gridBandKet.Width = 383
         '
         'BandedGridColumnDiffQty
         '
@@ -1129,7 +1133,7 @@ Partial Class FormStockTakeDet
         Me.BandedGridColumnDiffQty.UnboundExpression = "[qty_soh]-[qty_scan]"
         Me.BandedGridColumnDiffQty.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.BandedGridColumnDiffQty.Visible = True
-        Me.BandedGridColumnDiffQty.Width = 93
+        Me.BandedGridColumnDiffQty.Width = 121
         '
         'BandedGridColumnDiffValue
         '
@@ -1142,10 +1146,12 @@ Partial Class FormStockTakeDet
         Me.BandedGridColumnDiffValue.UnboundExpression = "[design_price] * [qty_diff]"
         Me.BandedGridColumnDiffValue.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnDiffValue.Visible = True
-        Me.BandedGridColumnDiffValue.Width = 93
+        Me.BandedGridColumnDiffValue.Width = 159
         '
         'BandedGridColumnNote
         '
+        Me.BandedGridColumnNote.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnNote.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.BandedGridColumnNote.Caption = "Note"
         Me.BandedGridColumnNote.FieldName = "note"
         Me.BandedGridColumnNote.Name = "BandedGridColumnNote"
@@ -1153,7 +1159,13 @@ Partial Class FormStockTakeDet
     "''))"
         Me.BandedGridColumnNote.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.BandedGridColumnNote.Visible = True
-        Me.BandedGridColumnNote.Width = 95
+        Me.BandedGridColumnNote.Width = 103
+        '
+        'RepositoryItemTextEdit3
+        '
+        Me.RepositoryItemTextEdit3.AutoHeight = False
+        Me.RepositoryItemTextEdit3.Name = "RepositoryItemTextEdit3"
+        Me.RepositoryItemTextEdit3.NullText = "-"
         '
         'FormStockTakeDet
         '
@@ -1214,6 +1226,7 @@ Partial Class FormStockTakeDet
         CType(Me.GCCompare, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStripCompare.ResumeLayout(False)
         CType(Me.BGVCompare, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1319,4 +1332,5 @@ Partial Class FormStockTakeDet
     Friend WithEvents gridBandVolcomQty As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandStoreQty As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandKet As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents RepositoryItemTextEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class

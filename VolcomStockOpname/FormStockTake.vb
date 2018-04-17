@@ -86,7 +86,7 @@ Public Class FormStockTake
                 'connection string
                 FormMain.SplashScreenManager1.SetWaitFormDescription("Check connection ...")
                 Dim dbc_str As String() = Split(app_database, "_")
-                Dim name_dir = dbc_str(1) + "_" + dbc_str(2) + "_" + st_user_code
+                Dim name_dir = dbc_str(1) + "_" + dbc_str(2) + "_" + st_user_code + "_" + header_number("3")
                 Dim constring As String = "server=" + app_host + ";user=" + app_username + ";pwd=" + app_password + ";database=" + app_database + ";allow zero datetime=yes;"
                 Dim path_root As String = Application.StartupPath + "\download\scan\" + name_dir
                 'create directory if not exist

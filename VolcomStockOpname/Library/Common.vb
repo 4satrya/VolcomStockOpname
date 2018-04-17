@@ -136,6 +136,9 @@ Module Common
         ElseIf opt = "2" Then
             header_number_x = combine_header_number("IA", Integer.Parse(get_setup_field("st_inc")), 5)
             increase_inc("1")
+        ElseIf opt = "3" Then
+            header_number_x = combine_header_number("", Integer.Parse(get_setup_field("file_inc")), 0)
+            increase_inc("2")
         End If
 
         Return header_number_x
@@ -147,6 +150,9 @@ Module Common
 
         If opt = "1" Then
             query = "UPDATE tb_st_opt SET st_inc=(tb_st_opt.st_inc+1)"
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf opt = "2" Then
+            query = "UPDATE tb_st_opt SET file_inc=(tb_st_opt.file_inc+1)"
             execute_non_query(query, True, "", "", "", "")
         End If
     End Sub

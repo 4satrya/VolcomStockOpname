@@ -610,15 +610,17 @@
                     TxtScan.Text = ""
                     TxtScan.Focus()
                 Else
-                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("PRODUCT NOT FOUND IN MASTER LIST !" + System.Environment.NewLine + "DO YOU WANT TO RECORD THIS PRODUCT ?", "SCAN FAILED", MessageBoxButtons.YesNo, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button3)
-                    If confirm = DialogResult.Yes Then
-                        FormStockTakeFaik.ShowDialog()
-                        TxtScan.Text = ""
-                        TxtScan.Focus()
-                    Else
-                        TxtScan.Text = ""
-                        TxtScan.Focus()
-                    End If
+                    stopCustomDialog("PRODUCT NOT FOUND IN MASTER LIST !")
+                    FormStockTakeFaik.ShowDialog()
+                    TxtScan.Text = ""
+                    TxtScan.Focus()
+                    'Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("PRODUCT NOT FOUND IN MASTER LIST !" + System.Environment.NewLine + "DO YOU WANT TO RECORD THIS PRODUCT ?", "SCAN FAILED", MessageBoxButtons.YesNo, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button3)
+                    'If confirm = DialogResult.Yes Then
+
+                    'Else
+                    '    TxtScan.Text = ""
+                    '    TxtScan.Focus()
+                    'End If
                 End If
             End If
         End If

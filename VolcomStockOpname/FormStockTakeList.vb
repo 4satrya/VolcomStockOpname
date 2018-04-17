@@ -15,29 +15,30 @@
         LEFT JOIN tb_m_design_price prc ON prc.id_design_price = std.id_design_price
         LEFT JOIN tb_lookup_design_price_type typ ON typ.id_design_price_type = prc.id_design_price_type
         LEFT JOIN tb_lookup_design_cat cat ON cat.id_design_cat = typ.id_design_cat  "
-        query += "WHERE st.id_report_status!=5 AND st.is_combine=2 ORDER BY std.id_st_trans_det ASC "
+        query += "WHERE st.id_report_status!=5 AND st.is_combine=2 ORDER BY std.id_st_trans ASC, std.id_st_trans_det ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCScan.DataSource = data
     End Sub
 
     Sub viewSummary()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT st.st_trans_number, st.remark,std.id_product, d.design_code AS `product_code`, p.product_full_code AS `barcode`, std.name, std.size, 
+        Dim query As String = "SELECT st.id_st_trans,st.st_trans_number, st.remark,std.id_product, d.design_code AS `product_code`, p.product_full_code AS `barcode`, std.name, std.size, 
         SUM(std.qty) AS `qty`, std.design_price
         FROM tb_st_trans_det std
         INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
         INNER JOIN tb_m_product p ON p.id_product = std.id_product 
         INNER JOIN tb_m_design d ON d.id_design = p.id_design "
         query += "WHERE st.id_report_status!=5 AND st.is_combine=2 "
-        query += "AND !ISNULL(std.id_product) GROUP BY std.id_product 
+        query += "AND !ISNULL(std.id_product) GROUP BY std.id_product, std.id_st_trans 
         UNION ALL 
-        SELECT st.st_trans_number, st.remark,std.id_product, NULL AS `product_code`, std.code AS `barcode`, std.name, std.size, 
+        SELECT st.id_st_trans,st.st_trans_number, st.remark,std.id_product, NULL AS `product_code`, std.code AS `barcode`, std.name, std.size, 
         SUM(std.qty) AS `qty`, std.design_price
         FROM tb_st_trans_det std
         INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans 
         WHERE ISNULL(std.id_product) "
         query += "AND st.id_report_status!=5 AND st.is_combine=2 "
-        query += "GROUP BY std.id_st_trans_det "
+        query += "GROUP BY std.id_st_trans_det, std.id_st_trans  
+        ORDER BY id_st_trans ASC,barcode ASC, product_code ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSummaryScan.DataSource = data
         Cursor = Cursors.Default

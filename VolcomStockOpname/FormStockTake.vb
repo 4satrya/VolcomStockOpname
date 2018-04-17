@@ -213,7 +213,7 @@ Public Class FormStockTake
             Dim cek As String = CheckEdit1.EditValue.ToString
             For i As Integer = 0 To ((GVScan.RowCount - 1) - GetGroupRowCount(GVScan))
                 Dim id_report_status As String = GVScan.GetRowCellValue(i, "id_report_status").ToString
-                If cek And id_report_status = "6" Then
+                If cek And id_report_status = "1" Then
                     GVScan.SetRowCellValue(i, "is_select", "Yes")
                 Else
                     GVScan.SetRowCellValue(i, "is_select", "No")
@@ -262,5 +262,11 @@ Public Class FormStockTake
             FormStockTakeDet.id_st_trans = GVCombine.GetFocusedRowCellValue("id_st_trans").ToString
             FormStockTakeDet.ShowDialog()
         End If
+    End Sub
+
+    Private Sub BtnList_Click(sender As Object, e As EventArgs) Handles BtnList.Click
+        Cursor = Cursors.WaitCursor
+        FormStockTakeList.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

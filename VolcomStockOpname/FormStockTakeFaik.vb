@@ -28,10 +28,25 @@ Public Class FormStockTakeFaik
         Dim description As String = addSlashes(TxtDescription.Text.ToString)
         Dim size As String = addSlashes(TxtSize.Text.ToString)
         Dim price As String = decimalSQL(TxtPrice.EditValue.ToString)
+        'checedit reject
+        Dim is_reject As String = ""
+        If FormStockTakeDet.CheckEditReject.EditValue.ToString = "True" Then
+            is_reject = "1"
+        Else
+            is_reject = "2"
+        End If
+
+        'checkedit no tag
+        Dim is_no_tag As String = ""
+        If FormStockTakeDet.CheckEditNoTag.EditValue.ToString = "True" Then
+            is_no_tag = "1"
+        Else
+            is_no_tag = "2"
+        End If
 
         If code <> "" And description <> "" And size <> "" Then
-            Dim query_ins As String = "INSERT INTO tb_st_trans_det(id_st_trans, is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, code, name, size, qty, design_price) 
-            VALUES ('" + FormStockTakeDet.id_st_trans + "', '2', '2', '1', '2','2', '2','" + code + "', '" + description + "','" + size + "', 1, '" + price + "') "
+            Dim query_ins As String = "INSERT INTO tb_st_trans_det(id_st_trans, is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, is_no_tag, code, name, size, qty, design_price) 
+            VALUES ('" + FormStockTakeDet.id_st_trans + "', '2', '2', '1', '2','" + is_reject + "', '2','" + is_no_tag + "','" + code + "', '" + description + "','" + size + "', 1, '" + price + "') "
             execute_non_query(query_ins, True, "", "", "", "")
             FormStockTakeDet.updatedBy()
             FormStockTakeDet.viewDetail()

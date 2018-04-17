@@ -14,7 +14,7 @@
         End If
     End Sub
 
-    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles BtnLogin.Click
+    Sub login()
         ValidateChildren()
         If TxtPass.Text = "" Or TxtUsername.Text = "" Then
             stopCustom("Can't blank")
@@ -72,6 +72,10 @@
         End If
     End Sub
 
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles BtnLogin.Click
+        login()
+    End Sub
+
     Private Sub TxtUsername_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtUsername.KeyDown
         If e.KeyCode = Keys.Enter Then
             TxtPass.Focus()
@@ -80,7 +84,7 @@
 
     Private Sub TxtPass_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtPass.KeyDown
         If e.KeyCode = Keys.Enter Then
-            BtnLogin.Focus()
+            login()
         End If
     End Sub
 

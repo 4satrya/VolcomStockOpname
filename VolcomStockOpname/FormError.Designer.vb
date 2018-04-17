@@ -59,6 +59,7 @@ Partial Class FormError
         Me.LabelContent.Appearance.Font = New System.Drawing.Font("Trebuchet MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelContent.Appearance.ForeColor = System.Drawing.Color.Maroon
         Me.LabelContent.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LabelContent.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.LabelContent.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None
         Me.LabelContent.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LabelContent.Location = New System.Drawing.Point(124, 0)

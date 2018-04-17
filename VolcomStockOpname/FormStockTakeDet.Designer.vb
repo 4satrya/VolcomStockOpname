@@ -758,6 +758,7 @@ Partial Class FormStockTakeDet
         Me.GVSummaryScan.OptionsView.ShowFooter = True
         Me.GVSummaryScan.OptionsView.ShowGroupedColumns = True
         Me.GVSummaryScan.OptionsView.ShowGroupPanel = False
+        Me.GVSummaryScan.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnProductCodeSmr, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnScannedCodeSMR, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumnNoSmr
         '
@@ -963,6 +964,7 @@ Partial Class FormStockTakeDet
         Me.BGVCompare.OptionsBehavior.Editable = False
         Me.BGVCompare.OptionsView.ShowFooter = True
         Me.BGVCompare.OptionsView.ShowGroupPanel = False
+        Me.BGVCompare.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumnCode, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumnBarcode, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'gridBandInfo
         '

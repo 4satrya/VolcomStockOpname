@@ -70,8 +70,8 @@ Partial Class FormStockTakeList
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
         CType(Me.XTCStockTake, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -87,8 +87,8 @@ Partial Class FormStockTakeList
         Me.XTPCondition.SuspendLayout()
         CType(Me.GCCat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCat, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl2
@@ -421,6 +421,7 @@ Partial Class FormStockTakeList
         Me.GVSummaryScan.OptionsView.ShowFooter = True
         Me.GVSummaryScan.OptionsView.ShowGroupedColumns = True
         Me.GVSummaryScan.OptionsView.ShowGroupPanel = False
+        Me.GVSummaryScan.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnProductCodeSmr, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnScannedCodeSMR, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumnNoSmr
         '
@@ -596,17 +597,17 @@ Partial Class FormStockTakeList
         Me.GridColumn3.VisibleIndex = 2
         Me.GridColumn3.Width = 765
         '
-        'RepositoryItemTextEdit2
-        '
-        Me.RepositoryItemTextEdit2.AutoHeight = False
-        Me.RepositoryItemTextEdit2.Name = "RepositoryItemTextEdit2"
-        Me.RepositoryItemTextEdit2.NullText = "-"
-        '
         'RepositoryItemTextEdit3
         '
         Me.RepositoryItemTextEdit3.AutoHeight = False
         Me.RepositoryItemTextEdit3.Name = "RepositoryItemTextEdit3"
         Me.RepositoryItemTextEdit3.NullText = "-"
+        '
+        'RepositoryItemTextEdit2
+        '
+        Me.RepositoryItemTextEdit2.AutoHeight = False
+        Me.RepositoryItemTextEdit2.Name = "RepositoryItemTextEdit2"
+        Me.RepositoryItemTextEdit2.NullText = "-"
         '
         'FormStockTakeList
         '
@@ -635,8 +636,8 @@ Partial Class FormStockTakeList
         Me.XTPCondition.ResumeLayout(False)
         CType(Me.GCCat, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCat, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

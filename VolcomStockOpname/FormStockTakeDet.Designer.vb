@@ -33,6 +33,8 @@ Partial Class FormStockTakeDet
         Me.GridView14 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.TxtFontSize = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtApp = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.LEAck = New DevExpress.XtraEditors.LookUpEdit()
@@ -123,6 +125,7 @@ Partial Class FormStockTakeDet
         Me.BandedGridColumnDiffValue = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnNote = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -135,6 +138,7 @@ Partial Class FormStockTakeDet
         CType(Me.GridView14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
+        CType(Me.TxtFontSize.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtApp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEAck.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -165,6 +169,8 @@ Partial Class FormStockTakeDet
         Me.ContextMenuStripCompare.SuspendLayout()
         CType(Me.BGVCompare, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -273,6 +279,7 @@ Partial Class FormStockTakeDet
         'GroupControl2
         '
         Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl2.Controls.Add(Me.PanelControl1)
         Me.GroupControl2.Controls.Add(Me.TxtApp)
         Me.GroupControl2.Controls.Add(Me.LabelControl8)
         Me.GroupControl2.Controls.Add(Me.LEAck)
@@ -286,6 +293,23 @@ Partial Class FormStockTakeDet
         Me.GroupControl2.Name = "GroupControl2"
         Me.GroupControl2.Size = New System.Drawing.Size(1042, 45)
         Me.GroupControl2.TabIndex = 1
+        '
+        'TxtFontSize
+        '
+        Me.TxtFontSize.Location = New System.Drawing.Point(60, 11)
+        Me.TxtFontSize.Name = "TxtFontSize"
+        Me.TxtFontSize.Properties.Mask.EditMask = "n1"
+        Me.TxtFontSize.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TxtFontSize.Size = New System.Drawing.Size(40, 20)
+        Me.TxtFontSize.TabIndex = 8912
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Location = New System.Drawing.Point(10, 14)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(44, 13)
+        Me.LabelControl9.TabIndex = 8911
+        Me.LabelControl9.Text = "Font Size"
         '
         'TxtApp
         '
@@ -1168,6 +1192,17 @@ Partial Class FormStockTakeDet
         Me.RepositoryItemTextEdit3.Name = "RepositoryItemTextEdit3"
         Me.RepositoryItemTextEdit3.NullText = "-"
         '
+        'PanelControl1
+        '
+        Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl1.Controls.Add(Me.TxtFontSize)
+        Me.PanelControl1.Controls.Add(Me.LabelControl9)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl1.Location = New System.Drawing.Point(830, 2)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(106, 41)
+        Me.PanelControl1.TabIndex = 8913
+        '
         'FormStockTakeDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1197,6 +1232,7 @@ Partial Class FormStockTakeDet
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         Me.GroupControl2.PerformLayout()
+        CType(Me.TxtFontSize.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtApp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEAck.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1228,6 +1264,9 @@ Partial Class FormStockTakeDet
         Me.ContextMenuStripCompare.ResumeLayout(False)
         CType(Me.BGVCompare, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1334,4 +1373,7 @@ Partial Class FormStockTakeDet
     Friend WithEvents gridBandStoreQty As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandKet As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents RepositoryItemTextEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents TxtFontSize As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
 End Class

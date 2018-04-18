@@ -15,6 +15,7 @@
     Dim sales_until_period As String = ""
     Dim is_record_unreg As String = ""
 
+
     Private Sub FormStockTakeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewWHStockSum()
         viewReportStatus()
@@ -237,6 +238,7 @@
         ORDER BY barcode ASC, code ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCompare.DataSource = data
+        TxtFontSize.EditValue = 6.3
         Cursor = Cursors.Default
     End Sub
 
@@ -416,7 +418,42 @@
             str.Seek(0, System.IO.SeekOrigin.Begin)
 
             'Grid Detail
-            ReportStyleBanded(Report.BGVCompare)
+            'ReportStyleBanded(Report.BGVCompare)
+            Dim fz As Single = TxtFontSize.EditValue
+            Report.BGVCompare.OptionsPrint.UsePrintStyles = True
+            Report.BGVCompare.AppearancePrint.BandPanel.Font = New Font(Report.BGVCompare.Appearance.Row.Font.FontFamily, Report.BGVCompare.Appearance.Row.Font.Size, FontStyle.Bold)
+
+
+            Report.BGVCompare.AppearancePrint.BandPanel.BackColor = Color.Transparent
+            Report.BGVCompare.AppearancePrint.BandPanel.ForeColor = Color.Black
+            Report.BGVCompare.AppearancePrint.BandPanel.Font = New Font("Segoe UI", fz, FontStyle.Bold)
+
+            Report.BGVCompare.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+            Report.BGVCompare.AppearancePrint.FilterPanel.ForeColor = Color.Black
+            Report.BGVCompare.AppearancePrint.FilterPanel.Font = New Font("Segoe UI", fz, FontStyle.Regular)
+
+            Report.BGVCompare.AppearancePrint.GroupFooter.BackColor = Color.Transparent
+            Report.BGVCompare.AppearancePrint.GroupFooter.ForeColor = Color.Black
+            Report.BGVCompare.AppearancePrint.GroupFooter.Font = New Font("Segoe UI", fz, FontStyle.Bold)
+
+            Report.BGVCompare.AppearancePrint.GroupRow.BackColor = Color.Transparent
+            Report.BGVCompare.AppearancePrint.GroupRow.ForeColor = Color.Black
+            Report.BGVCompare.AppearancePrint.GroupRow.Font = New Font("Segoe UI", fz, FontStyle.Bold)
+
+            Report.BGVCompare.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+            Report.BGVCompare.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+            Report.BGVCompare.AppearancePrint.HeaderPanel.Font = New Font("Segoe UI", fz, FontStyle.Bold)
+
+            Report.BGVCompare.AppearancePrint.FooterPanel.BackColor = Color.Transparent
+            Report.BGVCompare.AppearancePrint.FooterPanel.ForeColor = Color.Black
+            Report.BGVCompare.AppearancePrint.FooterPanel.Font = New Font("Segoe UI", fz, FontStyle.Bold)
+
+            Report.BGVCompare.AppearancePrint.Row.Font = New Font("Segoe UI", fz, FontStyle.Regular)
+
+            Report.BGVCompare.OptionsPrint.ExpandAllDetails = True
+            Report.BGVCompare.OptionsPrint.UsePrintStyles = True
+            Report.BGVCompare.OptionsPrint.PrintDetails = True
+            Report.BGVCompare.OptionsPrint.PrintFooter = True
 
             'Parse val
             Report.LabelNo.Text = TxtNumber.Text

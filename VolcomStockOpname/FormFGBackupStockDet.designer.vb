@@ -27,6 +27,9 @@ Partial Class FormFGBackupStockDet
         Me.BtnBOFData = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.CEManualRecord = New DevExpress.XtraEditors.CheckEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.DESalesUntil = New DevExpress.XtraEditors.DateEdit()
         Me.DEStock = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
@@ -40,16 +43,17 @@ Partial Class FormFGBackupStockDet
         Me.GridColumnDrawer = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCompCat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAddress = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTCDetail = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
-        Me.DESalesUntil = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.CEManualRecord = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.CEManualRecord.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DESalesUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DESalesUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStock.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStock.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -58,9 +62,6 @@ Partial Class FormFGBackupStockDet
         CType(Me.XTCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCDetail.SuspendLayout()
         Me.XTPSummary.SuspendLayout()
-        CType(Me.DESalesUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DESalesUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CEManualRecord.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -139,6 +140,36 @@ Partial Class FormFGBackupStockDet
         Me.PanelControl2.Size = New System.Drawing.Size(803, 78)
         Me.PanelControl2.TabIndex = 0
         '
+        'CEManualRecord
+        '
+        Me.CEManualRecord.Location = New System.Drawing.Point(324, 41)
+        Me.CEManualRecord.Name = "CEManualRecord"
+        Me.CEManualRecord.Properties.Caption = "Manual record for unregistered product"
+        Me.CEManualRecord.Size = New System.Drawing.Size(210, 19)
+        Me.CEManualRecord.TabIndex = 5
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(22, 44)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(49, 13)
+        Me.LabelControl1.TabIndex = 4
+        Me.LabelControl1.Text = "Sales Until"
+        '
+        'DESalesUntil
+        '
+        Me.DESalesUntil.EditValue = Nothing
+        Me.DESalesUntil.Location = New System.Drawing.Point(98, 41)
+        Me.DESalesUntil.Name = "DESalesUntil"
+        Me.DESalesUntil.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DESalesUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DESalesUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DESalesUntil.Properties.DisplayFormat.FormatString = "dd\/MM\/yyyy"
+        Me.DESalesUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DESalesUntil.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DESalesUntil.Size = New System.Drawing.Size(220, 20)
+        Me.DESalesUntil.TabIndex = 3
+        '
         'DEStock
         '
         Me.DEStock.EditValue = Nothing
@@ -174,7 +205,7 @@ Partial Class FormFGBackupStockDet
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumnSOH, Me.GridColumn5, Me.GridColumnDrawer, Me.GridColumnCat, Me.GridColumnCompCat})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumnSOH, Me.GridColumn5, Me.GridColumnDrawer, Me.GridColumnCat, Me.GridColumnCompCat, Me.GridColumnAddress})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_soh", Me.GridColumnSOH, "{0:N0}")})
         Me.GVData.Name = "GVData"
@@ -198,7 +229,7 @@ Partial Class FormFGBackupStockDet
         Me.GridColumn2.OptionsColumn.AllowEdit = False
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
-        Me.GridColumn2.Width = 176
+        Me.GridColumn2.Width = 169
         '
         'GridColumn3
         '
@@ -208,7 +239,7 @@ Partial Class FormFGBackupStockDet
         Me.GridColumn3.OptionsColumn.AllowEdit = False
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
-        Me.GridColumn3.Width = 913
+        Me.GridColumn3.Width = 356
         '
         'GridColumnSOH
         '
@@ -220,8 +251,8 @@ Partial Class FormFGBackupStockDet
         Me.GridColumnSOH.OptionsColumn.AllowEdit = False
         Me.GridColumnSOH.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_soh", "{0:N0}")})
         Me.GridColumnSOH.Visible = True
-        Me.GridColumnSOH.VisibleIndex = 3
-        Me.GridColumnSOH.Width = 236
+        Me.GridColumnSOH.VisibleIndex = 4
+        Me.GridColumnSOH.Width = 93
         '
         'GridColumn5
         '
@@ -234,8 +265,8 @@ Partial Class FormFGBackupStockDet
         Me.GridColumn5.FieldName = "is_select"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
-        Me.GridColumn5.Width = 190
+        Me.GridColumn5.VisibleIndex = 5
+        Me.GridColumn5.Width = 64
         '
         'RepositoryItemCheckEdit1
         '
@@ -263,7 +294,19 @@ Partial Class FormFGBackupStockDet
         Me.GridColumnCompCat.Name = "GridColumnCompCat"
         Me.GridColumnCompCat.Visible = True
         Me.GridColumnCompCat.VisibleIndex = 2
-        Me.GridColumnCompCat.Width = 101
+        Me.GridColumnCompCat.Width = 106
+        '
+        'GridColumnAddress
+        '
+        Me.GridColumnAddress.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnAddress.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumnAddress.Caption = "Address"
+        Me.GridColumnAddress.FieldName = "address_primary"
+        Me.GridColumnAddress.Name = "GridColumnAddress"
+        Me.GridColumnAddress.OptionsColumn.AllowEdit = False
+        Me.GridColumnAddress.Visible = True
+        Me.GridColumnAddress.VisibleIndex = 3
+        Me.GridColumnAddress.Width = 844
         '
         'XTCDetail
         '
@@ -281,36 +324,6 @@ Partial Class FormFGBackupStockDet
         Me.XTPSummary.Name = "XTPSummary"
         Me.XTPSummary.Size = New System.Drawing.Size(797, 368)
         Me.XTPSummary.Text = "Summary"
-        '
-        'DESalesUntil
-        '
-        Me.DESalesUntil.EditValue = Nothing
-        Me.DESalesUntil.Location = New System.Drawing.Point(98, 41)
-        Me.DESalesUntil.Name = "DESalesUntil"
-        Me.DESalesUntil.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
-        Me.DESalesUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DESalesUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DESalesUntil.Properties.DisplayFormat.FormatString = "dd\/MM\/yyyy"
-        Me.DESalesUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DESalesUntil.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DESalesUntil.Size = New System.Drawing.Size(220, 20)
-        Me.DESalesUntil.TabIndex = 3
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(22, 44)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(49, 13)
-        Me.LabelControl1.TabIndex = 4
-        Me.LabelControl1.Text = "Sales Until"
-        '
-        'CEManualRecord
-        '
-        Me.CEManualRecord.Location = New System.Drawing.Point(324, 41)
-        Me.CEManualRecord.Name = "CEManualRecord"
-        Me.CEManualRecord.Properties.Caption = "Manual record for unregistered product"
-        Me.CEManualRecord.Size = New System.Drawing.Size(210, 19)
-        Me.CEManualRecord.TabIndex = 5
         '
         'FormFGBackupStockDet
         '
@@ -330,6 +343,9 @@ Partial Class FormFGBackupStockDet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.CEManualRecord.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DESalesUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DESalesUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStock.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStock.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
@@ -338,9 +354,6 @@ Partial Class FormFGBackupStockDet
         CType(Me.XTCDetail, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCDetail.ResumeLayout(False)
         Me.XTPSummary.ResumeLayout(False)
-        CType(Me.DESalesUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DESalesUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CEManualRecord.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -370,4 +383,5 @@ Partial Class FormFGBackupStockDet
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DESalesUntil As DevExpress.XtraEditors.DateEdit
     Friend WithEvents CEManualRecord As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GridColumnAddress As DevExpress.XtraGrid.Columns.GridColumn
 End Class

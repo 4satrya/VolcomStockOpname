@@ -195,7 +195,7 @@
     Sub viewCompare()
         Cursor = Cursors.WaitCursor
         gridBandStoreQty.Caption = comp_number
-        Dim query As String = "SELECT im.id_product, p.product_full_code AS `barcode`, d.design_code AS `code`, d.design_display_name AS `name`, cd.code_detail_name AS `size`, LEFT(dc.design_cat,1) AS `design_cat`,
+        Dim query As String = "SELECT im.id_product, p.product_full_code AS `barcode`, d.design_code AS `code`, d.design_display_name AS `name`, cd.code_detail_name AS `size`, LEFT(prct.design_price_type,1) AS `design_cat`,
         im.id_design_price, im.design_price, im.qty_soh, im.qty_scan
         FROM (
 	        SELECT s.id_product, 

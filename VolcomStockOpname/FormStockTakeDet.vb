@@ -15,6 +15,7 @@
     Dim sales_until_period As String = ""
     Dim is_record_unreg As String = ""
 
+
     Private Sub FormStockTakeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewWHStockSum()
         viewReportStatus()
@@ -143,7 +144,8 @@
         INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans 
         WHERE ISNULL(std.id_product) "
         query += "AND std.id_st_trans=" + id_st_trans + " "
-        query += "GROUP BY std.id_st_trans_det "
+        query += "GROUP BY std.id_st_trans_det 
+        ORDER BY barcode ASC,product_code ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSummaryScan.DataSource = data
         Cursor = Cursors.Default
@@ -193,7 +195,7 @@
     Sub viewCompare()
         Cursor = Cursors.WaitCursor
         gridBandStoreQty.Caption = comp_number
-        Dim query As String = "SELECT im.id_product, p.product_full_code AS `barcode`, d.design_code AS `code`, d.design_display_name AS `name`, cd.code_detail_name AS `size`, dc.design_cat,
+        Dim query As String = "SELECT im.id_product, p.product_full_code AS `barcode`, d.design_code AS `code`, d.design_display_name AS `name`, cd.code_detail_name AS `size`, LEFT(prct.design_price_type,1) AS `design_cat`,
         im.id_design_price, im.design_price, im.qty_soh, im.qty_scan
         FROM (
 	        SELECT s.id_product, 
@@ -229,12 +231,14 @@
         INNER JOIN tb_lookup_design_price_type prct ON prct.id_design_price_type = prc.id_design_price_type
         INNER JOIN tb_lookup_design_cat dc ON dc.id_design_cat = prct.id_design_cat
         UNION ALL
-        SELECT std.id_product, std.code AS `barcode`, std.code, std.name, std.size, '' AS `design_cat`,std.id_design_price, std.design_price,  0 AS `qty_soh`,std.qty AS `qty_scan`
+        SELECT std.id_product, std.code AS `barcode`, std.code, std.name, std.size, '-' AS `design_cat`,std.id_design_price, std.design_price,  0 AS `qty_soh`,std.qty AS `qty_scan`
         FROM tb_st_trans_det std
         INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
-        WHERE st.id_st_trans=" + id_st_trans + " AND std.is_no_master=1 "
+        WHERE st.id_st_trans=" + id_st_trans + " AND std.is_no_master=1 
+        ORDER BY barcode ASC, code ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCompare.DataSource = data
+        TxtFontSize.EditValue = 6.3
         Cursor = Cursors.Default
     End Sub
 
@@ -350,6 +354,7 @@
             Report.LabelAckPosition.Text = ack_position
             Report.LabelApp.Text = TxtApp.Text
             Report.LabelAppPosition.Text = comp_name
+            Report.LabelRemark.Text = MERemark.Text.ToString
 
             'Show the report's preview. 
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
@@ -387,6 +392,7 @@
             Report.LabelAckPosition.Text = ack_position
             Report.LabelApp.Text = TxtApp.Text
             Report.LabelAppPosition.Text = comp_name
+            Report.LabelRemark.Text = MERemark.Text.ToString
 
             'Show the report's preview. 
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
@@ -397,7 +403,7 @@
             print_raw(GCCat, "")
         ElseIf XTCStockTake.SelectedTabPageIndex = 3 Then
             Cursor = Cursors.WaitCursor
-            BGVCompare.BestFitColumns()
+            'BGVCompare.BestFitColumns()
             ReportCompare.dt = GCCompare.DataSource
             ReportCompare.id_report = id_st_trans
             Dim Report As New ReportCompare()
@@ -412,7 +418,42 @@
             str.Seek(0, System.IO.SeekOrigin.Begin)
 
             'Grid Detail
-            ReportStyleGridview(Report.BGVCompare)
+            'ReportStyleBanded(Report.BGVCompare)
+            Dim fz As Single = TxtFontSize.EditValue
+            Report.BGVCompare.OptionsPrint.UsePrintStyles = True
+            Report.BGVCompare.AppearancePrint.BandPanel.Font = New Font(Report.BGVCompare.Appearance.Row.Font.FontFamily, Report.BGVCompare.Appearance.Row.Font.Size, FontStyle.Bold)
+
+
+            Report.BGVCompare.AppearancePrint.BandPanel.BackColor = Color.Transparent
+            Report.BGVCompare.AppearancePrint.BandPanel.ForeColor = Color.Black
+            Report.BGVCompare.AppearancePrint.BandPanel.Font = New Font("Segoe UI", fz, FontStyle.Bold)
+
+            Report.BGVCompare.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+            Report.BGVCompare.AppearancePrint.FilterPanel.ForeColor = Color.Black
+            Report.BGVCompare.AppearancePrint.FilterPanel.Font = New Font("Segoe UI", fz, FontStyle.Regular)
+
+            Report.BGVCompare.AppearancePrint.GroupFooter.BackColor = Color.Transparent
+            Report.BGVCompare.AppearancePrint.GroupFooter.ForeColor = Color.Black
+            Report.BGVCompare.AppearancePrint.GroupFooter.Font = New Font("Segoe UI", fz, FontStyle.Bold)
+
+            Report.BGVCompare.AppearancePrint.GroupRow.BackColor = Color.Transparent
+            Report.BGVCompare.AppearancePrint.GroupRow.ForeColor = Color.Black
+            Report.BGVCompare.AppearancePrint.GroupRow.Font = New Font("Segoe UI", fz, FontStyle.Bold)
+
+            Report.BGVCompare.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+            Report.BGVCompare.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+            Report.BGVCompare.AppearancePrint.HeaderPanel.Font = New Font("Segoe UI", fz, FontStyle.Bold)
+
+            Report.BGVCompare.AppearancePrint.FooterPanel.BackColor = Color.Transparent
+            Report.BGVCompare.AppearancePrint.FooterPanel.ForeColor = Color.Black
+            Report.BGVCompare.AppearancePrint.FooterPanel.Font = New Font("Segoe UI", fz, FontStyle.Bold)
+
+            Report.BGVCompare.AppearancePrint.Row.Font = New Font("Segoe UI", fz, FontStyle.Regular)
+
+            Report.BGVCompare.OptionsPrint.ExpandAllDetails = True
+            Report.BGVCompare.OptionsPrint.UsePrintStyles = True
+            Report.BGVCompare.OptionsPrint.PrintDetails = True
+            Report.BGVCompare.OptionsPrint.PrintFooter = True
 
             'Parse val
             Report.LabelNo.Text = TxtNumber.Text

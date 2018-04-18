@@ -40,7 +40,7 @@ Public Class FormFGBackupStockDet
             date_until_selected = DateTime.Parse(DEStock.EditValue.ToString).ToString("yyyy-MM-dd")
         Catch ex As Exception
         End Try
-        Dim query As String = "SELECT c.id_comp, c.comp_number, c.comp_name, ('No') AS `is_select`,
+        Dim query As String = "SELECT c.id_comp, c.comp_number, c.comp_name, c.address_primary, ('No') AS `is_select`,
         IFNULL(stc.qty,0) As `qty_soh` , c.id_drawer_def, c.id_comp_cat, cat.comp_cat_name AS `comp_cat`
         FROM tb_m_comp c 
         LEFT JOIN (

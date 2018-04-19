@@ -146,7 +146,7 @@
         INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans 
         WHERE ISNULL(std.id_product) "
         query += "AND std.id_st_trans=" + id_st_trans + " "
-        query += "GROUP BY std.id_st_trans_det 
+        query += "GROUP BY std.code 
         ORDER BY barcode ASC,product_code ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSummaryScan.DataSource = data
@@ -233,10 +233,11 @@
         INNER JOIN tb_lookup_design_price_type prct ON prct.id_design_price_type = prc.id_design_price_type
         INNER JOIN tb_lookup_design_cat dc ON dc.id_design_cat = prct.id_design_cat
         UNION ALL
-        SELECT std.id_product, std.code AS `barcode`, std.code, std.name, std.size, '-' AS `design_cat`,std.id_design_price, std.design_price,  0 AS `qty_soh`,std.qty AS `qty_scan`
+        SELECT std.id_product, std.code AS `barcode`, std.code, std.name, std.size, '-' AS `design_cat`,std.id_design_price, std.design_price,  0 AS `qty_soh`,SUM(std.qty) AS `qty_scan`
         FROM tb_st_trans_det std
         INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
         WHERE st.id_st_trans=" + id_st_trans + " AND std.is_no_master=1 
+        GROUP BY std.code
         ORDER BY barcode ASC, code ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCompare.DataSource = data

@@ -72,6 +72,7 @@ Partial Class FormStockTakeList
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumnType = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
         CType(Me.XTCStockTake, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -413,7 +414,7 @@ Partial Class FormStockTakeList
         '
         'GVSummaryScan
         '
-        Me.GVSummaryScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoSmr, Me.GridColumnIdProductSmr, Me.GridColumnProductCodeSmr, Me.GridColumnScannedCodeSMR, Me.GridColumnNameSMR, Me.GridColumnSizeSMR, Me.GridColumnQtySMR, Me.GridColumnpriceSMR, Me.GridColumnAmountSMR, Me.GridColumnNumberSmr, Me.GridColumnRemarkSmr})
+        Me.GVSummaryScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoSmr, Me.GridColumnIdProductSmr, Me.GridColumnProductCodeSmr, Me.GridColumnScannedCodeSMR, Me.GridColumnNameSMR, Me.GridColumnSizeSMR, Me.GridColumnQtySMR, Me.GridColumnpriceSMR, Me.GridColumnAmountSMR, Me.GridColumnNumberSmr, Me.GridColumnRemarkSmr, Me.GridColumnType})
         Me.GVSummaryScan.GridControl = Me.GCSummaryScan
         Me.GVSummaryScan.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQtySMR, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmountSMR, "{0:N0}")})
         Me.GVSummaryScan.Name = "GVSummaryScan"
@@ -490,7 +491,7 @@ Partial Class FormStockTakeList
         Me.GridColumnQtySMR.Name = "GridColumnQtySMR"
         Me.GridColumnQtySMR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumnQtySMR.Visible = True
-        Me.GridColumnQtySMR.VisibleIndex = 7
+        Me.GridColumnQtySMR.VisibleIndex = 8
         Me.GridColumnQtySMR.Width = 76
         '
         'GridColumnpriceSMR
@@ -501,7 +502,7 @@ Partial Class FormStockTakeList
         Me.GridColumnpriceSMR.FieldName = "design_price"
         Me.GridColumnpriceSMR.Name = "GridColumnpriceSMR"
         Me.GridColumnpriceSMR.Visible = True
-        Me.GridColumnpriceSMR.VisibleIndex = 8
+        Me.GridColumnpriceSMR.VisibleIndex = 9
         Me.GridColumnpriceSMR.Width = 102
         '
         'GridColumnAmountSMR
@@ -515,7 +516,7 @@ Partial Class FormStockTakeList
         Me.GridColumnAmountSMR.UnboundExpression = "[qty] * [design_price]"
         Me.GridColumnAmountSMR.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnAmountSMR.Visible = True
-        Me.GridColumnAmountSMR.VisibleIndex = 9
+        Me.GridColumnAmountSMR.VisibleIndex = 10
         Me.GridColumnAmountSMR.Width = 390
         '
         'GridColumnNumberSmr
@@ -609,6 +610,14 @@ Partial Class FormStockTakeList
         Me.RepositoryItemTextEdit2.Name = "RepositoryItemTextEdit2"
         Me.RepositoryItemTextEdit2.NullText = "-"
         '
+        'GridColumnType
+        '
+        Me.GridColumnType.Caption = "Type"
+        Me.GridColumnType.FieldName = "price_type"
+        Me.GridColumnType.Name = "GridColumnType"
+        Me.GridColumnType.Visible = True
+        Me.GridColumnType.VisibleIndex = 7
+        '
         'FormStockTakeList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -694,4 +703,5 @@ Partial Class FormStockTakeList
     Friend WithEvents GridColumnNumberSmr As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnRemarkSmr As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents GridColumnType As DevExpress.XtraGrid.Columns.GridColumn
 End Class

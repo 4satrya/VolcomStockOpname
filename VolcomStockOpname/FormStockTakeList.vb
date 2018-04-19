@@ -23,16 +23,18 @@
     Sub viewSummary()
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT st.id_st_trans,st.st_trans_number, st.remark,std.id_product, d.design_code AS `product_code`, p.product_full_code AS `barcode`, std.name, std.size, 
-        SUM(std.qty) AS `qty`, std.design_price
+        SUM(std.qty) AS `qty`, std.design_price, prct.design_price_type AS `price_type`
         FROM tb_st_trans_det std
         INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
         INNER JOIN tb_m_product p ON p.id_product = std.id_product 
-        INNER JOIN tb_m_design d ON d.id_design = p.id_design "
+        INNER JOIN tb_m_design d ON d.id_design = p.id_design 
+        INNER JOIN tb_m_design_price prc ON prc.id_design_price = std.id_design_price
+        INNER JOIN tb_lookup_design_price_type prct ON prct.id_design_price_type = prc.id_design_price_type "
         query += "WHERE st.id_report_status!=5 AND st.is_combine=2 "
         query += "AND !ISNULL(std.id_product) GROUP BY std.id_product, std.id_st_trans 
         UNION ALL 
         SELECT st.id_st_trans,st.st_trans_number, st.remark,std.id_product, NULL AS `product_code`, std.code AS `barcode`, std.name, std.size, 
-        SUM(std.qty) AS `qty`, std.design_price
+        SUM(std.qty) AS `qty`, std.design_price, '-' AS price_type
         FROM tb_st_trans_det std
         INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans 
         WHERE ISNULL(std.id_product) "

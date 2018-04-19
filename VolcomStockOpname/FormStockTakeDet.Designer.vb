@@ -95,6 +95,7 @@ Partial Class FormStockTakeDet
         Me.GridColumnQtySMR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnpriceSMR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAmountSMR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPrcTyp = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPCondition = New DevExpress.XtraTab.XtraTabPage()
         Me.GCCat = New DevExpress.XtraGrid.GridControl()
         Me.GVCat = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -126,7 +127,7 @@ Partial Class FormStockTakeDet
         Me.BandedGridColumnDiffValue = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnNote = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.GridColumnPrcTyp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CheckEditSale = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -172,6 +173,7 @@ Partial Class FormStockTakeDet
         Me.ContextMenuStripCompare.SuspendLayout()
         CType(Me.BGVCompare, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CheckEditSale.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -705,6 +707,7 @@ Partial Class FormStockTakeDet
         '
         'PanelControlNav
         '
+        Me.PanelControlNav.Controls.Add(Me.CheckEditSale)
         Me.PanelControlNav.Controls.Add(Me.CheckEditNoTag)
         Me.PanelControlNav.Controls.Add(Me.CheckEditReject)
         Me.PanelControlNav.Controls.Add(Me.TxtScan)
@@ -892,6 +895,15 @@ Partial Class FormStockTakeDet
         Me.GridColumnAmountSMR.Visible = True
         Me.GridColumnAmountSMR.VisibleIndex = 8
         Me.GridColumnAmountSMR.Width = 411
+        '
+        'GridColumnPrcTyp
+        '
+        Me.GridColumnPrcTyp.Caption = "Type"
+        Me.GridColumnPrcTyp.FieldName = "price_type"
+        Me.GridColumnPrcTyp.Name = "GridColumnPrcTyp"
+        Me.GridColumnPrcTyp.Visible = True
+        Me.GridColumnPrcTyp.VisibleIndex = 5
+        Me.GridColumnPrcTyp.Width = 65
         '
         'XTPCondition
         '
@@ -1206,14 +1218,13 @@ Partial Class FormStockTakeDet
         Me.RepositoryItemTextEdit3.Name = "RepositoryItemTextEdit3"
         Me.RepositoryItemTextEdit3.NullText = "-"
         '
-        'GridColumnPrcTyp
+        'CheckEditSale
         '
-        Me.GridColumnPrcTyp.Caption = "Type"
-        Me.GridColumnPrcTyp.FieldName = "price_type"
-        Me.GridColumnPrcTyp.Name = "GridColumnPrcTyp"
-        Me.GridColumnPrcTyp.Visible = True
-        Me.GridColumnPrcTyp.VisibleIndex = 5
-        Me.GridColumnPrcTyp.Width = 65
+        Me.CheckEditSale.Location = New System.Drawing.Point(459, 14)
+        Me.CheckEditSale.Name = "CheckEditSale"
+        Me.CheckEditSale.Properties.Caption = "Hide notice for sale product"
+        Me.CheckEditSale.Size = New System.Drawing.Size(156, 19)
+        Me.CheckEditSale.TabIndex = 8906
         '
         'FormStockTakeDet
         '
@@ -1279,6 +1290,7 @@ Partial Class FormStockTakeDet
         Me.ContextMenuStripCompare.ResumeLayout(False)
         CType(Me.BGVCompare, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CheckEditSale.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1389,4 +1401,5 @@ Partial Class FormStockTakeDet
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelFontSize As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GridColumnPrcTyp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CheckEditSale As DevExpress.XtraEditors.CheckEdit
 End Class

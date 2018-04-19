@@ -628,7 +628,7 @@
                     If dt_check.Rows(0)("is_no_stock").ToString = "1" Then
                         err += "- NO STOCK " + System.Environment.NewLine
                     End If
-                    If dt_check.Rows(0)("is_sale").ToString = "1" Then
+                    If dt_check.Rows(0)("is_sale").ToString = "1" And CheckEditSale.EditValue.ToString = "False" Then
                         err += "- PRODUCT SALE " + System.Environment.NewLine
                     End If
                     If is_unique_not_found = "1" Then

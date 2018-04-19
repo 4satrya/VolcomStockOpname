@@ -39,7 +39,7 @@
         INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans 
         WHERE ISNULL(std.id_product) "
         query += "AND st.id_report_status!=5 AND st.is_combine=2 "
-        query += "GROUP BY std.id_st_trans_det, std.id_st_trans  
+        query += "GROUP BY std.code, std.id_st_trans  
         ORDER BY id_st_trans ASC,barcode ASC, product_code ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSummaryScan.DataSource = data

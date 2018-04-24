@@ -103,6 +103,8 @@ Partial Public Class ReportScan
         Me.LabelApp = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableRow9 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.LabelAppPosition = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand()
+        Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCScan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVScan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -115,7 +117,7 @@ Partial Public Class ReportScan
         'Detail
         '
         Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.WinControlContainer1})
-        Me.Detail.HeightF = 303.7084!
+        Me.Detail.HeightF = 298.5001!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -124,7 +126,7 @@ Partial Public Class ReportScan
         '
         Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(727.0001!, 303.7084!)
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(727.0001!, 274.5417!)
         Me.WinControlContainer1.WinControl = Me.GCScan
         '
         'GCScan
@@ -133,7 +135,7 @@ Partial Public Class ReportScan
         Me.GCScan.MainView = Me.GVScan
         Me.GCScan.Name = "GCScan"
         Me.GCScan.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCScan.Size = New System.Drawing.Size(698, 292)
+        Me.GCScan.Size = New System.Drawing.Size(698, 264)
         Me.GCScan.TabIndex = 1
         Me.GCScan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScan})
         '
@@ -395,7 +397,7 @@ Partial Public Class ReportScan
         '
         'BottomMargin
         '
-        Me.BottomMargin.HeightF = 26.0!
+        Me.BottomMargin.HeightF = 38.50002!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -882,10 +884,23 @@ Partial Public Class ReportScan
         Me.LabelAppPosition.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.LabelAppPosition.Weight = 1.0R
         '
+        'PageFooter
+        '
+        Me.PageFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel14})
+        Me.PageFooter.HeightF = 23.95833!
+        Me.PageFooter.Name = "PageFooter"
+        '
+        'XrLabel14
+        '
+        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel14.Name = "XrLabel14"
+        Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel14.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
+        '
         'ReportScan
         '
-        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageHeader, Me.ReportFooter})
-        Me.Margins = New System.Drawing.Printing.Margins(47, 53, 25, 26)
+        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageHeader, Me.ReportFooter, Me.PageFooter})
+        Me.Margins = New System.Drawing.Printing.Margins(47, 53, 25, 39)
         Me.PageHeight = 1169
         Me.PageWidth = 827
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
@@ -984,4 +999,6 @@ Partial Public Class ReportScan
     Friend WithEvents XrTableRow10 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell5 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents LabelRemark As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents PageFooter As DevExpress.XtraReports.UI.PageFooterBand
+    Friend WithEvents XrLabel14 As DevExpress.XtraReports.UI.XRLabel
 End Class

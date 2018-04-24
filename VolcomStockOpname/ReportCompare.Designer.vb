@@ -93,6 +93,8 @@ Partial Public Class ReportCompare
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
+        Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand()
+        Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCCompare, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BGVCompare, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -103,7 +105,7 @@ Partial Public Class ReportCompare
         'Detail
         '
         Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.WinControlContainer1})
-        Me.Detail.HeightF = 188.5417!
+        Me.Detail.HeightF = 175.0!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -112,7 +114,7 @@ Partial Public Class ReportCompare
         '
         Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(750.0001!, 188.5417!)
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(750.0001!, 155.2084!)
         Me.WinControlContainer1.WinControl = Me.GCCompare
         '
         'GCCompare
@@ -120,7 +122,7 @@ Partial Public Class ReportCompare
         Me.GCCompare.Location = New System.Drawing.Point(0, 0)
         Me.GCCompare.MainView = Me.BGVCompare
         Me.GCCompare.Name = "GCCompare"
-        Me.GCCompare.Size = New System.Drawing.Size(720, 181)
+        Me.GCCompare.Size = New System.Drawing.Size(720, 149)
         Me.GCCompare.TabIndex = 0
         Me.GCCompare.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVCompare})
         '
@@ -318,7 +320,7 @@ Partial Public Class ReportCompare
         '
         'BottomMargin
         '
-        Me.BottomMargin.HeightF = 24.0!
+        Me.BottomMargin.HeightF = 35.79566!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -326,7 +328,7 @@ Partial Public Class ReportCompare
         'ReportFooter
         '
         Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable2, Me.XrTable1, Me.XrTable3})
-        Me.ReportFooter.HeightF = 151.0417!
+        Me.ReportFooter.HeightF = 127.4355!
         Me.ReportFooter.Name = "ReportFooter"
         '
         'XrTable2
@@ -762,10 +764,23 @@ Partial Public Class ReportCompare
         Me.XrPictureBox1.Name = "XrPictureBox1"
         Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(215.625!, 42.79167!)
         '
+        'PageFooter
+        '
+        Me.PageFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel14})
+        Me.PageFooter.HeightF = 23.95833!
+        Me.PageFooter.Name = "PageFooter"
+        '
+        'XrLabel14
+        '
+        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel14.Name = "XrLabel14"
+        Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
+        Me.XrLabel14.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
+        '
         'ReportCompare
         '
-        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportFooter, Me.PageHeader})
-        Me.Margins = New System.Drawing.Printing.Margins(50, 27, 27, 24)
+        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportFooter, Me.PageHeader, Me.PageFooter})
+        Me.Margins = New System.Drawing.Printing.Margins(50, 27, 27, 36)
         Me.PageHeight = 1169
         Me.PageWidth = 827
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
@@ -852,4 +867,6 @@ Partial Public Class ReportCompare
     Friend WithEvents LabelNo As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel13 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel12 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents PageFooter As DevExpress.XtraReports.UI.PageFooterBand
+    Friend WithEvents XrLabel14 As DevExpress.XtraReports.UI.XRLabel
 End Class

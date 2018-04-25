@@ -24,6 +24,7 @@ Partial Class FormLogin
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TxtPass = New DevExpress.XtraEditors.TextEdit()
         Me.BtnLogin = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnReset = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.TxtUsername.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtPass.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -75,19 +76,36 @@ Partial Class FormLogin
         Me.BtnLogin.Appearance.Options.UseBackColor = True
         Me.BtnLogin.Appearance.Options.UseFont = True
         Me.BtnLogin.Appearance.Options.UseForeColor = True
-        Me.BtnLogin.Location = New System.Drawing.Point(299, 126)
+        Me.BtnLogin.Location = New System.Drawing.Point(24, 121)
         Me.BtnLogin.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BtnLogin.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnLogin.Name = "BtnLogin"
-        Me.BtnLogin.Size = New System.Drawing.Size(63, 24)
+        Me.BtnLogin.Size = New System.Drawing.Size(338, 24)
         Me.BtnLogin.TabIndex = 4
         Me.BtnLogin.Text = "Login"
+        '
+        'BtnReset
+        '
+        Me.BtnReset.Appearance.BackColor = System.Drawing.Color.Crimson
+        Me.BtnReset.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnReset.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnReset.Appearance.Options.UseBackColor = True
+        Me.BtnReset.Appearance.Options.UseFont = True
+        Me.BtnReset.Appearance.Options.UseForeColor = True
+        Me.BtnReset.Location = New System.Drawing.Point(24, 151)
+        Me.BtnReset.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnReset.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnReset.Name = "BtnReset"
+        Me.BtnReset.Size = New System.Drawing.Size(338, 24)
+        Me.BtnReset.TabIndex = 5
+        Me.BtnReset.Text = "Reset to Default Setting"
         '
         'FormLogin
         '
         Me.Appearance.Options.UseFont = True
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(388, 174)
+        Me.ClientSize = New System.Drawing.Size(388, 197)
+        Me.Controls.Add(Me.BtnReset)
         Me.Controls.Add(Me.BtnLogin)
         Me.Controls.Add(Me.TxtPass)
         Me.Controls.Add(Me.Label2)
@@ -117,4 +135,5 @@ Partial Class FormLogin
     Friend WithEvents Label2 As Label
     Friend WithEvents TxtPass As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BtnLogin As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnReset As DevExpress.XtraEditors.SimpleButton
 End Class

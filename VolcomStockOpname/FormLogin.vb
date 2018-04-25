@@ -67,7 +67,8 @@
                 End If
                 Cursor = Cursors.Default
             Catch ex As Exception
-                stopCustom(ex.ToString)
+                FormDatabase.showx = True
+                FormDatabase.ShowDialog()
             End Try
         End If
     End Sub

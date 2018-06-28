@@ -56,4 +56,12 @@
     Private Sub BtnRefresh_Click(sender As Object, e As EventArgs) Handles BtnRefresh.Click
         viewScan()
     End Sub
+
+    Private Sub GVScan_DoubleClick(sender As Object, e As EventArgs) Handles GVScan.DoubleClick
+        If GVScan.RowCount > 0 And GVScan.FocusedRowHandle >= 0 Then
+            FormVerStockTakeDet.action = "upd"
+            FormVerStockTakeDet.id_st_trans_ver = GVScan.GetFocusedRowCellValue("id_st_trans_ver").ToString
+            FormVerStockTakeDet.ShowDialog()
+        End If
+    End Sub
 End Class

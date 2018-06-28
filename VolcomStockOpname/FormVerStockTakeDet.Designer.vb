@@ -19,11 +19,16 @@ Partial Class FormVerStockTakeDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormVerStockTakeDet))
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.MERemark = New DevExpress.XtraEditors.MemoEdit()
         Me.PanelControlTopLeft = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtRemarkRef = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtNumbrRef = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.DECreated = New DevExpress.XtraEditors.DateEdit()
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
@@ -64,6 +69,7 @@ Partial Class FormVerStockTakeDet
         Me.GridColumnIsUniqueCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdTransDet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOK = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIsMatch = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnReject = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnproductStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIniqueNotFound = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -72,6 +78,7 @@ Partial Class FormVerStockTakeDet
         Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRefNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnDelAll = New DevExpress.XtraEditors.SimpleButton()
         Me.CheckEditSale = New DevExpress.XtraEditors.CheckEdit()
         Me.CheckEditNoTag = New DevExpress.XtraEditors.CheckEdit()
         Me.CheckEditReject = New DevExpress.XtraEditors.CheckEdit()
@@ -122,14 +129,18 @@ Partial Class FormVerStockTakeDet
         Me.BandedGridColumnDiffValue = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnNote = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.ContextMenuStripCompare = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.SetQtyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteItemToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopLeft.SuspendLayout()
+        CType(Me.TxtRemarkRef.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtNumbrRef.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -169,7 +180,8 @@ Partial Class FormVerStockTakeDet
         CType(Me.GCCompare, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BGVCompare, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStripCompare.SuspendLayout()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -183,7 +195,7 @@ Partial Class FormVerStockTakeDet
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(1042, 106)
+        Me.GroupControl1.Size = New System.Drawing.Size(1042, 135)
         Me.GroupControl1.TabIndex = 1
         '
         'LabelControl6
@@ -204,8 +216,10 @@ Partial Class FormVerStockTakeDet
         'PanelControlTopLeft
         '
         Me.PanelControlTopLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopLeft.Controls.Add(Me.LabelControl11)
+        Me.PanelControlTopLeft.Controls.Add(Me.TxtRemarkRef)
         Me.PanelControlTopLeft.Controls.Add(Me.LabelControl10)
-        Me.PanelControlTopLeft.Controls.Add(Me.TextEdit1)
+        Me.PanelControlTopLeft.Controls.Add(Me.TxtNumbrRef)
         Me.PanelControlTopLeft.Controls.Add(Me.LabelControl3)
         Me.PanelControlTopLeft.Controls.Add(Me.DECreated)
         Me.PanelControlTopLeft.Controls.Add(Me.TxtNumber)
@@ -213,12 +227,44 @@ Partial Class FormVerStockTakeDet
         Me.PanelControlTopLeft.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControlTopLeft.Location = New System.Drawing.Point(755, 2)
         Me.PanelControlTopLeft.Name = "PanelControlTopLeft"
-        Me.PanelControlTopLeft.Size = New System.Drawing.Size(285, 102)
+        Me.PanelControlTopLeft.Size = New System.Drawing.Size(285, 131)
         Me.PanelControlTopLeft.TabIndex = 8903
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Location = New System.Drawing.Point(14, 61)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(50, 13)
+        Me.LabelControl11.TabIndex = 8909
+        Me.LabelControl11.Text = "Reference"
+        '
+        'TxtRemarkRef
+        '
+        Me.TxtRemarkRef.Enabled = False
+        Me.TxtRemarkRef.Location = New System.Drawing.Point(97, 58)
+        Me.TxtRemarkRef.Name = "TxtRemarkRef"
+        Me.TxtRemarkRef.Size = New System.Drawing.Size(173, 20)
+        Me.TxtRemarkRef.TabIndex = 8908
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Location = New System.Drawing.Point(14, 38)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(61, 13)
+        Me.LabelControl10.TabIndex = 8907
+        Me.LabelControl10.Text = "Ref. Number"
+        '
+        'TxtNumbrRef
+        '
+        Me.TxtNumbrRef.Enabled = False
+        Me.TxtNumbrRef.Location = New System.Drawing.Point(97, 35)
+        Me.TxtNumbrRef.Name = "TxtNumbrRef"
+        Me.TxtNumbrRef.Size = New System.Drawing.Size(173, 20)
+        Me.TxtNumbrRef.TabIndex = 8906
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(14, 64)
+        Me.LabelControl3.Location = New System.Drawing.Point(14, 87)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(65, 13)
         Me.LabelControl3.TabIndex = 8905
@@ -228,7 +274,7 @@ Partial Class FormVerStockTakeDet
         '
         Me.DECreated.EditValue = Nothing
         Me.DECreated.Enabled = False
-        Me.DECreated.Location = New System.Drawing.Point(97, 61)
+        Me.DECreated.Location = New System.Drawing.Point(97, 84)
         Me.DECreated.Name = "DECreated"
         Me.DECreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DECreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -397,9 +443,9 @@ Partial Class FormVerStockTakeDet
         Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControl3.Controls.Add(Me.XTCStockTake)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 106)
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 135)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(1042, 432)
+        Me.GroupControl3.Size = New System.Drawing.Size(1042, 403)
         Me.GroupControl3.TabIndex = 3
         Me.GroupControl3.Text = " "
         '
@@ -409,7 +455,7 @@ Partial Class FormVerStockTakeDet
         Me.XTCStockTake.Location = New System.Drawing.Point(20, 2)
         Me.XTCStockTake.Name = "XTCStockTake"
         Me.XTCStockTake.SelectedTabPage = Me.XTPScan
-        Me.XTCStockTake.Size = New System.Drawing.Size(1020, 428)
+        Me.XTCStockTake.Size = New System.Drawing.Size(1020, 399)
         Me.XTCStockTake.TabIndex = 0
         Me.XTCStockTake.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScan, Me.XTPSummary, Me.XTPCondition, Me.XTPCompare})
         '
@@ -418,23 +464,24 @@ Partial Class FormVerStockTakeDet
         Me.XTPScan.Controls.Add(Me.GCScan)
         Me.XTPScan.Controls.Add(Me.PanelControlNav)
         Me.XTPScan.Name = "XTPScan"
-        Me.XTPScan.Size = New System.Drawing.Size(1014, 400)
+        Me.XTPScan.Size = New System.Drawing.Size(1014, 371)
         Me.XTPScan.Text = "Scan Result"
         '
         'GCScan
         '
+        Me.GCScan.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCScan.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCScan.Location = New System.Drawing.Point(0, 46)
         Me.GCScan.MainView = Me.GVScan
         Me.GCScan.Name = "GCScan"
         Me.GCScan.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCScan.Size = New System.Drawing.Size(1014, 354)
+        Me.GCScan.Size = New System.Drawing.Size(1014, 325)
         Me.GCScan.TabIndex = 1
         Me.GCScan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScan})
         '
         'GVScan
         '
-        Me.GVScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnDescription, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnNoStock, Me.GridColumnNoMaster, Me.GridColumnSale, Me.GridColumnIdPrice, Me.GridColumnIdProduct, Me.GridColumnIsUniqueCode, Me.GridColumnIdTransDet, Me.GridColumnOK, Me.GridColumnReject, Me.GridColumnproductStatus, Me.GridColumnIniqueNotFound, Me.GridColumnNoTag, Me.GridColumnPrcType, Me.GridColumnRemark, Me.GridColumnRefNumber})
+        Me.GVScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnDescription, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnNoStock, Me.GridColumnNoMaster, Me.GridColumnSale, Me.GridColumnIdPrice, Me.GridColumnIdProduct, Me.GridColumnIsUniqueCode, Me.GridColumnIdTransDet, Me.GridColumnOK, Me.GridColumnIsMatch, Me.GridColumnReject, Me.GridColumnproductStatus, Me.GridColumnIniqueNotFound, Me.GridColumnNoTag, Me.GridColumnPrcType, Me.GridColumnRemark, Me.GridColumnRefNumber})
         Me.GVScan.GridControl = Me.GCScan
         Me.GVScan.Name = "GVScan"
         Me.GVScan.OptionsBehavior.AutoExpandAllGroups = True
@@ -532,7 +579,7 @@ Partial Class FormVerStockTakeDet
         Me.GridColumnNoStock.Name = "GridColumnNoStock"
         Me.GridColumnNoStock.OptionsColumn.AllowEdit = False
         Me.GridColumnNoStock.Visible = True
-        Me.GridColumnNoStock.VisibleIndex = 10
+        Me.GridColumnNoStock.VisibleIndex = 11
         Me.GridColumnNoStock.Width = 78
         '
         'RepositoryItemCheckEdit1
@@ -552,7 +599,7 @@ Partial Class FormVerStockTakeDet
         Me.GridColumnNoMaster.Name = "GridColumnNoMaster"
         Me.GridColumnNoMaster.OptionsColumn.AllowEdit = False
         Me.GridColumnNoMaster.Visible = True
-        Me.GridColumnNoMaster.VisibleIndex = 15
+        Me.GridColumnNoMaster.VisibleIndex = 16
         Me.GridColumnNoMaster.Width = 67
         '
         'GridColumnSale
@@ -565,7 +612,7 @@ Partial Class FormVerStockTakeDet
         Me.GridColumnSale.Name = "GridColumnSale"
         Me.GridColumnSale.OptionsColumn.AllowEdit = False
         Me.GridColumnSale.Visible = True
-        Me.GridColumnSale.VisibleIndex = 11
+        Me.GridColumnSale.VisibleIndex = 12
         Me.GridColumnSale.Width = 54
         '
         'GridColumnIdPrice
@@ -610,6 +657,17 @@ Partial Class FormVerStockTakeDet
         Me.GridColumnOK.VisibleIndex = 9
         Me.GridColumnOK.Width = 63
         '
+        'GridColumnIsMatch
+        '
+        Me.GridColumnIsMatch.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnIsMatch.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnIsMatch.Caption = "Not Match"
+        Me.GridColumnIsMatch.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.GridColumnIsMatch.FieldName = "is_not_match_v"
+        Me.GridColumnIsMatch.Name = "GridColumnIsMatch"
+        Me.GridColumnIsMatch.Visible = True
+        Me.GridColumnIsMatch.VisibleIndex = 10
+        '
         'GridColumnReject
         '
         Me.GridColumnReject.AppearanceHeader.Options.UseTextOptions = True
@@ -619,7 +677,7 @@ Partial Class FormVerStockTakeDet
         Me.GridColumnReject.FieldName = "is_reject_v"
         Me.GridColumnReject.Name = "GridColumnReject"
         Me.GridColumnReject.Visible = True
-        Me.GridColumnReject.VisibleIndex = 12
+        Me.GridColumnReject.VisibleIndex = 13
         Me.GridColumnReject.Width = 62
         '
         'GridColumnproductStatus
@@ -640,7 +698,7 @@ Partial Class FormVerStockTakeDet
         Me.GridColumnIniqueNotFound.FieldName = "is_unique_not_found_v"
         Me.GridColumnIniqueNotFound.Name = "GridColumnIniqueNotFound"
         Me.GridColumnIniqueNotFound.Visible = True
-        Me.GridColumnIniqueNotFound.VisibleIndex = 14
+        Me.GridColumnIniqueNotFound.VisibleIndex = 15
         Me.GridColumnIniqueNotFound.Width = 122
         '
         'GridColumnNoTag
@@ -654,7 +712,7 @@ Partial Class FormVerStockTakeDet
         Me.GridColumnNoTag.FieldName = "is_no_tag_v"
         Me.GridColumnNoTag.Name = "GridColumnNoTag"
         Me.GridColumnNoTag.Visible = True
-        Me.GridColumnNoTag.VisibleIndex = 13
+        Me.GridColumnNoTag.VisibleIndex = 14
         Me.GridColumnNoTag.Width = 74
         '
         'GridColumnPrcType
@@ -673,7 +731,7 @@ Partial Class FormVerStockTakeDet
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.OptionsColumn.AllowEdit = False
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 17
+        Me.GridColumnRemark.VisibleIndex = 18
         Me.GridColumnRemark.Width = 93
         '
         'GridColumnRefNumber
@@ -682,12 +740,12 @@ Partial Class FormVerStockTakeDet
         Me.GridColumnRefNumber.FieldName = "ref_number"
         Me.GridColumnRefNumber.Name = "GridColumnRefNumber"
         Me.GridColumnRefNumber.Visible = True
-        Me.GridColumnRefNumber.VisibleIndex = 16
+        Me.GridColumnRefNumber.VisibleIndex = 17
         Me.GridColumnRefNumber.Width = 82
         '
         'PanelControlNav
         '
-        Me.PanelControlNav.Controls.Add(Me.SimpleButton1)
+        Me.PanelControlNav.Controls.Add(Me.BtnDelAll)
         Me.PanelControlNav.Controls.Add(Me.CheckEditSale)
         Me.PanelControlNav.Controls.Add(Me.CheckEditNoTag)
         Me.PanelControlNav.Controls.Add(Me.CheckEditReject)
@@ -700,6 +758,16 @@ Partial Class FormVerStockTakeDet
         Me.PanelControlNav.Name = "PanelControlNav"
         Me.PanelControlNav.Size = New System.Drawing.Size(1014, 46)
         Me.PanelControlNav.TabIndex = 0
+        '
+        'BtnDelAll
+        '
+        Me.BtnDelAll.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDelAll.Image = CType(resources.GetObject("BtnDelAll.Image"), System.Drawing.Image)
+        Me.BtnDelAll.Location = New System.Drawing.Point(691, 2)
+        Me.BtnDelAll.Name = "BtnDelAll"
+        Me.BtnDelAll.Size = New System.Drawing.Size(98, 42)
+        Me.BtnDelAll.TabIndex = 8908
+        Me.BtnDelAll.Text = "Delete All"
         '
         'CheckEditSale
         '
@@ -764,7 +832,7 @@ Partial Class FormVerStockTakeDet
         '
         Me.XTPSummary.Controls.Add(Me.GCSummaryScan)
         Me.XTPSummary.Name = "XTPSummary"
-        Me.XTPSummary.Size = New System.Drawing.Size(1014, 409)
+        Me.XTPSummary.Size = New System.Drawing.Size(1014, 371)
         Me.XTPSummary.Text = "Summary By Product"
         '
         'GCSummaryScan
@@ -774,7 +842,7 @@ Partial Class FormVerStockTakeDet
         Me.GCSummaryScan.MainView = Me.GVSummaryScan
         Me.GCSummaryScan.Name = "GCSummaryScan"
         Me.GCSummaryScan.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1})
-        Me.GCSummaryScan.Size = New System.Drawing.Size(1014, 409)
+        Me.GCSummaryScan.Size = New System.Drawing.Size(1014, 371)
         Me.GCSummaryScan.TabIndex = 1
         Me.GCSummaryScan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummaryScan})
         '
@@ -898,7 +966,7 @@ Partial Class FormVerStockTakeDet
         '
         Me.XTPCondition.Controls.Add(Me.GCCat)
         Me.XTPCondition.Name = "XTPCondition"
-        Me.XTPCondition.Size = New System.Drawing.Size(1014, 409)
+        Me.XTPCondition.Size = New System.Drawing.Size(1014, 371)
         Me.XTPCondition.Text = "Summary By Category"
         '
         'GCCat
@@ -908,7 +976,7 @@ Partial Class FormVerStockTakeDet
         Me.GCCat.MainView = Me.GVCat
         Me.GCCat.Name = "GCCat"
         Me.GCCat.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit2})
-        Me.GCCat.Size = New System.Drawing.Size(1014, 409)
+        Me.GCCat.Size = New System.Drawing.Size(1014, 371)
         Me.GCCat.TabIndex = 2
         Me.GCCat.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCat})
         '
@@ -966,7 +1034,7 @@ Partial Class FormVerStockTakeDet
         Me.XTPCompare.Controls.Add(Me.GCCompare)
         Me.XTPCompare.Name = "XTPCompare"
         Me.XTPCompare.PageVisible = False
-        Me.XTPCompare.Size = New System.Drawing.Size(1014, 409)
+        Me.XTPCompare.Size = New System.Drawing.Size(1014, 371)
         Me.XTPCompare.Text = "Compare Stock"
         '
         'GCCompare
@@ -976,7 +1044,7 @@ Partial Class FormVerStockTakeDet
         Me.GCCompare.MainView = Me.BGVCompare
         Me.GCCompare.Name = "GCCompare"
         Me.GCCompare.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit3})
-        Me.GCCompare.Size = New System.Drawing.Size(1014, 409)
+        Me.GCCompare.Size = New System.Drawing.Size(1014, 371)
         Me.GCCompare.TabIndex = 0
         Me.GCCompare.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVCompare})
         '
@@ -1194,31 +1262,35 @@ Partial Class FormVerStockTakeDet
         Me.RepositoryItemTextEdit3.Name = "RepositoryItemTextEdit3"
         Me.RepositoryItemTextEdit3.NullText = "-"
         '
-        'TextEdit1
+        'ContextMenuStripCompare
         '
-        Me.TextEdit1.Enabled = False
-        Me.TextEdit1.Location = New System.Drawing.Point(97, 35)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Size = New System.Drawing.Size(173, 20)
-        Me.TextEdit1.TabIndex = 8906
+        Me.ContextMenuStripCompare.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem})
+        Me.ContextMenuStripCompare.Name = "ContextMenuStripCompare"
+        Me.ContextMenuStripCompare.Size = New System.Drawing.Size(133, 26)
         '
-        'LabelControl10
+        'ViewDetailToolStripMenuItem
         '
-        Me.LabelControl10.Location = New System.Drawing.Point(14, 38)
-        Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(61, 13)
-        Me.LabelControl10.TabIndex = 8907
-        Me.LabelControl10.Text = "Ref. Number"
+        Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
+        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
+        Me.ViewDetailToolStripMenuItem.Text = "View Detail"
         '
-        'SimpleButton1
+        'ContextMenuStrip1
         '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
-        Me.SimpleButton1.Location = New System.Drawing.Point(691, 2)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(98, 42)
-        Me.SimpleButton1.TabIndex = 8908
-        Me.SimpleButton1.Text = "Delete All"
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SetQtyToolStripMenuItem, Me.DeleteItemToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(135, 48)
+        '
+        'SetQtyToolStripMenuItem
+        '
+        Me.SetQtyToolStripMenuItem.Name = "SetQtyToolStripMenuItem"
+        Me.SetQtyToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.SetQtyToolStripMenuItem.Text = "Set Qty"
+        '
+        'DeleteItemToolStripMenuItem
+        '
+        Me.DeleteItemToolStripMenuItem.Name = "DeleteItemToolStripMenuItem"
+        Me.DeleteItemToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DeleteItemToolStripMenuItem.Text = "Delete Item"
         '
         'FormVerStockTakeDet
         '
@@ -1228,10 +1300,12 @@ Partial Class FormVerStockTakeDet
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.GroupControl2)
         Me.Controls.Add(Me.GroupControl1)
+        Me.KeyPreview = True
         Me.MinimizeBox = False
         Me.Name = "FormVerStockTakeDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Stock Take"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
@@ -1239,6 +1313,8 @@ Partial Class FormVerStockTakeDet
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopLeft.ResumeLayout(False)
         Me.PanelControlTopLeft.PerformLayout()
+        CType(Me.TxtRemarkRef.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtNumbrRef.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1281,7 +1357,8 @@ Partial Class FormVerStockTakeDet
         CType(Me.GCCompare, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BGVCompare, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStripCompare.ResumeLayout(False)
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1389,6 +1466,14 @@ Partial Class FormVerStockTakeDet
     Friend WithEvents BandedGridColumnNote As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RepositoryItemTextEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TxtNumbrRef As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BtnDelAll As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TxtRemarkRef As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents ContextMenuStripCompare As ContextMenuStrip
+    Friend WithEvents ViewDetailToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents SetQtyToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DeleteItemToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumnIsMatch As DevExpress.XtraGrid.Columns.GridColumn
 End Class

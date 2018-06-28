@@ -29,6 +29,8 @@ Partial Class FormMain
         Me.NBStock = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBOpt = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBStockTake = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBWHPreST = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBWHST = New DevExpress.XtraNavBar.NavBarItem()
         Me.PCLeft = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControlInfo = New DevExpress.XtraEditors.PanelControl()
         Me.TxtPosition = New DevExpress.XtraEditors.LabelControl()
@@ -57,7 +59,7 @@ Partial Class FormMain
         Me.NBMain.Appearance.Item.Options.UseForeColor = True
         Me.NBMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.NBMain.Groups.AddRange(New DevExpress.XtraNavBar.NavBarGroup() {Me.NBGGeneral})
-        Me.NBMain.Items.AddRange(New DevExpress.XtraNavBar.NavBarItem() {Me.NBExport, Me.NBImport, Me.NBStock, Me.NBStockTake, Me.NBDashboard, Me.NBOpt})
+        Me.NBMain.Items.AddRange(New DevExpress.XtraNavBar.NavBarItem() {Me.NBExport, Me.NBImport, Me.NBStock, Me.NBStockTake, Me.NBDashboard, Me.NBOpt, Me.NBWHPreST, Me.NBWHST})
         Me.NBMain.Location = New System.Drawing.Point(0, 168)
         Me.NBMain.LookAndFeel.SkinName = "DevExpress Dark Style"
         Me.NBMain.LookAndFeel.UseDefaultLookAndFeel = False
@@ -72,8 +74,9 @@ Partial Class FormMain
         '
         Me.NBGGeneral.Caption = "Main Menu"
         Me.NBGGeneral.Expanded = True
-        Me.NBGGeneral.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDashboard), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBExport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBImport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBStock), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBOpt), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBStockTake)})
+        Me.NBGGeneral.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDashboard), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBExport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBImport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBStock), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBOpt), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBStockTake), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBWHPreST), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBWHST)})
         Me.NBGGeneral.Name = "NBGGeneral"
+        Me.NBGGeneral.TopVisibleLinkIndex = 2
         '
         'NBDashboard
         '
@@ -107,9 +110,19 @@ Partial Class FormMain
         '
         'NBStockTake
         '
-        Me.NBStockTake.Caption = "Stock Take"
+        Me.NBStockTake.Caption = "Stocktake"
         Me.NBStockTake.Name = "NBStockTake"
         Me.NBStockTake.SmallImage = CType(resources.GetObject("NBStockTake.SmallImage"), System.Drawing.Image)
+        '
+        'NBWHPreST
+        '
+        Me.NBWHPreST.Caption = "WH Pre Stocktake"
+        Me.NBWHPreST.Name = "NBWHPreST"
+        '
+        'NBWHST
+        '
+        Me.NBWHST.Caption = "WH Stocktake"
+        Me.NBWHST.Name = "NBWHST"
         '
         'PCLeft
         '
@@ -258,4 +271,6 @@ Partial Class FormMain
     Friend WithEvents TxtPosition As DevExpress.XtraEditors.LabelControl
     Friend WithEvents NBDashboard As DevExpress.XtraNavBar.NavBarItem
     Friend WithEvents NBOpt As DevExpress.XtraNavBar.NavBarItem
+    Friend WithEvents NBWHPreST As DevExpress.XtraNavBar.NavBarItem
+    Friend WithEvents NBWHST As DevExpress.XtraNavBar.NavBarItem
 End Class

@@ -12,7 +12,7 @@
         Catch ex As Exception
         End Try
         Dim stake As New ClassStockTake()
-        Dim query As String = stake.queryTransMain("AND st.is_combine=2 AND ISNULL(st.id_combine) AND st.id_report_status!=5 AND st.id_wh_drawer=" + id_wh_drawer + " ", "2")
+        Dim query As String = stake.queryTransMain("AND st.is_combine=2 And st.is_pre=" + FormStockTake.is_pre + " AND ISNULL(st.id_combine) AND st.id_report_status!=5 AND st.id_wh_drawer=" + id_wh_drawer + " ", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCheck.DataSource = data
         GVCheck.FocusedRowHandle = 0

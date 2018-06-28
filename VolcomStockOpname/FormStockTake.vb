@@ -1,6 +1,7 @@
 ﻿Imports MySql.Data.MySqlClient
-
 Public Class FormStockTake
+    Public is_pre As String = "2"
+
     Private Sub BtnNew_Click(sender As Object, e As EventArgs) Handles BtnNew.Click
         Cursor = Cursors.WaitCursor
         FormStockTakeNew.ShowDialog()
@@ -8,6 +9,12 @@ Public Class FormStockTake
     End Sub
 
     Private Sub FormStockTake_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'detail properties
+        If is_pre = "1" Then
+            Text = "Pre Stocktake"
+        Else
+            Text = "Stocktake"
+        End If
         viewScan()
         viewCombine()
     End Sub
@@ -15,7 +22,7 @@ Public Class FormStockTake
     Sub viewScan()
         Cursor = Cursors.WaitCursor
         Dim stake As New ClassStockTake()
-        Dim query As String = stake.queryTransMain("AND st.is_combine=2 ", "2")
+        Dim query As String = stake.queryTransMain("AND st.is_combine=2 AND st.is_pre=" + is_pre + " ", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCScan.DataSource = data
         GVScan.FocusedRowHandle = 0
@@ -26,7 +33,7 @@ Public Class FormStockTake
     Sub viewCombine()
         Cursor = Cursors.WaitCursor
         Dim stake As New ClassStockTake()
-        Dim query As String = stake.queryTransMain("AND st.is_combine=1 ", "2")
+        Dim query As String = stake.queryTransMain("AND st.is_combine=1 AND st.is_pre=" + is_pre + " ", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCombine.DataSource = data
         Cursor = Cursors.Default

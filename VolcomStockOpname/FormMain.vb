@@ -62,6 +62,13 @@
     Private Sub NBStockTake_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBStockTake.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
+            'jika telah terbuka
+            FormStockTake.Close()
+            FormStockTake.Dispose()
+        Catch ex As Exception
+        End Try
+
+        Try
             FormStockTake.MdiParent = Me
             FormStockTake.Show()
             FormStockTake.WindowState = FormWindowState.Maximized
@@ -107,6 +114,39 @@
         Cursor = Cursors.WaitCursor
         Try
             FormOpt.ShowDialog()
+        Catch ex As Exception
+            errorConnection()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBWHPreST_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBWHPreST.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            'jika telah terbuka
+            FormStockTake.Close()
+            FormStockTake.Dispose()
+        Catch ex As Exception
+        End Try
+
+        Try
+            FormStockTake.MdiParent = Me
+            FormStockTake.is_pre = "1"
+            FormStockTake.Show()
+            FormStockTake.WindowState = FormWindowState.Maximized
+            FormStockTake.Focus()
+        Catch ex As Exception
+            errorConnection()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBWHST_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBWHST.LinkClicked
+        Try
+            FormVerStockTake.MdiParent = Me
+            FormVerStockTake.Show()
+            FormVerStockTake.WindowState = FormWindowState.Maximized
+            FormVerStockTake.Focus()
         Catch ex As Exception
             errorConnection()
         End Try

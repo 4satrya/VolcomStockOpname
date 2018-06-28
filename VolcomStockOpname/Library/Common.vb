@@ -130,15 +130,27 @@ Module Common
         Dim header_number_x As String
         header_number_x = ""
 
-        If opt = "1" Then
+        If opt = "1" Then 'stock take
             header_number_x = combine_header_number(st_user_code, Integer.Parse(get_setup_field("st_inc")), 5)
             increase_inc("1")
-        ElseIf opt = "2" Then
-            header_number_x = combine_header_number("IA", Integer.Parse(get_setup_field("st_inc")), 5)
-            increase_inc("1")
-        ElseIf opt = "3" Then
+        ElseIf opt = "2" Then 'stock take combine
+            header_number_x = combine_header_number("IA", Integer.Parse(get_setup_field("stc_inc")), 5)
+            increase_inc("3")
+        ElseIf opt = "3" Then 'file
             header_number_x = combine_header_number("", Integer.Parse(get_setup_field("file_inc")), 0)
             increase_inc("2")
+        ElseIf opt = "4" Then 'WH pre stock take
+            header_number_x = combine_header_number("PS", Integer.Parse(get_setup_field("st_pre_inc")), 5)
+            increase_inc("4")
+        ElseIf opt = "5" Then 'WH pre stock take combine
+            header_number_x = combine_header_number("PSC", Integer.Parse(get_setup_field("st_pre_comb_inc")), 5)
+            increase_inc("5")
+        ElseIf opt = "6" Then 'WH stock take
+            header_number_x = combine_header_number("S", Integer.Parse(get_setup_field("st_ver_inc")), 5)
+            increase_inc("6")
+        ElseIf opt = "7" Then 'WH stock take combine
+            header_number_x = combine_header_number("SC", Integer.Parse(get_setup_field("st_ver_comb_inc")), 5)
+            increase_inc("7")
         End If
 
         Return header_number_x
@@ -148,11 +160,26 @@ Module Common
         Dim query As String
         query = ""
 
-        If opt = "1" Then
+        If opt = "1" Then 'stock take
             query = "UPDATE tb_st_opt SET st_inc=(tb_st_opt.st_inc+1)"
             execute_non_query(query, True, "", "", "", "")
-        ElseIf opt = "2" Then
+        ElseIf opt = "2" Then ' file
             query = "UPDATE tb_st_opt SET file_inc=(tb_st_opt.file_inc+1)"
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf opt = "3" Then 'stock take combine
+            query = "UPDATE tb_st_opt SET stc_inc=(tb_st_opt.stc_inc+1)"
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf opt = "4" Then 'WH pre stock take
+            query = "UPDATE tb_st_opt SET st_pre_inc=(tb_st_opt.st_pre_inc+1)"
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf opt = "5" Then 'WH pre stock take combine
+            query = "UPDATE tb_st_opt SET st_pre_comb_inc=(tb_st_opt.st_pre_comb_inc+1)"
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf opt = "6" Then 'WH stock take
+            query = "UPDATE tb_st_opt SET st_ver_inc=(tb_st_opt.st_ver_inc+1)"
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf opt = "7" Then 'WH stock take combinee
+            query = "UPDATE tb_st_opt SET st_ver_comb_inc=(tb_st_opt.st_ver_comb_inc+1)"
             execute_non_query(query, True, "", "", "", "")
         End If
     End Sub

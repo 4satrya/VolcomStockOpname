@@ -130,6 +130,32 @@
         GCScan.DataSource = data
     End Sub
 
+    Sub viewSummary()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT std.id_product, d.design_code AS `product_code`, p.product_full_code AS `barcode`, std.name, std.size, 
+        SUM(std.qty) AS `qty`, std.design_price, prct.design_price_type AS `price_type`
+        FROM tb_st_trans_ver_det std
+        INNER JOIN tb_st_trans_ver st ON st.id_st_trans_ver = std.id_st_trans_ver
+        INNER JOIN tb_m_product p ON p.id_product = std.id_product 
+        INNER JOIN tb_m_design d ON d.id_design = p.id_design 
+        INNER JOIN tb_m_design_price prc ON prc.id_design_price = std.id_design_price
+        INNER JOIN tb_lookup_design_price_type prct ON prct.id_design_price_type = prc.id_design_price_type "
+        query += "WHERE std.id_st_trans_ver=" + id_st_trans_ver + " "
+        query += "AND !ISNULL(std.id_product) GROUP BY std.id_product 
+        UNION ALL 
+        SELECT std.id_product, NULL AS `product_code`, std.code AS `barcode`, std.name, std.size, 
+        SUM(std.qty) AS `qty`, std.design_price, '-' AS price_type
+        FROM tb_st_trans_ver_det std
+        INNER JOIN tb_st_trans_ver st ON st.id_st_trans_ver = std.id_st_trans_ver 
+        WHERE ISNULL(std.id_product) "
+        query += "AND std.id_st_trans_ver=" + id_st_trans_ver + " "
+        query += "GROUP BY std.code 
+        ORDER BY barcode ASC,product_code ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSummaryScan.DataSource = data
+        Cursor = Cursors.Default
+    End Sub
+
     Sub allow_status()
         If is_combine = "2" Then
             If id_report_status = "5" Or id_report_status = "6" Then
@@ -489,7 +515,7 @@
                     End If
 
                     'insert 
-                    insertDB(is_ok, is_not_match, is_no_stock, is_no_master, is_no_tag, is_sale, is_reject, is_unique_not_found, dm.Rows(0)("id_product").ToString, addSlashes(dm.Rows(0)("code").ToString), addSlashes(dm.Rows(0)("name").ToString), addSlashes(dm.Rows(0)("size").ToString), dm.Rows(0)("id_design_price").ToString, decimalSQL(dm.Rows(0)("design_price").ToString))
+                    insertDB(is_ok, is_not_match, is_no_stock, is_no_master, is_no_tag, is_sale, is_reject, is_unique_not_found, dm.Rows(0)("id_product").ToString, addSlashes(code), addSlashes(dm.Rows(0)("name").ToString), addSlashes(dm.Rows(0)("size").ToString), dm.Rows(0)("id_design_price").ToString, decimalSQL(dm.Rows(0)("design_price").ToString))
                     updatedBy()
                     viewDetail()
                     GVScan.FocusedRowHandle = GVScan.RowCount - 1
@@ -535,7 +561,7 @@
                         End If
 
                         'insert 
-                        insertDB(is_ok, is_not_match, is_no_stock, is_no_master, is_no_tag, is_sale, is_reject, is_unique_not_found, dm.Rows(0)("id_product").ToString, addSlashes(dm.Rows(0)("code").ToString), addSlashes(dm.Rows(0)("name").ToString), addSlashes(dm.Rows(0)("size").ToString), dm.Rows(0)("id_design_price").ToString, decimalSQL(dm.Rows(0)("design_price").ToString))
+                        insertDB(is_ok, is_not_match, is_no_stock, is_no_master, is_no_tag, is_sale, is_reject, is_unique_not_found, dm.Rows(0)("id_product").ToString, addSlashes(code), addSlashes(dm.Rows(0)("name").ToString), addSlashes(dm.Rows(0)("size").ToString), dm.Rows(0)("id_design_price").ToString, decimalSQL(dm.Rows(0)("design_price").ToString))
                         updatedBy()
                         viewDetail()
                         GVScan.FocusedRowHandle = GVScan.RowCount - 1
@@ -545,6 +571,137 @@
                 End If
             Else
                 'gak ketemu cek stok spt pre
+                If CheckEditAllow.EditValue.ToString = "False" Then
+                    stopCustomDialog("Product not found in Pre Stocktake list")
+                    TxtScan.Text = ""
+                    TxtScan.Focus()
+                Else
+                    Dim code_check As String = ""
+                    If code.Length > 12 Then
+                        code_check = code.Substring(0, 12)
+                    Else
+                        code_check = code
+                    End If
+                    'check di master
+                    Dim query_check As String = "SELECT p.id_product, p.product_full_code AS `code`, d.design_code, d.design_display_name AS `name`, cd.code_detail_name AS `size`, d.is_old_design, IFNULL(st.qty,0) AS `qty`,
+                    comp.id_comp_cat,IF(comp.id_comp_cat=5,wtyp.id_wh_type, styp.id_store_type) AS `id_acc_type` , prc.id_design_price, IF(comp.id_store_type=1,IFNULL(fd.design_price,0),IFNULL(prc.design_price,0)) AS `design_price`, prc.id_design_cat, prc.design_cat,
+                    IF(IFNULL(st.qty,0)<=0,'1','2') AS `is_no_stock`, IF((IF(comp.id_comp_cat=5,wtyp.id_wh_type, styp.id_store_type))=1 AND prc.id_design_cat<>1 AND !ISNULL(prc.id_design_price),1,2) AS `is_sale`, '2' AS `is_no_master`
+                    FROM tb_m_product p 
+                    INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+                    INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+                    INNER JOIN tb_m_design d ON d.id_design = p.id_design
+                    LEFT JOIN tb_st_stock st ON st.id_product = p.id_product AND st.id_wh_drawer=" + id_drawer + "
+                    LEFT JOIN tb_m_comp comp ON comp.id_drawer_def = st.id_wh_drawer
+                    LEFT JOIN tb_lookup_store_type styp ON styp.id_store_type = comp.id_store_type
+                    LEFT JOIN tb_lookup_wh_type wtyp ON wtyp.id_wh_type = comp.id_wh_type
+                    LEFT JOIN (
+	                    SELECT id_design, id_design_price, design_price, id_design_cat, design_cat
+	                    FROM (
+		                    SELECT p.id_design, p.id_design_price, p.design_price, pt.design_price_type, cat.id_design_cat, cat.design_cat   
+		                    FROM tb_m_design_price p
+		                    INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = p.id_design_price_type 
+		                    INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = pt.id_design_cat
+		                    WHERE p.design_price_start_date<=DATE(NOW()) AND p.is_active_wh = '1' AND p.is_design_cost='0'
+		                    ORDER BY p.design_price_start_date DESC, p.id_design_price DESC
+	                    ) prc
+	                    GROUP BY id_design
+                    ) prc ON prc.id_design = d.id_design
+                    LEFT JOIN tb_m_design_first_del fd ON fd.id_design = d.id_design AND fd.id_comp = comp.id_comp
+                    WHERE p.product_full_code='" + code_check + "' "
+                    Dim dt_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+                    If dt_check.Rows.Count > 0 Then
+                        'ketemu
+                        Dim code_saved As String = ""
+                        Dim is_unique_not_found As String = "2"
+                        Dim is_12_digit As String = "2"
+                        If dt_check.Rows(0)("is_old_design") = "2" Then 'unique code
+                            code_saved = code
+                            Dim query_u As String = "SELECT IF(COUNT(*)>0,'2','1') AS `is_found` 
+                        FROM tb_st_unique u
+                        INNER JOIN tb_m_comp c ON c.id_comp = u.id_comp AND c.id_drawer_def=" + id_drawer + "
+                        WHERE u.unique_code='" + code + "' "
+                            is_unique_not_found = execute_query(query_u, 0, True, "", "", "", "")
+
+                            'CHECK DUPLICATE
+                            makeSafeGV(GVScan)
+                            GVScan.ActiveFilterString = "[code]='" + code + "' "
+                            If GVScan.RowCount > 0 Then
+                                stopCustomDialog("Duplicate scan !")
+                                makeSafeGV(GVScan)
+                                GVScan.FocusedRowHandle = GVScan.RowCount - 1
+                                TxtScan.Text = ""
+                                TxtScan.Focus()
+                                Exit Sub
+                            Else
+                                makeSafeGV(GVScan)
+                            End If
+                        ElseIf dt_check.Rows(0)("is_old_design") = "3" Then 'unique code peralihan
+                            code_saved = code
+                        Else '
+                            code_saved = code
+                            If code.Length > 12 Then 'jika tidak 12 digit dicek duplikat
+                                is_12_digit = "2"
+                                makeSafeGV(GVScan)
+                                GVScan.ActiveFilterString = "[code]='" + code + "' "
+                                If GVScan.RowCount > 0 Then
+                                    stopCustomDialog("Duplicate scan !")
+                                    makeSafeGV(GVScan)
+                                    GVScan.FocusedRowHandle = GVScan.RowCount - 1
+                                    TxtScan.Text = ""
+                                    TxtScan.Focus()
+                                    Exit Sub
+                                Else
+                                    makeSafeGV(GVScan)
+                                End If
+                            Else
+                                is_12_digit = "1"
+                            End If
+                        End If
+
+                        'temporary krn pake BOF
+                        If is_12_digit = "1" Then
+                            stopCustomDialog("SCAN BARCODE 12 DIGIT ")
+                        End If
+
+                        'check status
+                        Dim is_ok As String = "2"
+                        Dim err_head As String = "PROBLEM PRODUCT : " + System.Environment.NewLine
+                        Dim err As String = ""
+                        err += "- PRODUCT NOT MATCH " + System.Environment.NewLine
+                        If dt_check.Rows(0)("is_no_stock").ToString = "1" Then
+                            err += "- NO STOCK " + System.Environment.NewLine
+                        End If
+                        If dt_check.Rows(0)("is_sale").ToString = "1" And CheckEditSale.EditValue.ToString = "False" Then
+                            err += "- PRODUCT SALE " + System.Environment.NewLine
+                        End If
+                        If is_unique_not_found = "1" Then
+                            err += "- UNIQUE CODE NOT FOUND " + System.Environment.NewLine
+                        End If
+                        If err <> "" Then
+                            stopCustomDialog(err_head + err)
+                        End If
+
+                        'insert 
+                        insertDB(is_ok, "1", dt_check.Rows(0)("is_no_stock").ToString, "2", is_no_tag, dt_check.Rows(0)("is_sale").ToString, is_reject, is_unique_not_found, dt_check.Rows(0)("id_product").ToString, addSlashes(code_saved), addSlashes(dt_check.Rows(0)("name").ToString), addSlashes(dt_check.Rows(0)("size").ToString), dt_check.Rows(0)("id_design_price").ToString, decimalSQL(dt_check.Rows(0)("design_price").ToString))
+                        updatedBy()
+                        viewDetail()
+                        GVScan.FocusedRowHandle = GVScan.RowCount - 1
+                        TxtScan.Text = ""
+                        TxtScan.Focus()
+                    Else
+                        If is_record_unreg = "2" Then
+                            stopCustomDialog("PRODUCT NOT FOUND IN MASTER LIST !")
+                            TxtScan.Text = ""
+                            TxtScan.Focus()
+                        Else
+                            stopCustomDialog("PRODUCT NOT FOUND IN MASTER LIST !")
+                            FormStockTakeFaik.id_pop_up = "1"
+                            FormStockTakeFaik.ShowDialog()
+                            TxtScan.Text = ""
+                            TxtScan.Focus()
+                        End If
+                    End If
+                End If
             End If
         End If
     End Sub
@@ -565,15 +722,16 @@
         If XTCStockTake.SelectedTabPageIndex = 0 Then
             viewDetail()
             PanelFontSize.Visible = False
-            'ElseIf XTCStockTake.SelectedTabPageIndex = 1 Then
-            '    viewSummary()
-            '    GVScan.ActiveFilterString = ""
-            '    PanelFontSize.Visible = False
-            'ElseIf XTCStockTake.SelectedTabPageIndex = 2 Then
+        ElseIf XTCStockTake.SelectedTabPageIndex = 1 Then
+        ElseIf XTCStockTake.SelectedTabPageIndex = 2 Then
+            viewSummary()
+            GVScan.ActiveFilterString = ""
+            PanelFontSize.Visible = False
+        ElseIf XTCStockTake.SelectedTabPageIndex = 3 Then
             '    viewSummaryCat()
             '    GVScan.ActiveFilterString = ""
             '    PanelFontSize.Visible = False
-            'ElseIf XTCStockTake.SelectedTabPageIndex = 3 Then
+        ElseIf XTCStockTake.SelectedTabPageIndex = 4 Then
             '    viewCompare()
             '    GVScan.ActiveFilterString = ""
             '    PanelFontSize.Visible = True
@@ -605,11 +763,18 @@
     Private Sub SetQtyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetQtyToolStripMenuItem.Click
         Cursor = Cursors.WaitCursor
         If GVScan.RowCount > 0 And GVScan.FocusedRowHandle >= 0 And GVScan.GetFocusedRowCellValue("design_price") = 0 Then
+            FormStockTakeDetQty.id_pop_up = "1"
             FormStockTakeDetQty.id_detail = GVScan.GetFocusedRowCellValue("id_st_trans_ver_det").ToString
             FormStockTakeDetQty.ShowDialog()
             TxtScan.Text = ""
             TxtScan.Focus()
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVSummaryScan_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVSummaryScan.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
     End Sub
 End Class

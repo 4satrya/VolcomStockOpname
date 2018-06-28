@@ -134,6 +134,8 @@ Partial Class FormVerStockTakeDet
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SetQtyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteItemToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CheckEditAllow = New DevExpress.XtraEditors.CheckEdit()
+        Me.XTPScanCompare = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -182,6 +184,7 @@ Partial Class FormVerStockTakeDet
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStripCompare.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
+        CType(Me.CheckEditAllow.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -457,7 +460,7 @@ Partial Class FormVerStockTakeDet
         Me.XTCStockTake.SelectedTabPage = Me.XTPScan
         Me.XTCStockTake.Size = New System.Drawing.Size(1020, 399)
         Me.XTCStockTake.TabIndex = 0
-        Me.XTCStockTake.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScan, Me.XTPSummary, Me.XTPCondition, Me.XTPCompare})
+        Me.XTCStockTake.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScan, Me.XTPScanCompare, Me.XTPSummary, Me.XTPCondition, Me.XTPCompare})
         '
         'XTPScan
         '
@@ -745,6 +748,7 @@ Partial Class FormVerStockTakeDet
         '
         'PanelControlNav
         '
+        Me.PanelControlNav.Controls.Add(Me.CheckEditAllow)
         Me.PanelControlNav.Controls.Add(Me.BtnDelAll)
         Me.PanelControlNav.Controls.Add(Me.CheckEditSale)
         Me.PanelControlNav.Controls.Add(Me.CheckEditNoTag)
@@ -771,7 +775,7 @@ Partial Class FormVerStockTakeDet
         '
         'CheckEditSale
         '
-        Me.CheckEditSale.Location = New System.Drawing.Point(459, 14)
+        Me.CheckEditSale.Location = New System.Drawing.Point(308, 24)
         Me.CheckEditSale.Name = "CheckEditSale"
         Me.CheckEditSale.Properties.Caption = "Hide notice for sale product"
         Me.CheckEditSale.Size = New System.Drawing.Size(156, 19)
@@ -779,7 +783,7 @@ Partial Class FormVerStockTakeDet
         '
         'CheckEditNoTag
         '
-        Me.CheckEditNoTag.Location = New System.Drawing.Point(401, 14)
+        Me.CheckEditNoTag.Location = New System.Drawing.Point(466, 5)
         Me.CheckEditNoTag.Name = "CheckEditNoTag"
         Me.CheckEditNoTag.Properties.Caption = "No Tag"
         Me.CheckEditNoTag.Size = New System.Drawing.Size(60, 19)
@@ -787,7 +791,7 @@ Partial Class FormVerStockTakeDet
         '
         'CheckEditReject
         '
-        Me.CheckEditReject.Location = New System.Drawing.Point(308, 14)
+        Me.CheckEditReject.Location = New System.Drawing.Point(308, 5)
         Me.CheckEditReject.Name = "CheckEditReject"
         Me.CheckEditReject.Properties.Caption = "Reject Product"
         Me.CheckEditReject.Size = New System.Drawing.Size(98, 19)
@@ -966,6 +970,7 @@ Partial Class FormVerStockTakeDet
         '
         Me.XTPCondition.Controls.Add(Me.GCCat)
         Me.XTPCondition.Name = "XTPCondition"
+        Me.XTPCondition.PageVisible = False
         Me.XTPCondition.Size = New System.Drawing.Size(1014, 371)
         Me.XTPCondition.Text = "Summary By Category"
         '
@@ -1283,14 +1288,28 @@ Partial Class FormVerStockTakeDet
         'SetQtyToolStripMenuItem
         '
         Me.SetQtyToolStripMenuItem.Name = "SetQtyToolStripMenuItem"
-        Me.SetQtyToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.SetQtyToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
         Me.SetQtyToolStripMenuItem.Text = "Set Qty"
         '
         'DeleteItemToolStripMenuItem
         '
         Me.DeleteItemToolStripMenuItem.Name = "DeleteItemToolStripMenuItem"
-        Me.DeleteItemToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DeleteItemToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
         Me.DeleteItemToolStripMenuItem.Text = "Delete Item"
+        '
+        'CheckEditAllow
+        '
+        Me.CheckEditAllow.Location = New System.Drawing.Point(466, 24)
+        Me.CheckEditAllow.Name = "CheckEditAllow"
+        Me.CheckEditAllow.Properties.Caption = "Allow product outside list"
+        Me.CheckEditAllow.Size = New System.Drawing.Size(150, 19)
+        Me.CheckEditAllow.TabIndex = 8909
+        '
+        'XTPScanCompare
+        '
+        Me.XTPScanCompare.Name = "XTPScanCompare"
+        Me.XTPScanCompare.Size = New System.Drawing.Size(1014, 371)
+        Me.XTPScanCompare.Text = "Compare Scan"
         '
         'FormVerStockTakeDet
         '
@@ -1359,6 +1378,7 @@ Partial Class FormVerStockTakeDet
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStripCompare.ResumeLayout(False)
         Me.ContextMenuStrip1.ResumeLayout(False)
+        CType(Me.CheckEditAllow.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1476,4 +1496,6 @@ Partial Class FormVerStockTakeDet
     Friend WithEvents DeleteItemToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumnIsMatch As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CheckEditAllow As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents XTPScanCompare As DevExpress.XtraTab.XtraTabPage
 End Class

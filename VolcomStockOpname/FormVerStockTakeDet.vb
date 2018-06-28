@@ -1,6 +1,7 @@
 ﻿Public Class FormVerStockTakeDet
     Public action As String = ""
     Public id_st_trans_ver As String = "-1"
+    Public id_st_trans As String = "-1"
     Dim is_combine As String = "2"
     Dim id_report_status As String = "-1"
     Dim id_comp As String = "-1'"
@@ -68,6 +69,7 @@
             Dim st As New ClassStockTake
             Dim query As String = st.queryVerTransMain("AND st.id_st_trans_ver='" + id_st_trans_ver + "' ", "1")
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            id_st_trans = data.Rows(0)("id_st_trans").ToString
             SLEWHStockSum.EditValue = data.Rows(0)("id_wh_drawer").ToString
             TxtNumber.Text = data.Rows(0)("st_trans_ver_number").ToString
             TxtNumbrRef.Text = data.Rows(0)("st_trans_number").ToString
@@ -382,7 +384,13 @@
     End Sub
 
     Private Sub BtnDelAll_Click(sender As Object, e As EventArgs) Handles BtnDelAll.Click
-
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to delete all ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = DialogResult.Yes Then
+            Dim query As String = "DELETE FROM tb_st_trans_ver_det WHERE id_st_trans_ver='" + id_st_trans_ver + "' "
+            execute_non_query(query, True, "", "", "", "")
+            updatedBy()
+            viewDetail()
+        End If
     End Sub
 
     Private Sub DeleteItemToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteItemToolStripMenuItem.Click
@@ -439,7 +447,7 @@
 	            WHERE v.id_report_status!=5 
 	            GROUP BY vd.`code`
             ) r ON r.`code` = sd.`code`
-            WHERE sd.id_st_trans=" + id_st_trans_ver + " AND sd.`code`='" + code + "'
+            WHERE sd.id_st_trans=" + id_st_trans + " AND sd.`code`='" + code + "'
             GROUP BY sd.code "
             Dim dm As DataTable = execute_query(qm, -1, True, "", "", "", "")
             If dm.Rows.Count > 0 Then
@@ -481,9 +489,7 @@
                     End If
 
                     'insert 
-                    Dim query_ins As String = "INSERT INTO tb_st_trans_ver_det(id_st_trans_ver, is_ok, is_not_match, is_no_stock, is_no_master, is_no_tag, is_sale, is_reject, is_unique_not_found, id_product, code, name, size, qty, id_design_price, design_price) 
-                    VALUES ('" + id_st_trans_ver + "', '" + is_ok + "','" + is_not_match + "', '" + is_no_stock + "', '" + is_no_master + "', '" + is_no_tag + "', '" + is_sale + "','" + is_reject + "', '" + is_unique_not_found + "', '" + dm.Rows(0)("id_product").ToString + "','" + addSlashes(dm.Rows(0)("code").ToString) + "', '" + addSlashes(dm.Rows(0)("name").ToString) + "','" + addSlashes(dm.Rows(0)("size").ToString) + "', 1, '" + dm.Rows(0)("id_design_price").ToString + "', '" + decimalSQL(dm.Rows(0)("design_price").ToString) + "') "
-                    execute_non_query(query_ins, True, "", "", "", "")
+                    insertDB(is_ok, is_not_match, is_no_stock, is_no_master, is_no_tag, is_sale, is_reject, is_unique_not_found, dm.Rows(0)("id_product").ToString, addSlashes(dm.Rows(0)("code").ToString), addSlashes(dm.Rows(0)("name").ToString), addSlashes(dm.Rows(0)("size").ToString), dm.Rows(0)("id_design_price").ToString, decimalSQL(dm.Rows(0)("design_price").ToString))
                     updatedBy()
                     viewDetail()
                     GVScan.FocusedRowHandle = GVScan.RowCount - 1
@@ -499,6 +505,42 @@
                         Exit Sub
                     Else
                         'masuk & not match
+                        'pengecekan kondisi
+                        Dim is_ok As String = "2"
+                        Dim is_not_match As String = "1"
+                        Dim is_no_stock As String = dm.Rows(0)("is_no_stock").ToString
+                        Dim is_no_master As String = dm.Rows(0)("is_no_master").ToString
+                        Dim is_sale As String = dm.Rows(0)("is_sale").ToString
+                        Dim is_unique_not_found As String = dm.Rows(0)("is_unique_not_found").ToString
+
+                        Dim err_head As String = "PROBLEM PRODUCT : " + System.Environment.NewLine
+                        Dim err As String = ""
+                        If is_not_match = "1" Then
+                            err += "- QTY NOT MATCH " + System.Environment.NewLine
+                        End If
+                        If is_no_stock = "1" Then
+                            err += "- NO STOCK " + System.Environment.NewLine
+                        End If
+                        If is_no_master = "1" Then
+                            err += "- NO MASTER " + System.Environment.NewLine
+                        End If
+                        If is_sale = "1" And CheckEditSale.EditValue.ToString = "False" Then
+                            err += "- PRODUCT SALE " + System.Environment.NewLine
+                        End If
+                        If is_unique_not_found = "1" Then
+                            err += "- UNIQUE CODE NOT FOUND " + System.Environment.NewLine
+                        End If
+                        If err <> "" Then
+                            stopCustomDialog(err_head + err)
+                        End If
+
+                        'insert 
+                        insertDB(is_ok, is_not_match, is_no_stock, is_no_master, is_no_tag, is_sale, is_reject, is_unique_not_found, dm.Rows(0)("id_product").ToString, addSlashes(dm.Rows(0)("code").ToString), addSlashes(dm.Rows(0)("name").ToString), addSlashes(dm.Rows(0)("size").ToString), dm.Rows(0)("id_design_price").ToString, decimalSQL(dm.Rows(0)("design_price").ToString))
+                        updatedBy()
+                        viewDetail()
+                        GVScan.FocusedRowHandle = GVScan.RowCount - 1
+                        TxtScan.Text = ""
+                        TxtScan.Focus()
                     End If
                 End If
             Else
@@ -507,15 +549,11 @@
         End If
     End Sub
 
-    Private Function checkCondition(ByVal is_not_match As String, is_no_stock As String, ByVal is_no_master As String, ByVal is_sale As String, ByVal is_reject As String, ByVal is_unique_not_found As String, ByVal is_no_tag As String)
-        Dim is_ok = ""
-        If is_not_match = "2" And is_no_stock = "2" And is_no_master = "2" And is_sale = "2" And is_reject = "2" And is_unique_not_found = "2" And is_no_tag = "2" Then
-            is_ok = "1"
-        Else
-            is_ok = "2"
-        End If
-        Return is_ok
-    End Function
+    Sub insertDB(ByVal is_ok As String, ByVal is_not_match As String, ByVal is_no_stock As String, ByVal is_no_master As String, ByVal is_no_tag As String, ByVal is_sale As String, ByVal is_reject As String, ByVal is_unique_not_found As String, ByVal id_product As String, ByVal code As String, ByVal name As String, ByVal size As String, ByVal id_design_price As String, ByVal design_price As String)
+        Dim query_ins As String = "INSERT INTO tb_st_trans_ver_det(id_st_trans_ver, is_ok, is_not_match, is_no_stock, is_no_master, is_no_tag, is_sale, is_reject, is_unique_not_found, id_product, code, name, size, qty, id_design_price, design_price) 
+        VALUES ('" + id_st_trans_ver + "', '" + is_ok + "','" + is_not_match + "', '" + is_no_stock + "', '" + is_no_master + "', '" + is_no_tag + "', '" + is_sale + "','" + is_reject + "', '" + is_unique_not_found + "', '" + id_product + "','" + code + "', '" + name + "','" + size + "', 1, '" + id_design_price + "', '" + design_price + "') "
+        execute_non_query(query_ins, True, "", "", "", "")
+    End Sub
 
     Private Sub GVScan_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVScan.CustomColumnDisplayText
         If e.Column.FieldName = "no" Then

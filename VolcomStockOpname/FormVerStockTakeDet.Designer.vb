@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class FormStockTakeDet
+Partial Class FormVerStockTakeDet
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
@@ -19,8 +19,7 @@ Partial Class FormStockTakeDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormStockTakeDet))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormVerStockTakeDet))
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.MERemark = New DevExpress.XtraEditors.MemoEdit()
@@ -48,9 +47,6 @@ Partial Class FormStockTakeDet
         Me.XTCStockTake = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPScan = New DevExpress.XtraTab.XtraTabPage()
         Me.GCScan = New DevExpress.XtraGrid.GridControl()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.SetQtyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DeleteItemToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVScan = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -106,8 +102,6 @@ Partial Class FormStockTakeDet
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.XTPCompare = New DevExpress.XtraTab.XtraTabPage()
         Me.GCCompare = New DevExpress.XtraGrid.GridControl()
-        Me.ContextMenuStripCompare = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BGVCompare = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.gridBandInfo = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnNo = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -128,6 +122,9 @@ Partial Class FormStockTakeDet
         Me.BandedGridColumnDiffValue = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnNote = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -152,7 +149,6 @@ Partial Class FormStockTakeDet
         Me.XTCStockTake.SuspendLayout()
         Me.XTPScan.SuspendLayout()
         CType(Me.GCScan, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVScan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -171,9 +167,9 @@ Partial Class FormStockTakeDet
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPCompare.SuspendLayout()
         CType(Me.GCCompare, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStripCompare.SuspendLayout()
         CType(Me.BGVCompare, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -187,8 +183,8 @@ Partial Class FormStockTakeDet
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(1042, 97)
-        Me.GroupControl1.TabIndex = 0
+        Me.GroupControl1.Size = New System.Drawing.Size(1042, 106)
+        Me.GroupControl1.TabIndex = 1
         '
         'LabelControl6
         '
@@ -208,6 +204,8 @@ Partial Class FormStockTakeDet
         'PanelControlTopLeft
         '
         Me.PanelControlTopLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopLeft.Controls.Add(Me.LabelControl10)
+        Me.PanelControlTopLeft.Controls.Add(Me.TextEdit1)
         Me.PanelControlTopLeft.Controls.Add(Me.LabelControl3)
         Me.PanelControlTopLeft.Controls.Add(Me.DECreated)
         Me.PanelControlTopLeft.Controls.Add(Me.TxtNumber)
@@ -215,12 +213,12 @@ Partial Class FormStockTakeDet
         Me.PanelControlTopLeft.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControlTopLeft.Location = New System.Drawing.Point(755, 2)
         Me.PanelControlTopLeft.Name = "PanelControlTopLeft"
-        Me.PanelControlTopLeft.Size = New System.Drawing.Size(285, 93)
+        Me.PanelControlTopLeft.Size = New System.Drawing.Size(285, 102)
         Me.PanelControlTopLeft.TabIndex = 8903
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(14, 40)
+        Me.LabelControl3.Location = New System.Drawing.Point(14, 64)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(65, 13)
         Me.LabelControl3.TabIndex = 8905
@@ -230,7 +228,7 @@ Partial Class FormStockTakeDet
         '
         Me.DECreated.EditValue = Nothing
         Me.DECreated.Enabled = False
-        Me.DECreated.Location = New System.Drawing.Point(97, 37)
+        Me.DECreated.Location = New System.Drawing.Point(97, 61)
         Me.DECreated.Name = "DECreated"
         Me.DECreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DECreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -295,7 +293,7 @@ Partial Class FormStockTakeDet
         Me.GroupControl2.Location = New System.Drawing.Point(0, 538)
         Me.GroupControl2.Name = "GroupControl2"
         Me.GroupControl2.Size = New System.Drawing.Size(1042, 45)
-        Me.GroupControl2.TabIndex = 1
+        Me.GroupControl2.TabIndex = 2
         '
         'PanelFontSize
         '
@@ -399,10 +397,11 @@ Partial Class FormStockTakeDet
         Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControl3.Controls.Add(Me.XTCStockTake)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 97)
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 106)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(1042, 441)
-        Me.GroupControl3.TabIndex = 2
+        Me.GroupControl3.Size = New System.Drawing.Size(1042, 432)
+        Me.GroupControl3.TabIndex = 3
+        Me.GroupControl3.Text = " "
         '
         'XTCStockTake
         '
@@ -410,7 +409,7 @@ Partial Class FormStockTakeDet
         Me.XTCStockTake.Location = New System.Drawing.Point(20, 2)
         Me.XTCStockTake.Name = "XTCStockTake"
         Me.XTCStockTake.SelectedTabPage = Me.XTPScan
-        Me.XTCStockTake.Size = New System.Drawing.Size(1020, 437)
+        Me.XTCStockTake.Size = New System.Drawing.Size(1020, 428)
         Me.XTCStockTake.TabIndex = 0
         Me.XTCStockTake.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScan, Me.XTPSummary, Me.XTPCondition, Me.XTPCompare})
         '
@@ -419,38 +418,19 @@ Partial Class FormStockTakeDet
         Me.XTPScan.Controls.Add(Me.GCScan)
         Me.XTPScan.Controls.Add(Me.PanelControlNav)
         Me.XTPScan.Name = "XTPScan"
-        Me.XTPScan.Size = New System.Drawing.Size(1014, 409)
+        Me.XTPScan.Size = New System.Drawing.Size(1014, 400)
         Me.XTPScan.Text = "Scan Result"
         '
         'GCScan
         '
-        Me.GCScan.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCScan.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCScan.Location = New System.Drawing.Point(0, 46)
         Me.GCScan.MainView = Me.GVScan
         Me.GCScan.Name = "GCScan"
         Me.GCScan.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCScan.Size = New System.Drawing.Size(1014, 363)
+        Me.GCScan.Size = New System.Drawing.Size(1014, 354)
         Me.GCScan.TabIndex = 1
         Me.GCScan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScan})
-        '
-        'ContextMenuStrip1
-        '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SetQtyToolStripMenuItem, Me.DeleteItemToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(135, 48)
-        '
-        'SetQtyToolStripMenuItem
-        '
-        Me.SetQtyToolStripMenuItem.Name = "SetQtyToolStripMenuItem"
-        Me.SetQtyToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
-        Me.SetQtyToolStripMenuItem.Text = "Set Qty"
-        '
-        'DeleteItemToolStripMenuItem
-        '
-        Me.DeleteItemToolStripMenuItem.Name = "DeleteItemToolStripMenuItem"
-        Me.DeleteItemToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
-        Me.DeleteItemToolStripMenuItem.Text = "Delete Item"
         '
         'GVScan
         '
@@ -707,6 +687,7 @@ Partial Class FormStockTakeDet
         '
         'PanelControlNav
         '
+        Me.PanelControlNav.Controls.Add(Me.SimpleButton1)
         Me.PanelControlNav.Controls.Add(Me.CheckEditSale)
         Me.PanelControlNav.Controls.Add(Me.CheckEditNoTag)
         Me.PanelControlNav.Controls.Add(Me.CheckEditReject)
@@ -990,7 +971,6 @@ Partial Class FormStockTakeDet
         '
         'GCCompare
         '
-        Me.GCCompare.ContextMenuStrip = Me.ContextMenuStripCompare
         Me.GCCompare.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCCompare.Location = New System.Drawing.Point(0, 0)
         Me.GCCompare.MainView = Me.BGVCompare
@@ -999,18 +979,6 @@ Partial Class FormStockTakeDet
         Me.GCCompare.Size = New System.Drawing.Size(1014, 409)
         Me.GCCompare.TabIndex = 0
         Me.GCCompare.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVCompare})
-        '
-        'ContextMenuStripCompare
-        '
-        Me.ContextMenuStripCompare.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem})
-        Me.ContextMenuStripCompare.Name = "ContextMenuStripCompare"
-        Me.ContextMenuStripCompare.Size = New System.Drawing.Size(133, 26)
-        '
-        'ViewDetailToolStripMenuItem
-        '
-        Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
-        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
-        Me.ViewDetailToolStripMenuItem.Text = "View Detail"
         '
         'BGVCompare
         '
@@ -1226,7 +1194,33 @@ Partial Class FormStockTakeDet
         Me.RepositoryItemTextEdit3.Name = "RepositoryItemTextEdit3"
         Me.RepositoryItemTextEdit3.NullText = "-"
         '
-        'FormStockTakeDet
+        'TextEdit1
+        '
+        Me.TextEdit1.Enabled = False
+        Me.TextEdit1.Location = New System.Drawing.Point(97, 35)
+        Me.TextEdit1.Name = "TextEdit1"
+        Me.TextEdit1.Size = New System.Drawing.Size(173, 20)
+        Me.TextEdit1.TabIndex = 8906
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Location = New System.Drawing.Point(14, 38)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(61, 13)
+        Me.LabelControl10.TabIndex = 8907
+        Me.LabelControl10.Text = "Ref. Number"
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
+        Me.SimpleButton1.Location = New System.Drawing.Point(691, 2)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(98, 42)
+        Me.SimpleButton1.TabIndex = 8908
+        Me.SimpleButton1.Text = "Delete All"
+        '
+        'FormVerStockTakeDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -1234,12 +1228,10 @@ Partial Class FormStockTakeDet
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.GroupControl2)
         Me.Controls.Add(Me.GroupControl1)
-        Me.KeyPreview = True
         Me.MinimizeBox = False
-        Me.Name = "FormStockTakeDet"
+        Me.Name = "FormVerStockTakeDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Stock Take "
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        Me.Text = "Stock Take"
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
@@ -1268,7 +1260,6 @@ Partial Class FormStockTakeDet
         Me.XTCStockTake.ResumeLayout(False)
         Me.XTPScan.ResumeLayout(False)
         CType(Me.GCScan, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVScan, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1288,40 +1279,41 @@ Partial Class FormStockTakeDet
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPCompare.ResumeLayout(False)
         CType(Me.GCCompare, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStripCompare.ResumeLayout(False)
         CType(Me.BGVCompare, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents XTCStockTake As DevExpress.XtraTab.XtraTabControl
-    Friend WithEvents XTPScan As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents XTPSummary As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents SLEWHStockSum As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents GridView14 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents MERemark As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents PanelControlTopLeft As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DECreated As DevExpress.XtraEditors.DateEdit
     Friend WithEvents TxtNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents PanelControlNav As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents TxtScan As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents SimpleButton3 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents GCScan As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVScan As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GCSummaryScan As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVSummaryScan As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents SLEWHStockSum As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView14 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents PanelFontSize As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents TxtFontSize As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtApp As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LEAck As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BtnSetStatus As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LEStatus As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents XTCStockTake As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPScan As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCScan As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVScan As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnNo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDescription As DevExpress.XtraGrid.Columns.GridColumn
@@ -1330,76 +1322,73 @@ Partial Class FormStockTakeDet
     Friend WithEvents GridColumnPrice As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnAmount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnNoStock As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumnNoMaster As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSale As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdPrice As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdProduct As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumnIsUniqueCode As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
-    Friend WithEvents DeleteItemToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GridColumnIdTransDet As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnOK As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnReject As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnproductStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIniqueNotFound As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnNoTag As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPrcType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnRemark As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnRefNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControlNav As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CheckEditSale As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents CheckEditNoTag As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents CheckEditReject As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents TxtScan As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SimpleButton3 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents XTPSummary As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCSummaryScan As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVSummaryScan As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnNoSmr As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdProductSmr As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnProductCodeSmr As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents GridColumnScannedCodeSMR As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnNameSMR As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSizeSMR As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQtySMR As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnpriceSMR As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnAmountSMR As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents GridColumnPrcTyp As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XTPCondition As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents XTPCompare As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCCat As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVCat As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents XTPCompare As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCCompare As DevExpress.XtraGrid.GridControl
     Friend WithEvents BGVCompare As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents gridBandInfo As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnNo As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnBarcode As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnCode As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnName As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnSize As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnType As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnPrice As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandVolcomQty As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnSOHQty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnSOHValue As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandStoreQty As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnScanQty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnScanValue As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandKet As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnDiffQty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnDiffValue As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnNote As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents MERemark As DevExpress.XtraEditors.MemoEdit
-    Friend WithEvents CheckEditNoTag As DevExpress.XtraEditors.CheckEdit
-    Friend WithEvents GridColumnNoTag As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnPrcType As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnRemark As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnRefNumber As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LEAck As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TxtApp As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents ContextMenuStripCompare As ContextMenuStrip
-    Friend WithEvents ViewDetailToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents SetQtyToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents gridBandInfo As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BandedGridColumnNo As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandVolcomQty As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBandStoreQty As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBandKet As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents RepositoryItemTextEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
-    Friend WithEvents TxtFontSize As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents PanelFontSize As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents GridColumnPrcTyp As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents CheckEditSale As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
 End Class

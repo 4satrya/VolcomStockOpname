@@ -235,6 +235,18 @@
     <Compile Include="FormVerStockTake.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormVerStockTakeDet.Designer.vb">
+      <DependentUpon>FormVerStockTakeDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormVerStockTakeDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVerStockTakeNew.Designer.vb">
+      <DependentUpon>FormVerStockTakeNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormVerStockTakeNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Library\Common.vb" />
     <Compile Include="Library\Database.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -346,6 +358,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormVerStockTake.resx">
       <DependentUpon>FormVerStockTake.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVerStockTakeDet.resx">
+      <DependentUpon>FormVerStockTakeDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVerStockTakeNew.resx">
+      <DependentUpon>FormVerStockTakeNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">

@@ -38,11 +38,11 @@ Partial Class FormVerStockTake
         Me.GridColumnIdReportStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnImport = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnExport = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnList = New DevExpress.XtraEditors.SimpleButton()
         Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
-        Me.BtnExport = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnImport = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnNew = New DevExpress.XtraEditors.SimpleButton()
         Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
@@ -64,6 +64,7 @@ Partial Class FormVerStockTake
         Me.BtnRefCom = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrintCom = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreateCom = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCStockTake, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStockTake.SuspendLayout()
         Me.XTPScan.SuspendLayout()
@@ -113,7 +114,7 @@ Partial Class FormVerStockTake
         '
         'GVScan
         '
-        Me.GVScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnNumberScan, Me.GridColumnCreatedScan, Me.GridColumnPreparedBy, Me.GridColumnLastUpdate, Me.GridColumnUpdatedBy, Me.GridColumn1, Me.GridColumnComp, Me.GridColumnqty, Me.GridColumnIsSelect, Me.GridColumnIdReportStatus, Me.GridColumnRemark})
+        Me.GVScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnNumberScan, Me.GridColumn11, Me.GridColumnCreatedScan, Me.GridColumnPreparedBy, Me.GridColumnLastUpdate, Me.GridColumnUpdatedBy, Me.GridColumn1, Me.GridColumnComp, Me.GridColumnqty, Me.GridColumnIsSelect, Me.GridColumnIdReportStatus, Me.GridColumnRemark})
         Me.GVScan.GridControl = Me.GCScan
         Me.GVScan.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnqty, "{0:n0}")})
         Me.GVScan.Name = "GVScan"
@@ -132,24 +133,24 @@ Partial Class FormVerStockTake
         'GridColumnNumberScan
         '
         Me.GridColumnNumberScan.Caption = "Number"
-        Me.GridColumnNumberScan.FieldName = "st_trans_number"
+        Me.GridColumnNumberScan.FieldName = "st_trans_ver_number"
         Me.GridColumnNumberScan.Name = "GridColumnNumberScan"
         Me.GridColumnNumberScan.OptionsColumn.AllowEdit = False
         Me.GridColumnNumberScan.Visible = True
         Me.GridColumnNumberScan.VisibleIndex = 0
-        Me.GridColumnNumberScan.Width = 115
+        Me.GridColumnNumberScan.Width = 63
         '
         'GridColumnCreatedScan
         '
         Me.GridColumnCreatedScan.Caption = "Created Date"
         Me.GridColumnCreatedScan.DisplayFormat.FormatString = "dd MMMM yyyy hh:mm tt"
         Me.GridColumnCreatedScan.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnCreatedScan.FieldName = "st_trans_date"
+        Me.GridColumnCreatedScan.FieldName = "st_trans_ver_date"
         Me.GridColumnCreatedScan.Name = "GridColumnCreatedScan"
         Me.GridColumnCreatedScan.OptionsColumn.AllowEdit = False
         Me.GridColumnCreatedScan.Visible = True
-        Me.GridColumnCreatedScan.VisibleIndex = 4
-        Me.GridColumnCreatedScan.Width = 267
+        Me.GridColumnCreatedScan.VisibleIndex = 5
+        Me.GridColumnCreatedScan.Width = 141
         '
         'GridColumnPreparedBy
         '
@@ -158,20 +159,20 @@ Partial Class FormVerStockTake
         Me.GridColumnPreparedBy.Name = "GridColumnPreparedBy"
         Me.GridColumnPreparedBy.OptionsColumn.AllowEdit = False
         Me.GridColumnPreparedBy.Visible = True
-        Me.GridColumnPreparedBy.VisibleIndex = 5
-        Me.GridColumnPreparedBy.Width = 159
+        Me.GridColumnPreparedBy.VisibleIndex = 6
+        Me.GridColumnPreparedBy.Width = 83
         '
         'GridColumnLastUpdate
         '
         Me.GridColumnLastUpdate.Caption = "Last Updated"
         Me.GridColumnLastUpdate.DisplayFormat.FormatString = "dd MMMM yyyy hh:mm tt"
         Me.GridColumnLastUpdate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnLastUpdate.FieldName = "st_trans_updated"
+        Me.GridColumnLastUpdate.FieldName = "st_trans_ver_updated"
         Me.GridColumnLastUpdate.Name = "GridColumnLastUpdate"
         Me.GridColumnLastUpdate.OptionsColumn.AllowEdit = False
         Me.GridColumnLastUpdate.Visible = True
-        Me.GridColumnLastUpdate.VisibleIndex = 6
-        Me.GridColumnLastUpdate.Width = 259
+        Me.GridColumnLastUpdate.VisibleIndex = 7
+        Me.GridColumnLastUpdate.Width = 137
         '
         'GridColumnUpdatedBy
         '
@@ -180,8 +181,8 @@ Partial Class FormVerStockTake
         Me.GridColumnUpdatedBy.Name = "GridColumnUpdatedBy"
         Me.GridColumnUpdatedBy.OptionsColumn.AllowEdit = False
         Me.GridColumnUpdatedBy.Visible = True
-        Me.GridColumnUpdatedBy.VisibleIndex = 7
-        Me.GridColumnUpdatedBy.Width = 120
+        Me.GridColumnUpdatedBy.VisibleIndex = 8
+        Me.GridColumnUpdatedBy.Width = 62
         '
         'GridColumn1
         '
@@ -190,8 +191,8 @@ Partial Class FormVerStockTake
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.OptionsColumn.AllowEdit = False
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 8
-        Me.GridColumn1.Width = 197
+        Me.GridColumn1.VisibleIndex = 9
+        Me.GridColumn1.Width = 104
         '
         'GridColumnComp
         '
@@ -200,8 +201,8 @@ Partial Class FormVerStockTake
         Me.GridColumnComp.Name = "GridColumnComp"
         Me.GridColumnComp.OptionsColumn.AllowEdit = False
         Me.GridColumnComp.Visible = True
-        Me.GridColumnComp.VisibleIndex = 1
-        Me.GridColumnComp.Width = 203
+        Me.GridColumnComp.VisibleIndex = 2
+        Me.GridColumnComp.Width = 107
         '
         'GridColumnqty
         '
@@ -213,8 +214,8 @@ Partial Class FormVerStockTake
         Me.GridColumnqty.OptionsColumn.AllowEdit = False
         Me.GridColumnqty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumnqty.Visible = True
-        Me.GridColumnqty.VisibleIndex = 3
-        Me.GridColumnqty.Width = 58
+        Me.GridColumnqty.VisibleIndex = 4
+        Me.GridColumnqty.Width = 29
         '
         'GridColumnIsSelect
         '
@@ -225,8 +226,8 @@ Partial Class FormVerStockTake
         Me.GridColumnIsSelect.FieldName = "is_select"
         Me.GridColumnIsSelect.Name = "GridColumnIsSelect"
         Me.GridColumnIsSelect.Visible = True
-        Me.GridColumnIsSelect.VisibleIndex = 9
-        Me.GridColumnIsSelect.Width = 70
+        Me.GridColumnIsSelect.VisibleIndex = 10
+        Me.GridColumnIsSelect.Width = 49
         '
         'RepositoryItemCheckEdit1
         '
@@ -247,16 +248,16 @@ Partial Class FormVerStockTake
         Me.GridColumnRemark.FieldName = "remark"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 2
-        Me.GridColumnRemark.Width = 168
+        Me.GridColumnRemark.VisibleIndex = 3
+        Me.GridColumnRemark.Width = 88
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnImport)
+        Me.PanelControl1.Controls.Add(Me.BtnExport)
         Me.PanelControl1.Controls.Add(Me.BtnRefresh)
         Me.PanelControl1.Controls.Add(Me.BtnList)
         Me.PanelControl1.Controls.Add(Me.CheckEdit1)
-        Me.PanelControl1.Controls.Add(Me.BtnExport)
-        Me.PanelControl1.Controls.Add(Me.BtnImport)
         Me.PanelControl1.Controls.Add(Me.BtnPrint)
         Me.PanelControl1.Controls.Add(Me.BtnNew)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
@@ -264,6 +265,28 @@ Partial Class FormVerStockTake
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(867, 42)
         Me.PanelControl1.TabIndex = 1
+        '
+        'BtnImport
+        '
+        Me.BtnImport.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnImport.Image = CType(resources.GetObject("BtnImport.Image"), System.Drawing.Image)
+        Me.BtnImport.Location = New System.Drawing.Point(266, 2)
+        Me.BtnImport.Name = "BtnImport"
+        Me.BtnImport.Size = New System.Drawing.Size(109, 38)
+        Me.BtnImport.TabIndex = 0
+        Me.BtnImport.Text = "Import Data"
+        Me.BtnImport.Visible = False
+        '
+        'BtnExport
+        '
+        Me.BtnExport.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnExport.Image = CType(resources.GetObject("BtnExport.Image"), System.Drawing.Image)
+        Me.BtnExport.Location = New System.Drawing.Point(375, 2)
+        Me.BtnExport.Name = "BtnExport"
+        Me.BtnExport.Size = New System.Drawing.Size(108, 38)
+        Me.BtnExport.TabIndex = 1
+        Me.BtnExport.Text = "Export Data"
+        Me.BtnExport.Visible = False
         '
         'BtnRefresh
         '
@@ -287,31 +310,11 @@ Partial Class FormVerStockTake
         '
         'CheckEdit1
         '
-        Me.CheckEdit1.Location = New System.Drawing.Point(225, 11)
+        Me.CheckEdit1.Location = New System.Drawing.Point(12, 12)
         Me.CheckEdit1.Name = "CheckEdit1"
         Me.CheckEdit1.Properties.Caption = "Select All"
         Me.CheckEdit1.Size = New System.Drawing.Size(75, 19)
         Me.CheckEdit1.TabIndex = 4
-        '
-        'BtnExport
-        '
-        Me.BtnExport.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnExport.Image = CType(resources.GetObject("BtnExport.Image"), System.Drawing.Image)
-        Me.BtnExport.Location = New System.Drawing.Point(111, 2)
-        Me.BtnExport.Name = "BtnExport"
-        Me.BtnExport.Size = New System.Drawing.Size(108, 38)
-        Me.BtnExport.TabIndex = 1
-        Me.BtnExport.Text = "Export Data"
-        '
-        'BtnImport
-        '
-        Me.BtnImport.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnImport.Image = CType(resources.GetObject("BtnImport.Image"), System.Drawing.Image)
-        Me.BtnImport.Location = New System.Drawing.Point(2, 2)
-        Me.BtnImport.Name = "BtnImport"
-        Me.BtnImport.Size = New System.Drawing.Size(109, 38)
-        Me.BtnImport.TabIndex = 0
-        Me.BtnImport.Text = "Import Data"
         '
         'BtnPrint
         '
@@ -520,6 +523,15 @@ Partial Class FormVerStockTake
         Me.BtnCreateCom.TabIndex = 3
         Me.BtnCreateCom.Text = "Create New "
         '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Ref. No."
+        Me.GridColumn11.FieldName = "st_trans_number"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 1
+        Me.GridColumn11.Width = 65
+        '
         'FormVerStockTake
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -593,4 +605,5 @@ Partial Class FormVerStockTake
     Friend WithEvents BtnRefCom As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnPrintCom As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnCreateCom As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

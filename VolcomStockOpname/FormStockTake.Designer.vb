@@ -38,8 +38,9 @@ Partial Class FormStockTake
         Me.GridColumnIdReportStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnList = New DevExpress.XtraEditors.SimpleButton()
+        Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnExport = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImport = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
@@ -63,7 +64,7 @@ Partial Class FormStockTake
         Me.BtnRefCom = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrintCom = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreateCom = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnList = New DevExpress.XtraEditors.SimpleButton()
+        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         CType(Me.XTCStockTake, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStockTake.SuspendLayout()
         Me.XTPScan.SuspendLayout()
@@ -265,14 +266,6 @@ Partial Class FormStockTake
         Me.PanelControl1.Size = New System.Drawing.Size(837, 42)
         Me.PanelControl1.TabIndex = 1
         '
-        'CheckEdit1
-        '
-        Me.CheckEdit1.Location = New System.Drawing.Point(225, 11)
-        Me.CheckEdit1.Name = "CheckEdit1"
-        Me.CheckEdit1.Properties.Caption = "Select All"
-        Me.CheckEdit1.Size = New System.Drawing.Size(75, 19)
-        Me.CheckEdit1.TabIndex = 4
-        '
         'BtnRefresh
         '
         Me.BtnRefresh.Dock = System.Windows.Forms.DockStyle.Right
@@ -282,6 +275,24 @@ Partial Class FormStockTake
         Me.BtnRefresh.Size = New System.Drawing.Size(97, 38)
         Me.BtnRefresh.TabIndex = 2
         Me.BtnRefresh.Text = "Refresh"
+        '
+        'BtnList
+        '
+        Me.BtnList.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnList.Image = CType(resources.GetObject("BtnList.Image"), System.Drawing.Image)
+        Me.BtnList.Location = New System.Drawing.Point(550, 2)
+        Me.BtnList.Name = "BtnList"
+        Me.BtnList.Size = New System.Drawing.Size(88, 38)
+        Me.BtnList.TabIndex = 6
+        Me.BtnList.Text = "List"
+        '
+        'CheckEdit1
+        '
+        Me.CheckEdit1.Location = New System.Drawing.Point(225, 11)
+        Me.CheckEdit1.Name = "CheckEdit1"
+        Me.CheckEdit1.Properties.Caption = "Select All"
+        Me.CheckEdit1.Size = New System.Drawing.Size(75, 19)
+        Me.CheckEdit1.TabIndex = 4
         '
         'BtnExport
         '
@@ -510,16 +521,6 @@ Partial Class FormStockTake
         Me.BtnCreateCom.TabIndex = 3
         Me.BtnCreateCom.Text = "Create New "
         '
-        'BtnList
-        '
-        Me.BtnList.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnList.Image = CType(resources.GetObject("BtnList.Image"), System.Drawing.Image)
-        Me.BtnList.Location = New System.Drawing.Point(550, 2)
-        Me.BtnList.Name = "BtnList"
-        Me.BtnList.Size = New System.Drawing.Size(88, 38)
-        Me.BtnList.TabIndex = 6
-        Me.BtnList.Text = "List"
-        '
         'FormStockTake
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -592,4 +593,5 @@ Partial Class FormStockTake
     Friend WithEvents GridColumnRemark As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnRmk As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnList As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
 End Class

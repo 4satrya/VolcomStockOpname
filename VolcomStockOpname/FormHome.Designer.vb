@@ -20,6 +20,7 @@ Partial Class FormHome
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim TileViewItemElement1 As DevExpress.XtraGrid.Views.Tile.TileViewItemElement = New DevExpress.XtraGrid.Views.Tile.TileViewItemElement()
+        Dim TileViewItemElement2 As DevExpress.XtraGrid.Views.Tile.TileViewItemElement = New DevExpress.XtraGrid.Views.Tile.TileViewItemElement()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelPeriodName = New DevExpress.XtraEditors.LabelControl()
         Me.GCConn = New DevExpress.XtraGrid.GridControl()
@@ -83,7 +84,16 @@ Partial Class FormHome
         TileViewItemElement1.Column = Me.TileViewColumnAccount
         TileViewItemElement1.Text = "TileViewColumnAccount"
         TileViewItemElement1.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
+        TileViewItemElement2.Appearance.Normal.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        TileViewItemElement2.Appearance.Normal.ForeColor = System.Drawing.Color.White
+        TileViewItemElement2.Appearance.Normal.Options.UseFont = True
+        TileViewItemElement2.Appearance.Normal.Options.UseForeColor = True
+        TileViewItemElement2.Column = Me.TileViewColumnAccountDesc
+        TileViewItemElement2.Text = "TileViewColumnAccountDesc"
+        TileViewItemElement2.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.Manual
+        TileViewItemElement2.TextLocation = New System.Drawing.Point(0, 50)
         Me.GVCon.TileTemplate.Add(TileViewItemElement1)
+        Me.GVCon.TileTemplate.Add(TileViewItemElement2)
         '
         'TileViewColumnAccount
         '

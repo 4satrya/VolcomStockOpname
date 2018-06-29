@@ -76,7 +76,6 @@ Partial Class FormMain
         Me.NBGGeneral.Expanded = True
         Me.NBGGeneral.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDashboard), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBExport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBImport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBStock), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBOpt), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBStockTake), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBWHPreST), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBWHST)})
         Me.NBGGeneral.Name = "NBGGeneral"
-        Me.NBGGeneral.TopVisibleLinkIndex = 2
         '
         'NBDashboard
         '

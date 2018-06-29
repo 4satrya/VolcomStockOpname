@@ -152,4 +152,16 @@
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBDashboard_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBDashboard.LinkClicked
+        Try
+            FormHome.MdiParent = Me
+            FormHome.Show()
+            FormHome.WindowState = FormWindowState.Maximized
+            FormHome.Focus()
+        Catch ex As Exception
+            errorConnection()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class

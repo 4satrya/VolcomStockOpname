@@ -235,6 +235,12 @@
     <Compile Include="FormVerStockTake.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormVerStockTakeCombine.Designer.vb">
+      <DependentUpon>FormVerStockTakeCombine.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormVerStockTakeCombine.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormVerStockTakeDet.Designer.vb">
       <DependentUpon>FormVerStockTakeDet.vb</DependentUpon>
     </Compile>
@@ -358,6 +364,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormVerStockTake.resx">
       <DependentUpon>FormVerStockTake.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVerStockTakeCombine.resx">
+      <DependentUpon>FormVerStockTakeCombine.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormVerStockTakeDet.resx">
       <DependentUpon>FormVerStockTakeDet.vb</DependentUpon>

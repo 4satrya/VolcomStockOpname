@@ -244,7 +244,7 @@ Partial Class FormMain
         Me.LabelControl1.Padding = New System.Windows.Forms.Padding(4, 0, 0, 0)
         Me.LabelControl1.Size = New System.Drawing.Size(156, 13)
         Me.LabelControl1.TabIndex = 4
-        Me.LabelControl1.Text = "2018 - PT VOLCOM INDONESIA"
+        Me.LabelControl1.Text = "PT VOLCOM INDONESIA - 2018"
         '
         'LabelInfo
         '

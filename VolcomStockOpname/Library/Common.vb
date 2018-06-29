@@ -30,6 +30,19 @@ Module Common
         emp_image_path = get_setup_field("pic_path_emp") & "\"
     End Sub
 
+    Sub setInfoDb()
+        FormMain.LabelInfo.Text = ""
+        Try
+            Dim qinfo As String = "SELECT * FROM tb_periode_det pd WHERE pd.db_name='" + app_database + "' "
+            Dim dinfo As DataTable = execute_query(qinfo, -1, False, app_host, app_username, app_password, "db_opt")
+            If dinfo.Rows.Count > 0 Then
+                FormMain.LabelInfo.Text = "Active : " + dinfo.Rows(0)("account").ToString + "; " + dinfo.Rows(0)("db_name").ToString + ""
+            End If
+        Catch ex As Exception
+        End Try
+    End Sub
+
+
     '============ = OPT CODE HEAD ======================================
     Function get_setup_field(ByVal field As String)
         'opt as var choose field

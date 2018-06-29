@@ -38,6 +38,9 @@ Partial Class FormMain
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.TxtName = New DevExpress.XtraEditors.LabelControl()
         Me.PictureEdit1 = New DevExpress.XtraEditors.PictureEdit()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelInfo = New DevExpress.XtraEditors.LabelControl()
         Me.XtraTabbedMdiManager1 = New DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(Me.components)
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomStockOpname.WaitForm1), True, True)
         CType(Me.NBMain, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -46,6 +49,8 @@ Partial Class FormMain
         CType(Me.PanelControlInfo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlInfo.SuspendLayout()
         CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -60,12 +65,12 @@ Partial Class FormMain
         Me.NBMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.NBMain.Groups.AddRange(New DevExpress.XtraNavBar.NavBarGroup() {Me.NBGGeneral})
         Me.NBMain.Items.AddRange(New DevExpress.XtraNavBar.NavBarItem() {Me.NBExport, Me.NBImport, Me.NBStock, Me.NBStockTake, Me.NBDashboard, Me.NBOpt, Me.NBWHPreST, Me.NBWHST})
-        Me.NBMain.Location = New System.Drawing.Point(0, 168)
+        Me.NBMain.Location = New System.Drawing.Point(0, 174)
         Me.NBMain.LookAndFeel.SkinName = "DevExpress Dark Style"
         Me.NBMain.LookAndFeel.UseDefaultLookAndFeel = False
         Me.NBMain.Name = "NBMain"
         Me.NBMain.OptionsNavPane.ExpandedWidth = 241
-        Me.NBMain.Size = New System.Drawing.Size(241, 405)
+        Me.NBMain.Size = New System.Drawing.Size(241, 399)
         Me.NBMain.TabIndex = 1
         Me.NBMain.Text = "NavBarControl1"
         Me.NBMain.View = New DevExpress.XtraNavBar.ViewInfo.SkinNavigationPaneViewInfoRegistrator()
@@ -148,7 +153,7 @@ Partial Class FormMain
         Me.PanelControlInfo.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.PanelControlInfo.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControlInfo.Name = "PanelControlInfo"
-        Me.PanelControlInfo.Size = New System.Drawing.Size(241, 168)
+        Me.PanelControlInfo.Size = New System.Drawing.Size(241, 174)
         Me.PanelControlInfo.TabIndex = 2
         '
         'TxtPosition
@@ -219,6 +224,39 @@ Partial Class FormMain
         Me.PictureEdit1.Size = New System.Drawing.Size(52, 49)
         Me.PictureEdit1.TabIndex = 0
         '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.LabelControl1)
+        Me.PanelControl1.Controls.Add(Me.LabelInfo)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl1.Location = New System.Drawing.Point(241, 555)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(844, 18)
+        Me.PanelControl1.TabIndex = 7
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.LabelControl1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.LabelControl1.Location = New System.Drawing.Point(2, 2)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Padding = New System.Windows.Forms.Padding(4, 0, 0, 0)
+        Me.LabelControl1.Size = New System.Drawing.Size(156, 13)
+        Me.LabelControl1.TabIndex = 4
+        Me.LabelControl1.Text = "2018 - PT VOLCOM INDONESIA"
+        '
+        'LabelInfo
+        '
+        Me.LabelInfo.Appearance.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelInfo.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.LabelInfo.Dock = System.Windows.Forms.DockStyle.Right
+        Me.LabelInfo.Location = New System.Drawing.Point(838, 2)
+        Me.LabelInfo.Name = "LabelInfo"
+        Me.LabelInfo.Padding = New System.Windows.Forms.Padding(0, 0, 4, 0)
+        Me.LabelInfo.Size = New System.Drawing.Size(4, 13)
+        Me.LabelInfo.TabIndex = 3
+        '
         'XtraTabbedMdiManager1
         '
         Me.XtraTabbedMdiManager1.MdiParent = Me
@@ -230,11 +268,14 @@ Partial Class FormMain
         'FormMain
         '
         Me.Appearance.BackColor = System.Drawing.Color.White
+        Me.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.Appearance.Options.UseBackColor = True
         Me.Appearance.Options.UseBorderColor = True
+        Me.Appearance.Options.UseForeColor = True
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1085, 573)
+        Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.PCLeft)
         Me.IsMdiContainer = True
         Me.MinimizeBox = False
@@ -249,6 +290,9 @@ Partial Class FormMain
         CType(Me.PanelControlInfo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlInfo.ResumeLayout(False)
         CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -272,4 +316,7 @@ Partial Class FormMain
     Friend WithEvents NBOpt As DevExpress.XtraNavBar.NavBarItem
     Friend WithEvents NBWHPreST As DevExpress.XtraNavBar.NavBarItem
     Friend WithEvents NBWHST As DevExpress.XtraNavBar.NavBarItem
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LabelInfo As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
 End Class

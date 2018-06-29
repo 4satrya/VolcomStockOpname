@@ -23,6 +23,20 @@
             check_connection(True, "", "", "", "")
             If id_user = "" And app_database <> "db_opt" Then
                 FormLogin.ShowDialog()
+
+                'current db
+                setInfoDb()
+
+                'open dashboard
+                Try
+                    FormHome.MdiParent = Me
+                    FormHome.Show()
+                    FormHome.WindowState = FormWindowState.Maximized
+                    FormHome.Focus()
+                Catch ex As Exception
+                    errorConnection()
+                End Try
+                Cursor = Cursors.Default
             Else
                 'initial server centre
                 initialServerCentre()

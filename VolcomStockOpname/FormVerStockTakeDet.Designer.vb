@@ -52,6 +52,9 @@ Partial Class FormVerStockTakeDet
         Me.XTCStockTake = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPScan = New DevExpress.XtraTab.XtraTabPage()
         Me.GCScan = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.SetQtyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteItemToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVScan = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -78,6 +81,7 @@ Partial Class FormVerStockTakeDet
         Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRefNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
+        Me.CheckEditAllow = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnDelAll = New DevExpress.XtraEditors.SimpleButton()
         Me.CheckEditSale = New DevExpress.XtraEditors.CheckEdit()
         Me.CheckEditNoTag = New DevExpress.XtraEditors.CheckEdit()
@@ -86,6 +90,7 @@ Partial Class FormVerStockTakeDet
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPScanCompare = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSummaryScan = New DevExpress.XtraGrid.GridControl()
         Me.GVSummaryScan = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -131,11 +136,28 @@ Partial Class FormVerStockTakeDet
         Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.ContextMenuStripCompare = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.SetQtyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DeleteItemToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CheckEditAllow = New DevExpress.XtraEditors.CheckEdit()
-        Me.XTPScanCompare = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCCS = New DevExpress.XtraGrid.GridControl()
+        Me.GVCS = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.BandedGridColumnBarcodePre = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnNamePre = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnSizePre = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnPricePre = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnQtyPre = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnAmountPre = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnBarcodeVer = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnNameVer = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnSizeVer = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnPriceVer = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnQtyVer = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnAmountVer = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnQtyDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnAmountDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnCSNo = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnNoteCS = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBandInfoNo = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridBandPre = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandStockTake = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBanddiff = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -162,14 +184,17 @@ Partial Class FormVerStockTakeDet
         Me.XTCStockTake.SuspendLayout()
         Me.XTPScan.SuspendLayout()
         CType(Me.GCScan, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVScan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
+        CType(Me.CheckEditAllow.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CheckEditSale.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CheckEditNoTag.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CheckEditReject.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtScan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPScanCompare.SuspendLayout()
         Me.XTPSummary.SuspendLayout()
         CType(Me.GCSummaryScan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSummaryScan, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -183,8 +208,8 @@ Partial Class FormVerStockTakeDet
         CType(Me.BGVCompare, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStripCompare.SuspendLayout()
-        Me.ContextMenuStrip1.SuspendLayout()
-        CType(Me.CheckEditAllow.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCCS, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVCS, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -460,7 +485,7 @@ Partial Class FormVerStockTakeDet
         Me.XTCStockTake.SelectedTabPage = Me.XTPScan
         Me.XTCStockTake.Size = New System.Drawing.Size(1020, 399)
         Me.XTCStockTake.TabIndex = 0
-        Me.XTCStockTake.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScan, Me.XTPScanCompare, Me.XTPSummary, Me.XTPCondition, Me.XTPCompare})
+        Me.XTCStockTake.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScan, Me.XTPSummary, Me.XTPScanCompare, Me.XTPCondition, Me.XTPCompare})
         '
         'XTPScan
         '
@@ -481,6 +506,24 @@ Partial Class FormVerStockTakeDet
         Me.GCScan.Size = New System.Drawing.Size(1014, 325)
         Me.GCScan.TabIndex = 1
         Me.GCScan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScan})
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SetQtyToolStripMenuItem, Me.DeleteItemToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(135, 48)
+        '
+        'SetQtyToolStripMenuItem
+        '
+        Me.SetQtyToolStripMenuItem.Name = "SetQtyToolStripMenuItem"
+        Me.SetQtyToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
+        Me.SetQtyToolStripMenuItem.Text = "Set Qty"
+        '
+        'DeleteItemToolStripMenuItem
+        '
+        Me.DeleteItemToolStripMenuItem.Name = "DeleteItemToolStripMenuItem"
+        Me.DeleteItemToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
+        Me.DeleteItemToolStripMenuItem.Text = "Delete Item"
         '
         'GVScan
         '
@@ -763,6 +806,14 @@ Partial Class FormVerStockTakeDet
         Me.PanelControlNav.Size = New System.Drawing.Size(1014, 46)
         Me.PanelControlNav.TabIndex = 0
         '
+        'CheckEditAllow
+        '
+        Me.CheckEditAllow.Location = New System.Drawing.Point(466, 24)
+        Me.CheckEditAllow.Name = "CheckEditAllow"
+        Me.CheckEditAllow.Properties.Caption = "Allow product outside list"
+        Me.CheckEditAllow.Size = New System.Drawing.Size(150, 19)
+        Me.CheckEditAllow.TabIndex = 8909
+        '
         'BtnDelAll
         '
         Me.BtnDelAll.Dock = System.Windows.Forms.DockStyle.Right
@@ -831,6 +882,13 @@ Partial Class FormVerStockTakeDet
         Me.SimpleButton2.Size = New System.Drawing.Size(97, 42)
         Me.SimpleButton2.TabIndex = 1
         Me.SimpleButton2.Text = "Add (F2)"
+        '
+        'XTPScanCompare
+        '
+        Me.XTPScanCompare.Controls.Add(Me.GCCS)
+        Me.XTPScanCompare.Name = "XTPScanCompare"
+        Me.XTPScanCompare.Size = New System.Drawing.Size(1014, 371)
+        Me.XTPScanCompare.Text = "Compare Pre Stocktake"
         '
         'XTPSummary
         '
@@ -1279,37 +1337,216 @@ Partial Class FormVerStockTakeDet
         Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
         Me.ViewDetailToolStripMenuItem.Text = "View Detail"
         '
-        'ContextMenuStrip1
+        'GCCS
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SetQtyToolStripMenuItem, Me.DeleteItemToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(135, 48)
+        Me.GCCS.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCCS.Location = New System.Drawing.Point(0, 0)
+        Me.GCCS.MainView = Me.GVCS
+        Me.GCCS.Name = "GCCS"
+        Me.GCCS.Size = New System.Drawing.Size(1014, 371)
+        Me.GCCS.TabIndex = 0
+        Me.GCCS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCS})
         '
-        'SetQtyToolStripMenuItem
+        'GVCS
         '
-        Me.SetQtyToolStripMenuItem.Name = "SetQtyToolStripMenuItem"
-        Me.SetQtyToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
-        Me.SetQtyToolStripMenuItem.Text = "Set Qty"
+        Me.GVCS.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandInfoNo, Me.GridBandPre, Me.gridBandStockTake, Me.gridBanddiff})
+        Me.GVCS.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnBarcodePre, Me.BandedGridColumnNamePre, Me.BandedGridColumnSizePre, Me.BandedGridColumnPricePre, Me.BandedGridColumnQtyPre, Me.BandedGridColumnAmountPre, Me.BandedGridColumnBarcodeVer, Me.BandedGridColumnNameVer, Me.BandedGridColumnSizeVer, Me.BandedGridColumnPriceVer, Me.BandedGridColumnQtyVer, Me.BandedGridColumnAmountVer, Me.BandedGridColumnQtyDiff, Me.BandedGridColumnAmountDiff, Me.BandedGridColumnCSNo, Me.BandedGridColumnNoteCS})
+        Me.GVCS.GridControl = Me.GCCS
+        Me.GVCS.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_pre", Me.BandedGridColumnQtyPre, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_pre", Me.BandedGridColumnAmountPre, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_ver", Me.BandedGridColumnQtyVer, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_ver", Me.BandedGridColumnAmountVer, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_diff", Me.BandedGridColumnQtyDiff, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_diff", Me.BandedGridColumnAmountDiff, "{0:N0}")})
+        Me.GVCS.Name = "GVCS"
+        Me.GVCS.OptionsBehavior.Editable = False
+        Me.GVCS.OptionsView.ColumnAutoWidth = False
+        Me.GVCS.OptionsView.ShowFooter = True
+        Me.GVCS.OptionsView.ShowGroupPanel = False
         '
-        'DeleteItemToolStripMenuItem
+        'BandedGridColumnBarcodePre
         '
-        Me.DeleteItemToolStripMenuItem.Name = "DeleteItemToolStripMenuItem"
-        Me.DeleteItemToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
-        Me.DeleteItemToolStripMenuItem.Text = "Delete Item"
+        Me.BandedGridColumnBarcodePre.Caption = "Barcode"
+        Me.BandedGridColumnBarcodePre.FieldName = "barcode_pre"
+        Me.BandedGridColumnBarcodePre.Name = "BandedGridColumnBarcodePre"
+        Me.BandedGridColumnBarcodePre.Visible = True
         '
-        'CheckEditAllow
+        'BandedGridColumnNamePre
         '
-        Me.CheckEditAllow.Location = New System.Drawing.Point(466, 24)
-        Me.CheckEditAllow.Name = "CheckEditAllow"
-        Me.CheckEditAllow.Properties.Caption = "Allow product outside list"
-        Me.CheckEditAllow.Size = New System.Drawing.Size(150, 19)
-        Me.CheckEditAllow.TabIndex = 8909
+        Me.BandedGridColumnNamePre.Caption = "Description"
+        Me.BandedGridColumnNamePre.FieldName = "name_pre"
+        Me.BandedGridColumnNamePre.Name = "BandedGridColumnNamePre"
+        Me.BandedGridColumnNamePre.Visible = True
+        Me.BandedGridColumnNamePre.Width = 90
         '
-        'XTPScanCompare
+        'BandedGridColumnSizePre
         '
-        Me.XTPScanCompare.Name = "XTPScanCompare"
-        Me.XTPScanCompare.Size = New System.Drawing.Size(1014, 371)
-        Me.XTPScanCompare.Text = "Compare Scan"
+        Me.BandedGridColumnSizePre.Caption = "Size"
+        Me.BandedGridColumnSizePre.FieldName = "size_pre"
+        Me.BandedGridColumnSizePre.Name = "BandedGridColumnSizePre"
+        Me.BandedGridColumnSizePre.Visible = True
+        '
+        'BandedGridColumnPricePre
+        '
+        Me.BandedGridColumnPricePre.Caption = "Price"
+        Me.BandedGridColumnPricePre.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnPricePre.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnPricePre.FieldName = "price_pre"
+        Me.BandedGridColumnPricePre.Name = "BandedGridColumnPricePre"
+        Me.BandedGridColumnPricePre.Visible = True
+        '
+        'BandedGridColumnQtyPre
+        '
+        Me.BandedGridColumnQtyPre.Caption = "Qty"
+        Me.BandedGridColumnQtyPre.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnQtyPre.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnQtyPre.FieldName = "qty_pre"
+        Me.BandedGridColumnQtyPre.Name = "BandedGridColumnQtyPre"
+        Me.BandedGridColumnQtyPre.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_pre", "{0:N0}")})
+        Me.BandedGridColumnQtyPre.Visible = True
+        '
+        'BandedGridColumnAmountPre
+        '
+        Me.BandedGridColumnAmountPre.Caption = "Amount"
+        Me.BandedGridColumnAmountPre.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnAmountPre.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnAmountPre.FieldName = "amount_pre"
+        Me.BandedGridColumnAmountPre.Name = "BandedGridColumnAmountPre"
+        Me.BandedGridColumnAmountPre.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_pre", "{0:N0}")})
+        Me.BandedGridColumnAmountPre.UnboundExpression = "[qty_pre] * [price_pre]"
+        Me.BandedGridColumnAmountPre.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.BandedGridColumnAmountPre.Visible = True
+        '
+        'BandedGridColumnBarcodeVer
+        '
+        Me.BandedGridColumnBarcodeVer.Caption = "Barcode"
+        Me.BandedGridColumnBarcodeVer.FieldName = "barcode_ver"
+        Me.BandedGridColumnBarcodeVer.Name = "BandedGridColumnBarcodeVer"
+        Me.BandedGridColumnBarcodeVer.Visible = True
+        '
+        'BandedGridColumnNameVer
+        '
+        Me.BandedGridColumnNameVer.Caption = "Description"
+        Me.BandedGridColumnNameVer.FieldName = "name_ver"
+        Me.BandedGridColumnNameVer.Name = "BandedGridColumnNameVer"
+        Me.BandedGridColumnNameVer.Visible = True
+        '
+        'BandedGridColumnSizeVer
+        '
+        Me.BandedGridColumnSizeVer.Caption = "Size"
+        Me.BandedGridColumnSizeVer.FieldName = "size_ver"
+        Me.BandedGridColumnSizeVer.Name = "BandedGridColumnSizeVer"
+        Me.BandedGridColumnSizeVer.Visible = True
+        '
+        'BandedGridColumnPriceVer
+        '
+        Me.BandedGridColumnPriceVer.Caption = "Price"
+        Me.BandedGridColumnPriceVer.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnPriceVer.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnPriceVer.FieldName = "price_ver"
+        Me.BandedGridColumnPriceVer.Name = "BandedGridColumnPriceVer"
+        Me.BandedGridColumnPriceVer.Visible = True
+        '
+        'BandedGridColumnQtyVer
+        '
+        Me.BandedGridColumnQtyVer.Caption = "Qty"
+        Me.BandedGridColumnQtyVer.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnQtyVer.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnQtyVer.FieldName = "qty_ver"
+        Me.BandedGridColumnQtyVer.Name = "BandedGridColumnQtyVer"
+        Me.BandedGridColumnQtyVer.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_ver", "{0:N0}")})
+        Me.BandedGridColumnQtyVer.Visible = True
+        '
+        'BandedGridColumnAmountVer
+        '
+        Me.BandedGridColumnAmountVer.Caption = "Amount"
+        Me.BandedGridColumnAmountVer.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnAmountVer.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnAmountVer.FieldName = "amount_ver"
+        Me.BandedGridColumnAmountVer.Name = "BandedGridColumnAmountVer"
+        Me.BandedGridColumnAmountVer.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_ver", "{0:N0}")})
+        Me.BandedGridColumnAmountVer.UnboundExpression = "[qty_ver] * [price_ver]"
+        Me.BandedGridColumnAmountVer.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.BandedGridColumnAmountVer.Visible = True
+        '
+        'BandedGridColumnQtyDiff
+        '
+        Me.BandedGridColumnQtyDiff.Caption = "Qty"
+        Me.BandedGridColumnQtyDiff.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnQtyDiff.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnQtyDiff.FieldName = "qty_diff"
+        Me.BandedGridColumnQtyDiff.Name = "BandedGridColumnQtyDiff"
+        Me.BandedGridColumnQtyDiff.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_diff", "{0:N0}")})
+        Me.BandedGridColumnQtyDiff.UnboundExpression = "[qty_ver]-[qty_pre]"
+        Me.BandedGridColumnQtyDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.BandedGridColumnQtyDiff.Visible = True
+        '
+        'BandedGridColumnAmountDiff
+        '
+        Me.BandedGridColumnAmountDiff.Caption = "Amount"
+        Me.BandedGridColumnAmountDiff.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnAmountDiff.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnAmountDiff.FieldName = "amount_diff"
+        Me.BandedGridColumnAmountDiff.Name = "BandedGridColumnAmountDiff"
+        Me.BandedGridColumnAmountDiff.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_diff", "{0:N0}")})
+        Me.BandedGridColumnAmountDiff.UnboundExpression = "[amount_ver]-[amount_pre]"
+        Me.BandedGridColumnAmountDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.BandedGridColumnAmountDiff.Visible = True
+        '
+        'BandedGridColumnCSNo
+        '
+        Me.BandedGridColumnCSNo.Caption = "No"
+        Me.BandedGridColumnCSNo.FieldName = "no"
+        Me.BandedGridColumnCSNo.Name = "BandedGridColumnCSNo"
+        Me.BandedGridColumnCSNo.Visible = True
+        Me.BandedGridColumnCSNo.Width = 38
+        '
+        'BandedGridColumnNoteCS
+        '
+        Me.BandedGridColumnNoteCS.Caption = "Note"
+        Me.BandedGridColumnNoteCS.FieldName = "note"
+        Me.BandedGridColumnNoteCS.Name = "BandedGridColumnNoteCS"
+        Me.BandedGridColumnNoteCS.UnboundExpression = "Iif([qty_diff]=0,'',Iif([qty_diff]>0,'Over','Selisih'))"
+        Me.BandedGridColumnNoteCS.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.BandedGridColumnNoteCS.Visible = True
+        '
+        'gridBandInfoNo
+        '
+        Me.gridBandInfoNo.Columns.Add(Me.BandedGridColumnCSNo)
+        Me.gridBandInfoNo.Name = "gridBandInfoNo"
+        Me.gridBandInfoNo.VisibleIndex = 0
+        Me.gridBandInfoNo.Width = 38
+        '
+        'GridBandPre
+        '
+        Me.GridBandPre.Caption = "PRE STOCKTAKE"
+        Me.GridBandPre.Columns.Add(Me.BandedGridColumnBarcodePre)
+        Me.GridBandPre.Columns.Add(Me.BandedGridColumnNamePre)
+        Me.GridBandPre.Columns.Add(Me.BandedGridColumnSizePre)
+        Me.GridBandPre.Columns.Add(Me.BandedGridColumnQtyPre)
+        Me.GridBandPre.Columns.Add(Me.BandedGridColumnPricePre)
+        Me.GridBandPre.Name = "GridBandPre"
+        Me.GridBandPre.VisibleIndex = 1
+        Me.GridBandPre.Width = 390
+        '
+        'gridBandStockTake
+        '
+        Me.gridBandStockTake.Caption = "STOCKTAKE"
+        Me.gridBandStockTake.Columns.Add(Me.BandedGridColumnAmountPre)
+        Me.gridBandStockTake.Columns.Add(Me.BandedGridColumnBarcodeVer)
+        Me.gridBandStockTake.Columns.Add(Me.BandedGridColumnNameVer)
+        Me.gridBandStockTake.Columns.Add(Me.BandedGridColumnPriceVer)
+        Me.gridBandStockTake.Columns.Add(Me.BandedGridColumnQtyVer)
+        Me.gridBandStockTake.Columns.Add(Me.BandedGridColumnSizeVer)
+        Me.gridBandStockTake.Columns.Add(Me.BandedGridColumnAmountVer)
+        Me.gridBandStockTake.Name = "gridBandStockTake"
+        Me.gridBandStockTake.VisibleIndex = 2
+        Me.gridBandStockTake.Width = 525
+        '
+        'gridBanddiff
+        '
+        Me.gridBanddiff.Caption = "DIFF"
+        Me.gridBanddiff.Columns.Add(Me.BandedGridColumnQtyDiff)
+        Me.gridBanddiff.Columns.Add(Me.BandedGridColumnAmountDiff)
+        Me.gridBanddiff.Columns.Add(Me.BandedGridColumnNoteCS)
+        Me.gridBanddiff.Name = "gridBanddiff"
+        Me.gridBanddiff.VisibleIndex = 3
+        Me.gridBanddiff.Width = 225
         '
         'FormVerStockTakeDet
         '
@@ -1355,15 +1592,18 @@ Partial Class FormVerStockTakeDet
         Me.XTCStockTake.ResumeLayout(False)
         Me.XTPScan.ResumeLayout(False)
         CType(Me.GCScan, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVScan, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
         Me.PanelControlNav.PerformLayout()
+        CType(Me.CheckEditAllow.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CheckEditSale.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CheckEditNoTag.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CheckEditReject.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtScan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPScanCompare.ResumeLayout(False)
         Me.XTPSummary.ResumeLayout(False)
         CType(Me.GCSummaryScan, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSummaryScan, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1377,8 +1617,8 @@ Partial Class FormVerStockTakeDet
         CType(Me.BGVCompare, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStripCompare.ResumeLayout(False)
-        Me.ContextMenuStrip1.ResumeLayout(False)
-        CType(Me.CheckEditAllow.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCCS, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVCS, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1498,4 +1738,26 @@ Partial Class FormVerStockTakeDet
     Friend WithEvents GridColumnIsMatch As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CheckEditAllow As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents XTPScanCompare As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCCS As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVCS As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents BandedGridColumnBarcodePre As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnNamePre As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnSizePre As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnPricePre As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnQtyPre As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnAmountPre As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnBarcodeVer As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnNameVer As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnPriceVer As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnQtyVer As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnSizeVer As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnAmountVer As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnQtyDiff As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnAmountDiff As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnCSNo As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnNoteCS As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandInfoNo As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridBandPre As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandStockTake As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBanddiff As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class

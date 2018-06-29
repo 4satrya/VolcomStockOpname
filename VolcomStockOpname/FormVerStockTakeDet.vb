@@ -156,6 +156,39 @@
         Cursor = Cursors.Default
     End Sub
 
+    Sub viewComparePre()
+        Dim query As String = "SELECT pd.id_product AS `id_product_pre`, pd.`code` AS `barcode_pre`, pd.`name` AS `name_pre`, pd.size AS `size_pre`, SUM(pd.qty) AS `qty_pre`, pd.design_price AS `price_pre`,
+        vd.id_product AS `id_product_ver`, vd.`code` AS `barcode_ver`, vd.`name` AS `name_ver`, vd.size AS `size_ver`, IFNULL(vd.qty,0) AS `qty_ver`, IFNULL(vd.design_price,0) AS `price_ver`
+        FROM tb_st_trans_det pd
+        LEFT JOIN (
+	        SELECT vd.id_product, vd.`code`, vd.`name`, vd.size, SUM(vd.qty) AS `qty`, vd.design_price  
+	        FROM tb_st_trans_ver_det vd
+	        INNER JOIN tb_st_trans_ver v ON v.id_st_trans_ver = vd.id_st_trans_ver
+	        WHERE v.id_st_trans=" + id_st_trans + " AND v.id_report_status!=5
+	        GROUP BY vd.code 
+        ) vd ON vd.`code` = pd.`code`
+        WHERE pd.id_st_trans=" + id_st_trans + "
+        GROUP BY pd.`code`
+        UNION ALL
+        SELECT pd.id_product AS `id_product_pre`, pd.`code` AS `barcode_pre`, pd.`name` AS `name_pre`, pd.size AS `size_pre`, IFNULL(SUM(pd.qty),0) AS `qty_pre`, IFNULL(pd.design_price,0) AS `price_pre`,
+        vd.id_product AS `id_product_ver`, vd.`code` AS `barcode_ver`, vd.`name` AS `name_ver`, vd.size AS `size_ver`, (vd.qty) AS `qty_ver`, vd.design_price AS `price_ver`
+        FROM tb_st_trans_det pd
+        RIGHT JOIN (
+	        SELECT vd.id_product, vd.`code`, vd.`name`, vd.size, SUM(vd.qty) AS `qty`, vd.design_price  
+	        FROM tb_st_trans_ver_det vd
+	        INNER JOIN tb_st_trans_ver v ON v.id_st_trans_ver = vd.id_st_trans_ver
+	        WHERE v.id_st_trans=" + id_st_trans + " AND v.id_report_status!=5
+	        GROUP BY vd.code 
+        ) vd ON vd.`code` = pd.`code` AND pd.id_st_trans=" + id_st_trans + "
+        WHERE ISNULL(pd.`code`)
+        GROUP BY vd.`code`
+        ORDER BY barcode_pre ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCCS.DataSource = data
+        GVCS.BestFitColumns()
+    End Sub
+
+
     Sub allow_status()
         If is_combine = "2" Then
             If id_report_status = "5" Or id_report_status = "6" Then
@@ -723,8 +756,11 @@
             viewDetail()
             PanelFontSize.Visible = False
         ElseIf XTCStockTake.SelectedTabPageIndex = 1 Then
-        ElseIf XTCStockTake.SelectedTabPageIndex = 2 Then
             viewSummary()
+            GVScan.ActiveFilterString = ""
+            PanelFontSize.Visible = False
+        ElseIf XTCStockTake.SelectedTabPageIndex = 2 Then
+            viewComparePre()
             GVScan.ActiveFilterString = ""
             PanelFontSize.Visible = False
         ElseIf XTCStockTake.SelectedTabPageIndex = 3 Then
@@ -773,6 +809,12 @@
     End Sub
 
     Private Sub GVSummaryScan_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVSummaryScan.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub GVCS_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVCS.CustomColumnDisplayText
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If

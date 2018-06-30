@@ -48,9 +48,9 @@
     End Sub
 
     Private Sub BtnList_Click(sender As Object, e As EventArgs) Handles BtnList.Click
-        'Cursor = Cursors.WaitCursor
-        'FormStockTakeList.ShowDialog()
-        'Cursor = Cursors.Default
+        Cursor = Cursors.WaitCursor
+        FormVerStockTakeList.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnRefresh_Click(sender As Object, e As EventArgs) Handles BtnRefresh.Click

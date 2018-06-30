@@ -56,8 +56,8 @@
                 Next
 
                 'insert
-                Dim query As String = "INSERT INTO tb_st_trans (id_wh_drawer, st_trans_number, remark, st_trans_date, st_trans_by, is_combine) 
-                VALUES ('" + SLEWHStockSum.EditValue.ToString + "', '" + header_number("2") + "', '" + MERemark.Text + "', NOW(), '" + id_user + "', 1); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_st_trans (id_wh_drawer, st_trans_number, remark, st_trans_date, st_trans_by, is_combine, is_pre) 
+                VALUES ('" + SLEWHStockSum.EditValue.ToString + "', '" + header_number("5") + "', '" + MERemark.Text + "', NOW(), '" + id_user + "', 1, '" + FormStockTake.is_pre + "'); SELECT LAST_INSERT_ID(); "
                 Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
 
                 'update

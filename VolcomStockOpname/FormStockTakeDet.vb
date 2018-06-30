@@ -728,7 +728,7 @@
 
     Private Sub MERemark_EditValueChanged(sender As Object, e As EventArgs) Handles MERemark.EditValueChanged
         Cursor = Cursors.WaitCursor
-        Dim query As String = "UPDATE tb_st_trans SET remark='" + addSlashes(MERemark.Text) + "' WHERE id_st_trans='" + id_st_trans + "' "
+        Dim query As String = "UPDATE tb_st_trans SET remark='" + addSlashes(MERemark.Text) + "', st_trans_updated_by=" + id_user + " WHERE id_st_trans='" + id_st_trans + "' "
         execute_non_query(query, True, "", "", "", "")
         If is_combine = "1" Then
             FormStockTake.viewCombine()

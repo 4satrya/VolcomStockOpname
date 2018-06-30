@@ -143,8 +143,7 @@ Public Class FormDatabase
                 write_database_configuration(TxtHost.Text, TxtUsername.Text, TxtPass.Text, db_new)
                 read_database_configuration()
                 FormMain.SplashScreenManager1.CloseWaitForm()
-                infoCustom("Setup database success, please open again this application")
-                Application.Exit()
+                infoCustom("Setup database success")
                 'FormMain.logOutCmd()
                 'Close()
             Catch ex As Exception
@@ -167,6 +166,12 @@ Public Class FormDatabase
         TxtUsername.Text = ""
         TxtUsername.Enabled = True
         TxtHost.Focus()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnSetting_Click(sender As Object, e As EventArgs) Handles BtnSetting.Click
+        Cursor = Cursors.WaitCursor
+        FormDatabaseUI.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class

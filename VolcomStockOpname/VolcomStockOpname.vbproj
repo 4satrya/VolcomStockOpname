@@ -115,6 +115,12 @@
     <Compile Include="FormDatabase.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDatabaseUI.Designer.vb">
+      <DependentUpon>FormDatabaseUI.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDatabaseUI.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormError.Designer.vb">
       <DependentUpon>FormError.vb</DependentUpon>
     </Compile>
@@ -328,6 +334,9 @@
   <ItemGroup>
     <EmbeddedResource Include="FormDatabase.resx">
       <DependentUpon>FormDatabase.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDatabaseUI.resx">
+      <DependentUpon>FormDatabaseUI.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormError.resx">
       <DependentUpon>FormError.vb</DependentUpon>

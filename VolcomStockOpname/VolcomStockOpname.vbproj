@@ -300,6 +300,12 @@
     <Compile Include="ReportScan.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportScanPreStockTake.Designer.vb">
+      <DependentUpon>ReportScanPreStockTake.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportScanPreStockTake.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="WaitForm1.Designer.vb">
       <DependentUpon>WaitForm1.vb</DependentUpon>
     </Compile>
@@ -401,6 +407,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportScan.resx">
       <DependentUpon>ReportScan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportScanPreStockTake.resx">
+      <DependentUpon>ReportScanPreStockTake.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitForm1.resx">
       <DependentUpon>WaitForm1.vb</DependentUpon>

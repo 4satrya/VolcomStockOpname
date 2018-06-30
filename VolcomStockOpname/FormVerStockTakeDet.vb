@@ -221,9 +221,9 @@
 	        FROM tb_st_stock s 
 	        LEFT JOIN (
 		        SELECT std.id_product, SUM(std.qty) AS `qty_scan`, std.id_design_price, std.design_price
-		        FROM tb_st_trans_det std
-		        INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
-		        WHERE st.id_st_trans=" + id_st_trans + " AND std.is_no_stock=2 AND std.is_no_master=2
+		        FROM tb_st_trans_ver_det std
+		        INNER JOIN tb_st_trans_ver st ON st.id_st_trans_ver = std.id_st_trans_ver
+		        WHERE st.id_st_trans_ver=" + id_st_trans_ver + " AND std.is_no_stock=2 AND std.is_no_master=2
 		        GROUP BY std.id_product
 	        ) sc ON sc.id_product = s.id_product
             INNER JOIN tb_m_product p ON p.id_product = s.id_product
@@ -234,9 +234,9 @@
 	        GROUP BY s.id_product
 	        UNION ALL 
 	        SELECT std.id_product, std.id_design_price, std.design_price, 0 as `qty_soh`, SUM(std.qty) AS `qty_scan`
-	        FROM tb_st_trans_det std
-	        INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
-	        WHERE st.id_st_trans=" + id_st_trans + " AND std.is_no_stock=1 
+	        FROM tb_st_trans_ver_det std
+	        INNER JOIN tb_st_trans_ver st ON st.id_st_trans_ver = std.id_st_trans_ver
+	        WHERE st.id_st_trans_ver=" + id_st_trans_ver + " AND std.is_no_stock=1 
 	        GROUP BY std.id_product
         ) im
         INNER JOIN tb_m_product p ON p.id_product = im.id_product
@@ -248,9 +248,9 @@
         INNER JOIN tb_lookup_design_cat dc ON dc.id_design_cat = prct.id_design_cat
         UNION ALL
         SELECT std.id_product, std.code AS `barcode`, std.code, std.name, std.size, '-' AS `design_cat`,std.id_design_price, std.design_price,  0 AS `qty_soh`,SUM(std.qty) AS `qty_scan`
-        FROM tb_st_trans_det std
-        INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
-        WHERE st.id_st_trans=" + id_st_trans + " AND std.is_no_master=1 
+        FROM tb_st_trans_ver_det std
+        INNER JOIN tb_st_trans_ver st ON st.id_st_trans_ver = std.id_st_trans_ver
+        WHERE st.id_st_trans_ver=" + id_st_trans_ver + " AND std.is_no_master=1 
         GROUP BY std.code
         ORDER BY barcode ASC, code ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -888,6 +888,17 @@
     Private Sub GVCS_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVCS.CustomColumnDisplayText
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub BGVCompare_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles BGVCompare.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        ElseIf (e.Column.FieldName = "qty_soh" Or e.Column.FieldName = "qty_scan" Or e.Column.FieldName = "val_soh" Or e.Column.FieldName = "val_scan" Or e.Column.FieldName = "qty_diff" Or e.Column.FieldName = "val_diff") Then
+            Dim qty As Decimal = Convert.ToDecimal(e.Value)
+            If qty = 0 Then
+                e.DisplayText = "-"
+            End If
         End If
     End Sub
 End Class

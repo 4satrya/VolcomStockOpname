@@ -339,160 +339,154 @@
     End Sub
 
     Sub print()
-        'Cursor = Cursors.WaitCursor
-        'If XTCStockTake.SelectedTabPageIndex = 0 Then
-        '    Cursor = Cursors.WaitCursor
-        '    GVScan.BestFitColumns()
-        '    ReportScan.dt = GCScan.DataSource
-        '    ReportScan.id_report = id_st_trans
-        '    Dim Report As New ReportScan()
+        Cursor = Cursors.WaitCursor
+        If XTCStockTake.SelectedTabPageIndex = 0 Then
+            Cursor = Cursors.WaitCursor
+            GVScan.BestFitColumns()
+            ReportScanVerStockTakeSlip.dt = GCScan.DataSource
+            ReportScanVerStockTakeSlip.id_report = id_st_trans
+            Dim Report As New ReportScanVerStockTakeSlip()
 
-        '    ' '... 
-        '    ' ' creating and saving the view's layout to a new memory stream 
-        '    Dim str As System.IO.Stream
-        '    str = New System.IO.MemoryStream()
-        '    GVScan.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        '    str.Seek(0, System.IO.SeekOrigin.Begin)
-        '    Report.GVScan.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        '    str.Seek(0, System.IO.SeekOrigin.Begin)
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVScan.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVScan.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
 
-        '    'Grid Detail
-        '    ReportStyleGridview(Report.GVScan)
+            'Grid Detail
+            ReportStyleGridview(Report.GVScan)
 
-        '    'Parse val
-        '    Report.LabelNo.Text = TxtNumber.Text
-        '    Report.LabelOutlet.Text = SLEWHStockSum.Text
-        '    Report.LabelAlamat.Text = address_primary
-        '    Report.LabelCreatedDate.Text = DECreated.Text
-        '    Report.LabelSOHPeriode.Text = soh_period
-        '    Report.LabelSalesUntil.Text = sales_until_period
-        '    Report.LabelPrepare.Text = prepared_by
-        '    Report.LabelPreparePosition.Text = prepared_position
-        '    Report.LabelAck.Text = LEAck.Text
-        '    Report.LabelAckPosition.Text = ack_position
-        '    Report.LabelApp.Text = TxtApp.Text
-        '    Report.LabelAppPosition.Text = comp_name
-        '    Report.LabelRemark.Text = MERemark.Text.ToString
+            'Parse val
+            Report.LabelTitle.Text = "WH STOCKTAKE - SCAN PRODUCT LIST  "
+            Report.LabelNo.Text = TxtNumber.Text
+            Report.LabelAccount.Text = SLEWHStockSum.Text
+            Report.LabelRemark.Text = TxtNumber.Text
+            Report.LabelDate.Text = DECreated.Text
+            Report.LabelPrepare.Text = prepared_by
+            Report.LabelRemark.Text = MERemark.Text.ToString
+            Report.LabelRefNo.Text = TxtNumbrRef.Text
+            Report.LabelRef.Text = TxtRemarkRef.Text
 
-        '    'Show the report's preview. 
-        '    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        '    Tool.ShowPreviewDialog()
-        '    Cursor = Cursors.Default
-        'ElseIf XTCStockTake.SelectedTabPageIndex = 1 Then
-        '    Cursor = Cursors.WaitCursor
-        '    GVSummaryScan.BestFitColumns()
-        '    ReportScan.dt = GCSummaryScan.DataSource
-        '    ReportScan.id_report = id_st_trans
-        '    Dim Report As New ReportScan()
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
+            Cursor = Cursors.Default
+        ElseIf XTCStockTake.SelectedTabPageIndex = 1 Then
+            Cursor = Cursors.WaitCursor
+            GVSummaryScan.BestFitColumns()
+            ReportScanVerStockTakeSlip.dt = GCSummaryScan.DataSource
+            ReportScanVerStockTakeSlip.id_report = id_st_trans
+            Dim Report As New ReportScanVerStockTakeSlip()
 
-        '    ' '... 
-        '    ' ' creating and saving the view's layout to a new memory stream 
-        '    Dim str As System.IO.Stream
-        '    str = New System.IO.MemoryStream()
-        '    GVSummaryScan.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        '    str.Seek(0, System.IO.SeekOrigin.Begin)
-        '    Report.GVScan.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        '    str.Seek(0, System.IO.SeekOrigin.Begin)
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVSummaryScan.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVScan.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
 
-        '    'Grid Detail
-        '    ReportStyleGridview(Report.GVScan)
+            'Grid Detail
+            ReportStyleGridview(Report.GVScan)
 
-        '    'Parse val
-        '    Report.LabelNo.Text = TxtNumber.Text
-        '    Report.LabelOutlet.Text = SLEWHStockSum.Text
-        '    Report.LabelAlamat.Text = address_primary
-        '    Report.LabelCreatedDate.Text = DECreated.Text
-        '    Report.LabelSOHPeriode.Text = soh_period
-        '    Report.LabelSalesUntil.Text = sales_until_period
-        '    Report.LabelPrepare.Text = prepared_by
-        '    Report.LabelPreparePosition.Text = prepared_position
-        '    Report.LabelAck.Text = LEAck.Text
-        '    Report.LabelAckPosition.Text = ack_position
-        '    Report.LabelApp.Text = TxtApp.Text
-        '    Report.LabelAppPosition.Text = comp_name
-        '    Report.LabelRemark.Text = MERemark.Text.ToString
+            'Parse val
+            Report.LabelTitle.Text = "WH STOCKTAKE SLIP"
+            Report.LabelNo.Text = TxtNumber.Text
+            Report.LabelAccount.Text = SLEWHStockSum.Text
+            Report.LabelRemark.Text = TxtNumber.Text
+            Report.LabelDate.Text = DECreated.Text
+            Report.LabelPrepare.Text = prepared_by
+            Report.LabelRemark.Text = MERemark.Text.ToString
+            Report.LabelRefNo.Text = TxtNumbrRef.Text
+            Report.LabelRef.Text = TxtRemarkRef.Text
 
-        '    'Show the report's preview. 
-        '    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        '    Tool.ShowPreviewDialog()
-        '    Cursor = Cursors.Default
-        'ElseIf XTCStockTake.SelectedTabPageIndex = 2 Then
-        '    GVCat.BestFitColumns()
-        '    print_raw(GCCat, "")
-        'ElseIf XTCStockTake.SelectedTabPageIndex = 3 Then
-        '    Cursor = Cursors.WaitCursor
-        '    'BGVCompare.BestFitColumns()
-        '    ReportCompare.dt = GCCompare.DataSource
-        '    ReportCompare.id_report = id_st_trans
-        '    Dim Report As New ReportCompare()
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
+            Cursor = Cursors.Default
+        ElseIf XTCStockTake.SelectedTabPageIndex = 2 Then
+            GVCS.BestFitColumns()
+            print_raw(GCCS, "")
+        ElseIf XTCStockTake.SelectedTabPageIndex = 3 Then
 
-        '    ' '... 
-        '    ' ' creating and saving the view's layout to a new memory stream 
-        '    Dim str As System.IO.Stream
-        '    str = New System.IO.MemoryStream()
-        '    BGVCompare.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        '    str.Seek(0, System.IO.SeekOrigin.Begin)
-        '    Report.BGVCompare.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        '    str.Seek(0, System.IO.SeekOrigin.Begin)
+        ElseIf XTCStockTake.SelectedTabPageIndex = 4 Then
+            Cursor = Cursors.WaitCursor
+            'BGVCompare.BestFitColumns()
+            ReportCompare.dt = GCCompare.DataSource
+            ReportCompare.id_report = id_st_trans
+            Dim Report As New ReportCompare()
 
-        '    'Grid Detail
-        '    'ReportStyleBanded(Report.BGVCompare)
-        '    Dim fz As Single = TxtFontSize.EditValue
-        '    Report.BGVCompare.OptionsPrint.UsePrintStyles = True
-        '    Report.BGVCompare.AppearancePrint.BandPanel.Font = New Font(Report.BGVCompare.Appearance.Row.Font.FontFamily, Report.BGVCompare.Appearance.Row.Font.Size, FontStyle.Bold)
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            BGVCompare.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.BGVCompare.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            'Grid Detail
+            'ReportStyleBanded(Report.BGVCompare)
+            Dim fz As Single = TxtFontSize.EditValue
+            Report.BGVCompare.OptionsPrint.UsePrintStyles = True
+            Report.BGVCompare.AppearancePrint.BandPanel.Font = New Font(Report.BGVCompare.Appearance.Row.Font.FontFamily, Report.BGVCompare.Appearance.Row.Font.Size, FontStyle.Bold)
 
 
-        '    Report.BGVCompare.AppearancePrint.BandPanel.BackColor = Color.Transparent
-        '    Report.BGVCompare.AppearancePrint.BandPanel.ForeColor = Color.Black
-        '    Report.BGVCompare.AppearancePrint.BandPanel.Font = New Font("Segoe UI", fz, FontStyle.Bold)
+            Report.BGVCompare.AppearancePrint.BandPanel.BackColor = Color.Transparent
+            Report.BGVCompare.AppearancePrint.BandPanel.ForeColor = Color.Black
+            Report.BGVCompare.AppearancePrint.BandPanel.Font = New Font("Segoe UI", fz, FontStyle.Bold)
 
-        '    Report.BGVCompare.AppearancePrint.FilterPanel.BackColor = Color.Transparent
-        '    Report.BGVCompare.AppearancePrint.FilterPanel.ForeColor = Color.Black
-        '    Report.BGVCompare.AppearancePrint.FilterPanel.Font = New Font("Segoe UI", fz, FontStyle.Regular)
+            Report.BGVCompare.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+            Report.BGVCompare.AppearancePrint.FilterPanel.ForeColor = Color.Black
+            Report.BGVCompare.AppearancePrint.FilterPanel.Font = New Font("Segoe UI", fz, FontStyle.Regular)
 
-        '    Report.BGVCompare.AppearancePrint.GroupFooter.BackColor = Color.Transparent
-        '    Report.BGVCompare.AppearancePrint.GroupFooter.ForeColor = Color.Black
-        '    Report.BGVCompare.AppearancePrint.GroupFooter.Font = New Font("Segoe UI", fz, FontStyle.Bold)
+            Report.BGVCompare.AppearancePrint.GroupFooter.BackColor = Color.Transparent
+            Report.BGVCompare.AppearancePrint.GroupFooter.ForeColor = Color.Black
+            Report.BGVCompare.AppearancePrint.GroupFooter.Font = New Font("Segoe UI", fz, FontStyle.Bold)
 
-        '    Report.BGVCompare.AppearancePrint.GroupRow.BackColor = Color.Transparent
-        '    Report.BGVCompare.AppearancePrint.GroupRow.ForeColor = Color.Black
-        '    Report.BGVCompare.AppearancePrint.GroupRow.Font = New Font("Segoe UI", fz, FontStyle.Bold)
+            Report.BGVCompare.AppearancePrint.GroupRow.BackColor = Color.Transparent
+            Report.BGVCompare.AppearancePrint.GroupRow.ForeColor = Color.Black
+            Report.BGVCompare.AppearancePrint.GroupRow.Font = New Font("Segoe UI", fz, FontStyle.Bold)
 
-        '    Report.BGVCompare.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
-        '    Report.BGVCompare.AppearancePrint.HeaderPanel.ForeColor = Color.Black
-        '    Report.BGVCompare.AppearancePrint.HeaderPanel.Font = New Font("Segoe UI", fz, FontStyle.Bold)
+            Report.BGVCompare.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+            Report.BGVCompare.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+            Report.BGVCompare.AppearancePrint.HeaderPanel.Font = New Font("Segoe UI", fz, FontStyle.Bold)
 
-        '    Report.BGVCompare.AppearancePrint.FooterPanel.BackColor = Color.Transparent
-        '    Report.BGVCompare.AppearancePrint.FooterPanel.ForeColor = Color.Black
-        '    Report.BGVCompare.AppearancePrint.FooterPanel.Font = New Font("Segoe UI", fz, FontStyle.Bold)
+            Report.BGVCompare.AppearancePrint.FooterPanel.BackColor = Color.Transparent
+            Report.BGVCompare.AppearancePrint.FooterPanel.ForeColor = Color.Black
+            Report.BGVCompare.AppearancePrint.FooterPanel.Font = New Font("Segoe UI", fz, FontStyle.Bold)
 
-        '    Report.BGVCompare.AppearancePrint.Row.Font = New Font("Segoe UI", fz, FontStyle.Regular)
+            Report.BGVCompare.AppearancePrint.Row.Font = New Font("Segoe UI", fz, FontStyle.Regular)
 
-        '    Report.BGVCompare.OptionsPrint.ExpandAllDetails = True
-        '    Report.BGVCompare.OptionsPrint.UsePrintStyles = True
-        '    Report.BGVCompare.OptionsPrint.PrintDetails = True
-        '    Report.BGVCompare.OptionsPrint.PrintFooter = True
+            Report.BGVCompare.OptionsPrint.ExpandAllDetails = True
+            Report.BGVCompare.OptionsPrint.UsePrintStyles = True
+            Report.BGVCompare.OptionsPrint.PrintDetails = True
+            Report.BGVCompare.OptionsPrint.PrintFooter = True
 
-        '    'Parse val
-        '    Report.LabelNo.Text = TxtNumber.Text
-        '    Report.LabelOutlet.Text = SLEWHStockSum.Text
-        '    Report.LabelAlamat.Text = address_primary
-        '    Report.LabelCreatedDate.Text = DECreated.Text
-        '    Report.LabelSOHPeriode.Text = soh_period
-        '    Report.LabelSalesUntil.Text = sales_until_period
-        '    Report.LabelPrepare.Text = prepared_by
-        '    Report.LabelPreparePosition.Text = prepared_position
-        '    Report.LabelAck.Text = LEAck.Text
-        '    Report.LabelAckPosition.Text = ack_position
-        '    Report.LabelApp.Text = TxtApp.Text
-        '    Report.LabelAppPosition.Text = comp_name
+            'Parse val
+            Report.LabelNo.Text = TxtNumber.Text
+            Report.LabelOutlet.Text = SLEWHStockSum.Text
+            Report.LabelAlamat.Text = address_primary
+            Report.LabelCreatedDate.Text = DECreated.Text
+            Report.LabelSOHPeriode.Text = soh_period
+            Report.LabelSalesUntil.Text = sales_until_period
+            Report.LabelPrepare.Text = prepared_by
+            Report.LabelPreparePosition.Text = prepared_position
+            Report.LabelAck.Text = LEAck.Text
+            Report.LabelAckPosition.Text = ack_position
+            Report.LabelApp.Text = TxtApp.Text
+            Report.LabelAppPosition.Text = comp_name
 
-        '    'Show the report's preview. 
-        '    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        '    Tool.ShowPreviewDialog()
-        '    Cursor = Cursors.Default
-        'End If
-        'Cursor = Cursors.Default
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
+            Cursor = Cursors.Default
+        End If
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub FormVerStockTakeDet_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown

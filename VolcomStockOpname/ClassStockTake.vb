@@ -73,7 +73,7 @@
         st.st_trans_ver_updated_by, e.employee_code, e.employee_name, 
         st.st_trans_ver_updated, st.is_combine, st.id_report_status, rs.report_status, IFNULL(q.qty,0) AS `qty`, 'No' AS `is_select`, IFNULL(st.id_combine,0) AS `id_combine`, st.acknowledge_by, eack.employee_position AS `ack_position`, st.approved_by
         FROM tb_st_trans_ver st
-        INNER JOIN tb_st_trans stf ON stf.id_st_trans = st.id_st_trans
+        LEFT JOIN tb_st_trans stf ON stf.id_st_trans = st.id_st_trans
         INNER JOIN tb_lookup_report_status rs ON rs.id_report_status = st.id_report_status
         LEFT JOIN tb_m_user u ON u.id_user = st.st_trans_ver_updated_by
         LEFT JOIN tb_m_employee e ON e.id_employee = u.id_employee 

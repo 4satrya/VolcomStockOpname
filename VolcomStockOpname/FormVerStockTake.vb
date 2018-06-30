@@ -27,12 +27,12 @@
     End Sub
 
     Sub viewCombine()
-        'Cursor = Cursors.WaitCursor
-        'Dim stake As New ClassStockTake()
-        'Dim query As String = stake.queryTransMain("AND st.is_combine=1 AND st.is_pre=" + is_pre + " ", "2")
-        'Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        'GCCombine.DataSource = data
-        'Cursor = Cursors.Default
+        Cursor = Cursors.WaitCursor
+        Dim stake As New ClassStockTake()
+        Dim query As String = stake.queryVerTransMain("AND st.is_combine=1 ", "2")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCCombine.DataSource = data
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnNew_Click(sender As Object, e As EventArgs) Handles BtnNew.Click
@@ -61,6 +61,30 @@
         If GVScan.RowCount > 0 And GVScan.FocusedRowHandle >= 0 Then
             FormVerStockTakeDet.action = "upd"
             FormVerStockTakeDet.id_st_trans_ver = GVScan.GetFocusedRowCellValue("id_st_trans_ver").ToString
+            FormVerStockTakeDet.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub BtnRefCom_Click(sender As Object, e As EventArgs) Handles BtnRefCom.Click
+        viewCombine()
+    End Sub
+
+    Private Sub BtnPrintCom_Click(sender As Object, e As EventArgs) Handles BtnPrintCom.Click
+        Cursor = Cursors.WaitCursor
+        print_raw(GCCombine, "")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnCreateCom_Click(sender As Object, e As EventArgs) Handles BtnCreateCom.Click
+        Cursor = Cursors.WaitCursor
+        FormVerStockTakeCombine.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVCombine_DoubleClick(sender As Object, e As EventArgs) Handles GVCombine.DoubleClick
+        If GVCombine.RowCount > 0 And GVCombine.FocusedRowHandle >= 0 Then
+            FormVerStockTakeDet.action = "upd"
+            FormVerStockTakeDet.id_st_trans_ver = GVCombine.GetFocusedRowCellValue("id_st_trans_ver").ToString
             FormVerStockTakeDet.ShowDialog()
         End If
     End Sub

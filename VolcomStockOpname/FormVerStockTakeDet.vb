@@ -157,6 +157,26 @@
     End Sub
 
     Sub viewComparePre()
+        Dim w1 As String = ""
+        Dim w2 As String = ""
+        If is_combine = "1" Then
+            Dim qr As String = "SELECT v.id_st_trans FROM tb_st_trans_ver v WHERE v.id_combine=" + id_st_trans_ver + "
+            GROUP BY v.id_st_trans "
+            Dim dr As DataTable = execute_query(qr, -1, True, "", "", "", "")
+            For i As Integer = 0 To dr.Rows.Count - 1
+                If i > 0 Then
+                    w1 += "OR "
+                    w2 += "OR "
+                End If
+                w1 += "v.id_st_trans=" + dr.Rows(i)("id_st_trans").ToString + " "
+                w2 += "pd.id_st_trans=" + dr.Rows(i)("id_st_trans").ToString + " "
+            Next
+            w1 = "(" + w1 + ")"
+            w2 = "(" + w2 + ")"
+        Else
+            w1 = "v.id_st_trans=" + id_st_trans + " "
+            w2 = "pd.id_st_trans=" + id_st_trans + " "
+        End If
         Dim query As String = "SELECT pd.id_product AS `id_product_pre`, pd.`code` AS `barcode_pre`, pd.`name` AS `name_pre`, pd.size AS `size_pre`, SUM(pd.qty) AS `qty_pre`, pd.design_price AS `price_pre`,
         vd.id_product AS `id_product_ver`, vd.`code` AS `barcode_ver`, vd.`name` AS `name_ver`, vd.size AS `size_ver`, IFNULL(vd.qty,0) AS `qty_ver`, IFNULL(vd.design_price,0) AS `price_ver`
         FROM tb_st_trans_det pd
@@ -164,10 +184,10 @@
 	        SELECT vd.id_product, vd.`code`, vd.`name`, vd.size, SUM(vd.qty) AS `qty`, vd.design_price  
 	        FROM tb_st_trans_ver_det vd
 	        INNER JOIN tb_st_trans_ver v ON v.id_st_trans_ver = vd.id_st_trans_ver
-	        WHERE v.id_st_trans=" + id_st_trans + " AND v.id_report_status!=5
+	        WHERE " + w1 + "  AND v.id_report_status!=5
 	        GROUP BY vd.code 
         ) vd ON vd.`code` = pd.`code`
-        WHERE pd.id_st_trans=" + id_st_trans + "
+        WHERE " + w2 + "
         GROUP BY pd.`code`
         UNION ALL
         SELECT pd.id_product AS `id_product_pre`, pd.`code` AS `barcode_pre`, pd.`name` AS `name_pre`, pd.size AS `size_pre`, IFNULL(SUM(pd.qty),0) AS `qty_pre`, IFNULL(pd.design_price,0) AS `price_pre`,
@@ -177,15 +197,66 @@
 	        SELECT vd.id_product, vd.`code`, vd.`name`, vd.size, SUM(vd.qty) AS `qty`, vd.design_price  
 	        FROM tb_st_trans_ver_det vd
 	        INNER JOIN tb_st_trans_ver v ON v.id_st_trans_ver = vd.id_st_trans_ver
-	        WHERE v.id_st_trans=" + id_st_trans + " AND v.id_report_status!=5
+	        WHERE " + w1 + " AND v.id_report_status!=5
 	        GROUP BY vd.code 
-        ) vd ON vd.`code` = pd.`code` AND pd.id_st_trans=" + id_st_trans + "
+        ) vd ON vd.`code` = pd.`code` AND " + w2 + "
         WHERE ISNULL(pd.`code`)
         GROUP BY vd.`code`
         ORDER BY barcode_pre ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCS.DataSource = data
         GVCS.BestFitColumns()
+    End Sub
+
+    Sub viewCompare()
+        Cursor = Cursors.WaitCursor
+        gridBandStoreQty.Caption = comp_number
+        Dim query As String = "SELECT im.id_product, p.product_full_code AS `barcode`, d.design_code AS `code`, d.design_display_name AS `name`, cd.code_detail_name AS `size`, LEFT(prct.design_price_type,1) AS `design_cat`,
+        im.id_design_price, im.design_price, im.qty_soh, im.qty_scan
+        FROM (
+	        SELECT s.id_product, 
+            IF(!ISNULL(sc.id_design_price), sc.id_design_price, IF(c.id_store_type=1, fd.id_design_price,s.id_design_price)) AS `id_design_price`, 
+            IF(!ISNULL(sc.design_price), sc.design_price, IF(c.id_store_type=1, fd.design_price,s.design_price)) AS `design_price`, 
+            SUM(s.qty) AS `qty_soh`, IFNULL(sc.qty_scan,0) AS `qty_scan`
+	        FROM tb_st_stock s 
+	        LEFT JOIN (
+		        SELECT std.id_product, SUM(std.qty) AS `qty_scan`, std.id_design_price, std.design_price
+		        FROM tb_st_trans_det std
+		        INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
+		        WHERE st.id_st_trans=" + id_st_trans + " AND std.is_no_stock=2 AND std.is_no_master=2
+		        GROUP BY std.id_product
+	        ) sc ON sc.id_product = s.id_product
+            INNER JOIN tb_m_product p ON p.id_product = s.id_product
+            INNER JOIN tb_m_design d ON d.id_design = p.id_design
+            INNER JOIN tb_m_comp c ON c.id_drawer_def = s.id_wh_drawer
+            LEFT JOIN tb_m_design_first_del fd ON fd.id_design = d.id_design AND fd.id_comp = c.id_comp
+	        WHERE s.id_wh_drawer=" + id_drawer + "
+	        GROUP BY s.id_product
+	        UNION ALL 
+	        SELECT std.id_product, std.id_design_price, std.design_price, 0 as `qty_soh`, SUM(std.qty) AS `qty_scan`
+	        FROM tb_st_trans_det std
+	        INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
+	        WHERE st.id_st_trans=" + id_st_trans + " AND std.is_no_stock=1 
+	        GROUP BY std.id_product
+        ) im
+        INNER JOIN tb_m_product p ON p.id_product = im.id_product
+        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+        INNER JOIN tb_m_design d ON d.id_design = p.id_design
+        INNER JOIN tb_m_design_price prc ON prc.id_design_price = im.id_design_price
+        INNER JOIN tb_lookup_design_price_type prct ON prct.id_design_price_type = prc.id_design_price_type
+        INNER JOIN tb_lookup_design_cat dc ON dc.id_design_cat = prct.id_design_cat
+        UNION ALL
+        SELECT std.id_product, std.code AS `barcode`, std.code, std.name, std.size, '-' AS `design_cat`,std.id_design_price, std.design_price,  0 AS `qty_soh`,SUM(std.qty) AS `qty_scan`
+        FROM tb_st_trans_det std
+        INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
+        WHERE st.id_st_trans=" + id_st_trans + " AND std.is_no_master=1 
+        GROUP BY std.code
+        ORDER BY barcode ASC, code ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCCompare.DataSource = data
+        TxtFontSize.EditValue = 6.3
+        Cursor = Cursors.Default
     End Sub
 
 
@@ -768,9 +839,9 @@
             '    GVScan.ActiveFilterString = ""
             '    PanelFontSize.Visible = False
         ElseIf XTCStockTake.SelectedTabPageIndex = 4 Then
-            '    viewCompare()
-            '    GVScan.ActiveFilterString = ""
-            '    PanelFontSize.Visible = True
+            viewCompare()
+            GVScan.ActiveFilterString = ""
+            PanelFontSize.Visible = True
         End If
     End Sub
 

@@ -38,6 +38,7 @@ Partial Class FormVerStockTake
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnIdReportStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRemarkRef = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnImport = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExport = New DevExpress.XtraEditors.SimpleButton()
@@ -65,7 +66,6 @@ Partial Class FormVerStockTake
         Me.BtnRefCom = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrintCom = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreateCom = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnRemarkRef = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCStockTake, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStockTake.SuspendLayout()
         Me.XTPScan.SuspendLayout()
@@ -264,6 +264,15 @@ Partial Class FormVerStockTake
         Me.GridColumnRemark.VisibleIndex = 4
         Me.GridColumnRemark.Width = 88
         '
+        'GridColumnRemarkRef
+        '
+        Me.GridColumnRemarkRef.Caption = "Ref."
+        Me.GridColumnRemarkRef.FieldName = "remark_ref"
+        Me.GridColumnRemarkRef.Name = "GridColumnRemarkRef"
+        Me.GridColumnRemarkRef.OptionsColumn.AllowEdit = False
+        Me.GridColumnRemarkRef.Visible = True
+        Me.GridColumnRemarkRef.VisibleIndex = 2
+        '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.BtnImport)
@@ -375,6 +384,7 @@ Partial Class FormVerStockTake
         Me.GVCombine.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumn10, "{0:n0}")})
         Me.GVCombine.Name = "GVCombine"
         Me.GVCombine.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVCombine.OptionsBehavior.Editable = False
         Me.GVCombine.OptionsView.ShowFooter = True
         Me.GVCombine.OptionsView.ShowGroupedColumns = True
         Me.GVCombine.OptionsView.ShowGroupPanel = False
@@ -382,14 +392,14 @@ Partial Class FormVerStockTake
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Id"
-        Me.GridColumn2.FieldName = "id_st_trans"
+        Me.GridColumn2.FieldName = "id_st_trans_ver"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.AllowEdit = False
         '
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Number"
-        Me.GridColumn3.FieldName = "st_trans_number"
+        Me.GridColumn3.FieldName = "st_trans_ver_number"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.OptionsColumn.AllowEdit = False
         Me.GridColumn3.Visible = True
@@ -401,7 +411,7 @@ Partial Class FormVerStockTake
         Me.GridColumn4.Caption = "Created Date"
         Me.GridColumn4.DisplayFormat.FormatString = "dd MMMM yyyy hh:mm tt"
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn4.FieldName = "st_trans_date"
+        Me.GridColumn4.FieldName = "st_trans_ver_date"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.OptionsColumn.AllowEdit = False
         Me.GridColumn4.Visible = True
@@ -423,7 +433,7 @@ Partial Class FormVerStockTake
         Me.GridColumn6.Caption = "Last Updated"
         Me.GridColumn6.DisplayFormat.FormatString = "dd MMMM yyyy hh:mm tt"
         Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn6.FieldName = "st_trans_updated"
+        Me.GridColumn6.FieldName = "st_trans_ver_updated"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.Visible = True
@@ -535,15 +545,6 @@ Partial Class FormVerStockTake
         Me.BtnCreateCom.Size = New System.Drawing.Size(109, 38)
         Me.BtnCreateCom.TabIndex = 3
         Me.BtnCreateCom.Text = "Create New "
-        '
-        'GridColumnRemarkRef
-        '
-        Me.GridColumnRemarkRef.Caption = "Ref."
-        Me.GridColumnRemarkRef.FieldName = "remark_ref"
-        Me.GridColumnRemarkRef.Name = "GridColumnRemarkRef"
-        Me.GridColumnRemarkRef.OptionsColumn.AllowEdit = False
-        Me.GridColumnRemarkRef.Visible = True
-        Me.GridColumnRemarkRef.VisibleIndex = 2
         '
         'FormVerStockTake
         '

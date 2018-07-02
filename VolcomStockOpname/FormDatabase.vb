@@ -14,6 +14,10 @@ Public Class FormDatabase
     End Sub
 
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles BtnConnect.Click
+        viewDB()
+    End Sub
+
+    Sub viewDB()
         Cursor = Cursors.WaitCursor
 
         Try
@@ -143,8 +147,7 @@ Public Class FormDatabase
                 write_database_configuration(TxtHost.Text, TxtUsername.Text, TxtPass.Text, db_new)
                 read_database_configuration()
                 FormMain.SplashScreenManager1.CloseWaitForm()
-                infoCustom("Setup database success, please open again this application")
-                Application.Exit()
+                infoCustom("Setup database success")
                 'FormMain.logOutCmd()
                 'Close()
             Catch ex As Exception
@@ -168,5 +171,27 @@ Public Class FormDatabase
         TxtUsername.Enabled = True
         TxtHost.Focus()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnSetting_Click(sender As Object, e As EventArgs) Handles BtnSetting.Click
+        Cursor = Cursors.WaitCursor
+        FormDatabaseUI.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnLocal_Click(sender As Object, e As EventArgs) Handles BtnLocal.Click
+        GCData.DataSource = Nothing
+        TxtHost.Text = "localhost"
+        TxtPass.Text = "mtvolcom14"
+        TxtUsername.Text = "root"
+        viewDB()
+    End Sub
+
+    Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles SimpleButton2.Click
+        GCData.DataSource = Nothing
+        TxtHost.Text = "192.168.1.5"
+        TxtPass.Text = "mtvolcom14"
+        TxtUsername.Text = "external_user"
+        viewDB()
     End Sub
 End Class

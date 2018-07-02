@@ -1,5 +1,5 @@
-﻿Public Class FormStockTakeCombine
-    Private Sub FormStockTakeCombine_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+﻿Public Class FormVerStockTakeCombine
+    Private Sub FormVerStockTakeCombine_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewWHStockSum()
         viewScan()
     End Sub
@@ -12,7 +12,7 @@
         Catch ex As Exception
         End Try
         Dim stake As New ClassStockTake()
-        Dim query As String = stake.queryTransMain("AND st.is_combine=2 And st.is_pre=" + FormStockTake.is_pre + " AND ISNULL(st.id_combine) AND st.id_report_status!=5 AND st.id_wh_drawer=" + id_wh_drawer + " ", "2")
+        Dim query As String = stake.queryVerTransMain("AND st.is_combine=2 AND ISNULL(st.id_combine) AND st.id_report_status!=5 AND st.id_wh_drawer=" + id_wh_drawer + " ", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCheck.DataSource = data
         GVCheck.FocusedRowHandle = 0
@@ -31,7 +31,7 @@
         Close()
     End Sub
 
-    Private Sub FormStockTakeCombine_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+    Private Sub FormVerStockTakeCombine_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
 
@@ -42,41 +42,41 @@
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to continue this process ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = DialogResult.Yes Then
                 Cursor = Cursors.WaitCursor
-                Dim id_st_trans As String = ""
-                Dim id_st_trans_det As String = ""
+                Dim id_st_trans_ver As String = ""
+                Dim id_st_trans_ver_det As String = ""
                 For i As Integer = 0 To ((GVCheck.RowCount - 1) - GetGroupRowCount(GVCheck))
                     If GVCheck.GetRowCellValue(i, "is_select").ToString = "Yes" Then
                         If i > 0 Then
-                            id_st_trans += "OR "
-                            id_st_trans_det += "OR "
+                            id_st_trans_ver += "OR "
+                            id_st_trans_ver_det += "OR "
                         End If
-                        id_st_trans += "id_st_trans='" + GVCheck.GetRowCellValue(i, "id_st_trans").ToString + "' "
-                        id_st_trans_det += "st.id_st_trans='" + GVCheck.GetRowCellValue(i, "id_st_trans").ToString + "' "
+                        id_st_trans_ver += "id_st_trans_ver='" + GVCheck.GetRowCellValue(i, "id_st_trans_ver").ToString + "' "
+                        id_st_trans_ver_det += "st.id_st_trans_ver='" + GVCheck.GetRowCellValue(i, "id_st_trans_ver").ToString + "' "
                     End If
                 Next
 
                 'insert
-                Dim query As String = "INSERT INTO tb_st_trans (id_wh_drawer, st_trans_number, remark, st_trans_date, st_trans_by, is_combine, is_pre) 
-                VALUES ('" + SLEWHStockSum.EditValue.ToString + "', '" + header_number("5") + "', '" + MERemark.Text + "', NOW(), '" + id_user + "', 1, '" + FormStockTake.is_pre + "'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_st_trans_ver (id_wh_drawer, st_trans_ver_number, remark, st_trans_ver_date, st_trans_ver_by, is_combine) 
+                VALUES ('" + SLEWHStockSum.EditValue.ToString + "', '" + header_number("7") + "', '" + MERemark.Text + "', NOW(), '" + id_user + "', 1); SELECT LAST_INSERT_ID(); "
                 Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
 
                 'update
-                Dim query_upd As String = "UPDATE tb_st_trans SET id_combine=" + id_new + " WHERE id_st_trans>0 AND (" + id_st_trans + ") "
+                Dim query_upd As String = "UPDATE tb_st_trans_ver SET id_combine=" + id_new + " WHERE id_st_trans_ver>0 AND (" + id_st_trans_ver + ") "
                 execute_non_query(query_upd, True, "", "", "", "")
 
                 'insert detail
-                Dim qd As String = "INSERT INTO tb_st_trans_det(id_st_trans, id_st_trans_det_ref, is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, id_product, code, name, size, qty, id_design_price, design_price) 
-                SELECT '" + id_new + "', std.id_st_trans_det, is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, id_product, code, name, size, qty, id_design_price, design_price 
-                FROM tb_st_trans_det std
-                INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans 
-                WHERE st.id_st_trans>0 AND (" + id_st_trans_det + ") "
+                Dim qd As String = "INSERT INTO tb_st_trans_ver_det(id_st_trans_ver, id_st_trans_ver_det_ref, is_not_match,is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, id_product, code, name, size, qty, id_design_price, design_price) 
+                SELECT '" + id_new + "', std.id_st_trans_ver_det, is_not_match, is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, id_product, code, name, size, qty, id_design_price, design_price 
+                FROM tb_st_trans_ver_det std
+                INNER JOIN tb_st_trans_ver st ON st.id_st_trans_ver = std.id_st_trans_ver 
+                WHERE st.id_st_trans_ver>0 AND (" + id_st_trans_ver_det + ") "
                 execute_non_query(qd, True, "", "", "", "")
 
 
-                FormStockTake.viewCombine()
-                FormStockTakeDet.action = "upd"
-                FormStockTakeDet.id_st_trans = id_new
-                FormStockTakeDet.ShowDialog()
+                FormVerStockTake.viewCombine()
+                FormVerStockTakeDet.action = "upd"
+                FormVerStockTakeDet.id_st_trans_ver = id_new
+                FormVerStockTakeDet.ShowDialog()
                 Close()
                 Cursor = Cursors.Default
             Else

@@ -201,6 +201,8 @@ Public Class FormFGBackupStockDet
                 FormMain.SplashScreenManager1.SetWaitFormDescription("Creating transaction table")
                 dic.Add("tb_st_trans", "SELECT * FROM tb_st_trans ")
                 dic.Add("tb_st_trans_det", "SELECT * FROM tb_st_trans_det ")
+                dic.Add("tb_st_trans_ver", "SELECT * FROM tb_st_trans_ver ")
+                dic.Add("tb_st_trans_ver_det", "SELECT * FROM tb_st_trans_ver_det ")
                 dic.Add("tb_st_cat", "SELECT * FROM tb_st_cat ")
                 '-- stock
                 FormMain.SplashScreenManager1.SetWaitFormDescription("Backup stock")

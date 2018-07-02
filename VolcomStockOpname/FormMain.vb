@@ -16,6 +16,18 @@
         actionLoad()
     End Sub
 
+    Sub userPriv()
+        If id_role_login = "1" Then
+            NBExport.Visible = True
+            NBImport.Visible = True
+            NBStockTake.Visible = True
+        Else
+            NBExport.Visible = False
+            NBImport.Visible = False
+            NBStockTake.Visible = False
+        End If
+    End Sub
+
     Sub actionLoad()
         Try
             apply_skin()
@@ -23,6 +35,20 @@
             check_connection(True, "", "", "", "")
             If id_user = "" And app_database <> "db_opt" Then
                 FormLogin.ShowDialog()
+
+                'current db
+                setInfoDb()
+
+                'open dashboard
+                Try
+                    FormHome.MdiParent = Me
+                    FormHome.Show()
+                    FormHome.WindowState = FormWindowState.Maximized
+                    FormHome.Focus()
+                Catch ex As Exception
+                    errorConnection()
+                End Try
+                Cursor = Cursors.Default
             Else
                 'initial server centre
                 initialServerCentre()
@@ -41,8 +67,29 @@
 
     Private Sub NBImport_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBImport.LinkClicked
         Cursor = Cursors.WaitCursor
+        'close all
+        Try
+            For Each frm In MdiChildren
+                If frm.Name <> "FormMain" Then
+                    frm.Close()
+                End If
+            Next
+        Catch ex As Exception
+        End Try
+
         FormDatabase.showx = True
         FormDatabase.ShowDialog()
+
+        'open dashboard
+        Try
+            FormHome.MdiParent = Me
+            FormHome.Show()
+            FormHome.WindowState = FormWindowState.Maximized
+            FormHome.Focus()
+        Catch ex As Exception
+            errorConnection()
+        End Try
+
         Cursor = Cursors.Default
     End Sub
 
@@ -61,6 +108,13 @@
 
     Private Sub NBStockTake_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBStockTake.LinkClicked
         Cursor = Cursors.WaitCursor
+        Try
+            'jika telah terbuka
+            FormStockTake.Close()
+            FormStockTake.Dispose()
+        Catch ex As Exception
+        End Try
+
         Try
             FormStockTake.MdiParent = Me
             FormStockTake.Show()
@@ -107,6 +161,51 @@
         Cursor = Cursors.WaitCursor
         Try
             FormOpt.ShowDialog()
+        Catch ex As Exception
+            errorConnection()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBWHPreST_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBWHPreST.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            'jika telah terbuka
+            FormStockTake.Close()
+            FormStockTake.Dispose()
+        Catch ex As Exception
+        End Try
+
+        Try
+            FormStockTake.MdiParent = Me
+            FormStockTake.is_pre = "1"
+            FormStockTake.Show()
+            FormStockTake.WindowState = FormWindowState.Maximized
+            FormStockTake.Focus()
+        Catch ex As Exception
+            errorConnection()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBWHST_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBWHST.LinkClicked
+        Try
+            FormVerStockTake.MdiParent = Me
+            FormVerStockTake.Show()
+            FormVerStockTake.WindowState = FormWindowState.Maximized
+            FormVerStockTake.Focus()
+        Catch ex As Exception
+            errorConnection()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBDashboard_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBDashboard.LinkClicked
+        Try
+            FormHome.MdiParent = Me
+            FormHome.Show()
+            FormHome.WindowState = FormWindowState.Maximized
+            FormHome.Focus()
         Catch ex As Exception
             errorConnection()
         End Try

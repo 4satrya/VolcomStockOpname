@@ -115,6 +115,24 @@
     <Compile Include="FormDatabase.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDatabasePeriode.Designer.vb">
+      <DependentUpon>FormDatabasePeriode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDatabasePeriode.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDatabasePeriodeDet.Designer.vb">
+      <DependentUpon>FormDatabasePeriodeDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDatabasePeriodeDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDatabaseUI.Designer.vb">
+      <DependentUpon>FormDatabaseUI.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDatabaseUI.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormError.Designer.vb">
       <DependentUpon>FormError.vb</DependentUpon>
     </Compile>
@@ -229,6 +247,36 @@
     <Compile Include="FormStockTakeNew.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormVerStockTake.Designer.vb">
+      <DependentUpon>FormVerStockTake.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormVerStockTake.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVerStockTakeCombine.Designer.vb">
+      <DependentUpon>FormVerStockTakeCombine.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormVerStockTakeCombine.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVerStockTakeDet.Designer.vb">
+      <DependentUpon>FormVerStockTakeDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormVerStockTakeDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVerStockTakeList.Designer.vb">
+      <DependentUpon>FormVerStockTakeList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormVerStockTakeList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVerStockTakeNew.Designer.vb">
+      <DependentUpon>FormVerStockTakeNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormVerStockTakeNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Library\Common.vb" />
     <Compile Include="Library\Database.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -270,6 +318,24 @@
     <Compile Include="ReportScan.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportScanPreStockTake.Designer.vb">
+      <DependentUpon>ReportScanPreStockTake.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportScanPreStockTake.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportScanVerStockTake.Designer.vb">
+      <DependentUpon>ReportScanVerStockTake.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportScanVerStockTake.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportScanVerStockTakeSlip.Designer.vb">
+      <DependentUpon>ReportScanVerStockTakeSlip.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportScanVerStockTakeSlip.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="WaitForm1.Designer.vb">
       <DependentUpon>WaitForm1.vb</DependentUpon>
     </Compile>
@@ -280,6 +346,15 @@
   <ItemGroup>
     <EmbeddedResource Include="FormDatabase.resx">
       <DependentUpon>FormDatabase.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDatabasePeriode.resx">
+      <DependentUpon>FormDatabasePeriode.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDatabasePeriodeDet.resx">
+      <DependentUpon>FormDatabasePeriodeDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDatabaseUI.resx">
+      <DependentUpon>FormDatabaseUI.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormError.resx">
       <DependentUpon>FormError.vb</DependentUpon>
@@ -338,6 +413,21 @@
     <EmbeddedResource Include="FormStockTakeNew.resx">
       <DependentUpon>FormStockTakeNew.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormVerStockTake.resx">
+      <DependentUpon>FormVerStockTake.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVerStockTakeCombine.resx">
+      <DependentUpon>FormVerStockTakeCombine.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVerStockTakeDet.resx">
+      <DependentUpon>FormVerStockTakeDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVerStockTakeList.resx">
+      <DependentUpon>FormVerStockTakeList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVerStockTakeNew.resx">
+      <DependentUpon>FormVerStockTakeNew.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -356,6 +446,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportScan.resx">
       <DependentUpon>ReportScan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportScanPreStockTake.resx">
+      <DependentUpon>ReportScanPreStockTake.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportScanVerStockTakeSlip.resx">
+      <DependentUpon>ReportScanVerStockTakeSlip.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitForm1.resx">
       <DependentUpon>WaitForm1.vb</DependentUpon>

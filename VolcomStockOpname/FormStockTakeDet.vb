@@ -326,81 +326,149 @@
     Sub print()
         Cursor = Cursors.WaitCursor
         If XTCStockTake.SelectedTabPageIndex = 0 Then
-            Cursor = Cursors.WaitCursor
-            GVScan.BestFitColumns()
-            ReportScan.dt = GCScan.DataSource
-            ReportScan.id_report = id_st_trans
-            Dim Report As New ReportScan()
+            If FormStockTake.is_pre = "1" Then 'wh pre stock take
+                Cursor = Cursors.WaitCursor
+                GVScan.BestFitColumns()
+                ReportScanPreStockTake.dt = GCScan.DataSource
+                ReportScanPreStockTake.id_report = id_st_trans
+                Dim Report As New ReportScanPreStockTake()
 
-            ' '... 
-            ' ' creating and saving the view's layout to a new memory stream 
-            Dim str As System.IO.Stream
-            str = New System.IO.MemoryStream()
-            GVScan.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            str.Seek(0, System.IO.SeekOrigin.Begin)
-            Report.GVScan.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            str.Seek(0, System.IO.SeekOrigin.Begin)
+                ' '... 
+                ' ' creating and saving the view's layout to a new memory stream 
+                Dim str As System.IO.Stream
+                str = New System.IO.MemoryStream()
+                GVScan.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                Report.GVScan.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
 
-            'Grid Detail
-            ReportStyleGridview(Report.GVScan)
+                'Grid Detail
+                ReportStyleGridview(Report.GVScan)
 
-            'Parse val
-            Report.LabelNo.Text = TxtNumber.Text
-            Report.LabelOutlet.Text = SLEWHStockSum.Text
-            Report.LabelAlamat.Text = address_primary
-            Report.LabelCreatedDate.Text = DECreated.Text
-            Report.LabelSOHPeriode.Text = soh_period
-            Report.LabelSalesUntil.Text = sales_until_period
-            Report.LabelPrepare.Text = prepared_by
-            Report.LabelPreparePosition.Text = prepared_position
-            Report.LabelAck.Text = LEAck.Text
-            Report.LabelAckPosition.Text = ack_position
-            Report.LabelApp.Text = TxtApp.Text
-            Report.LabelAppPosition.Text = comp_name
-            Report.LabelRemark.Text = MERemark.Text.ToString
+                'Parse val
+                Report.LabelTitle.Text = "WH PRE STOCKTAKE - SCAN PRODUCT LIST  "
+                Report.LabelNo.Text = TxtNumber.Text
+                Report.LabelAccount.Text = SLEWHStockSum.Text
+                Report.LabelRemark.Text = TxtNumber.Text
+                Report.LabelDate.Text = DECreated.Text
+                Report.LabelPrepare.Text = prepared_by
+                Report.LabelRemark.Text = MERemark.Text.ToString
 
-            'Show the report's preview. 
-            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-            Tool.ShowPreviewDialog()
-            Cursor = Cursors.Default
+                'Show the report's preview. 
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreviewDialog()
+                Cursor = Cursors.Default
+            Else 'stock take IA reguler
+                Cursor = Cursors.WaitCursor
+                GVScan.BestFitColumns()
+                ReportScan.dt = GCScan.DataSource
+                ReportScan.id_report = id_st_trans
+                Dim Report As New ReportScan()
+
+                ' '... 
+                ' ' creating and saving the view's layout to a new memory stream 
+                Dim str As System.IO.Stream
+                str = New System.IO.MemoryStream()
+                GVScan.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                Report.GVScan.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+
+                'Grid Detail
+                ReportStyleGridview(Report.GVScan)
+
+                'Parse val
+                Report.LabelNo.Text = TxtNumber.Text
+                Report.LabelOutlet.Text = SLEWHStockSum.Text
+                Report.LabelAlamat.Text = address_primary
+                Report.LabelCreatedDate.Text = DECreated.Text
+                Report.LabelSOHPeriode.Text = soh_period
+                Report.LabelSalesUntil.Text = sales_until_period
+                Report.LabelPrepare.Text = prepared_by
+                Report.LabelPreparePosition.Text = prepared_position
+                Report.LabelAck.Text = LEAck.Text
+                Report.LabelAckPosition.Text = ack_position
+                Report.LabelApp.Text = TxtApp.Text
+                Report.LabelAppPosition.Text = comp_name
+                Report.LabelRemark.Text = MERemark.Text.ToString
+
+                'Show the report's preview. 
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreviewDialog()
+                Cursor = Cursors.Default
+            End If
         ElseIf XTCStockTake.SelectedTabPageIndex = 1 Then
-            Cursor = Cursors.WaitCursor
-            GVSummaryScan.BestFitColumns()
-            ReportScan.dt = GCSummaryScan.DataSource
-            ReportScan.id_report = id_st_trans
-            Dim Report As New ReportScan()
+            If FormStockTake.is_pre = "1" Then 'wh pre stock take
+                Cursor = Cursors.WaitCursor
+                GVSummaryScan.BestFitColumns()
+                ReportScanPreStockTake.dt = GCSummaryScan.DataSource
+                ReportScanPreStockTake.id_report = id_st_trans
+                Dim Report As New ReportScanPreStockTake()
 
-            ' '... 
-            ' ' creating and saving the view's layout to a new memory stream 
-            Dim str As System.IO.Stream
-            str = New System.IO.MemoryStream()
-            GVSummaryScan.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            str.Seek(0, System.IO.SeekOrigin.Begin)
-            Report.GVScan.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            str.Seek(0, System.IO.SeekOrigin.Begin)
+                ' '... 
+                ' ' creating and saving the view's layout to a new memory stream 
+                Dim str As System.IO.Stream
+                str = New System.IO.MemoryStream()
+                GVSummaryScan.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                Report.GVScan.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
 
-            'Grid Detail
-            ReportStyleGridview(Report.GVScan)
+                'Grid Detail
+                ReportStyleGridview(Report.GVScan)
 
-            'Parse val
-            Report.LabelNo.Text = TxtNumber.Text
-            Report.LabelOutlet.Text = SLEWHStockSum.Text
-            Report.LabelAlamat.Text = address_primary
-            Report.LabelCreatedDate.Text = DECreated.Text
-            Report.LabelSOHPeriode.Text = soh_period
-            Report.LabelSalesUntil.Text = sales_until_period
-            Report.LabelPrepare.Text = prepared_by
-            Report.LabelPreparePosition.Text = prepared_position
-            Report.LabelAck.Text = LEAck.Text
-            Report.LabelAckPosition.Text = ack_position
-            Report.LabelApp.Text = TxtApp.Text
-            Report.LabelAppPosition.Text = comp_name
-            Report.LabelRemark.Text = MERemark.Text.ToString
+                'Parse val
+                Report.LabelTitle.Text = "WH PRE STOCKTAKE SLIP"
+                Report.LabelNo.Text = TxtNumber.Text
+                Report.LabelAccount.Text = SLEWHStockSum.Text
+                Report.LabelRemark.Text = TxtNumber.Text
+                Report.LabelDate.Text = DECreated.Text
+                Report.LabelPrepare.Text = prepared_by
+                Report.LabelRemark.Text = MERemark.Text.ToString
 
-            'Show the report's preview. 
-            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-            Tool.ShowPreviewDialog()
-            Cursor = Cursors.Default
+                'Show the report's preview. 
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreviewDialog()
+                Cursor = Cursors.Default
+            Else 'IA Reguler
+                Cursor = Cursors.WaitCursor
+                GVSummaryScan.BestFitColumns()
+                ReportScan.dt = GCSummaryScan.DataSource
+                ReportScan.id_report = id_st_trans
+                Dim Report As New ReportScan()
+
+                ' '... 
+                ' ' creating and saving the view's layout to a new memory stream 
+                Dim str As System.IO.Stream
+                str = New System.IO.MemoryStream()
+                GVSummaryScan.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                Report.GVScan.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+
+                'Grid Detail
+                ReportStyleGridview(Report.GVScan)
+
+                'Parse val
+                Report.LabelNo.Text = TxtNumber.Text
+                Report.LabelOutlet.Text = SLEWHStockSum.Text
+                Report.LabelAlamat.Text = address_primary
+                Report.LabelCreatedDate.Text = DECreated.Text
+                Report.LabelSOHPeriode.Text = soh_period
+                Report.LabelSalesUntil.Text = sales_until_period
+                Report.LabelPrepare.Text = prepared_by
+                Report.LabelPreparePosition.Text = prepared_position
+                Report.LabelAck.Text = LEAck.Text
+                Report.LabelAckPosition.Text = ack_position
+                Report.LabelApp.Text = TxtApp.Text
+                Report.LabelAppPosition.Text = comp_name
+                Report.LabelRemark.Text = MERemark.Text.ToString
+
+                'Show the report's preview. 
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreviewDialog()
+                Cursor = Cursors.Default
+            End If
         ElseIf XTCStockTake.SelectedTabPageIndex = 2 Then
             GVCat.BestFitColumns()
             print_raw(GCCat, "")
@@ -728,7 +796,7 @@
 
     Private Sub MERemark_EditValueChanged(sender As Object, e As EventArgs) Handles MERemark.EditValueChanged
         Cursor = Cursors.WaitCursor
-        Dim query As String = "UPDATE tb_st_trans SET remark='" + addSlashes(MERemark.Text) + "' WHERE id_st_trans='" + id_st_trans + "' "
+        Dim query As String = "UPDATE tb_st_trans SET remark='" + addSlashes(MERemark.Text) + "', st_trans_updated_by=" + id_user + " WHERE id_st_trans='" + id_st_trans + "' "
         execute_non_query(query, True, "", "", "", "")
         If is_combine = "1" Then
             FormStockTake.viewCombine()

@@ -23,8 +23,8 @@
 
     Private Sub BtnCreate_Click(sender As Object, e As EventArgs) Handles BtnCreate.Click
         Cursor = Cursors.WaitCursor
-        Dim query As String = "INSERT INTO tb_st_trans (id_wh_drawer, st_trans_number, remark, st_trans_date, st_trans_by, is_combine) 
-        VALUES ('" + SLEWHStockSum.EditValue.ToString + "', '" + header_number("1") + "', '" + addSlashes(MERemark.Text.ToString) + "', NOW(), '" + id_user + "', 2); SELECT LAST_INSERT_ID(); "
+        Dim query As String = "INSERT INTO tb_st_trans (id_wh_drawer, st_trans_number, remark, st_trans_date, st_trans_by, is_combine,is_pre) 
+        VALUES ('" + SLEWHStockSum.EditValue.ToString + "', '" + getTransNumber() + "', '" + addSlashes(MERemark.Text.ToString) + "', NOW(), '" + id_user + "', 2," + FormStockTake.is_pre + "); SELECT LAST_INSERT_ID(); "
         Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
         FormStockTake.viewScan()
         FormStockTakeDet.action = "upd"
@@ -33,6 +33,14 @@
         Close()
         Cursor = Cursors.Default
     End Sub
+
+    Function getTransNumber()
+        If FormStockTake.is_pre = "1" Then 'wh pre stock take
+            Return header_number("4")
+        Else 'stock take
+            Return header_number("1")
+        End If
+    End Function
 
     Private Sub FormStockTakeNew_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()

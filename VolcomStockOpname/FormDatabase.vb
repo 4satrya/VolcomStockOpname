@@ -14,6 +14,10 @@ Public Class FormDatabase
     End Sub
 
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles BtnConnect.Click
+        viewDB()
+    End Sub
+
+    Sub viewDB()
         Cursor = Cursors.WaitCursor
 
         Try
@@ -173,5 +177,21 @@ Public Class FormDatabase
         Cursor = Cursors.WaitCursor
         FormDatabaseUI.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnLocal_Click(sender As Object, e As EventArgs) Handles BtnLocal.Click
+        GCData.DataSource = Nothing
+        TxtHost.Text = "localhost"
+        TxtPass.Text = "mtvolcom14"
+        TxtUsername.Text = "root"
+        viewDB()
+    End Sub
+
+    Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles SimpleButton2.Click
+        GCData.DataSource = Nothing
+        TxtHost.Text = "192.168.1.5"
+        TxtPass.Text = "mtvolcom14"
+        TxtUsername.Text = "external_user"
+        viewDB()
     End Sub
 End Class

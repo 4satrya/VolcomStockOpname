@@ -33,7 +33,7 @@
                 End If
                 If data.Rows.Count > 0 Then
                     id_user = data.Rows(0)("id_user").ToString
-                    id_role_login = data.Rows(0)("id_role").ToString
+                    id_role_login = data.Rows(0)("role").ToString
                     name_user = data.Rows(0)("employee_name").ToString
                     position_user = data.Rows(0)("employee_position").ToString
                     code_user = data.Rows(0)("employee_code").ToString
@@ -54,6 +54,7 @@
                     If Not is_first Then
                         FormMain.TxtName.Text = name_user.ToUpper
                         FormMain.TxtPosition.Text = position_user.ToUpper
+                        FormMain.userPriv()
                         FormMain.Opacity = 100
                         FormMain.BringToFront()
                         FormMain.Focus()

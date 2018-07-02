@@ -16,6 +16,18 @@
         actionLoad()
     End Sub
 
+    Sub userPriv()
+        If id_role_login = "1" Then
+            NBExport.Visible = True
+            NBImport.Visible = True
+            NBStockTake.Visible = True
+        Else
+            NBExport.Visible = False
+            NBImport.Visible = False
+            NBStockTake.Visible = False
+        End If
+    End Sub
+
     Sub actionLoad()
         Try
             apply_skin()

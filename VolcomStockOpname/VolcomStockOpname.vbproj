@@ -115,6 +115,18 @@
     <Compile Include="FormDatabase.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDatabasePeriode.Designer.vb">
+      <DependentUpon>FormDatabasePeriode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDatabasePeriode.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDatabasePeriodeDet.Designer.vb">
+      <DependentUpon>FormDatabasePeriodeDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDatabasePeriodeDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormDatabaseUI.Designer.vb">
       <DependentUpon>FormDatabaseUI.vb</DependentUpon>
     </Compile>
@@ -334,6 +346,12 @@
   <ItemGroup>
     <EmbeddedResource Include="FormDatabase.resx">
       <DependentUpon>FormDatabase.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDatabasePeriode.resx">
+      <DependentUpon>FormDatabasePeriode.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDatabasePeriodeDet.resx">
+      <DependentUpon>FormDatabasePeriodeDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDatabaseUI.resx">
       <DependentUpon>FormDatabaseUI.vb</DependentUpon>

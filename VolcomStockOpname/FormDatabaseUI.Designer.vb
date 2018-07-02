@@ -22,24 +22,23 @@ Partial Class FormDatabaseUI
         Me.components = New System.ComponentModel.Container()
         Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.GCPeriode = New DevExpress.XtraGrid.GridControl()
-        Me.GVPeriode = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GCDetail = New DevExpress.XtraGrid.GridControl()
-        Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.AddToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SetAsDefaultToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AddToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EditToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DeleteToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GVPeriode = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnIdPeriode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnis_default = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.GCDetail = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.AddToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnIdPer = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnacc = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -49,14 +48,14 @@ Partial Class FormDatabaseUI
         Me.SplitContainerControl1.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
+        CType(Me.GCPeriode, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
+        CType(Me.GVPeriode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
-        CType(Me.GCPeriode, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVPeriode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStrip1.SuspendLayout()
         Me.ContextMenuStrip2.SuspendLayout()
+        CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SplitContainerControl1
@@ -84,16 +83,6 @@ Partial Class FormDatabaseUI
         Me.GroupControl1.TabIndex = 0
         Me.GroupControl1.Text = "Periode"
         '
-        'GroupControl2
-        '
-        Me.GroupControl2.Controls.Add(Me.GCDetail)
-        Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
-        Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(865, 243)
-        Me.GroupControl2.TabIndex = 1
-        Me.GroupControl2.Text = "Detail"
-        '
         'GCPeriode
         '
         Me.GCPeriode.ContextMenuStrip = Me.ContextMenuStrip1
@@ -105,44 +94,11 @@ Partial Class FormDatabaseUI
         Me.GCPeriode.TabIndex = 0
         Me.GCPeriode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPeriode})
         '
-        'GVPeriode
-        '
-        Me.GVPeriode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdPeriode, Me.GridColumndesc, Me.GridColumn1, Me.GridColumnis_default})
-        Me.GVPeriode.GridControl = Me.GCPeriode
-        Me.GVPeriode.Name = "GVPeriode"
-        Me.GVPeriode.OptionsBehavior.Editable = False
-        Me.GVPeriode.OptionsView.ShowGroupPanel = False
-        '
-        'GCDetail
-        '
-        Me.GCDetail.ContextMenuStrip = Me.ContextMenuStrip2
-        Me.GCDetail.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCDetail.Location = New System.Drawing.Point(2, 20)
-        Me.GCDetail.MainView = Me.GVDetail
-        Me.GCDetail.Name = "GCDetail"
-        Me.GCDetail.Size = New System.Drawing.Size(861, 221)
-        Me.GCDetail.TabIndex = 1
-        Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
-        '
-        'GVDetail
-        '
-        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdPer, Me.GridColumnIdDet, Me.GridColumnacc, Me.GridColumn2, Me.GridColumn3})
-        Me.GVDetail.GridControl = Me.GCDetail
-        Me.GVDetail.Name = "GVDetail"
-        Me.GVDetail.OptionsBehavior.Editable = False
-        Me.GVDetail.OptionsView.ShowGroupPanel = False
-        '
         'ContextMenuStrip1
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddToolStripMenuItem, Me.EditToolStripMenuItem, Me.DeleteToolStripMenuItem, Me.SetAsDefaultToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
         Me.ContextMenuStrip1.Size = New System.Drawing.Size(145, 92)
-        '
-        'ContextMenuStrip2
-        '
-        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddToolStripMenuItem1, Me.EditToolStripMenuItem1, Me.DeleteToolStripMenuItem1})
-        Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
-        Me.ContextMenuStrip2.Size = New System.Drawing.Size(108, 70)
         '
         'AddToolStripMenuItem
         '
@@ -168,23 +124,13 @@ Partial Class FormDatabaseUI
         Me.SetAsDefaultToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
         Me.SetAsDefaultToolStripMenuItem.Text = "Set as default"
         '
-        'AddToolStripMenuItem1
+        'GVPeriode
         '
-        Me.AddToolStripMenuItem1.Name = "AddToolStripMenuItem1"
-        Me.AddToolStripMenuItem1.Size = New System.Drawing.Size(107, 22)
-        Me.AddToolStripMenuItem1.Text = "Add"
-        '
-        'EditToolStripMenuItem1
-        '
-        Me.EditToolStripMenuItem1.Name = "EditToolStripMenuItem1"
-        Me.EditToolStripMenuItem1.Size = New System.Drawing.Size(107, 22)
-        Me.EditToolStripMenuItem1.Text = "Edit"
-        '
-        'DeleteToolStripMenuItem1
-        '
-        Me.DeleteToolStripMenuItem1.Name = "DeleteToolStripMenuItem1"
-        Me.DeleteToolStripMenuItem1.Size = New System.Drawing.Size(107, 22)
-        Me.DeleteToolStripMenuItem1.Text = "Delete"
+        Me.GVPeriode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdPeriode, Me.GridColumndesc, Me.GridColumn1, Me.GridColumnis_default})
+        Me.GVPeriode.GridControl = Me.GCPeriode
+        Me.GVPeriode.Name = "GVPeriode"
+        Me.GVPeriode.OptionsBehavior.Editable = False
+        Me.GVPeriode.OptionsView.ShowGroupPanel = False
         '
         'GridColumnIdPeriode
         '
@@ -215,6 +161,53 @@ Partial Class FormDatabaseUI
         Me.GridColumnis_default.Caption = "is_default"
         Me.GridColumnis_default.FieldName = "is_default"
         Me.GridColumnis_default.Name = "GridColumnis_default"
+        '
+        'GroupControl2
+        '
+        Me.GroupControl2.Controls.Add(Me.GCDetail)
+        Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl2.Name = "GroupControl2"
+        Me.GroupControl2.Size = New System.Drawing.Size(865, 243)
+        Me.GroupControl2.TabIndex = 1
+        Me.GroupControl2.Text = "Detail"
+        '
+        'GCDetail
+        '
+        Me.GCDetail.ContextMenuStrip = Me.ContextMenuStrip2
+        Me.GCDetail.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCDetail.Location = New System.Drawing.Point(2, 20)
+        Me.GCDetail.MainView = Me.GVDetail
+        Me.GCDetail.Name = "GCDetail"
+        Me.GCDetail.Size = New System.Drawing.Size(861, 221)
+        Me.GCDetail.TabIndex = 1
+        Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
+        '
+        'ContextMenuStrip2
+        '
+        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddToolStripMenuItem1, Me.DeleteToolStripMenuItem1})
+        Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(153, 70)
+        '
+        'AddToolStripMenuItem1
+        '
+        Me.AddToolStripMenuItem1.Name = "AddToolStripMenuItem1"
+        Me.AddToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.AddToolStripMenuItem1.Text = "Add"
+        '
+        'DeleteToolStripMenuItem1
+        '
+        Me.DeleteToolStripMenuItem1.Name = "DeleteToolStripMenuItem1"
+        Me.DeleteToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.DeleteToolStripMenuItem1.Text = "Delete"
+        '
+        'GVDetail
+        '
+        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdPer, Me.GridColumnIdDet, Me.GridColumnacc, Me.GridColumn2, Me.GridColumn3})
+        Me.GVDetail.GridControl = Me.GCDetail
+        Me.GVDetail.Name = "GVDetail"
+        Me.GVDetail.OptionsBehavior.Editable = False
+        Me.GVDetail.OptionsView.ShowGroupPanel = False
         '
         'GridColumnIdPer
         '
@@ -266,14 +259,14 @@ Partial Class FormDatabaseUI
         Me.SplitContainerControl1.ResumeLayout(False)
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
+        CType(Me.GCPeriode, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
+        CType(Me.GVPeriode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
-        CType(Me.GCPeriode, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVPeriode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ContextMenuStrip2.ResumeLayout(False)
+        CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -292,8 +285,6 @@ Partial Class FormDatabaseUI
     Friend WithEvents DeleteToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SetAsDefaultToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AddToolStripMenuItem1 As ToolStripMenuItem
-    Friend WithEvents EditToolStripMenuItem1 As ToolStripMenuItem
-    Friend WithEvents DeleteToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents GridColumnIdPeriode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumndesc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
@@ -303,4 +294,5 @@ Partial Class FormDatabaseUI
     Friend WithEvents GridColumnacc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DeleteToolStripMenuItem1 As ToolStripMenuItem
 End Class

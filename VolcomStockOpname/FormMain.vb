@@ -55,8 +55,29 @@
 
     Private Sub NBImport_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBImport.LinkClicked
         Cursor = Cursors.WaitCursor
+        'close all
+        Try
+            For Each frm In MdiChildren
+                If frm.Name <> "FormMain" Then
+                    frm.Close()
+                End If
+            Next
+        Catch ex As Exception
+        End Try
+
         FormDatabase.showx = True
         FormDatabase.ShowDialog()
+
+        'open dashboard
+        Try
+            FormHome.MdiParent = Me
+            FormHome.Show()
+            FormHome.WindowState = FormWindowState.Maximized
+            FormHome.Focus()
+        Catch ex As Exception
+            errorConnection()
+        End Try
+
         Cursor = Cursors.Default
     End Sub
 

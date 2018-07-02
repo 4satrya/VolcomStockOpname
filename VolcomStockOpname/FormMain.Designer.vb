@@ -81,6 +81,7 @@ Partial Class FormMain
         Me.NBGGeneral.Expanded = True
         Me.NBGGeneral.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDashboard), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBExport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBImport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBStock), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBOpt), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBStockTake), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBWHPreST), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBWHST)})
         Me.NBGGeneral.Name = "NBGGeneral"
+        Me.NBGGeneral.TopVisibleLinkIndex = 2
         '
         'NBDashboard
         '
@@ -122,11 +123,13 @@ Partial Class FormMain
         '
         Me.NBWHPreST.Caption = "WH Pre Stocktake"
         Me.NBWHPreST.Name = "NBWHPreST"
+        Me.NBWHPreST.SmallImage = CType(resources.GetObject("NBWHPreST.SmallImage"), System.Drawing.Image)
         '
         'NBWHST
         '
         Me.NBWHST.Caption = "WH Stocktake"
         Me.NBWHST.Name = "NBWHST"
+        Me.NBWHST.SmallImage = CType(resources.GetObject("NBWHST.SmallImage"), System.Drawing.Image)
         '
         'PCLeft
         '

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormLogin
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormLogin
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.TxtUsername = New DevExpress.XtraEditors.TextEdit()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -25,6 +25,7 @@ Partial Class FormLogin
         Me.TxtPass = New DevExpress.XtraEditors.TextEdit()
         Me.BtnLogin = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnReset = New DevExpress.XtraEditors.SimpleButton()
+        Me.Label3 = New System.Windows.Forms.Label()
         CType(Me.TxtUsername.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtPass.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -76,11 +77,11 @@ Partial Class FormLogin
         Me.BtnLogin.Appearance.Options.UseBackColor = True
         Me.BtnLogin.Appearance.Options.UseFont = True
         Me.BtnLogin.Appearance.Options.UseForeColor = True
-        Me.BtnLogin.Location = New System.Drawing.Point(24, 121)
+        Me.BtnLogin.Location = New System.Drawing.Point(266, 121)
         Me.BtnLogin.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BtnLogin.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnLogin.Name = "BtnLogin"
-        Me.BtnLogin.Size = New System.Drawing.Size(338, 24)
+        Me.BtnLogin.Size = New System.Drawing.Size(96, 24)
         Me.BtnLogin.TabIndex = 4
         Me.BtnLogin.Text = "Login"
         '
@@ -92,19 +93,30 @@ Partial Class FormLogin
         Me.BtnReset.Appearance.Options.UseBackColor = True
         Me.BtnReset.Appearance.Options.UseFont = True
         Me.BtnReset.Appearance.Options.UseForeColor = True
-        Me.BtnReset.Location = New System.Drawing.Point(24, 151)
+        Me.BtnReset.Location = New System.Drawing.Point(143, 121)
         Me.BtnReset.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BtnReset.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnReset.Name = "BtnReset"
-        Me.BtnReset.Size = New System.Drawing.Size(338, 24)
+        Me.BtnReset.Size = New System.Drawing.Size(120, 24)
         Me.BtnReset.TabIndex = 5
-        Me.BtnReset.Text = "Reset to Default Setting"
+        Me.BtnReset.Text = "Default Setting"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(297, 155)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(65, 12)
+        Me.Label3.TabIndex = 6
+        Me.Label3.Text = "Version 0.0.0.1"
         '
         'FormLogin
         '
         Me.Appearance.Options.UseFont = True
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(388, 197)
+        Me.ClientSize = New System.Drawing.Size(388, 176)
+        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.BtnReset)
         Me.Controls.Add(Me.BtnLogin)
         Me.Controls.Add(Me.TxtPass)
@@ -136,4 +148,5 @@ Partial Class FormLogin
     Friend WithEvents TxtPass As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BtnLogin As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnReset As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents Label3 As Label
 End Class

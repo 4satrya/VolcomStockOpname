@@ -1,9 +1,71 @@
-﻿Public Class FormLogin
+﻿Imports System.IO
+
+Public Class FormLogin
     Public is_first As Boolean = False
     Public id_menu As String = ""
+    Dim _list_download As Queue(Of String) = New Queue(Of String)()
+    Dim url_volcom As String = ""
+    Dim url_volcom_un As String = ""
 
     Private Sub FormLogin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+    End Sub
+
+    Sub loadDownload()
+        Dim line As String = ""
+        Try
+            ' Open the file using a stream reader.
+            Using sr As New StreamReader(Application.StartupPath & "\Location.txt")
+                ' Read the stream to a string and write the string to the console.
+                line = sr.ReadToEnd()
+            End Using
+        Catch ex As Exception
+        End Try
+
+        If Environment.Is64BitOperatingSystem.ToString Then
+            url_volcom = line + ":\Program Files (x86)\Volcom Indonesia\Volcom ERP\Volcom MRP.exe"
+            url_volcom_un = line + ":\Program Files (x86)\Volcom Indonesia\Volcom ERP\uninstall_command.bat"
+        Else
+            url_volcom = line + ":\Program Files\Volcom Indonesia\Volcom ERP\Volcom MRP.exe"
+            url_volcom_un = line + ":\Program Files\Volcom Indonesia\Volcom ERP\uninstall_command.bat"
+        End If
+        load_form()
+    End Sub
+
+    Sub load_form()
+        Dim myFileVersionInfo As FileVersionInfo = FileVersionInfo.GetVersionInfo(Application.StartupPath() + "\LauncherVolcomERP.exe")
+
+        Try
+            myFileVersionInfo = FileVersionInfo.GetVersionInfo(url_volcom)
+        Catch ex As Exception
+        End Try
+
+
+        PictureEdit1.LoadAsync("http://192.168.1.2/app_upd/launch_img.jpg")
+
+        LVersion.Text = "Volcom ERP (Version : " & myFileVersionInfo.FileVersion.ToString & ")"
+        Dim update_url As String = "http://192.168.1.2/app_upd/"
+        Dim web As New Net.WebClient
+        Dim LatestVersion As String = web.DownloadString(update_url & "version.txt") 'To download the Lastest Version from a specified URL.
+
+        'Dim LatestVersion_v = New Version(LatestVersion)
+        'Dim myFileVersionInfo_v = New Version(myFileVersionInfo.FileVersion.ToString)
+
+        'Dim result = LatestVersion_v.CompareTo(myFileVersionInfo_v)
+        'If result > 0 Then
+        'Console.WriteLine("LatestVersion_v is greater")
+        'ElseIf result < 0 Then
+        'Console.WriteLine("myFileVersionInfo_v is greater")
+        'Else
+        'Console.WriteLine("versions are equal")
+        'End If
+
+        If myFileVersionInfo.FileVersion.ToString < LatestVersion Then
+            'infoCustom("Latest Version : " & LatestVersion & " of this application is available !")
+            BLaunch.Text = "Update"
+        Else
+            BLaunch.Text = "Start"
+        End If
     End Sub
 
     Private Sub FormLogin_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed

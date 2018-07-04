@@ -20,7 +20,7 @@
         LEFT JOIN tb_m_design_price prc ON prc.id_design_price = std.id_design_price
         LEFT JOIN tb_lookup_design_price_type typ ON typ.id_design_price_type = prc.id_design_price_type
         LEFT JOIN tb_lookup_design_cat cat ON cat.id_design_cat = typ.id_design_cat  "
-        query += "WHERE st.id_report_status!=5 AND st.is_combine=2 ORDER BY std.id_st_trans_ver ASC, std.id_st_trans_ver_det ASC "
+        query += "WHERE st.id_report_status!=5 AND st.is_combine=2 ORDER BY std.id_st_trans_ver ASC, std.name ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCScan.DataSource = data
     End Sub
@@ -45,7 +45,7 @@
         WHERE ISNULL(std.id_product) "
         query += "AND st.id_report_status!=5 AND st.is_combine=2 "
         query += "GROUP BY std.code, std.id_st_trans_ver  
-        ORDER BY id_st_trans_ver ASC,barcode ASC, product_code ASC "
+        ORDER BY id_st_trans_ver ASC,name ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSummaryScan.DataSource = data
         Cursor = Cursors.Default

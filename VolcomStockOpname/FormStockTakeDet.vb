@@ -113,16 +113,16 @@
         LEFT JOIN tb_lookup_design_cat cat ON cat.id_design_cat = typ.id_design_cat 
         LEFT JOIN tb_st_trans_det rd ON rd.id_st_trans_det = std.id_st_trans_det_ref
         LEFT JOIN tb_st_trans r ON r.id_st_trans = rd.id_st_trans "
-        query += "WHERE std.id_st_trans=" + id_st_trans + " ORDER BY std.id_st_trans_det ASC "
+        query += "WHERE std.id_st_trans=" + id_st_trans + " "
         If is_combine = "2" Then
             GridColumnRemark.Visible = False
             GridColumnRefNumber.Visible = False
         End If
-        'If is_combine = "2" Then
-        '    query += "WHERE std.id_st_trans=" + id_st_trans + " ORDER BY std.id_st_trans_det ASC "
-        'ElseIf is_combine = "1" Then
-        '    query += "WHERE st.id_combine=" + id_st_trans + " ORDER BY std.id_st_trans_det ASC "
-        'End If
+        If is_combine = "2" Then
+            query += "ORDER BY std.id_st_trans_det ASC "
+        ElseIf is_combine = "1" Then
+            query += "ORDER BY r.id_st_trans ASC,std.name ASC "
+        End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCScan.DataSource = data
     End Sub
@@ -147,7 +147,7 @@
         WHERE ISNULL(std.id_product) "
         query += "AND std.id_st_trans=" + id_st_trans + " "
         query += "GROUP BY std.code 
-        ORDER BY barcode ASC,product_code ASC "
+        ORDER BY name ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSummaryScan.DataSource = data
         Cursor = Cursors.Default
@@ -238,7 +238,7 @@
         INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
         WHERE st.id_st_trans=" + id_st_trans + " AND std.is_no_master=1 
         GROUP BY std.code
-        ORDER BY barcode ASC, code ASC "
+        ORDER BY name ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCompare.DataSource = data
         TxtFontSize.EditValue = 6.3

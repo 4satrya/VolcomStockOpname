@@ -116,16 +116,16 @@
         LEFT JOIN tb_lookup_design_cat cat ON cat.id_design_cat = typ.id_design_cat 
         LEFT JOIN tb_st_trans_ver_det rd ON rd.id_st_trans_ver_det = std.id_st_trans_ver_det_ref
         LEFT JOIN tb_st_trans_ver r ON r.id_st_trans_ver = rd.id_st_trans_ver "
-        query += "WHERE std.id_st_trans_ver=" + id_st_trans_ver + " ORDER BY std.id_st_trans_ver_det ASC "
+        query += "WHERE std.id_st_trans_ver=" + id_st_trans_ver + " "
         If is_combine = "2" Then
             GridColumnRemark.Visible = False
             GridColumnRefNumber.Visible = False
         End If
-        'If is_combine = "2" Then
-        '    query += "WHERE std.id_st_trans=" + id_st_trans + " ORDER BY std.id_st_trans_det ASC "
-        'ElseIf is_combine = "1" Then
-        '    query += "WHERE st.id_combine=" + id_st_trans + " ORDER BY std.id_st_trans_det ASC "
-        'End If
+        If is_combine = "2" Then
+            query += "ORDER BY std.id_st_trans_ver_det ASC "
+        ElseIf is_combine = "1" Then
+            query += "ORDER BY r.id_st_trans_ver ASC ,std.name ASC "
+        End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCScan.DataSource = data
     End Sub
@@ -150,7 +150,7 @@
         WHERE ISNULL(std.id_product) "
         query += "AND std.id_st_trans_ver=" + id_st_trans_ver + " "
         query += "GROUP BY std.code 
-        ORDER BY barcode ASC,product_code ASC "
+        ORDER BY name ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSummaryScan.DataSource = data
         Cursor = Cursors.Default
@@ -202,7 +202,7 @@
         ) vd ON vd.`code` = pd.`code` AND " + w2 + "
         WHERE ISNULL(pd.`code`)
         GROUP BY vd.`code`
-        ORDER BY barcode_pre ASC "
+        ORDER BY name ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCS.DataSource = data
         GVCS.BestFitColumns()
@@ -252,7 +252,7 @@
         INNER JOIN tb_st_trans_ver st ON st.id_st_trans_ver = std.id_st_trans_ver
         WHERE st.id_st_trans_ver=" + id_st_trans_ver + " AND std.is_no_master=1 
         GROUP BY std.code
-        ORDER BY barcode ASC, code ASC "
+        ORDER BY name ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCompare.DataSource = data
         TxtFontSize.EditValue = 6.3

@@ -57,7 +57,7 @@
 
                 'insert
                 Dim query As String = "INSERT INTO tb_st_trans (id_wh_drawer, st_trans_number, remark, st_trans_date, st_trans_by, is_combine, is_pre) 
-                VALUES ('" + SLEWHStockSum.EditValue.ToString + "', '" + header_number("5") + "', '" + MERemark.Text + "', NOW(), '" + id_user + "', 1, '" + FormStockTake.is_pre + "'); SELECT LAST_INSERT_ID(); "
+                VALUES ('" + SLEWHStockSum.EditValue.ToString + "', '" + getTransNumber() + "', '" + MERemark.Text + "', NOW(), '" + id_user + "', 1, '" + FormStockTake.is_pre + "'); SELECT LAST_INSERT_ID(); "
                 Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
 
                 'update
@@ -87,6 +87,14 @@
             makeSafeGV(GVCheck)
         End If
     End Sub
+
+    Function getTransNumber()
+        If FormStockTake.is_pre = "1" Then 'wh pre stock take
+            Return header_number("5")
+        Else 'stock take
+            Return header_number("2")
+        End If
+    End Function
 
     Private Sub SLEWHStockSum_EditValueChanged(sender As Object, e As EventArgs) Handles SLEWHStockSum.EditValueChanged
         viewScan()

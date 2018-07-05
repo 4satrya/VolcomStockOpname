@@ -459,6 +459,7 @@ Partial Class FormStockTakeDet
         Me.GVScan.Name = "GVScan"
         Me.GVScan.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVScan.OptionsBehavior.Editable = False
+        Me.GVScan.OptionsMenu.ShowConditionalFormattingItem = True
         Me.GVScan.OptionsView.ShowFooter = True
         Me.GVScan.OptionsView.ShowGroupedColumns = True
         Me.GVScan.OptionsView.ShowGroupPanel = False
@@ -805,6 +806,7 @@ Partial Class FormStockTakeDet
         Me.GVSummaryScan.Name = "GVSummaryScan"
         Me.GVSummaryScan.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVSummaryScan.OptionsBehavior.Editable = False
+        Me.GVSummaryScan.OptionsMenu.ShowConditionalFormattingItem = True
         Me.GVSummaryScan.OptionsView.ShowFooter = True
         Me.GVSummaryScan.OptionsView.ShowGroupedColumns = True
         Me.GVSummaryScan.OptionsView.ShowGroupPanel = False
@@ -1021,6 +1023,7 @@ Partial Class FormStockTakeDet
         Me.BGVCompare.Name = "BGVCompare"
         Me.BGVCompare.OptionsBehavior.AutoExpandAllGroups = True
         Me.BGVCompare.OptionsBehavior.Editable = False
+        Me.BGVCompare.OptionsMenu.ShowConditionalFormattingItem = True
         Me.BGVCompare.OptionsView.ColumnAutoWidth = False
         Me.BGVCompare.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
         Me.BGVCompare.OptionsView.ShowFooter = True

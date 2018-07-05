@@ -64,6 +64,7 @@ Partial Class FormStockTakeList
         Me.GridColumnAmountSMR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNumberSmr = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRemarkSmr = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPCondition = New DevExpress.XtraTab.XtraTabPage()
         Me.GCCat = New DevExpress.XtraGrid.GridControl()
         Me.GVCat = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -72,7 +73,6 @@ Partial Class FormStockTakeList
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.GridColumnType = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
         CType(Me.XTCStockTake, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -148,6 +148,7 @@ Partial Class FormStockTakeList
         Me.GVScan.Name = "GVScan"
         Me.GVScan.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVScan.OptionsBehavior.Editable = False
+        Me.GVScan.OptionsMenu.ShowConditionalFormattingItem = True
         Me.GVScan.OptionsView.ShowFooter = True
         Me.GVScan.OptionsView.ShowGroupedColumns = True
         Me.GVScan.OptionsView.ShowGroupPanel = False
@@ -420,6 +421,7 @@ Partial Class FormStockTakeList
         Me.GVSummaryScan.Name = "GVSummaryScan"
         Me.GVSummaryScan.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVSummaryScan.OptionsBehavior.Editable = False
+        Me.GVSummaryScan.OptionsMenu.ShowConditionalFormattingItem = True
         Me.GVSummaryScan.OptionsView.ShowFooter = True
         Me.GVSummaryScan.OptionsView.ShowGroupedColumns = True
         Me.GVSummaryScan.OptionsView.ShowGroupPanel = False
@@ -537,6 +539,14 @@ Partial Class FormStockTakeList
         Me.GridColumnRemarkSmr.VisibleIndex = 2
         Me.GridColumnRemarkSmr.Width = 67
         '
+        'GridColumnType
+        '
+        Me.GridColumnType.Caption = "Type"
+        Me.GridColumnType.FieldName = "price_type"
+        Me.GridColumnType.Name = "GridColumnType"
+        Me.GridColumnType.Visible = True
+        Me.GridColumnType.VisibleIndex = 7
+        '
         'XTPCondition
         '
         Me.XTPCondition.Controls.Add(Me.GCCat)
@@ -609,14 +619,6 @@ Partial Class FormStockTakeList
         Me.RepositoryItemTextEdit2.AutoHeight = False
         Me.RepositoryItemTextEdit2.Name = "RepositoryItemTextEdit2"
         Me.RepositoryItemTextEdit2.NullText = "-"
-        '
-        'GridColumnType
-        '
-        Me.GridColumnType.Caption = "Type"
-        Me.GridColumnType.FieldName = "price_type"
-        Me.GridColumnType.Name = "GridColumnType"
-        Me.GridColumnType.Visible = True
-        Me.GridColumnType.VisibleIndex = 7
         '
         'FormStockTakeList
         '

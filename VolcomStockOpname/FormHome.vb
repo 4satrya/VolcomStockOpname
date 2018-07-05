@@ -15,6 +15,10 @@
     End Sub
 
     Private Sub GVCon_Click(sender As Object, e As EventArgs) Handles GVCon.Click
+
+    End Sub
+
+    Private Sub GVCon_ItemClick(sender As Object, e As DevExpress.XtraGrid.Views.Tile.TileViewItemClickEventArgs) Handles GVCon.ItemClick
         If GVCon.RowCount > 0 And GVCon.FocusedRowHandle >= 0 Then
             Dim db_sel As String = GVCon.GetFocusedRowCellValue("db_name").ToString
             'close all form

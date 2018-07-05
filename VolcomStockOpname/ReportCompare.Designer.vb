@@ -741,7 +741,7 @@ Partial Public Class ReportCompare
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel1.SizeF = New System.Drawing.SizeF(117.7083!, 14.66667!)
         Me.XrLabel1.StylePriority.UseFont = False
-        Me.XrLabel1.Text = "Hasil Stock Opname"
+        Me.XrLabel1.Text = "Hasil Stocktake"
         '
         'XrPageInfo1
         '

@@ -147,7 +147,7 @@
         WHERE ISNULL(std.id_product) "
         query += "AND std.id_st_trans=" + id_st_trans + " "
         query += "GROUP BY std.code 
-        ORDER BY name ASC "
+        ORDER BY name ASC, RIGHT(barcode,3) ASC  "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSummaryScan.DataSource = data
         Cursor = Cursors.Default
@@ -238,7 +238,7 @@
         INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
         WHERE st.id_st_trans=" + id_st_trans + " AND std.is_no_master=1 
         GROUP BY std.code
-        ORDER BY name ASC "
+        ORDER BY name ASC, RIGHT(barcode,3) ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCompare.DataSource = data
         TxtFontSize.EditValue = 6.3
@@ -520,6 +520,8 @@
             Report.BGVCompare.AppearancePrint.FooterPanel.Font = New Font("Segoe UI", fz, FontStyle.Bold)
 
             Report.BGVCompare.AppearancePrint.Row.Font = New Font("Segoe UI", fz, FontStyle.Regular)
+
+
 
             Report.BGVCompare.OptionsPrint.ExpandAllDetails = True
             Report.BGVCompare.OptionsPrint.UsePrintStyles = True

@@ -111,6 +111,7 @@ Partial Class FormStockTakeDet
         Me.BGVCompare = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.gridBandInfo = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnNo = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemTextEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.BandedGridColumnBarcode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnName = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -173,6 +174,7 @@ Partial Class FormStockTakeDet
         CType(Me.GCCompare, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStripCompare.SuspendLayout()
         CType(Me.BGVCompare, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -997,7 +999,7 @@ Partial Class FormStockTakeDet
         Me.GCCompare.Location = New System.Drawing.Point(0, 0)
         Me.GCCompare.MainView = Me.BGVCompare
         Me.GCCompare.Name = "GCCompare"
-        Me.GCCompare.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit3})
+        Me.GCCompare.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit3, Me.RepositoryItemTextEdit4})
         Me.GCCompare.Size = New System.Drawing.Size(1014, 409)
         Me.GCCompare.TabIndex = 0
         Me.GCCompare.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVCompare})
@@ -1050,6 +1052,13 @@ Partial Class FormStockTakeDet
         Me.BandedGridColumnNo.Name = "BandedGridColumnNo"
         Me.BandedGridColumnNo.Visible = True
         Me.BandedGridColumnNo.Width = 40
+        '
+        'RepositoryItemTextEdit4
+        '
+        Me.RepositoryItemTextEdit4.Appearance.Font = New System.Drawing.Font("Segoe UI", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RepositoryItemTextEdit4.Appearance.Options.UseFont = True
+        Me.RepositoryItemTextEdit4.AutoHeight = False
+        Me.RepositoryItemTextEdit4.Name = "RepositoryItemTextEdit4"
         '
         'BandedGridColumnBarcode
         '
@@ -1293,6 +1302,7 @@ Partial Class FormStockTakeDet
         CType(Me.GCCompare, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStripCompare.ResumeLayout(False)
         CType(Me.BGVCompare, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -1405,4 +1415,5 @@ Partial Class FormStockTakeDet
     Friend WithEvents PanelFontSize As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GridColumnPrcTyp As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CheckEditSale As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents RepositoryItemTextEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class

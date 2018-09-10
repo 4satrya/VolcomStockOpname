@@ -522,7 +522,6 @@
             Report.BGVCompare.AppearancePrint.Row.Font = New Font("Segoe UI", fz, FontStyle.Regular)
 
 
-
             Report.BGVCompare.OptionsPrint.ExpandAllDetails = True
             Report.BGVCompare.OptionsPrint.UsePrintStyles = True
             Report.BGVCompare.OptionsPrint.PrintDetails = True

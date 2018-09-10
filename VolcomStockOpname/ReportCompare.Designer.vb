@@ -76,6 +76,7 @@ Partial Public Class ReportCompare
         Me.XrLabel13 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelSalesUntil = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelSOHPeriode = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelCreatedDate = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelAlamat = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelOutlet = New DevExpress.XtraReports.UI.XRLabel()
@@ -94,7 +95,6 @@ Partial Public Class ReportCompare
         Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand()
         Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LabelSOHPeriode = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCCompare, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BGVCompare, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -135,6 +135,7 @@ Partial Public Class ReportCompare
         Me.BGVCompare.Name = "BGVCompare"
         Me.BGVCompare.OptionsBehavior.AutoExpandAllGroups = True
         Me.BGVCompare.OptionsBehavior.Editable = False
+        Me.BGVCompare.OptionsView.RowAutoHeight = True
         Me.BGVCompare.OptionsView.ShowFooter = True
         Me.BGVCompare.OptionsView.ShowGroupPanel = False
         '
@@ -604,6 +605,16 @@ Partial Public Class ReportCompare
         Me.LabelSalesUntil.StylePriority.UseFont = False
         Me.LabelSalesUntil.Text = "31/12/9999"
         '
+        'LabelSOHPeriode
+        '
+        Me.LabelSOHPeriode.Font = New System.Drawing.Font("Segoe UI", 6.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelSOHPeriode.LocationFloat = New DevExpress.Utils.PointFloat(67.70834!, 73.33339!)
+        Me.LabelSOHPeriode.Name = "LabelSOHPeriode"
+        Me.LabelSOHPeriode.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelSOHPeriode.SizeF = New System.Drawing.SizeF(60.41662!, 14.66667!)
+        Me.LabelSOHPeriode.StylePriority.UseFont = False
+        Me.LabelSOHPeriode.Text = "31/12/9999"
+        '
         'LabelCreatedDate
         '
         Me.LabelCreatedDate.Font = New System.Drawing.Font("Segoe UI", 6.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -774,16 +785,6 @@ Partial Public Class ReportCompare
         Me.XrLabel14.Name = "XrLabel14"
         Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel14.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
-        '
-        'LabelSOHPeriode
-        '
-        Me.LabelSOHPeriode.Font = New System.Drawing.Font("Segoe UI", 6.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelSOHPeriode.LocationFloat = New DevExpress.Utils.PointFloat(67.70834!, 73.33339!)
-        Me.LabelSOHPeriode.Name = "LabelSOHPeriode"
-        Me.LabelSOHPeriode.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LabelSOHPeriode.SizeF = New System.Drawing.SizeF(60.41662!, 14.66667!)
-        Me.LabelSOHPeriode.StylePriority.UseFont = False
-        Me.LabelSOHPeriode.Text = "31/12/9999"
         '
         'ReportCompare
         '

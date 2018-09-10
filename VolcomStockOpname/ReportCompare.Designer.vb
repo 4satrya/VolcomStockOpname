@@ -135,6 +135,7 @@ Partial Public Class ReportCompare
         Me.BGVCompare.Name = "BGVCompare"
         Me.BGVCompare.OptionsBehavior.AutoExpandAllGroups = True
         Me.BGVCompare.OptionsBehavior.Editable = False
+        Me.BGVCompare.OptionsView.RowAutoHeight = True
         Me.BGVCompare.OptionsView.ShowFooter = True
         Me.BGVCompare.OptionsView.ShowGroupPanel = False
         '
@@ -328,15 +329,17 @@ Partial Public Class ReportCompare
         'ReportFooter
         '
         Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable2, Me.XrTable1, Me.XrTable3})
-        Me.ReportFooter.HeightF = 127.4355!
+        Me.ReportFooter.HeightF = 110.7688!
         Me.ReportFooter.Name = "ReportFooter"
         '
         'XrTable2
         '
-        Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(548.9583!, 25.0!)
+        Me.XrTable2.Font = New System.Drawing.Font("Times New Roman", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(548.9583!, 0!)
         Me.XrTable2.Name = "XrTable2"
         Me.XrTable2.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow6, Me.XrTableRow7, Me.XrTableRow8, Me.XrTableRow9})
         Me.XrTable2.SizeF = New System.Drawing.SizeF(201.0417!, 102.4355!)
+        Me.XrTable2.StylePriority.UseFont = False
         '
         'XrTableRow6
         '
@@ -348,7 +351,7 @@ Partial Public Class ReportCompare
         '
         'XrTableCell1
         '
-        Me.XrTableCell1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell1.Font = New System.Drawing.Font("Segoe UI", 6.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrTableCell1.Name = "XrTableCell1"
         Me.XrTableCell1.StylePriority.UseFont = False
         Me.XrTableCell1.StylePriority.UseTextAlignment = False
@@ -381,7 +384,7 @@ Partial Public Class ReportCompare
         '
         'LabelApp
         '
-        Me.LabelApp.Font = New System.Drawing.Font("Segoe UI", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelApp.Font = New System.Drawing.Font("Segoe UI", 6.5!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelApp.Name = "LabelApp"
         Me.LabelApp.StylePriority.UseFont = False
         Me.LabelApp.StylePriority.UseTextAlignment = False
@@ -397,7 +400,7 @@ Partial Public Class ReportCompare
         '
         'LabelAppPosition
         '
-        Me.LabelAppPosition.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelAppPosition.Font = New System.Drawing.Font("Segoe UI", 6.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelAppPosition.Name = "LabelAppPosition"
         Me.LabelAppPosition.StylePriority.UseFont = False
         Me.LabelAppPosition.StylePriority.UseTextAlignment = False
@@ -407,10 +410,12 @@ Partial Public Class ReportCompare
         '
         'XrTable1
         '
-        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(198.9583!, 24.58334!)
+        Me.XrTable1.Font = New System.Drawing.Font("Times New Roman", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(195.8333!, 0!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow2, Me.XrTableRow3, Me.XrTableRow4, Me.XrTableRow5})
         Me.XrTable1.SizeF = New System.Drawing.SizeF(162.5!, 102.4355!)
+        Me.XrTable1.StylePriority.UseFont = False
         '
         'XrTableRow2
         '
@@ -422,7 +427,7 @@ Partial Public Class ReportCompare
         '
         'XrTableCell2
         '
-        Me.XrTableCell2.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell2.Font = New System.Drawing.Font("Segoe UI", 6.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrTableCell2.Name = "XrTableCell2"
         Me.XrTableCell2.StylePriority.UseFont = False
         Me.XrTableCell2.StylePriority.UseTextAlignment = False
@@ -455,7 +460,7 @@ Partial Public Class ReportCompare
         '
         'LabelAck
         '
-        Me.LabelAck.Font = New System.Drawing.Font("Segoe UI", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelAck.Font = New System.Drawing.Font("Segoe UI", 6.5!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelAck.Name = "LabelAck"
         Me.LabelAck.StylePriority.UseFont = False
         Me.LabelAck.StylePriority.UseTextAlignment = False
@@ -471,7 +476,7 @@ Partial Public Class ReportCompare
         '
         'LabelAckPosition
         '
-        Me.LabelAckPosition.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelAckPosition.Font = New System.Drawing.Font("Segoe UI", 6.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelAckPosition.Name = "LabelAckPosition"
         Me.LabelAckPosition.StylePriority.UseFont = False
         Me.LabelAckPosition.StylePriority.UseTextAlignment = False
@@ -481,10 +486,12 @@ Partial Public Class ReportCompare
         '
         'XrTable3
         '
-        Me.XrTable3.LocationFloat = New DevExpress.Utils.PointFloat(0!, 24.58334!)
+        Me.XrTable3.Font = New System.Drawing.Font("Times New Roman", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTable3.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrTable3.Name = "XrTable3"
         Me.XrTable3.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow16, Me.XrTableRow18, Me.XrTableRow17, Me.XrTableRow1})
         Me.XrTable3.SizeF = New System.Drawing.SizeF(162.5!, 102.4355!)
+        Me.XrTable3.StylePriority.UseFont = False
         '
         'XrTableRow16
         '
@@ -496,7 +503,7 @@ Partial Public Class ReportCompare
         '
         'XrTableCell79
         '
-        Me.XrTableCell79.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell79.Font = New System.Drawing.Font("Segoe UI", 6.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrTableCell79.Name = "XrTableCell79"
         Me.XrTableCell79.StylePriority.UseFont = False
         Me.XrTableCell79.StylePriority.UseTextAlignment = False
@@ -529,7 +536,7 @@ Partial Public Class ReportCompare
         '
         'LabelPrepare
         '
-        Me.LabelPrepare.Font = New System.Drawing.Font("Segoe UI", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelPrepare.Font = New System.Drawing.Font("Segoe UI", 6.5!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelPrepare.Name = "LabelPrepare"
         Me.LabelPrepare.StylePriority.UseFont = False
         Me.LabelPrepare.StylePriority.UseTextAlignment = False
@@ -545,7 +552,7 @@ Partial Public Class ReportCompare
         '
         'LabelPreparePosition
         '
-        Me.LabelPreparePosition.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelPreparePosition.Font = New System.Drawing.Font("Segoe UI", 6.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelPreparePosition.Name = "LabelPreparePosition"
         Me.LabelPreparePosition.StylePriority.UseFont = False
         Me.LabelPreparePosition.StylePriority.UseTextAlignment = False
@@ -556,13 +563,13 @@ Partial Public Class ReportCompare
         'PageHeader
         '
         Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LabelNo, Me.XrLabel13, Me.XrLabel12, Me.LabelSalesUntil, Me.LabelSOHPeriode, Me.LabelCreatedDate, Me.LabelAlamat, Me.LabelOutlet, Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.XrLabel8, Me.XrLabel7, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrLabel3, Me.XrLabel2, Me.XrLabel1, Me.XrPageInfo1, Me.XrPictureBox1})
-        Me.PageHeader.HeightF = 103.125!
+        Me.PageHeader.HeightF = 96.875!
         Me.PageHeader.Name = "PageHeader"
         '
         'LabelNo
         '
-        Me.LabelNo.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelNo.LocationFloat = New DevExpress.Utils.PointFloat(89.58334!, 14.66667!)
+        Me.LabelNo.Font = New System.Drawing.Font("Segoe UI", 6.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelNo.LocationFloat = New DevExpress.Utils.PointFloat(67.70834!, 14.66667!)
         Me.LabelNo.Name = "LabelNo"
         Me.LabelNo.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LabelNo.SizeF = New System.Drawing.SizeF(388.5417!, 14.66667!)
@@ -570,8 +577,8 @@ Partial Public Class ReportCompare
         '
         'XrLabel13
         '
-        Me.XrLabel13.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(73.95834!, 14.66667!)
+        Me.XrLabel13.Font = New System.Drawing.Font("Segoe UI", 6.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(52.08333!, 14.66667!)
         Me.XrLabel13.Name = "XrLabel13"
         Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel13.SizeF = New System.Drawing.SizeF(15.625!, 14.66667!)
@@ -580,36 +587,38 @@ Partial Public Class ReportCompare
         '
         'XrLabel12
         '
-        Me.XrLabel12.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel12.Font = New System.Drawing.Font("Segoe UI", 6.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(0!, 14.66667!)
         Me.XrLabel12.Name = "XrLabel12"
         Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel12.SizeF = New System.Drawing.SizeF(73.95834!, 14.66667!)
+        Me.XrLabel12.SizeF = New System.Drawing.SizeF(52.08334!, 14.66667!)
         Me.XrLabel12.StylePriority.UseFont = False
         Me.XrLabel12.Text = "Nomer"
         '
         'LabelSalesUntil
         '
-        Me.LabelSalesUntil.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelSalesUntil.LocationFloat = New DevExpress.Utils.PointFloat(89.58334!, 88.00005!)
+        Me.LabelSalesUntil.Font = New System.Drawing.Font("Segoe UI", 6.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelSalesUntil.LocationFloat = New DevExpress.Utils.PointFloat(195.8333!, 73.33339!)
         Me.LabelSalesUntil.Name = "LabelSalesUntil"
         Me.LabelSalesUntil.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LabelSalesUntil.SizeF = New System.Drawing.SizeF(152.0833!, 14.66667!)
+        Me.LabelSalesUntil.SizeF = New System.Drawing.SizeF(60.41657!, 14.66667!)
         Me.LabelSalesUntil.StylePriority.UseFont = False
+        Me.LabelSalesUntil.Text = "31/12/9999"
         '
         'LabelSOHPeriode
         '
-        Me.LabelSOHPeriode.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelSOHPeriode.LocationFloat = New DevExpress.Utils.PointFloat(89.58334!, 73.33336!)
+        Me.LabelSOHPeriode.Font = New System.Drawing.Font("Segoe UI", 6.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelSOHPeriode.LocationFloat = New DevExpress.Utils.PointFloat(67.70834!, 73.33339!)
         Me.LabelSOHPeriode.Name = "LabelSOHPeriode"
         Me.LabelSOHPeriode.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LabelSOHPeriode.SizeF = New System.Drawing.SizeF(152.0833!, 14.66667!)
+        Me.LabelSOHPeriode.SizeF = New System.Drawing.SizeF(60.41662!, 14.66667!)
         Me.LabelSOHPeriode.StylePriority.UseFont = False
+        Me.LabelSOHPeriode.Text = "31/12/9999"
         '
         'LabelCreatedDate
         '
-        Me.LabelCreatedDate.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelCreatedDate.LocationFloat = New DevExpress.Utils.PointFloat(89.58334!, 58.66668!)
+        Me.LabelCreatedDate.Font = New System.Drawing.Font("Segoe UI", 6.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelCreatedDate.LocationFloat = New DevExpress.Utils.PointFloat(67.70834!, 58.66668!)
         Me.LabelCreatedDate.Name = "LabelCreatedDate"
         Me.LabelCreatedDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LabelCreatedDate.SizeF = New System.Drawing.SizeF(152.0833!, 14.66667!)
@@ -617,8 +626,8 @@ Partial Public Class ReportCompare
         '
         'LabelAlamat
         '
-        Me.LabelAlamat.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelAlamat.LocationFloat = New DevExpress.Utils.PointFloat(89.58334!, 44.00001!)
+        Me.LabelAlamat.Font = New System.Drawing.Font("Segoe UI", 6.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelAlamat.LocationFloat = New DevExpress.Utils.PointFloat(67.70837!, 44.00001!)
         Me.LabelAlamat.Name = "LabelAlamat"
         Me.LabelAlamat.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LabelAlamat.SizeF = New System.Drawing.SizeF(388.5417!, 14.66667!)
@@ -626,8 +635,8 @@ Partial Public Class ReportCompare
         '
         'LabelOutlet
         '
-        Me.LabelOutlet.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelOutlet.LocationFloat = New DevExpress.Utils.PointFloat(89.58334!, 29.33334!)
+        Me.LabelOutlet.Font = New System.Drawing.Font("Segoe UI", 6.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelOutlet.LocationFloat = New DevExpress.Utils.PointFloat(67.70834!, 29.33334!)
         Me.LabelOutlet.Name = "LabelOutlet"
         Me.LabelOutlet.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LabelOutlet.SizeF = New System.Drawing.SizeF(388.5417!, 14.66667!)
@@ -635,18 +644,18 @@ Partial Public Class ReportCompare
         '
         'XrLabel11
         '
-        Me.XrLabel11.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(0!, 88.00005!)
+        Me.XrLabel11.Font = New System.Drawing.Font("Segoe UI", 6.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(128.1249!, 73.33333!)
         Me.XrLabel11.Name = "XrLabel11"
         Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel11.SizeF = New System.Drawing.SizeF(73.95834!, 14.66667!)
+        Me.XrLabel11.SizeF = New System.Drawing.SizeF(52.08333!, 14.66667!)
         Me.XrLabel11.StylePriority.UseFont = False
         Me.XrLabel11.Text = "Sales Until"
         '
         'XrLabel10
         '
-        Me.XrLabel10.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(73.95834!, 88.00005!)
+        Me.XrLabel10.Font = New System.Drawing.Font("Segoe UI", 6.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(180.2083!, 73.33339!)
         Me.XrLabel10.Name = "XrLabel10"
         Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel10.SizeF = New System.Drawing.SizeF(15.625!, 14.66667!)
@@ -655,8 +664,8 @@ Partial Public Class ReportCompare
         '
         'XrLabel9
         '
-        Me.XrLabel9.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(73.95834!, 73.33336!)
+        Me.XrLabel9.Font = New System.Drawing.Font("Segoe UI", 6.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(52.08333!, 73.33336!)
         Me.XrLabel9.Name = "XrLabel9"
         Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel9.SizeF = New System.Drawing.SizeF(15.625!, 14.66667!)
@@ -665,8 +674,8 @@ Partial Public Class ReportCompare
         '
         'XrLabel8
         '
-        Me.XrLabel8.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(73.95834!, 58.66668!)
+        Me.XrLabel8.Font = New System.Drawing.Font("Segoe UI", 6.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(52.08333!, 58.66669!)
         Me.XrLabel8.Name = "XrLabel8"
         Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel8.SizeF = New System.Drawing.SizeF(15.625!, 14.66667!)
@@ -675,8 +684,8 @@ Partial Public Class ReportCompare
         '
         'XrLabel7
         '
-        Me.XrLabel7.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(73.95834!, 44.00001!)
+        Me.XrLabel7.Font = New System.Drawing.Font("Segoe UI", 6.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(52.08333!, 44.00001!)
         Me.XrLabel7.Name = "XrLabel7"
         Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel7.SizeF = New System.Drawing.SizeF(15.625!, 14.66667!)
@@ -685,8 +694,8 @@ Partial Public Class ReportCompare
         '
         'XrLabel6
         '
-        Me.XrLabel6.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(73.95834!, 29.33334!)
+        Me.XrLabel6.Font = New System.Drawing.Font("Segoe UI", 6.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(52.08333!, 29.33334!)
         Me.XrLabel6.Name = "XrLabel6"
         Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel6.SizeF = New System.Drawing.SizeF(15.625!, 14.66667!)
@@ -695,47 +704,47 @@ Partial Public Class ReportCompare
         '
         'XrLabel5
         '
-        Me.XrLabel5.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel5.Font = New System.Drawing.Font("Segoe UI", 6.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(0!, 73.33336!)
         Me.XrLabel5.Name = "XrLabel5"
         Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel5.SizeF = New System.Drawing.SizeF(73.95834!, 14.66667!)
+        Me.XrLabel5.SizeF = New System.Drawing.SizeF(52.08333!, 14.66667!)
         Me.XrLabel5.StylePriority.UseFont = False
         Me.XrLabel5.Text = "SOH Per"
         '
         'XrLabel4
         '
-        Me.XrLabel4.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel4.Font = New System.Drawing.Font("Segoe UI", 6.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(0!, 58.66668!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel4.SizeF = New System.Drawing.SizeF(73.95834!, 14.66667!)
+        Me.XrLabel4.SizeF = New System.Drawing.SizeF(52.08334!, 14.66667!)
         Me.XrLabel4.StylePriority.UseFont = False
         Me.XrLabel4.Text = "Tanggal"
         '
         'XrLabel3
         '
-        Me.XrLabel3.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel3.Font = New System.Drawing.Font("Segoe UI", 6.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(0!, 44.00001!)
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel3.SizeF = New System.Drawing.SizeF(73.95834!, 14.66667!)
+        Me.XrLabel3.SizeF = New System.Drawing.SizeF(52.08334!, 14.66667!)
         Me.XrLabel3.StylePriority.UseFont = False
         Me.XrLabel3.Text = "Alamat"
         '
         'XrLabel2
         '
-        Me.XrLabel2.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel2.Font = New System.Drawing.Font("Segoe UI", 6.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 29.33334!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel2.SizeF = New System.Drawing.SizeF(73.95834!, 14.66667!)
+        Me.XrLabel2.SizeF = New System.Drawing.SizeF(52.08334!, 14.66667!)
         Me.XrLabel2.StylePriority.UseFont = False
         Me.XrLabel2.Text = "Outlet"
         '
         'XrLabel1
         '
-        Me.XrLabel1.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel1.Font = New System.Drawing.Font("Segoe UI", 6.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -746,7 +755,7 @@ Partial Public Class ReportCompare
         'XrPageInfo1
         '
         Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrPageInfo1.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrPageInfo1.Font = New System.Drawing.Font("Segoe UI", 6.5!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrPageInfo1.Format = "Page {0} of {1}"
         Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(328.125!, 69.28209!)
         Me.XrPageInfo1.Name = "XrPageInfo1"
@@ -813,7 +822,6 @@ Partial Public Class ReportCompare
     Friend WithEvents XrLabel11 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel10 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LabelSalesUntil As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents LabelSOHPeriode As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LabelCreatedDate As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LabelAlamat As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LabelOutlet As DevExpress.XtraReports.UI.XRLabel
@@ -869,4 +877,5 @@ Partial Public Class ReportCompare
     Friend WithEvents XrLabel12 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents PageFooter As DevExpress.XtraReports.UI.PageFooterBand
     Friend WithEvents XrLabel14 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LabelSOHPeriode As DevExpress.XtraReports.UI.XRLabel
 End Class

@@ -147,7 +147,7 @@
         WHERE ISNULL(std.id_product) "
         query += "AND std.id_st_trans=" + id_st_trans + " "
         query += "GROUP BY std.code 
-        ORDER BY name ASC "
+        ORDER BY name ASC, RIGHT(barcode,3) ASC  "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSummaryScan.DataSource = data
         Cursor = Cursors.Default
@@ -238,7 +238,7 @@
         INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
         WHERE st.id_st_trans=" + id_st_trans + " AND std.is_no_master=1 
         GROUP BY std.code
-        ORDER BY name ASC "
+        ORDER BY name ASC, RIGHT(barcode,3) ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCompare.DataSource = data
         TxtFontSize.EditValue = 6.3
@@ -521,6 +521,7 @@
 
             Report.BGVCompare.AppearancePrint.Row.Font = New Font("Segoe UI", fz, FontStyle.Regular)
 
+
             Report.BGVCompare.OptionsPrint.ExpandAllDetails = True
             Report.BGVCompare.OptionsPrint.UsePrintStyles = True
             Report.BGVCompare.OptionsPrint.PrintDetails = True
@@ -674,6 +675,21 @@
                             Exit Sub
                         Else
                             makeSafeGV(GVScan)
+                        End If
+
+                        'cek di transaksi lain
+                        Dim qdup As String = "SELECT m.st_trans_number 
+                        FROM tb_st_trans_det d 
+                        INNER JOIN tb_st_trans m ON m.id_st_trans = d.id_st_trans
+                        WHERE d.`code`='" + code + "' AND m.id_report_status!=5 LIMIT 1 "
+                        Dim ddup As DataTable = execute_query(qdup, -1, True, "", "", "", "")
+                        If ddup.Rows.Count > 0 Then
+                            stopCustomDialog("Already scanned in transaction number : " + ddup.Rows(0)("st_trans_number").ToString)
+                            makeSafeGV(GVScan)
+                            GVScan.FocusedRowHandle = GVScan.RowCount - 1
+                            TxtScan.Text = ""
+                            TxtScan.Focus()
+                            Exit Sub
                         End If
                     Else
                         is_12_digit = "1"

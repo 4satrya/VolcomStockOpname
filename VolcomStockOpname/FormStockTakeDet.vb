@@ -103,7 +103,7 @@
         Dim query As String = "SELECT std.id_st_trans_det, std.id_st_trans, 
         std.is_ok, IF(std.is_ok=1,'Yes', 'No') AS `is_ok_v`,std.is_no_stock, IF(std.is_no_stock=1,'Yes', 'No') AS `is_no_stock_v`, std.is_no_master, IF(std.is_no_master=1,'Yes', 'No') AS `is_no_master_v`, std.is_sale, IF(std.is_sale=1,'Yes', 'No') AS `is_sale_v`, std.is_reject, IF(std.is_reject=1,'Yes', 'No') AS `is_reject_v`,std.is_no_tag, IF(std.is_no_tag=1,'Yes', 'No') AS `is_no_tag_v`, std.is_unique_not_found, IF(std.is_unique_not_found=1,'Yes', 'No') AS `is_unique_not_found_v`,
         std.id_product, std.code, std.name, std.size, std.qty, 
-        std.id_design_price, std.design_price, d.is_old_design, cat.id_design_cat, cat.design_cat, typ.design_price_type, r.st_trans_number AS `ref_number`, r.remark AS `remark_ref`, p.product_full_code
+        std.id_design_price, std.design_price, d.is_old_design, cat.id_design_cat, cat.design_cat, typ.design_price_type, r.st_trans_number AS `ref_number`, r.remark AS `remark_ref`, p.product_full_code, std.note
         FROM tb_st_trans_det std
         INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
         LEFT JOIN tb_m_product p ON p.id_product = std.id_product
@@ -117,6 +117,7 @@
         If is_combine = "2" Then
             GridColumnRemark.Visible = False
             GridColumnRefNumber.Visible = False
+            GridColumnNote.OptionsColumn.AllowEdit = True
         End If
         If is_combine = "2" Then
             query += "ORDER BY std.id_st_trans_det ASC "
@@ -852,6 +853,15 @@
             If qty = 0 Then
                 e.DisplayText = "-"
             End If
+        End If
+    End Sub
+
+    Private Sub GVScan_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVScan.CellValueChanged
+        If e.Column.FieldName = "note" Then
+            Dim rh As Integer = e.RowHandle
+            Dim id_st_trans_det As String = GVScan.GetRowCellValue(rh, "id_st_trans_det").ToString
+            Dim qu As String = "UPDATE tb_st_trans_det SET note='" + addSlashes(e.Value.ToString) + "' "
+            execute_non_query(qu, True, "", "", "", "")
         End If
     End Sub
 End Class

@@ -51,6 +51,7 @@ Partial Class FormStockTakeDet
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SetQtyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteItemToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SetToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVScan = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -439,21 +440,27 @@ Partial Class FormStockTakeDet
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SetQtyToolStripMenuItem, Me.DeleteItemToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SetQtyToolStripMenuItem, Me.SetToolStripMenuItem, Me.DeleteItemToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(135, 48)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 92)
         '
         'SetQtyToolStripMenuItem
         '
         Me.SetQtyToolStripMenuItem.Name = "SetQtyToolStripMenuItem"
-        Me.SetQtyToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
+        Me.SetQtyToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.SetQtyToolStripMenuItem.Text = "Set Qty"
         '
         'DeleteItemToolStripMenuItem
         '
         Me.DeleteItemToolStripMenuItem.Name = "DeleteItemToolStripMenuItem"
-        Me.DeleteItemToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
+        Me.DeleteItemToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.DeleteItemToolStripMenuItem.Text = "Delete Item"
+        '
+        'SetToolStripMenuItem
+        '
+        Me.SetToolStripMenuItem.Name = "SetToolStripMenuItem"
+        Me.SetToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.SetToolStripMenuItem.Text = "Item Note"
         '
         'GVScan
         '
@@ -714,7 +721,6 @@ Partial Class FormStockTakeDet
         Me.GridColumnNote.Caption = "Note"
         Me.GridColumnNote.FieldName = "note"
         Me.GridColumnNote.Name = "GridColumnNote"
-        Me.GridColumnNote.OptionsColumn.AllowEdit = False
         Me.GridColumnNote.Visible = True
         Me.GridColumnNote.VisibleIndex = 16
         '
@@ -1427,4 +1433,5 @@ Partial Class FormStockTakeDet
     Friend WithEvents CheckEditSale As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents RepositoryItemTextEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents GridColumnNote As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SetToolStripMenuItem As ToolStripMenuItem
 End Class

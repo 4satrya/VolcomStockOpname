@@ -223,6 +223,12 @@
     <Compile Include="FormStockTakeDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormStockTakeDetNote.Designer.vb">
+      <DependentUpon>FormStockTakeDetNote.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockTakeDetNote.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormStockTakeDetQty.Designer.vb">
       <DependentUpon>FormStockTakeDetQty.vb</DependentUpon>
     </Compile>
@@ -400,6 +406,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockTakeDet.resx">
       <DependentUpon>FormStockTakeDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStockTakeDetNote.resx">
+      <DependentUpon>FormStockTakeDetNote.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockTakeDetQty.resx">
       <DependentUpon>FormStockTakeDetQty.vb</DependentUpon>

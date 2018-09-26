@@ -117,7 +117,6 @@
         If is_combine = "2" Then
             GridColumnRemark.Visible = False
             GridColumnRefNumber.Visible = False
-            GridColumnNote.OptionsColumn.AllowEdit = True
         End If
         If is_combine = "2" Then
             query += "ORDER BY std.id_st_trans_det ASC "
@@ -863,5 +862,17 @@
             Dim qu As String = "UPDATE tb_st_trans_det SET note='" + addSlashes(e.Value.ToString) + "' "
             execute_non_query(qu, True, "", "", "", "")
         End If
+    End Sub
+
+    Private Sub SetToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        If GVScan.RowCount > 0 And GVScan.FocusedRowHandle >= 0 Then
+            FormStockTakeDetNote.id_detail = GVScan.GetFocusedRowCellValue("id_st_trans_det").ToString
+            FormStockTakeDetNote.MENote.Text = GVScan.GetFocusedRowCellValue("note").ToString
+            FormStockTakeDetNote.ShowDialog()
+            TxtScan.Text = ""
+            TxtScan.Focus()
+        End If
+        Cursor = Cursors.Default
     End Sub
 End Class

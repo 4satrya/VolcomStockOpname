@@ -65,8 +65,8 @@
                 execute_non_query(query_upd, True, "", "", "", "")
 
                 'insert detail
-                Dim qd As String = "INSERT INTO tb_st_trans_det(id_st_trans, id_st_trans_det_ref, is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, id_product, code, name, size, qty, id_design_price, design_price) 
-                SELECT '" + id_new + "', std.id_st_trans_det, is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, id_product, code, name, size, qty, id_design_price, design_price 
+                Dim qd As String = "INSERT INTO tb_st_trans_det(id_st_trans, id_st_trans_det_ref, is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, is_no_tag, id_product, code, name, size, qty, id_design_price, design_price, note) 
+                SELECT '" + id_new + "', std.id_st_trans_det, is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, is_no_tag, id_product, code, name, size, qty, id_design_price, design_price, note
                 FROM tb_st_trans_det std
                 INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans 
                 WHERE st.id_st_trans>0 AND (" + id_st_trans_det + ") "

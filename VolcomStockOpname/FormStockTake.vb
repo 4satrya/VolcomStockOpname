@@ -81,11 +81,11 @@ Public Class FormStockTake
                 Next
 
                 'create table copy
-                Dim query_copy_trans As String = "CREATE TABLE IF NOT EXISTS tb_st_trans_" + st_user_code + " SELECT * FROM tb_st_trans WHERE id_st_trans>0 AND (" + id_st_trans + "); 
+                Dim query_copy_trans As String = "DROP TABLE IF EXISTS tb_st_trans_" + st_user_code + "; CREATE TABLE IF NOT EXISTS tb_st_trans_" + st_user_code + " SELECT * FROM tb_st_trans WHERE id_st_trans>0 AND (" + id_st_trans + "); 
                 truncate table tb_st_trans_" + st_user_code + "; 
                 INSERT tb_st_trans_" + st_user_code + " SELECT * FROM tb_st_trans WHERE id_st_trans>0 AND (" + id_st_trans + "); "
                 execute_non_query(query_copy_trans, True, "", "", "", "")
-                Dim query_copy_trans_det As String = "CREATE TABLE IF NOT EXISTS tb_st_trans_det_" + st_user_code + " SELECT * FROM tb_st_trans_det WHERE id_st_trans>0 AND (" + id_st_trans + "); 
+                Dim query_copy_trans_det As String = "DROP TABLE IF EXISTS tb_st_trans_det_" + st_user_code + "; CREATE TABLE IF NOT EXISTS tb_st_trans_det_" + st_user_code + " SELECT * FROM tb_st_trans_det WHERE id_st_trans>0 AND (" + id_st_trans + "); 
                 truncate table tb_st_trans_det_" + st_user_code + "; 
                 INSERT tb_st_trans_det_" + st_user_code + " SELECT * FROM tb_st_trans_det WHERE id_st_trans>0 AND (" + id_st_trans + "); "
                 execute_non_query(query_copy_trans_det, True, "", "", "", "")
@@ -193,8 +193,8 @@ Public Class FormStockTake
                     Dim query_ins As String = "INSERT INTO tb_st_trans(id_wh_drawer, st_trans_number, remark, st_trans_date, st_trans_by, st_trans_updated, st_trans_updated_by, is_combine, id_report_status) 
                     SELECT id_wh_drawer, st_trans_number, remark, st_trans_date, st_trans_by, st_trans_updated, st_trans_updated_by, is_combine, id_report_status FROM tb_st_trans_" + code_user_restore.ToLower + " WHERE id_st_trans=" + dv.Rows(j)("id_st_trans").ToString + "; SELECT LAST_INSERT_ID(); "
                     Dim id_st_new As String = execute_query(query_ins, 0, True, "", "", "", "")
-                    Dim query_ins_det As String = "INSERT INTO tb_st_trans_det(id_st_trans, is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, id_product, code, name, size, qty, id_design_price, design_price) 
-                    SELECT '" + id_st_new + "', is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, id_product, code, name, size, qty, id_design_price, design_price FROM tb_st_trans_det_" + code_user_restore.ToLower + " WHERE id_st_trans=" + dv.Rows(j)("id_st_trans").ToString + ";"
+                    Dim query_ins_det As String = "INSERT INTO tb_st_trans_det(id_st_trans, is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, is_no_tag, id_product, code, name, size, qty, id_design_price, design_price, note) 
+                    SELECT '" + id_st_new + "', is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, is_no_tag, id_product, code, name, size, qty, id_design_price, design_price, note FROM tb_st_trans_det_" + code_user_restore.ToLower + " WHERE id_st_trans=" + dv.Rows(j)("id_st_trans").ToString + ";"
                     execute_non_query(query_ins_det, True, "", "", "", "")
                 Next
                 viewScan()

@@ -360,6 +360,7 @@ Partial Class FormStockTake
         Me.GVCombine.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumn10, "{0:n0}")})
         Me.GVCombine.Name = "GVCombine"
         Me.GVCombine.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVCombine.OptionsBehavior.Editable = False
         Me.GVCombine.OptionsView.ShowFooter = True
         Me.GVCombine.OptionsView.ShowGroupedColumns = True
         Me.GVCombine.OptionsView.ShowGroupPanel = False

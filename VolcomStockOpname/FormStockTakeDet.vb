@@ -103,7 +103,7 @@
         Dim query As String = "SELECT std.id_st_trans_det, std.id_st_trans, 
         std.is_ok, IF(std.is_ok=1,'Yes', 'No') AS `is_ok_v`,std.is_no_stock, IF(std.is_no_stock=1,'Yes', 'No') AS `is_no_stock_v`, std.is_no_master, IF(std.is_no_master=1,'Yes', 'No') AS `is_no_master_v`, std.is_sale, IF(std.is_sale=1,'Yes', 'No') AS `is_sale_v`, std.is_reject, IF(std.is_reject=1,'Yes', 'No') AS `is_reject_v`,std.is_no_tag, IF(std.is_no_tag=1,'Yes', 'No') AS `is_no_tag_v`, std.is_unique_not_found, IF(std.is_unique_not_found=1,'Yes', 'No') AS `is_unique_not_found_v`,
         std.id_product, std.code, std.name, std.size, std.qty, 
-        std.id_design_price, std.design_price, d.is_old_design, cat.id_design_cat, cat.design_cat, typ.design_price_type, r.st_trans_number AS `ref_number`, r.remark AS `remark_ref`, p.product_full_code
+        std.id_design_price, std.design_price, d.is_old_design, cat.id_design_cat, cat.design_cat, typ.design_price_type, r.st_trans_number AS `ref_number`, r.remark AS `remark_ref`, p.product_full_code, std.note
         FROM tb_st_trans_det std
         INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
         LEFT JOIN tb_m_product p ON p.id_product = std.id_product
@@ -198,7 +198,7 @@
         Cursor = Cursors.WaitCursor
         gridBandStoreQty.Caption = comp_number
         Dim query As String = "SELECT im.id_product, p.product_full_code AS `barcode`, d.design_code AS `code`, d.design_display_name AS `name`, cd.code_detail_name AS `size`, LEFT(prct.design_price_type,1) AS `design_cat`,
-        im.id_design_price, im.design_price, im.qty_soh, im.qty_scan
+        im.id_design_price, im.design_price, im.qty_soh, im.qty_scan, sr.remark AS `store_remark`
         FROM (
 	        SELECT s.id_product, 
             IF(!ISNULL(sc.id_design_price), sc.id_design_price, IF(c.id_store_type=1, fd.id_design_price,s.id_design_price)) AS `id_design_price`, 
@@ -232,10 +232,12 @@
         INNER JOIN tb_m_design_price prc ON prc.id_design_price = im.id_design_price
         INNER JOIN tb_lookup_design_price_type prct ON prct.id_design_price_type = prc.id_design_price_type
         INNER JOIN tb_lookup_design_cat dc ON dc.id_design_cat = prct.id_design_cat
+        LEFT JOIN tb_st_store_remark sr ON sr.id_product = p.id_product AND sr.code = p.product_full_code AND sr.id_st_trans = " + id_st_trans + "
         UNION ALL
-        SELECT std.id_product, std.code AS `barcode`, std.code, std.name, std.size, '-' AS `design_cat`,std.id_design_price, std.design_price,  0 AS `qty_soh`,SUM(std.qty) AS `qty_scan`
+        SELECT std.id_product, std.code AS `barcode`, std.code, std.name, std.size, '-' AS `design_cat`,std.id_design_price, std.design_price,  0 AS `qty_soh`,SUM(std.qty) AS `qty_scan`, sr.remark AS `store_remark`
         FROM tb_st_trans_det std
         INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
+        LEFT JOIN tb_st_store_remark sr ON sr.code = std.code AND ISNULL(sr.id_product) AND sr.id_st_trans = " + id_st_trans + "
         WHERE st.id_st_trans=" + id_st_trans + " AND std.is_no_master=1 
         GROUP BY std.code
         ORDER BY name ASC, RIGHT(barcode,3) ASC "
@@ -852,6 +854,38 @@
             If qty = 0 Then
                 e.DisplayText = "-"
             End If
+        End If
+    End Sub
+
+    Private Sub GVScan_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVScan.CellValueChanged
+        If e.Column.FieldName = "note" Then
+            Dim rh As Integer = e.RowHandle
+            Dim id_st_trans_det As String = GVScan.GetRowCellValue(rh, "id_st_trans_det").ToString
+            Dim qu As String = "UPDATE tb_st_trans_det SET note='" + addSlashes(e.Value.ToString) + "' "
+            execute_non_query(qu, True, "", "", "", "")
+        End If
+    End Sub
+
+    Private Sub SetToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        If GVScan.RowCount > 0 And GVScan.FocusedRowHandle >= 0 Then
+            FormStockTakeDetNote.id_detail = GVScan.GetFocusedRowCellValue("id_st_trans_det").ToString
+            FormStockTakeDetNote.MENote.Text = GVScan.GetFocusedRowCellValue("note").ToString
+            FormStockTakeDetNote.ShowDialog()
+            TxtScan.Text = ""
+            TxtScan.Focus()
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub StoreRemarkToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles StoreRemarkToolStripMenuItem.Click
+        If BGVCompare.RowCount > 0 And BGVCompare.FocusedRowHandle >= 0 Then
+            'MsgBox(BGVCompare.GetFocusedRowCellValue("id_product").ToString)
+            FormStockTakeDetStoreRemark.id_product = BGVCompare.GetFocusedRowCellValue("id_product").ToString
+            FormStockTakeDetStoreRemark.id_st_trans = id_st_trans
+            FormStockTakeDetStoreRemark.code = BGVCompare.GetFocusedRowCellValue("barcode").ToString
+            FormStockTakeDetStoreRemark.MERemark.Text = BGVCompare.GetFocusedRowCellValue("store_remark").ToString
+            FormStockTakeDetStoreRemark.ShowDialog()
         End If
     End Sub
 End Class

@@ -17,7 +17,7 @@
                 execute_non_query(qry, True, "", "", "", "")
                 FormStockTakeDet.updatedBy()
                 FormStockTakeDet.viewDetail()
-                FormStockTakeDet.GVScan.FocusedRowHandle = FormStockTakeDet.GVScan.RowCount - 1
+                FormStockTakeDet.GVScan.FocusedRowHandle = find_row(FormStockTakeDet.GVScan, "id_st_trans_det", id_detail)
                 FormStockTakeDet.TxtScan.Text = ""
                 FormStockTakeDet.TxtScan.Focus()
                 Close()

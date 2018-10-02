@@ -585,7 +585,7 @@
         If e.KeyCode = Keys.Enter And TxtScan.Text <> "" Then
             Dim code As String = addSlashes(TxtScan.Text)
             Dim code_check As String = ""
-            If code.Length > 12 Then
+            If code.Length > 12 And code.Length <= 16 Then
                 code_check = code.Substring(0, 12)
             Else
                 code_check = code

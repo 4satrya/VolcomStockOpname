@@ -194,11 +194,13 @@
         GCCat.DataSource = data
     End Sub
 
+    Dim i_load_compare = 0
+    Dim str_default_compare As System.IO.Stream
     Sub viewCompare()
         Cursor = Cursors.WaitCursor
         gridBandStoreQty.Caption = comp_number
         Dim query As String = "SELECT im.id_product, p.product_full_code AS `barcode`, d.design_code AS `code`, d.design_display_name AS `name`, cd.code_detail_name AS `size`, LEFT(prct.design_price_type,1) AS `design_cat`,
-        im.id_design_price, im.design_price, im.qty_soh, im.qty_scan, sr.remark AS `store_remark`
+        im.id_design_price, im.design_price, im.qty_soh, im.qty_scan, sr.remark AS `store_remark`, 'No' AS `is_select`
         FROM (
 	        SELECT s.id_product, 
             IF(!ISNULL(sc.id_design_price), sc.id_design_price, IF(c.id_store_type=1, fd.id_design_price,s.id_design_price)) AS `id_design_price`, 
@@ -234,7 +236,7 @@
         INNER JOIN tb_lookup_design_cat dc ON dc.id_design_cat = prct.id_design_cat
         LEFT JOIN tb_st_store_remark sr ON sr.id_product = p.id_product AND sr.code = p.product_full_code AND sr.id_st_trans = " + id_st_trans + "
         UNION ALL
-        SELECT std.id_product, std.code AS `barcode`, std.code, std.name, std.size, '-' AS `design_cat`,std.id_design_price, std.design_price,  0 AS `qty_soh`,SUM(std.qty) AS `qty_scan`, sr.remark AS `store_remark`
+        SELECT std.id_product, std.code AS `barcode`, std.code, std.name, std.size, '-' AS `design_cat`,std.id_design_price, std.design_price,  0 AS `qty_soh`,SUM(std.qty) AS `qty_scan`, sr.remark AS `store_remark`,  'No' AS `is_select`
         FROM tb_st_trans_det std
         INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
         LEFT JOIN tb_st_store_remark sr ON sr.code = std.code AND ISNULL(sr.id_product) AND sr.id_st_trans = " + id_st_trans + "
@@ -244,6 +246,13 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCompare.DataSource = data
         TxtFontSize.EditValue = 6.3
+
+        If i_load_compare = 0 Then
+            str_default_compare = New System.IO.MemoryStream()
+            BGVCompare.SaveLayoutToStream(str_default_compare, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str_default_compare.Seek(0, System.IO.SeekOrigin.Begin)
+        End If
+        i_load_compare += 1
         Cursor = Cursors.Default
     End Sub
 
@@ -476,6 +485,12 @@
             print_raw(GCCat, "")
         ElseIf XTCStockTake.SelectedTabPageIndex = 3 Then
             Cursor = Cursors.WaitCursor
+            'load default layout 
+            BGVCompare.RestoreLayoutFromStream(str_default_compare, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str_default_compare.Seek(0, System.IO.SeekOrigin.Begin)
+
+            BandedGridColumnStoreRemark.Caption = "Store" + System.Environment.NewLine + "Remark"
+            BandedGridColumnIsSelect.Visible = False
             'BGVCompare.BestFitColumns()
             ReportCompare.dt = GCCompare.DataSource
             ReportCompare.id_report = id_st_trans
@@ -546,6 +561,7 @@
             'Show the report's preview. 
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
             Tool.ShowPreviewDialog()
+            BandedGridColumnIsSelect.Visible = True
             Cursor = Cursors.Default
         End If
         Cursor = Cursors.Default
@@ -585,7 +601,7 @@
         If e.KeyCode = Keys.Enter And TxtScan.Text <> "" Then
             Dim code As String = addSlashes(TxtScan.Text)
             Dim code_check As String = ""
-            If code.Length > 12 Then
+            If code.Length > 12 And code.Length <= 16 Then
                 code_check = code.Substring(0, 12)
             Else
                 code_check = code
@@ -880,12 +896,40 @@
 
     Private Sub StoreRemarkToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles StoreRemarkToolStripMenuItem.Click
         If BGVCompare.RowCount > 0 And BGVCompare.FocusedRowHandle >= 0 Then
-            'MsgBox(BGVCompare.GetFocusedRowCellValue("id_product").ToString)
+            Dim cond_now As String = BGVCompare.ActiveFilterString
             FormStockTakeDetStoreRemark.id_product = BGVCompare.GetFocusedRowCellValue("id_product").ToString
             FormStockTakeDetStoreRemark.id_st_trans = id_st_trans
             FormStockTakeDetStoreRemark.code = BGVCompare.GetFocusedRowCellValue("barcode").ToString
             FormStockTakeDetStoreRemark.MERemark.Text = BGVCompare.GetFocusedRowCellValue("store_remark").ToString
             FormStockTakeDetStoreRemark.ShowDialog()
+            BGVCompare.ActiveFilterString = cond_now
         End If
+    End Sub
+
+    Private Sub BtnSetRemark_Click_1(sender As Object, e As EventArgs) Handles BtnSetRemark.Click
+        Dim cond_now As String = BGVCompare.ActiveFilterString
+        makeSafeGV(BGVCompare)
+        BGVCompare.ActiveFilterString = "[is_select]='Yes'"
+        If BGVCompare.RowCount > 0 Then
+            FormStockTakeDetStoreRemark.id_pop_up = "1"
+            FormStockTakeDetStoreRemark.id_st_trans = id_st_trans
+            FormStockTakeDetStoreRemark.ShowDialog()
+        Else
+            warningCustom("No item selected")
+        End If
+        BGVCompare.ActiveFilterString = cond_now
+        CESelect.EditValue = False
+    End Sub
+
+    Private Sub CESelect_CheckedChanged(sender As Object, e As EventArgs) Handles CESelect.CheckedChanged
+        Dim is_select As String = ""
+        If CESelect.EditValue = True Then
+            is_select = "Yes"
+        Else
+            is_select = "No"
+        End If
+        For i As Integer = 0 To ((BGVCompare.RowCount - 1) - GetGroupRowCount(BGVCompare))
+            BGVCompare.SetRowCellValue(i, "is_select", is_select)
+        Next
     End Sub
 End Class

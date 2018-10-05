@@ -9,7 +9,7 @@
     End Sub
 
     Private Sub FormStockTakeDetStoreRemark_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-        Close()
+        Dispose()
     End Sub
 
     Private Sub FormStockTakeDetStoreRemark_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
@@ -39,8 +39,28 @@
                 FormStockTakeDet.viewCompare()
                 FormStockTakeDet.BGVCompare.FocusedRowHandle = find_row(FormStockTakeDet.BGVCompare, "barcode", code)
                 Close()
-            Else
-
+            ElseIf id_pop_up = "1" Then
+                For i As Integer = 0 To ((FormStockTakeDet.BGVCompare.RowCount - 1) - GetGroupRowCount(FormStockTakeDet.BGVCompare))
+                    Dim code As String = FormStockTakeDet.BGVCompare.GetRowCellValue(i, "barcode").ToString
+                    Dim id_product As String = FormStockTakeDet.BGVCompare.GetRowCellValue(i, "id_product").ToString
+                    If id_product = "" Then
+                        id_product = "NULL"
+                    End If
+                    Dim remark As String = addSlashes(MERemark.Text.ToString)
+                    Dim qry As String = "DELETE FROM tb_st_store_remark WHERE id_st_trans='" + id_st_trans + "' "
+                    If id_product = "NULL" Then
+                        qry += "AND ISNULL(id_product) "
+                    Else
+                        qry += "AND id_product='" + id_product + "' "
+                    End If
+                    qry += "AND code='" + code + "';
+                    INSERT INTO tb_st_store_remark(id_st_trans, id_product, code, remark) VALUES 
+                    ('" + id_st_trans + "', " + id_product + ", '" + code + "', '" + remark + "'); "
+                    execute_non_query(qry, True, "", "", "", "")
+                Next
+                FormStockTakeDet.updatedBy()
+                FormStockTakeDet.viewCompare()
+                Close()
             End If
         End If
     End Sub

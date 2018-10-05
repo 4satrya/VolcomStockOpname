@@ -486,8 +486,10 @@
         ElseIf XTCStockTake.SelectedTabPageIndex = 3 Then
             Cursor = Cursors.WaitCursor
             'load default layout 
+            Dim cond_now As String = BGVCompare.ActiveFilterString
             BGVCompare.RestoreLayoutFromStream(str_default_compare, DevExpress.Utils.OptionsLayoutBase.FullLayout)
             str_default_compare.Seek(0, System.IO.SeekOrigin.Begin)
+            BGVCompare.ActiveFilterString = cond_now
 
             BandedGridColumnStoreRemark.Caption = "Store" + System.Environment.NewLine + "Remark"
             BandedGridColumnIsSelect.Visible = False

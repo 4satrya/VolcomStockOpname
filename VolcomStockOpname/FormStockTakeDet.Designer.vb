@@ -136,9 +136,9 @@ Partial Class FormStockTakeDet
         Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemTextEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.CESelect = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnSetRemark = New DevExpress.XtraEditors.SimpleButton()
+        Me.CESelect = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -189,9 +189,9 @@ Partial Class FormStockTakeDet
         CType(Me.RepositoryItemTextEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.CESelect.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.CESelect.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -1055,13 +1055,17 @@ Partial Class FormStockTakeDet
         '
         'BGVCompare
         '
+        Me.BGVCompare.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
+        Me.BGVCompare.AppearancePrint.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
         Me.BGVCompare.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandInfo, Me.gridBandVolcomQty, Me.gridBandStoreQty, Me.gridBandKet})
+        Me.BGVCompare.ColumnPanelRowHeight = 30
         Me.BGVCompare.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnNo, Me.BandedGridColumnBarcode, Me.BandedGridColumnCode, Me.BandedGridColumnName, Me.BandedGridColumnSize, Me.BandedGridColumnType, Me.BandedGridColumnPrice, Me.BandedGridColumnSOHQty, Me.BandedGridColumnScanQty, Me.BandedGridColumnSOHValue, Me.BandedGridColumnScanValue, Me.BandedGridColumnDiffQty, Me.BandedGridColumnDiffValue, Me.BandedGridColumnNote, Me.BandedGridColumnStoreRemark, Me.BandedGridColumnIsSelect})
         Me.BGVCompare.GridControl = Me.GCCompare
         Me.BGVCompare.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_soh", Me.BandedGridColumnSOHQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_scan", Me.BandedGridColumnScanQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_diff", Me.BandedGridColumnDiffQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "val_soh", Me.BandedGridColumnSOHValue, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "val_scan", Me.BandedGridColumnScanValue, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "val_diff", Me.BandedGridColumnDiffValue, "{0:N0}")})
         Me.BGVCompare.Name = "BGVCompare"
         Me.BGVCompare.OptionsBehavior.AutoExpandAllGroups = True
         Me.BGVCompare.OptionsMenu.ShowConditionalFormattingItem = True
+        Me.BGVCompare.OptionsPrint.AllowMultilineHeaders = True
         Me.BGVCompare.OptionsView.ColumnAutoWidth = False
         Me.BGVCompare.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
         Me.BGVCompare.OptionsView.ShowFooter = True
@@ -1112,6 +1116,8 @@ Partial Class FormStockTakeDet
         '
         Me.BandedGridColumnName.AppearanceCell.Options.UseTextOptions = True
         Me.BandedGridColumnName.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnName.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnName.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.BandedGridColumnName.Caption = "Description"
         Me.BandedGridColumnName.FieldName = "name"
         Me.BandedGridColumnName.Name = "BandedGridColumnName"
@@ -1279,6 +1285,10 @@ Partial Class FormStockTakeDet
         '
         'BandedGridColumnStoreRemark
         '
+        Me.BandedGridColumnStoreRemark.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnStoreRemark.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnStoreRemark.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnStoreRemark.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.BandedGridColumnStoreRemark.Caption = "Store Remark"
         Me.BandedGridColumnStoreRemark.FieldName = "store_remark"
         Me.BandedGridColumnStoreRemark.Name = "BandedGridColumnStoreRemark"
@@ -1322,14 +1332,6 @@ Partial Class FormStockTakeDet
         Me.PanelControl1.Size = New System.Drawing.Size(1014, 42)
         Me.PanelControl1.TabIndex = 1
         '
-        'CESelect
-        '
-        Me.CESelect.Location = New System.Drawing.Point(118, 10)
-        Me.CESelect.Name = "CESelect"
-        Me.CESelect.Properties.Caption = "Select All"
-        Me.CESelect.Size = New System.Drawing.Size(68, 19)
-        Me.CESelect.TabIndex = 0
-        '
         'PanelControl2
         '
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -1350,6 +1352,14 @@ Partial Class FormStockTakeDet
         Me.BtnSetRemark.Size = New System.Drawing.Size(143, 38)
         Me.BtnSetRemark.TabIndex = 2
         Me.BtnSetRemark.Text = "Set Store Remark"
+        '
+        'CESelect
+        '
+        Me.CESelect.Location = New System.Drawing.Point(118, 10)
+        Me.CESelect.Name = "CESelect"
+        Me.CESelect.Properties.Caption = "Select All"
+        Me.CESelect.Size = New System.Drawing.Size(68, 19)
+        Me.CESelect.TabIndex = 0
         '
         'FormStockTakeDet
         '
@@ -1420,9 +1430,9 @@ Partial Class FormStockTakeDet
         CType(Me.RepositoryItemTextEdit4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        CType(Me.CESelect.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
+        CType(Me.CESelect.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

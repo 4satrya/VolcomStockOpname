@@ -114,7 +114,7 @@ Partial Public Class ReportCompare
         '
         Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(750.0001!, 155.2084!)
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(774.0!, 155.2084!)
         Me.WinControlContainer1.WinControl = Me.GCCompare
         '
         'GCCompare
@@ -122,7 +122,7 @@ Partial Public Class ReportCompare
         Me.GCCompare.Location = New System.Drawing.Point(0, 0)
         Me.GCCompare.MainView = Me.BGVCompare
         Me.GCCompare.Name = "GCCompare"
-        Me.GCCompare.Size = New System.Drawing.Size(720, 149)
+        Me.GCCompare.Size = New System.Drawing.Size(743, 149)
         Me.GCCompare.TabIndex = 0
         Me.GCCompare.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVCompare})
         '
@@ -321,7 +321,7 @@ Partial Public Class ReportCompare
         '
         'BottomMargin
         '
-        Me.BottomMargin.HeightF = 35.79566!
+        Me.BottomMargin.HeightF = 36.0!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -335,7 +335,7 @@ Partial Public Class ReportCompare
         'XrTable2
         '
         Me.XrTable2.Font = New System.Drawing.Font("Times New Roman", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(548.9583!, 0!)
+        Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(572.9583!, 0!)
         Me.XrTable2.Name = "XrTable2"
         Me.XrTable2.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow6, Me.XrTableRow7, Me.XrTableRow8, Me.XrTableRow9})
         Me.XrTable2.SizeF = New System.Drawing.SizeF(201.0417!, 102.4355!)
@@ -769,7 +769,7 @@ Partial Public Class ReportCompare
         'XrPictureBox1
         '
         Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
-        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(534.375!, 0!)
+        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(558.375!, 0!)
         Me.XrPictureBox1.Name = "XrPictureBox1"
         Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(215.625!, 42.79167!)
         '
@@ -789,7 +789,7 @@ Partial Public Class ReportCompare
         'ReportCompare
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportFooter, Me.PageHeader, Me.PageFooter})
-        Me.Margins = New System.Drawing.Printing.Margins(50, 27, 27, 36)
+        Me.Margins = New System.Drawing.Printing.Margins(26, 27, 27, 36)
         Me.PageHeight = 1169
         Me.PageWidth = 827
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4

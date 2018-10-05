@@ -476,6 +476,8 @@
             print_raw(GCCat, "")
         ElseIf XTCStockTake.SelectedTabPageIndex = 3 Then
             Cursor = Cursors.WaitCursor
+            BandedGridColumnStoreRemark.Caption = "Store" + System.Environment.NewLine + "Remark"
+            BandedGridColumnIsSelect.Visible = False
             'BGVCompare.BestFitColumns()
             ReportCompare.dt = GCCompare.DataSource
             ReportCompare.id_report = id_st_trans
@@ -546,6 +548,7 @@
             'Show the report's preview. 
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
             Tool.ShowPreviewDialog()
+            BandedGridColumnIsSelect.Visible = True
             Cursor = Cursors.Default
         End If
         Cursor = Cursors.Default

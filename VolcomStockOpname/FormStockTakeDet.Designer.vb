@@ -136,8 +136,9 @@ Partial Class FormStockTakeDet
         Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemTextEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnSetRemark = New DevExpress.XtraEditors.SimpleButton()
         Me.CESelect = New DevExpress.XtraEditors.CheckEdit()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnSetRemark = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -189,6 +190,8 @@ Partial Class FormStockTakeDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.CESelect.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -1312,31 +1315,41 @@ Partial Class FormStockTakeDet
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.BtnSetRemark)
-        Me.PanelControl1.Controls.Add(Me.CESelect)
+        Me.PanelControl1.Controls.Add(Me.PanelControl2)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1014, 42)
         Me.PanelControl1.TabIndex = 1
         '
+        'CESelect
+        '
+        Me.CESelect.Location = New System.Drawing.Point(118, 10)
+        Me.CESelect.Name = "CESelect"
+        Me.CESelect.Properties.Caption = "Select All"
+        Me.CESelect.Size = New System.Drawing.Size(68, 19)
+        Me.CESelect.TabIndex = 0
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.BtnSetRemark)
+        Me.PanelControl2.Controls.Add(Me.CESelect)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl2.Location = New System.Drawing.Point(682, 2)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(330, 38)
+        Me.PanelControl2.TabIndex = 2
+        '
         'BtnSetRemark
         '
         Me.BtnSetRemark.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSetRemark.Image = CType(resources.GetObject("BtnSetRemark.Image"), System.Drawing.Image)
-        Me.BtnSetRemark.Location = New System.Drawing.Point(869, 2)
+        Me.BtnSetRemark.Location = New System.Drawing.Point(187, 0)
         Me.BtnSetRemark.Name = "BtnSetRemark"
         Me.BtnSetRemark.Size = New System.Drawing.Size(143, 38)
-        Me.BtnSetRemark.TabIndex = 1
+        Me.BtnSetRemark.TabIndex = 2
         Me.BtnSetRemark.Text = "Set Store Remark"
-        '
-        'CESelect
-        '
-        Me.CESelect.Location = New System.Drawing.Point(796, 11)
-        Me.CESelect.Name = "CESelect"
-        Me.CESelect.Properties.Caption = "Select All"
-        Me.CESelect.Size = New System.Drawing.Size(71, 19)
-        Me.CESelect.TabIndex = 0
         '
         'FormStockTakeDet
         '
@@ -1408,6 +1421,8 @@ Partial Class FormStockTakeDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.CESelect.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1521,7 +1536,6 @@ Partial Class FormStockTakeDet
     Friend WithEvents StoreRemarkToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BandedGridColumnStoreRemark As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BtnSetRemark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents CESelect As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents gridBandInfo As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandVolcomQty As DevExpress.XtraGrid.Views.BandedGrid.GridBand
@@ -1529,4 +1543,6 @@ Partial Class FormStockTakeDet
     Friend WithEvents gridBandKet As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnIsSelect As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnSetRemark As DevExpress.XtraEditors.SimpleButton
 End Class

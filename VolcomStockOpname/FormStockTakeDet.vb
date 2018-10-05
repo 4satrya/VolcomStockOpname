@@ -881,7 +881,6 @@
     Private Sub StoreRemarkToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles StoreRemarkToolStripMenuItem.Click
         If BGVCompare.RowCount > 0 And BGVCompare.FocusedRowHandle >= 0 Then
             Dim cond_now As String = BGVCompare.ActiveFilterString
-            'MsgBox(BGVCompare.GetFocusedRowCellValue("id_product").ToString)
             FormStockTakeDetStoreRemark.id_product = BGVCompare.GetFocusedRowCellValue("id_product").ToString
             FormStockTakeDetStoreRemark.id_st_trans = id_st_trans
             FormStockTakeDetStoreRemark.code = BGVCompare.GetFocusedRowCellValue("barcode").ToString
@@ -891,7 +890,7 @@
         End If
     End Sub
 
-    Private Sub BtnSetRemark_Click(sender As Object, e As EventArgs) Handles BtnSetRemark.Click
+    Private Sub BtnSetRemark_Click_1(sender As Object, e As EventArgs) Handles BtnSetRemark.Click
         Dim cond_now As String = BGVCompare.ActiveFilterString
         makeSafeGV(BGVCompare)
         BGVCompare.ActiveFilterString = "[is_select]='Yes'"
@@ -903,5 +902,18 @@
             warningCustom("No item selected")
         End If
         BGVCompare.ActiveFilterString = cond_now
+        CESelect.EditValue = False
+    End Sub
+
+    Private Sub CESelect_CheckedChanged(sender As Object, e As EventArgs) Handles CESelect.CheckedChanged
+        Dim is_select As String = ""
+        If CESelect.EditValue = True Then
+            is_select = "Yes"
+        Else
+            is_select = "No"
+        End If
+        For i As Integer = 0 To ((BGVCompare.RowCount - 1) - GetGroupRowCount(BGVCompare))
+            BGVCompare.SetRowCellValue(i, "is_select", is_select)
+        Next
     End Sub
 End Class

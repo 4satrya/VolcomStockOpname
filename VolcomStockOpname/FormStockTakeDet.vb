@@ -194,6 +194,8 @@
         GCCat.DataSource = data
     End Sub
 
+    Dim i_load_compare = 0
+    Dim str_default_compare As System.IO.Stream
     Sub viewCompare()
         Cursor = Cursors.WaitCursor
         gridBandStoreQty.Caption = comp_number
@@ -244,6 +246,13 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCompare.DataSource = data
         TxtFontSize.EditValue = 6.3
+
+        If i_load_compare = 0 Then
+            str_default_compare = New System.IO.MemoryStream()
+            BGVCompare.SaveLayoutToStream(str_default_compare, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str_default_compare.Seek(0, System.IO.SeekOrigin.Begin)
+        End If
+        i_load_compare += 1
         Cursor = Cursors.Default
     End Sub
 
@@ -476,6 +485,10 @@
             print_raw(GCCat, "")
         ElseIf XTCStockTake.SelectedTabPageIndex = 3 Then
             Cursor = Cursors.WaitCursor
+            'load default layout 
+            BGVCompare.RestoreLayoutFromStream(str_default_compare, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str_default_compare.Seek(0, System.IO.SeekOrigin.Begin)
+
             BandedGridColumnStoreRemark.Caption = "Store" + System.Environment.NewLine + "Remark"
             BandedGridColumnIsSelect.Visible = False
             'BGVCompare.BestFitColumns()

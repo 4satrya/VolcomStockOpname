@@ -44,7 +44,7 @@
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
         Cursor = Cursors.WaitCursor
         Dim query As String = "INSERT INTO tb_periode_det(id_periode, account, account_desc, db_name) 
-        VALUES('" + FormDatabaseUI.GVPeriode.GetFocusedRowCellValue("id_periode").ToString + "','" + TxtAccount.Text + "', '" + TxtAccountDesc.Text + "', '" + GVData.GetFocusedRowCellValue("Database").ToString + "') "
+        VALUES('" + FormDatabaseUI.GVPeriode.GetFocusedRowCellValue("id_periode").ToString + "','" + addSlashes(TxtAccount.Text) + "', '" + addSlashes(TxtAccountDesc.Text) + "', '" + GVData.GetFocusedRowCellValue("Database").ToString + "') "
         execute_non_query(query, False, app_host, app_username, app_password, "db_opt")
         FormDatabaseUI.view_detail()
         Close()

@@ -1092,7 +1092,7 @@ Partial Class FormStockTakeDet
         Me.BandedGridColumnNo.Name = "BandedGridColumnNo"
         Me.BandedGridColumnNo.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnNo.Visible = True
-        Me.BandedGridColumnNo.Width = 41
+        Me.BandedGridColumnNo.Width = 61
         '
         'BandedGridColumnBarcode
         '
@@ -1123,7 +1123,7 @@ Partial Class FormStockTakeDet
         Me.BandedGridColumnName.Name = "BandedGridColumnName"
         Me.BandedGridColumnName.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnName.Visible = True
-        Me.BandedGridColumnName.Width = 270
+        Me.BandedGridColumnName.Width = 250
         '
         'BandedGridColumnSize
         '

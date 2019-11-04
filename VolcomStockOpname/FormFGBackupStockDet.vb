@@ -501,7 +501,7 @@ Public Class FormFGBackupStockDet
     Sub openFile(ByVal additional As String)
         Cursor = Cursors.WaitCursor
         Dim path_root As String = Application.StartupPath + "\download\database" + additional
-        Process.Start(path_root)
+        Process.Start("explorer.exe", path_root)
         Cursor = Cursors.Default
     End Sub
 

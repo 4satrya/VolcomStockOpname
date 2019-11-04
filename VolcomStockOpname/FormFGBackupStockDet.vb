@@ -504,7 +504,7 @@ Public Class FormFGBackupStockDet
         Try
             Dim file As System.IO.StreamWriter
             file = My.Computer.FileSystem.OpenTextFileWriter(Application.StartupPath + "\test.txt", True)
-            file.WriteLine("")
+            file.WriteLine(System.Environment.NewLine)
             file.WriteLine(path_root)
             file.Close()
         Catch ex As Exception

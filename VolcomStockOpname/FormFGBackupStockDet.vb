@@ -501,6 +501,14 @@ Public Class FormFGBackupStockDet
     Sub openFile(ByVal additional As String)
         Cursor = Cursors.WaitCursor
         Dim path_root As String = Application.StartupPath + "\download\database" + additional
+        Try
+            Dim file As System.IO.StreamWriter
+            file = My.Computer.FileSystem.OpenTextFileWriter(Application.StartupPath + "\test.txt", True)
+            file.WriteLine(System.Environment.NewLine)
+            file.WriteLine(path_root)
+            file.Close()
+        Catch ex As Exception
+        End Try
         Process.Start("explorer.exe", path_root)
         Cursor = Cursors.Default
     End Sub

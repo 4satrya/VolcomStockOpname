@@ -202,7 +202,7 @@
         ) vd ON vd.`code` = pd.`code` AND " + w2 + "
         WHERE ISNULL(pd.`code`)
         GROUP BY vd.`code`
-        ORDER BY name ASC "
+        ORDER BY name_pre ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCS.DataSource = data
         GVCS.BestFitColumns()

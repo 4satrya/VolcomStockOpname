@@ -295,6 +295,12 @@
                 MERemark.Enabled = True
             End If
         End If
+
+        'print setup
+        If FormStockTake.is_pre = "2" Then
+            BtnPrintLetter.Visible = True
+            BtnPrintLetter.SendToBack()
+        End If
     End Sub
 
     Private Sub BtnSetStatus_Click(sender As Object, e As EventArgs) Handles BtnSetStatus.Click
@@ -421,6 +427,12 @@
             End If
         ElseIf XTCStockTake.SelectedTabPageIndex = 1 Then
             If FormStockTake.is_pre = "1" Then 'wh pre stock take
+                If id_report_status = "1" Then
+                    stopCustom("Can't print, please finalize status first")
+                    Cursor = Cursors.Default
+                    Exit Sub
+                End If
+
                 Cursor = Cursors.WaitCursor
                 GVSummaryScan.BestFitColumns()
                 ReportScanPreStockTake.dt = GCSummaryScan.DataSource
@@ -945,4 +957,77 @@
             BGVCompare.SetRowCellValue(i, "is_select", is_select)
         Next
     End Sub
+
+    Private Sub BtnPrintLetter_Click(sender As Object, e As EventArgs) Handles BtnPrintLetter.Click
+        If XTCStockTake.SelectedTabPageIndex = 0 Then
+            Cursor = Cursors.WaitCursor
+            GVScan.BestFitColumns()
+            ReportScanVerStockTakeSlip.dt = GCScan.DataSource
+            ReportScanVerStockTakeSlip.id_report = id_st_trans
+            Dim Report As New ReportScanVerStockTakeSlip()
+
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVScan.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVScan.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            'Grid Detail
+            ReportStyleGridview(Report.GVScan)
+
+            'Parse val
+            Report.LabelTitle.Text = "STOCKTAKE SLIP - SCAN PRODUCT LIST  "
+            Report.LabelNo.Text = TxtNumber.Text
+            Report.LabelAccount.Text = SLEWHStockSum.Text
+            Report.LabelRemark.Text = TxtNumber.Text
+            Report.LabelDate.Text = DECreated.Text
+            Report.LabelPrepare.Text = prepared_by
+            Report.LabelRemark.Text = MERemark.Text.ToString
+            Report.LabelRefNo.Text = "-"
+            Report.LabelRef.Text = "-"
+
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
+            Cursor = Cursors.Default
+        ElseIf XTCStockTake.SelectedTabPageIndex = 1 Then
+            Cursor = Cursors.WaitCursor
+            GVSummaryScan.BestFitColumns()
+            ReportScanVerStockTakeSlip.dt = GCSummaryScan.DataSource
+            ReportScanVerStockTakeSlip.id_report = id_st_trans
+            Dim Report As New ReportScanVerStockTakeSlip()
+
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVSummaryScan.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVScan.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            'Grid Detail
+            ReportStyleGridview(Report.GVScan)
+
+            'Parse val
+            Report.LabelTitle.Text = "STOCKTAKE SLIP"
+            Report.LabelNo.Text = TxtNumber.Text
+            Report.LabelAccount.Text = SLEWHStockSum.Text
+            Report.LabelRemark.Text = TxtNumber.Text
+            Report.LabelDate.Text = DECreated.Text
+            Report.LabelPrepare.Text = prepared_by
+            Report.LabelRemark.Text = MERemark.Text.ToString
+            Report.LabelRefNo.Text = "-"
+            Report.LabelRef.Text = "-"
+
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
 End Class

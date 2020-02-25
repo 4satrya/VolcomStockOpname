@@ -25,6 +25,9 @@ Partial Public Class ReportScanPreStockTake
         Me.GVScan = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
+        Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelStatus = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelNo = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelTitle = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
@@ -69,9 +72,6 @@ Partial Public Class ReportScanPreStockTake
         Me.LabelPrepare = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.LabelPreparePosition = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LabelStatus = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCScan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVScan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -129,6 +129,39 @@ Partial Public Class ReportScanPreStockTake
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrLabel7
+        '
+        Me.XrLabel7.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(694.8751!, 45.91668!)
+        Me.XrLabel7.Name = "XrLabel7"
+        Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel7.SizeF = New System.Drawing.SizeF(15.625!, 14.66667!)
+        Me.XrLabel7.StylePriority.UseFont = False
+        Me.XrLabel7.Text = ":"
+        '
+        'LabelStatus
+        '
+        Me.LabelStatus.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelStatus.LocationFloat = New DevExpress.Utils.PointFloat(710.5001!, 45.91668!)
+        Me.LabelStatus.Name = "LabelStatus"
+        Me.LabelStatus.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelStatus.SizeF = New System.Drawing.SizeF(87.5!, 14.66667!)
+        Me.LabelStatus.StylePriority.UseFont = False
+        Me.LabelStatus.StylePriority.UseTextAlignment = False
+        Me.LabelStatus.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+        '
+        'XrLabel1
+        '
+        Me.XrLabel1.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(620.9168!, 45.91667!)
+        Me.XrLabel1.Name = "XrLabel1"
+        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel1.SizeF = New System.Drawing.SizeF(73.95834!, 14.66667!)
+        Me.XrLabel1.StylePriority.UseBorders = False
+        Me.XrLabel1.StylePriority.UseFont = False
+        Me.XrLabel1.Text = "Status"
         '
         'LabelNo
         '
@@ -268,7 +301,7 @@ Partial Public Class ReportScanPreStockTake
         'ReportFooter
         '
         Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable2, Me.XrTable1, Me.XrTable3})
-        Me.ReportFooter.HeightF = 175.3522!
+        Me.ReportFooter.HeightF = 128.4772!
         Me.ReportFooter.Name = "ReportFooter"
         '
         'XrTable2
@@ -523,39 +556,6 @@ Partial Public Class ReportScanPreStockTake
         Me.LabelPreparePosition.Text = "Inventory Checker"
         Me.LabelPreparePosition.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.LabelPreparePosition.Weight = 1.0R
-        '
-        'XrLabel1
-        '
-        Me.XrLabel1.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(620.9168!, 45.91667!)
-        Me.XrLabel1.Name = "XrLabel1"
-        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel1.SizeF = New System.Drawing.SizeF(73.95834!, 14.66667!)
-        Me.XrLabel1.StylePriority.UseBorders = False
-        Me.XrLabel1.StylePriority.UseFont = False
-        Me.XrLabel1.Text = "Status"
-        '
-        'LabelStatus
-        '
-        Me.LabelStatus.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelStatus.LocationFloat = New DevExpress.Utils.PointFloat(710.5001!, 45.91668!)
-        Me.LabelStatus.Name = "LabelStatus"
-        Me.LabelStatus.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LabelStatus.SizeF = New System.Drawing.SizeF(87.5!, 14.66667!)
-        Me.LabelStatus.StylePriority.UseFont = False
-        Me.LabelStatus.StylePriority.UseTextAlignment = False
-        Me.LabelStatus.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-        '
-        'XrLabel7
-        '
-        Me.XrLabel7.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(694.8751!, 45.91668!)
-        Me.XrLabel7.Name = "XrLabel7"
-        Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel7.SizeF = New System.Drawing.SizeF(15.625!, 14.66667!)
-        Me.XrLabel7.StylePriority.UseFont = False
-        Me.XrLabel7.Text = ":"
         '
         'ReportScanPreStockTake
         '

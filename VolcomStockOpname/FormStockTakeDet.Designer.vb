@@ -44,6 +44,7 @@ Partial Class FormStockTakeDet
         Me.LEStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnPrintLetter = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.XTCStockTake = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPScan = New DevExpress.XtraTab.XtraTabPage()
@@ -309,6 +310,7 @@ Partial Class FormStockTakeDet
         Me.GroupControl2.Controls.Add(Me.LEStatus)
         Me.GroupControl2.Controls.Add(Me.LabelControl5)
         Me.GroupControl2.Controls.Add(Me.BtnPrint)
+        Me.GroupControl2.Controls.Add(Me.BtnPrintLetter)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.GroupControl2.Location = New System.Drawing.Point(0, 538)
         Me.GroupControl2.Name = "GroupControl2"
@@ -321,7 +323,7 @@ Partial Class FormStockTakeDet
         Me.PanelFontSize.Controls.Add(Me.TxtFontSize)
         Me.PanelFontSize.Controls.Add(Me.LabelControl9)
         Me.PanelFontSize.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelFontSize.Location = New System.Drawing.Point(830, 2)
+        Me.PanelFontSize.Location = New System.Drawing.Point(715, 2)
         Me.PanelFontSize.Name = "PanelFontSize"
         Me.PanelFontSize.Size = New System.Drawing.Size(106, 41)
         Me.PanelFontSize.TabIndex = 8913
@@ -406,11 +408,22 @@ Partial Class FormStockTakeDet
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(936, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(821, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(104, 41)
         Me.BtnPrint.TabIndex = 1
         Me.BtnPrint.Text = "Print (F4)"
+        '
+        'BtnPrintLetter
+        '
+        Me.BtnPrintLetter.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrintLetter.Image = CType(resources.GetObject("BtnPrintLetter.Image"), System.Drawing.Image)
+        Me.BtnPrintLetter.Location = New System.Drawing.Point(925, 2)
+        Me.BtnPrintLetter.Name = "BtnPrintLetter"
+        Me.BtnPrintLetter.Size = New System.Drawing.Size(115, 41)
+        Me.BtnPrintLetter.TabIndex = 8914
+        Me.BtnPrintLetter.Text = "Print - Letter"
+        Me.BtnPrintLetter.Visible = False
         '
         'GroupControl3
         '
@@ -1556,4 +1569,5 @@ Partial Class FormStockTakeDet
     Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnSetRemark As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnPrintLetter As DevExpress.XtraEditors.SimpleButton
 End Class

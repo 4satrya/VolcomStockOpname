@@ -357,7 +357,6 @@ Partial Public Class ReportScanVerStockTakeSlip
         Me.XrTable4.Name = "XrTable4"
         Me.XrTable4.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow10, Me.XrTableRow11, Me.XrTableRow12, Me.XrTableRow13})
         Me.XrTable4.SizeF = New System.Drawing.SizeF(201.0417!, 102.4355!)
-        Me.XrTable4.Visible = False
         '
         'XrTableRow10
         '
@@ -422,7 +421,7 @@ Partial Public Class ReportScanVerStockTakeSlip
         Me.XrTableCell10.Name = "XrTableCell10"
         Me.XrTableCell10.StylePriority.UseFont = False
         Me.XrTableCell10.StylePriority.UseTextAlignment = False
-        Me.XrTableCell10.Text = "Dept. Head"
+        Me.XrTableCell10.Text = "WH. Dept. Head"
         Me.XrTableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.XrTableCell10.Weight = 1.0R
         '
@@ -570,7 +569,7 @@ Partial Public Class ReportScanVerStockTakeSlip
         Me.LabelAppPosition.Name = "LabelAppPosition"
         Me.LabelAppPosition.StylePriority.UseFont = False
         Me.LabelAppPosition.StylePriority.UseTextAlignment = False
-        Me.LabelAppPosition.Text = "Dept. Head"
+        Me.LabelAppPosition.Text = "Internal Audit"
         Me.LabelAppPosition.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.LabelAppPosition.Weight = 1.0R
         '

@@ -18,14 +18,54 @@
 
     Sub userPriv()
         If id_role_login = "1" Then
+            'super admin
             NBExport.Visible = True
             NBImport.Visible = True
             NBStockTake.Visible = True
+            NBOpt.Visible = True
+            NBWHPreST.Visible = True
+            NBWHST.Visible = True
+        ElseIf id_role_login = "2" Then
+            'IA
+            NBExport.Visible = True
+            NBImport.Visible = True
+            NBStockTake.Visible = True
+            NBOpt.Visible = True
+            NBWHPreST.Visible = False
+            NBWHST.Visible = True
+        ElseIf id_role_login = "3" Then
+            'WH ADMIN
+            NBExport.Visible = True
+            NBImport.Visible = True
+            NBStockTake.Visible = False
+            NBOpt.Visible = False
+            NBWHPreST.Visible = True
+            NBWHST.Visible = False
+        ElseIf id_role_login = "4" Then
+            'WH
+            NBExport.Visible = False
+            NBImport.Visible = False
+            NBStockTake.Visible = False
+            NBOpt.Visible = False
+            NBWHPreST.Visible = True
+            NBWHST.Visible = False
         Else
             NBExport.Visible = False
             NBImport.Visible = False
             NBStockTake.Visible = False
+            NBOpt.Visible = False
+            NBWHPreST.Visible = False
+            NBWHST.Visible = False
         End If
+    End Sub
+
+    Sub restoreMenu()
+        NBExport.Visible = True
+        NBImport.Visible = True
+        NBStockTake.Visible = True
+        NBOpt.Visible = True
+        NBWHPreST.Visible = True
+        NBWHST.Visible = True
     End Sub
 
     Sub actionLoad()
@@ -142,6 +182,7 @@
             name_user = Nothing
             position_user = Nothing
             is_change_pass_user = Nothing
+            restoreMenu()
             Opacity = 0
             FormLogin.ShowDialog()
         Catch ex As Exception

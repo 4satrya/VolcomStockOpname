@@ -40,16 +40,23 @@ Public Class FormFGBackupStockDet
             date_until_selected = DateTime.Parse(DEStock.EditValue.ToString).ToString("yyyy-MM-dd")
         Catch ex As Exception
         End Try
+        ' kalo uda full erp
+        'Dim query As String = "SELECT c.id_comp, c.comp_number, c.comp_name, c.address_primary, ('No') AS `is_select`,
+        'IFNULL(stc.qty,0) As `qty_soh` , c.id_drawer_def, c.id_comp_cat, cat.comp_cat_name AS `comp_cat`
+        'FROM tb_m_comp c 
+        'LEFT JOIN (
+        ' SELECT f.id_wh_drawer,
+        ' SUM(IF(f.id_stock_status=1, (IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS qty
+        ' FROM tb_storage_fg f 
+        ' WHERE DATE(f.storage_product_datetime)<=DATE('" + date_until_selected + "')
+        ' GROUP BY f.id_wh_drawer
+        ') stc ON stc.id_wh_drawer = c.id_drawer_def 
+        'INNER JOIN tb_m_comp_cat cat ON cat.id_comp_cat = c.id_comp_cat 
+        'WHERE (c.id_comp_cat=5 Or c.id_comp_cat=6)
+        'ORDER BY c.comp_number  "
         Dim query As String = "SELECT c.id_comp, c.comp_number, c.comp_name, c.address_primary, ('No') AS `is_select`,
-        IFNULL(stc.qty,0) As `qty_soh` , c.id_drawer_def, c.id_comp_cat, cat.comp_cat_name AS `comp_cat`
+        0 As `qty_soh` , c.id_drawer_def, c.id_comp_cat, cat.comp_cat_name AS `comp_cat`
         FROM tb_m_comp c 
-        LEFT JOIN (
-	        SELECT f.id_wh_drawer,
-	        SUM(IF(f.id_stock_status=1, (IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS qty
-	        FROM tb_storage_fg f 
-	        WHERE DATE(f.storage_product_datetime)<=DATE('" + date_until_selected + "')
-	        GROUP BY f.id_wh_drawer
-        ) stc ON stc.id_wh_drawer = c.id_drawer_def 
         INNER JOIN tb_m_comp_cat cat ON cat.id_comp_cat = c.id_comp_cat 
         WHERE (c.id_comp_cat=5 Or c.id_comp_cat=6)
         ORDER BY c.comp_number  "

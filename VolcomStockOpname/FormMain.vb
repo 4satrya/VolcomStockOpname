@@ -69,6 +69,7 @@
     End Sub
 
     Sub actionLoad()
+        LabelControl1.Text += " (" + "ver. " + getVersion() + ")"
         Try
             apply_skin()
             read_database_configuration()

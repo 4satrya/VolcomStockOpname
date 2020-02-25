@@ -4,6 +4,7 @@ Imports DevExpress.XtraEditors
 Imports DevExpress.XtraPrinting
 Imports DevExpress.XtraReports.UI
 Imports System.Reflection
+Imports System.IO
 
 Module Common
     Public report_mark_is_bom As String = "-1"
@@ -24,6 +25,11 @@ Module Common
     Public is_change_pass_user As String = ""
     Public again_awb As String = ""
     Public st_user_code As String = ""
+
+    Function getVersion() As String
+        Dim myFileVersionInfo As FileVersionInfo = FileVersionInfo.GetVersionInfo(Application.StartupPath() + "\VolcomStockOpname.exe")
+        Return myFileVersionInfo.FileVersion.ToString
+    End Function
 
     Sub loadImgPath()
         product_image_path = get_setup_field("pic_path_design") & "\"

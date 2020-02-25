@@ -105,18 +105,17 @@ Partial Class FormLogin
         '
         Me.LabelVersion.AutoSize = True
         Me.LabelVersion.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelVersion.Location = New System.Drawing.Point(27, 128)
+        Me.LabelVersion.Location = New System.Drawing.Point(297, 155)
         Me.LabelVersion.Name = "LabelVersion"
         Me.LabelVersion.Size = New System.Drawing.Size(65, 12)
         Me.LabelVersion.TabIndex = 6
         Me.LabelVersion.Text = "Version 0.0.0.1"
-        Me.LabelVersion.Visible = False
         '
         'FormLogin
         '
         Me.Appearance.Options.UseFont = True
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(388, 176)
+        Me.ClientSize = New System.Drawing.Size(388, 187)
         Me.Controls.Add(Me.LabelVersion)
         Me.Controls.Add(Me.BtnReset)
         Me.Controls.Add(Me.BtnLogin)

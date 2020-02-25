@@ -26,7 +26,11 @@
     Sub viewReportStatus()
         Dim query As String = ""
         If is_combine = "2" Then
-            query = "SELECT * FROM tb_lookup_report_status s WHERE s.id_report_status=5 OR  s.id_report_status=1 "
+            If FormStockTake.is_pre = "1" Then
+                query = "SELECT * FROM tb_lookup_report_status s WHERE s.id_report_status=5 OR  s.id_report_status=1 OR s.id_report_status=6 "
+            Else
+                query = "SELECT * FROM tb_lookup_report_status s WHERE s.id_report_status=5 OR  s.id_report_status=1 "
+            End If
         Else
             query = "SELECT * FROM tb_lookup_report_status s WHERE s.id_report_status=1 OR s.id_report_status=3 OR s.id_report_status=5 OR s.id_report_status=6 "
         End If
@@ -338,6 +342,12 @@
         Cursor = Cursors.WaitCursor
         If XTCStockTake.SelectedTabPageIndex = 0 Then
             If FormStockTake.is_pre = "1" Then 'wh pre stock take
+                If id_report_status = "1" Then
+                    stopCustom("Can't print, please finalize status first")
+                    Cursor = Cursors.Default
+                    Exit Sub
+                End If
+
                 Cursor = Cursors.WaitCursor
                 GVScan.BestFitColumns()
                 ReportScanPreStockTake.dt = GCScan.DataSource
@@ -364,6 +374,7 @@
                 Report.LabelDate.Text = DECreated.Text
                 Report.LabelPrepare.Text = prepared_by
                 Report.LabelRemark.Text = MERemark.Text.ToString
+                Report.LabelStatus.Text = LEStatus.Text
 
                 'Show the report's preview. 
                 Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)

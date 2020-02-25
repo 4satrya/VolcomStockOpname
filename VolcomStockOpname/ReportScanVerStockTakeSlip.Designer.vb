@@ -326,7 +326,7 @@ Partial Public Class ReportScanVerStockTakeSlip
         'BottomMargin
         '
         Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPageInfo1})
-        Me.BottomMargin.HeightF = 46.06851!
+        Me.BottomMargin.HeightF = 73.13703!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -651,7 +651,7 @@ Partial Public Class ReportScanVerStockTakeSlip
         'ReportScanVerStockTakeSlip
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportFooter})
-        Me.Margins = New System.Drawing.Printing.Margins(26, 26, 113, 46)
+        Me.Margins = New System.Drawing.Printing.Margins(26, 26, 113, 73)
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "15.1"
         CType(Me.GCScan, System.ComponentModel.ISupportInitialize).EndInit()

@@ -7,7 +7,7 @@
     Sub viewScan()
         Cursor = Cursors.WaitCursor
         Dim stake As New ClassStockTake()
-        Dim query As String = stake.queryTransMain("AND st.is_combine=2 AND st.is_pre=1", "1")
+        Dim query As String = stake.queryTransMain("AND st.is_combine=2 AND st.is_pre=1 AND st.id_report_status=6 ", "1")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCScan.DataSource = data
         GVScan.FocusedRowHandle = 0

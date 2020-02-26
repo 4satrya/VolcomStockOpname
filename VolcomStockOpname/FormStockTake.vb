@@ -15,14 +15,31 @@ Public Class FormStockTake
         Else
             Text = "Stocktake"
         End If
+        viewUserType()
         viewScan()
         viewCombine()
     End Sub
 
+    Sub viewUserType()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT '1' AS `id_user_type`, 'User Login' AS `type_user`
+        UNION 
+        SELECT '2' AS `id_user_type`, 'All User' AS `type_user` "
+        viewLookupQuery(LEViewUser, query, 0, "type_user", "id_user_type")
+        Cursor = Cursors.Default
+    End Sub
+
     Sub viewScan()
         Cursor = Cursors.WaitCursor
+
+        'user view
+        Dim cond_user As String = ""
+        If LEViewUser.EditValue.ToString = "1" Then
+            cond_user = "AND st.st_trans_by='" + id_user + "' "
+        End If
+
         Dim stake As New ClassStockTake()
-        Dim query As String = stake.queryTransMain("AND st.is_combine=2 AND st.is_pre=" + is_pre + " ", "2")
+        Dim query As String = stake.queryTransMain("AND st.is_combine=2 AND st.is_pre=" + is_pre + " " + cond_user + " ", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCScan.DataSource = data
         GVScan.FocusedRowHandle = 0
@@ -275,5 +292,9 @@ Public Class FormStockTake
         Cursor = Cursors.WaitCursor
         FormStockTakeList.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub LEViewUser_EditValueChanged(sender As Object, e As EventArgs) Handles LEViewUser.EditValueChanged
+        GCScan.DataSource = Nothing
     End Sub
 End Class

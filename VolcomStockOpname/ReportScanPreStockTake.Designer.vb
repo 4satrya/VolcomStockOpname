@@ -72,6 +72,7 @@ Partial Public Class ReportScanPreStockTake
         Me.LabelPrepare = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.LabelPreparePosition = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
         CType(Me.GCScan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVScan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -300,14 +301,14 @@ Partial Public Class ReportScanPreStockTake
         '
         'ReportFooter
         '
-        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable2, Me.XrTable1, Me.XrTable3})
+        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPanel1})
         Me.ReportFooter.HeightF = 128.4772!
         Me.ReportFooter.Name = "ReportFooter"
         '
         'XrTable2
         '
         Me.XrTable2.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(385.9167!, 26.04167!)
+        Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(386.9583!, 0!)
         Me.XrTable2.Name = "XrTable2"
         Me.XrTable2.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow6, Me.XrTableRow7, Me.XrTableRow8, Me.XrTableRow9})
         Me.XrTable2.SizeF = New System.Drawing.SizeF(402.0834!, 102.4355!)
@@ -411,7 +412,7 @@ Partial Public Class ReportScanPreStockTake
         '
         'XrTable1
         '
-        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(200.0!, 26.04167!)
+        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(201.0417!, 0!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow2, Me.XrTableRow3, Me.XrTableRow4, Me.XrTableRow5})
         Me.XrTable1.SizeF = New System.Drawing.SizeF(162.5!, 102.4355!)
@@ -485,7 +486,7 @@ Partial Public Class ReportScanPreStockTake
         '
         'XrTable3
         '
-        Me.XrTable3.LocationFloat = New DevExpress.Utils.PointFloat(0!, 26.04167!)
+        Me.XrTable3.LocationFloat = New DevExpress.Utils.PointFloat(1.041667!, 0!)
         Me.XrTable3.Name = "XrTable3"
         Me.XrTable3.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow16, Me.XrTableRow18, Me.XrTableRow17, Me.XrTableRow1})
         Me.XrTable3.SizeF = New System.Drawing.SizeF(162.5!, 102.4355!)
@@ -557,6 +558,13 @@ Partial Public Class ReportScanPreStockTake
         Me.LabelPreparePosition.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.LabelPreparePosition.Weight = 1.0R
         '
+        'XrPanel1
+        '
+        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1, Me.XrTable3, Me.XrTable2})
+        Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 26.04167!)
+        Me.XrPanel1.Name = "XrPanel1"
+        Me.XrPanel1.SizeF = New System.Drawing.SizeF(798.0001!, 102.4355!)
+        '
         'ReportScanPreStockTake
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportFooter})
@@ -625,4 +633,5 @@ Partial Public Class ReportScanPreStockTake
     Friend WithEvents XrLabel7 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LabelStatus As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrPanel1 As DevExpress.XtraReports.UI.XRPanel
 End Class

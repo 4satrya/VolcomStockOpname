@@ -14,6 +14,7 @@
     Dim soh_period As String = ""
     Dim sales_until_period As String = ""
     Dim is_record_unreg As String = ""
+    Dim after_load As Boolean = False
 
 
     Private Sub FormStockTakeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -21,6 +22,8 @@
         viewReportStatus()
         viewAck()
         actionLoad()
+        TxtScan.Focus()
+        after_load = True
     End Sub
 
     Sub viewReportStatus()
@@ -855,16 +858,18 @@
 
     Private Sub MERemark_EditValueChanged(sender As Object, e As EventArgs) Handles MERemark.EditValueChanged
         Cursor = Cursors.WaitCursor
-        Dim query As String = "UPDATE tb_st_trans SET remark='" + addSlashes(MERemark.Text) + "', st_trans_updated_by=" + id_user + " WHERE id_st_trans='" + id_st_trans + "' "
-        execute_non_query(query, True, "", "", "", "")
-        If is_combine = "1" Then
-            FormStockTake.viewCombine()
-            FormStockTake.GVCombine.FocusedRowHandle = find_row(FormStockTake.GVCombine, "id_st_trans", id_st_trans)
-        Else
-            FormStockTake.viewScan()
-            FormStockTake.GVScan.FocusedRowHandle = find_row(FormStockTake.GVScan, "id_st_trans", id_st_trans)
+        If after_load Then
+            Dim query As String = "UPDATE tb_st_trans SET remark='" + addSlashes(MERemark.Text) + "', st_trans_updated_by=" + id_user + " WHERE id_st_trans='" + id_st_trans + "' "
+            execute_non_query(query, True, "", "", "", "")
+            If is_combine = "1" Then
+                FormStockTake.viewCombine()
+                FormStockTake.GVCombine.FocusedRowHandle = find_row(FormStockTake.GVCombine, "id_st_trans", id_st_trans)
+            Else
+                FormStockTake.viewScan()
+                FormStockTake.GVScan.FocusedRowHandle = find_row(FormStockTake.GVScan, "id_st_trans", id_st_trans)
+            End If
+            Cursor = Cursors.Default
         End If
-        Cursor = Cursors.Default
     End Sub
 
     Private Sub ViewDetailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewDetailToolStripMenuItem.Click

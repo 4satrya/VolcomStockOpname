@@ -66,6 +66,9 @@ Partial Class FormVerStockTake
         Me.BtnRefCom = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrintCom = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreateCom = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.LEViewUser = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.XTCStockTake, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStockTake.SuspendLayout()
         Me.XTPScan.SuspendLayout()
@@ -81,6 +84,9 @@ Partial Class FormVerStockTake
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.LEViewUser.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCStockTake
@@ -90,7 +96,7 @@ Partial Class FormVerStockTake
         Me.XTCStockTake.Location = New System.Drawing.Point(0, 0)
         Me.XTCStockTake.Name = "XTCStockTake"
         Me.XTCStockTake.SelectedTabPage = Me.XTPScan
-        Me.XTCStockTake.Size = New System.Drawing.Size(873, 518)
+        Me.XTCStockTake.Size = New System.Drawing.Size(1050, 518)
         Me.XTCStockTake.TabIndex = 1
         Me.XTCStockTake.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScan, Me.XtraTabPage2})
         '
@@ -99,7 +105,7 @@ Partial Class FormVerStockTake
         Me.XTPScan.Controls.Add(Me.GCScan)
         Me.XTPScan.Controls.Add(Me.PanelControl1)
         Me.XTPScan.Name = "XTPScan"
-        Me.XTPScan.Size = New System.Drawing.Size(867, 490)
+        Me.XTPScan.Size = New System.Drawing.Size(1044, 490)
         Me.XTPScan.Text = "Scan"
         '
         'GCScan
@@ -109,7 +115,7 @@ Partial Class FormVerStockTake
         Me.GCScan.MainView = Me.GVScan
         Me.GCScan.Name = "GCScan"
         Me.GCScan.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCScan.Size = New System.Drawing.Size(867, 448)
+        Me.GCScan.Size = New System.Drawing.Size(1044, 448)
         Me.GCScan.TabIndex = 0
         Me.GCScan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScan})
         '
@@ -275,6 +281,7 @@ Partial Class FormVerStockTake
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.PanelControl3)
         Me.PanelControl1.Controls.Add(Me.BtnImport)
         Me.PanelControl1.Controls.Add(Me.BtnExport)
         Me.PanelControl1.Controls.Add(Me.BtnRefresh)
@@ -285,14 +292,14 @@ Partial Class FormVerStockTake
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(867, 42)
+        Me.PanelControl1.Size = New System.Drawing.Size(1044, 42)
         Me.PanelControl1.TabIndex = 1
         '
         'BtnImport
         '
         Me.BtnImport.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnImport.Image = CType(resources.GetObject("BtnImport.Image"), System.Drawing.Image)
-        Me.BtnImport.Location = New System.Drawing.Point(266, 2)
+        Me.BtnImport.Location = New System.Drawing.Point(443, 2)
         Me.BtnImport.Name = "BtnImport"
         Me.BtnImport.Size = New System.Drawing.Size(109, 38)
         Me.BtnImport.TabIndex = 0
@@ -303,7 +310,7 @@ Partial Class FormVerStockTake
         '
         Me.BtnExport.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnExport.Image = CType(resources.GetObject("BtnExport.Image"), System.Drawing.Image)
-        Me.BtnExport.Location = New System.Drawing.Point(375, 2)
+        Me.BtnExport.Location = New System.Drawing.Point(552, 2)
         Me.BtnExport.Name = "BtnExport"
         Me.BtnExport.Size = New System.Drawing.Size(108, 38)
         Me.BtnExport.TabIndex = 1
@@ -314,7 +321,7 @@ Partial Class FormVerStockTake
         '
         Me.BtnRefresh.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnRefresh.Image = CType(resources.GetObject("BtnRefresh.Image"), System.Drawing.Image)
-        Me.BtnRefresh.Location = New System.Drawing.Point(483, 2)
+        Me.BtnRefresh.Location = New System.Drawing.Point(660, 2)
         Me.BtnRefresh.Name = "BtnRefresh"
         Me.BtnRefresh.Size = New System.Drawing.Size(97, 38)
         Me.BtnRefresh.TabIndex = 2
@@ -324,7 +331,7 @@ Partial Class FormVerStockTake
         '
         Me.BtnList.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnList.Image = CType(resources.GetObject("BtnList.Image"), System.Drawing.Image)
-        Me.BtnList.Location = New System.Drawing.Point(580, 2)
+        Me.BtnList.Location = New System.Drawing.Point(757, 2)
         Me.BtnList.Name = "BtnList"
         Me.BtnList.Size = New System.Drawing.Size(88, 38)
         Me.BtnList.TabIndex = 6
@@ -342,7 +349,7 @@ Partial Class FormVerStockTake
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(668, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(845, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(88, 38)
         Me.BtnPrint.TabIndex = 5
@@ -352,7 +359,7 @@ Partial Class FormVerStockTake
         '
         Me.BtnNew.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnNew.Image = CType(resources.GetObject("BtnNew.Image"), System.Drawing.Image)
-        Me.BtnNew.Location = New System.Drawing.Point(756, 2)
+        Me.BtnNew.Location = New System.Drawing.Point(933, 2)
         Me.BtnNew.Name = "BtnNew"
         Me.BtnNew.Size = New System.Drawing.Size(109, 38)
         Me.BtnNew.TabIndex = 3
@@ -546,11 +553,39 @@ Partial Class FormVerStockTake
         Me.BtnCreateCom.TabIndex = 3
         Me.BtnCreateCom.Text = "Create New "
         '
+        'PanelControl3
+        '
+        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.LEViewUser)
+        Me.PanelControl3.Controls.Add(Me.LabelControl1)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl3.Location = New System.Drawing.Point(239, 2)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(204, 38)
+        Me.PanelControl3.TabIndex = 10
+        '
+        'LEViewUser
+        '
+        Me.LEViewUser.Location = New System.Drawing.Point(68, 9)
+        Me.LEViewUser.Name = "LEViewUser"
+        Me.LEViewUser.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEViewUser.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_user_type", "id_user_type", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("type_user", "Type")})
+        Me.LEViewUser.Size = New System.Drawing.Size(131, 20)
+        Me.LEViewUser.TabIndex = 7
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(8, 12)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(54, 13)
+        Me.LabelControl1.TabIndex = 8
+        Me.LabelControl1.Text = "Created By"
+        '
         'FormVerStockTake
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(873, 518)
+        Me.ClientSize = New System.Drawing.Size(1050, 518)
         Me.Controls.Add(Me.XTCStockTake)
         Me.MinimizeBox = False
         Me.Name = "FormVerStockTake"
@@ -571,6 +606,10 @@ Partial Class FormVerStockTake
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        Me.PanelControl3.PerformLayout()
+        CType(Me.LEViewUser.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -621,4 +660,7 @@ Partial Class FormVerStockTake
     Friend WithEvents BtnCreateCom As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnRemarkRef As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LEViewUser As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
 End Class

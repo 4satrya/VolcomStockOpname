@@ -341,6 +341,12 @@
     Sub print()
         Cursor = Cursors.WaitCursor
         If XTCStockTake.SelectedTabPageIndex = 0 Then
+            If id_report_status = "1" Then
+                stopCustom("Can't print, please finalize status first")
+                Cursor = Cursors.Default
+                Exit Sub
+            End If
+
             Cursor = Cursors.WaitCursor
             GVScan.BestFitColumns()
             ReportScanVerStockTakeSlip.dt = GCScan.DataSource
@@ -375,6 +381,12 @@
             Tool.ShowPreviewDialog()
             Cursor = Cursors.Default
         ElseIf XTCStockTake.SelectedTabPageIndex = 1 Then
+            If id_report_status = "1" Then
+                stopCustom("Can't print, please finalize status first")
+                Cursor = Cursors.Default
+                Exit Sub
+            End If
+
             Cursor = Cursors.WaitCursor
             GVSummaryScan.BestFitColumns()
             ReportScanVerStockTakeSlip.dt = GCSummaryScan.DataSource

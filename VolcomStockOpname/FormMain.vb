@@ -260,11 +260,7 @@
     End Sub
 
     Private Sub NBReport_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBReport.LinkClicked
-        Try
-            FormRpt.ShowDialog()
-        Catch ex As Exception
-            errorConnection()
-        End Try
+        FormRpt.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class

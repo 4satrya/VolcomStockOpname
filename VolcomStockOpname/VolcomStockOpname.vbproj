@@ -200,6 +200,12 @@
     <Compile Include="FormRpt.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormRptNew.Designer.vb">
+      <DependentUpon>FormRptNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRptNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormStart.Designer.vb">
       <DependentUpon>FormStart.vb</DependentUpon>
     </Compile>
@@ -413,6 +419,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRpt.resx">
       <DependentUpon>FormRpt.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRptNew.resx">
+      <DependentUpon>FormRptNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStart.resx">
       <DependentUpon>FormStart.vb</DependentUpon>

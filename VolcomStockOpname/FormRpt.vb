@@ -20,4 +20,10 @@
     Private Sub BtnRefresh_Click(sender As Object, e As EventArgs) Handles BtnRefresh.Click
         viewData()
     End Sub
+
+    Private Sub BtnAddReport_Click(sender As Object, e As EventArgs) Handles BtnAddReport.Click
+        Cursor = Cursors.WaitCursor
+        FormRptNew.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class

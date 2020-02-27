@@ -111,7 +111,7 @@ Partial Class FormRpt
         Me.GridColumnrpt_created_by.FieldName = "rpt_created_by"
         Me.GridColumnrpt_created_by.Name = "GridColumnrpt_created_by"
         Me.GridColumnrpt_created_by.Visible = True
-        Me.GridColumnrpt_created_by.VisibleIndex = 0
+        Me.GridColumnrpt_created_by.VisibleIndex = 2
         '
         'GridColumnrpt_created_date
         '
@@ -121,7 +121,7 @@ Partial Class FormRpt
         Me.GridColumnrpt_created_date.FieldName = "rpt_created_date"
         Me.GridColumnrpt_created_date.Name = "GridColumnrpt_created_date"
         Me.GridColumnrpt_created_date.Visible = True
-        Me.GridColumnrpt_created_date.VisibleIndex = 1
+        Me.GridColumnrpt_created_date.VisibleIndex = 3
         '
         'GridColumnrpt_number
         '
@@ -129,7 +129,7 @@ Partial Class FormRpt
         Me.GridColumnrpt_number.FieldName = "rpt_number"
         Me.GridColumnrpt_number.Name = "GridColumnrpt_number"
         Me.GridColumnrpt_number.Visible = True
-        Me.GridColumnrpt_number.VisibleIndex = 2
+        Me.GridColumnrpt_number.VisibleIndex = 0
         '
         'GridColumnrpt_note
         '
@@ -137,7 +137,7 @@ Partial Class FormRpt
         Me.GridColumnrpt_note.FieldName = "rpt_note"
         Me.GridColumnrpt_note.Name = "GridColumnrpt_note"
         Me.GridColumnrpt_note.Visible = True
-        Me.GridColumnrpt_note.VisibleIndex = 3
+        Me.GridColumnrpt_note.VisibleIndex = 1
         '
         'FormRpt
         '

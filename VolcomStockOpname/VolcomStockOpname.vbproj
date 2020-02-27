@@ -101,6 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassDesign.vb" />
+    <Compile Include="ClassRpt.vb" />
     <Compile Include="ClassStockTake.vb" />
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
@@ -191,6 +192,12 @@
       <DependentUpon>FormOpt.vb</DependentUpon>
     </Compile>
     <Compile Include="FormOpt.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRpt.Designer.vb">
+      <DependentUpon>FormRpt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRpt.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormStart.Designer.vb">
@@ -403,6 +410,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOpt.resx">
       <DependentUpon>FormOpt.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRpt.resx">
+      <DependentUpon>FormRpt.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStart.resx">
       <DependentUpon>FormStart.vb</DependentUpon>

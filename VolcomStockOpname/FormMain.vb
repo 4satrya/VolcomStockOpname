@@ -25,6 +25,7 @@
             NBOpt.Visible = True
             NBWHPreST.Visible = True
             NBWHST.Visible = True
+            NBReport.Visible = True
         ElseIf id_role_login = "2" Then
             'IA
             NBExport.Visible = True
@@ -33,6 +34,7 @@
             NBOpt.Visible = True
             NBWHPreST.Visible = False
             NBWHST.Visible = True
+            NBReport.Visible = True
         ElseIf id_role_login = "3" Then
             'WH ADMIN
             NBExport.Visible = True
@@ -41,6 +43,7 @@
             NBOpt.Visible = False
             NBWHPreST.Visible = True
             NBWHST.Visible = False
+            NBReport.Visible = True
         ElseIf id_role_login = "4" Then
             'WH
             NBExport.Visible = False
@@ -49,6 +52,7 @@
             NBOpt.Visible = False
             NBWHPreST.Visible = True
             NBWHST.Visible = True
+            NBReport.Visible = False
         Else
             NBExport.Visible = False
             NBImport.Visible = False
@@ -56,6 +60,7 @@
             NBOpt.Visible = False
             NBWHPreST.Visible = False
             NBWHST.Visible = False
+            NBReport.Visible = False
         End If
     End Sub
 
@@ -248,6 +253,15 @@
             FormHome.Show()
             FormHome.WindowState = FormWindowState.Maximized
             FormHome.Focus()
+        Catch ex As Exception
+            errorConnection()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBReport_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBReport.LinkClicked
+        Try
+            FormRpt.ShowDialog()
         Catch ex As Exception
             errorConnection()
         End Try

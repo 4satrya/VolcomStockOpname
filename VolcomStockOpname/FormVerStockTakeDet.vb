@@ -10,8 +10,8 @@
     Dim prepared_position As String = ""
     Dim ack_position As String = ""
     Dim address_primary As String = ""
-    Dim comp_number As String = ""
-    Dim comp_name As String = ""
+    Public comp_number As String = ""
+    Public comp_name As String = ""
     Dim soh_period As String = ""
     Dim sales_until_period As String = ""
     Dim is_record_unreg As String = ""
@@ -906,5 +906,13 @@
                 e.DisplayText = "-"
             End If
         End If
+    End Sub
+
+    Private Sub BtnAddToRpt_Click(sender As Object, e As EventArgs) Handles BtnAddToRpt.Click
+        Cursor = Cursors.WaitCursor
+        FormRpt.BtnUse.Visible = True
+        FormRpt.id_pop_up = "2"
+        FormRpt.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

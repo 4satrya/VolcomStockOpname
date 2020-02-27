@@ -158,6 +158,8 @@ Partial Class FormVerStockTakeDet
         Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.ContextMenuStripCompare = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnAddToRpt = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -210,6 +212,8 @@ Partial Class FormVerStockTakeDet
         CType(Me.BGVCompare, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStripCompare.SuspendLayout()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -1306,6 +1310,7 @@ Partial Class FormVerStockTakeDet
         'XTPCompare
         '
         Me.XTPCompare.Controls.Add(Me.GCCompare)
+        Me.XTPCompare.Controls.Add(Me.PanelControl1)
         Me.XTPCompare.Name = "XTPCompare"
         Me.XTPCompare.PageVisible = False
         Me.XTPCompare.Size = New System.Drawing.Size(1014, 371)
@@ -1314,11 +1319,11 @@ Partial Class FormVerStockTakeDet
         'GCCompare
         '
         Me.GCCompare.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCCompare.Location = New System.Drawing.Point(0, 0)
+        Me.GCCompare.Location = New System.Drawing.Point(0, 42)
         Me.GCCompare.MainView = Me.BGVCompare
         Me.GCCompare.Name = "GCCompare"
         Me.GCCompare.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit3})
-        Me.GCCompare.Size = New System.Drawing.Size(1014, 371)
+        Me.GCCompare.Size = New System.Drawing.Size(1014, 329)
         Me.GCCompare.TabIndex = 0
         Me.GCCompare.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVCompare})
         '
@@ -1548,6 +1553,25 @@ Partial Class FormVerStockTakeDet
         Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
         Me.ViewDetailToolStripMenuItem.Text = "View Detail"
         '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.BtnAddToRpt)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(1014, 42)
+        Me.PanelControl1.TabIndex = 2
+        '
+        'BtnAddToRpt
+        '
+        Me.BtnAddToRpt.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnAddToRpt.Image = CType(resources.GetObject("BtnAddToRpt.Image"), System.Drawing.Image)
+        Me.BtnAddToRpt.Location = New System.Drawing.Point(2, 2)
+        Me.BtnAddToRpt.Name = "BtnAddToRpt"
+        Me.BtnAddToRpt.Size = New System.Drawing.Size(130, 38)
+        Me.BtnAddToRpt.TabIndex = 8915
+        Me.BtnAddToRpt.Text = "Add to Report"
+        '
         'FormVerStockTakeDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1619,6 +1643,8 @@ Partial Class FormVerStockTakeDet
         CType(Me.BGVCompare, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStripCompare.ResumeLayout(False)
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1760,4 +1786,6 @@ Partial Class FormVerStockTakeDet
     Friend WithEvents GridBandPre As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandStockTake As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBanddiff As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnAddToRpt As DevExpress.XtraEditors.SimpleButton
 End Class

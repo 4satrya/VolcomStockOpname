@@ -101,6 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassDesign.vb" />
+    <Compile Include="ClassRpt.vb" />
     <Compile Include="ClassStockTake.vb" />
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
@@ -191,6 +192,18 @@
       <DependentUpon>FormOpt.vb</DependentUpon>
     </Compile>
     <Compile Include="FormOpt.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRpt.Designer.vb">
+      <DependentUpon>FormRpt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRpt.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRptNew.Designer.vb">
+      <DependentUpon>FormRptNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRptNew.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormStart.Designer.vb">
@@ -360,6 +373,12 @@
     <Compile Include="WaitForm1.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="WaitForm2.Designer.vb">
+      <DependentUpon>WaitForm2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WaitForm2.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormAuth.resx">
@@ -403,6 +422,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOpt.resx">
       <DependentUpon>FormOpt.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRpt.resx">
+      <DependentUpon>FormRpt.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRptNew.resx">
+      <DependentUpon>FormRptNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStart.resx">
       <DependentUpon>FormStart.vb</DependentUpon>
@@ -482,6 +507,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WaitForm1.resx">
       <DependentUpon>WaitForm1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitForm2.resx">
+      <DependentUpon>WaitForm2.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -45,10 +45,10 @@
             'WH
             NBExport.Visible = False
             NBImport.Visible = False
-            NBStockTake.Visible = False
+            NBStockTake.Visible = True
             NBOpt.Visible = False
             NBWHPreST.Visible = True
-            NBWHST.Visible = False
+            NBWHST.Visible = True
         Else
             NBExport.Visible = False
             NBImport.Visible = False

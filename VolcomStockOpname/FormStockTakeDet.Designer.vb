@@ -140,6 +140,7 @@ Partial Class FormStockTakeDet
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnSetRemark = New DevExpress.XtraEditors.SimpleButton()
         Me.CESelect = New DevExpress.XtraEditors.CheckEdit()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1570,4 +1571,5 @@ Partial Class FormStockTakeDet
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnSetRemark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnPrintLetter As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents Timer1 As Timer
 End Class

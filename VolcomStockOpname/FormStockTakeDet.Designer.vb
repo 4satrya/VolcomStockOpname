@@ -137,11 +137,11 @@ Partial Class FormStockTakeDet
         Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemTextEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnAddToRpt = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnSetRemark = New DevExpress.XtraEditors.SimpleButton()
         Me.CESelect = New DevExpress.XtraEditors.CheckEdit()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.BtnAddToRpt = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -452,7 +452,7 @@ Partial Class FormStockTakeDet
         Me.XTPScan.Controls.Add(Me.GCScan)
         Me.XTPScan.Controls.Add(Me.PanelControlNav)
         Me.XTPScan.Name = "XTPScan"
-        Me.XTPScan.Size = New System.Drawing.Size(1014, 409)
+        Me.XTPScan.Size = New System.Drawing.Size(1155, 409)
         Me.XTPScan.Text = "Scan Result"
         '
         'GCScan
@@ -463,7 +463,7 @@ Partial Class FormStockTakeDet
         Me.GCScan.MainView = Me.GVScan
         Me.GCScan.Name = "GCScan"
         Me.GCScan.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCScan.Size = New System.Drawing.Size(1014, 363)
+        Me.GCScan.Size = New System.Drawing.Size(1155, 363)
         Me.GCScan.TabIndex = 1
         Me.GCScan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScan})
         '
@@ -765,7 +765,7 @@ Partial Class FormStockTakeDet
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNav.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlNav.Name = "PanelControlNav"
-        Me.PanelControlNav.Size = New System.Drawing.Size(1014, 46)
+        Me.PanelControlNav.Size = New System.Drawing.Size(1155, 46)
         Me.PanelControlNav.TabIndex = 0
         '
         'CheckEditSale
@@ -811,7 +811,7 @@ Partial Class FormStockTakeDet
         '
         Me.SimpleButton3.Dock = System.Windows.Forms.DockStyle.Right
         Me.SimpleButton3.Image = CType(resources.GetObject("SimpleButton3.Image"), System.Drawing.Image)
-        Me.SimpleButton3.Location = New System.Drawing.Point(789, 2)
+        Me.SimpleButton3.Location = New System.Drawing.Point(930, 2)
         Me.SimpleButton3.Name = "SimpleButton3"
         Me.SimpleButton3.Size = New System.Drawing.Size(126, 42)
         Me.SimpleButton3.TabIndex = 2
@@ -821,7 +821,7 @@ Partial Class FormStockTakeDet
         '
         Me.SimpleButton2.Dock = System.Windows.Forms.DockStyle.Right
         Me.SimpleButton2.Image = CType(resources.GetObject("SimpleButton2.Image"), System.Drawing.Image)
-        Me.SimpleButton2.Location = New System.Drawing.Point(915, 2)
+        Me.SimpleButton2.Location = New System.Drawing.Point(1056, 2)
         Me.SimpleButton2.Name = "SimpleButton2"
         Me.SimpleButton2.Size = New System.Drawing.Size(97, 42)
         Me.SimpleButton2.TabIndex = 1
@@ -831,7 +831,7 @@ Partial Class FormStockTakeDet
         '
         Me.XTPSummary.Controls.Add(Me.GCSummaryScan)
         Me.XTPSummary.Name = "XTPSummary"
-        Me.XTPSummary.Size = New System.Drawing.Size(1014, 409)
+        Me.XTPSummary.Size = New System.Drawing.Size(1155, 409)
         Me.XTPSummary.Text = "Summary By Product"
         '
         'GCSummaryScan
@@ -841,7 +841,7 @@ Partial Class FormStockTakeDet
         Me.GCSummaryScan.MainView = Me.GVSummaryScan
         Me.GCSummaryScan.Name = "GCSummaryScan"
         Me.GCSummaryScan.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1})
-        Me.GCSummaryScan.Size = New System.Drawing.Size(1014, 409)
+        Me.GCSummaryScan.Size = New System.Drawing.Size(1155, 409)
         Me.GCSummaryScan.TabIndex = 1
         Me.GCSummaryScan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummaryScan})
         '
@@ -966,7 +966,7 @@ Partial Class FormStockTakeDet
         '
         Me.XTPCondition.Controls.Add(Me.GCCat)
         Me.XTPCondition.Name = "XTPCondition"
-        Me.XTPCondition.Size = New System.Drawing.Size(1014, 409)
+        Me.XTPCondition.Size = New System.Drawing.Size(1155, 409)
         Me.XTPCondition.Text = "Summary By Category"
         '
         'GCCat
@@ -976,7 +976,7 @@ Partial Class FormStockTakeDet
         Me.GCCat.MainView = Me.GVCat
         Me.GCCat.Name = "GCCat"
         Me.GCCat.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit2})
-        Me.GCCat.Size = New System.Drawing.Size(1014, 409)
+        Me.GCCat.Size = New System.Drawing.Size(1155, 409)
         Me.GCCat.TabIndex = 2
         Me.GCCat.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCat})
         '
@@ -1349,6 +1349,16 @@ Partial Class FormStockTakeDet
         Me.PanelControl1.Size = New System.Drawing.Size(1155, 42)
         Me.PanelControl1.TabIndex = 1
         '
+        'BtnAddToRpt
+        '
+        Me.BtnAddToRpt.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnAddToRpt.Image = CType(resources.GetObject("BtnAddToRpt.Image"), System.Drawing.Image)
+        Me.BtnAddToRpt.Location = New System.Drawing.Point(2, 2)
+        Me.BtnAddToRpt.Name = "BtnAddToRpt"
+        Me.BtnAddToRpt.Size = New System.Drawing.Size(130, 38)
+        Me.BtnAddToRpt.TabIndex = 8915
+        Me.BtnAddToRpt.Text = "Add to Report"
+        '
         'PanelControl2
         '
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -1377,17 +1387,6 @@ Partial Class FormStockTakeDet
         Me.CESelect.Properties.Caption = "Select All"
         Me.CESelect.Size = New System.Drawing.Size(68, 19)
         Me.CESelect.TabIndex = 0
-        '
-        'BtnAddToRpt
-        '
-        Me.BtnAddToRpt.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnAddToRpt.Image = CType(resources.GetObject("BtnAddToRpt.Image"), System.Drawing.Image)
-        Me.BtnAddToRpt.Location = New System.Drawing.Point(2, 2)
-        Me.BtnAddToRpt.Name = "BtnAddToRpt"
-        Me.BtnAddToRpt.Size = New System.Drawing.Size(130, 38)
-        Me.BtnAddToRpt.TabIndex = 8915
-        Me.BtnAddToRpt.Text = "Add to Report"
-        Me.BtnAddToRpt.Visible = False
         '
         'FormStockTakeDet
         '

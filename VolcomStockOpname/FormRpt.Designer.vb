@@ -20,6 +20,7 @@ Partial Class FormRpt
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormRpt))
+        Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomStockOpname.WaitForm1), True, True)
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnUse = New DevExpress.XtraEditors.SimpleButton()
@@ -36,6 +37,10 @@ Partial Class FormRpt
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'SplashScreenManager1
+        '
+        Me.SplashScreenManager1.ClosingDelay = 500
         '
         'PanelControl1
         '
@@ -168,4 +173,5 @@ Partial Class FormRpt
     Friend WithEvents GridColumnrpt_created_date As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnrpt_number As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnrpt_note As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SplashScreenManager1 As DevExpress.XtraSplashScreen.SplashScreenManager
 End Class

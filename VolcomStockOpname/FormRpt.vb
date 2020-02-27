@@ -1,4 +1,6 @@
 ﻿Public Class FormRpt
+    Public id_pop_up As String = "-1"
+
     Private Sub FormRpt_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewData()
     End Sub
@@ -25,5 +27,15 @@
         Cursor = Cursors.WaitCursor
         FormRptNew.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnUse_Click(sender As Object, e As EventArgs) Handles BtnUse.Click
+        If id_pop_up = "1" Then
+            'stocktake toko/pre stocktake
+
+        ElseIf id_pop_up = "2" Then
+            'ver stocktake
+
+        End If
     End Sub
 End Class

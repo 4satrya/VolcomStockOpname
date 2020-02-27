@@ -1093,4 +1093,11 @@
             Timer1.Start()
         End If
     End Sub
+
+    Private Sub BtnAddToRpt_Click(sender As Object, e As EventArgs) Handles BtnAddToRpt.Click
+        Cursor = Cursors.WaitCursor
+        FormRpt.id_pop_up = "1"
+        FormRpt.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class

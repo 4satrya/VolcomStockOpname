@@ -141,6 +141,7 @@ Partial Class FormStockTakeDet
         Me.BtnSetRemark = New DevExpress.XtraEditors.SimpleButton()
         Me.CESelect = New DevExpress.XtraEditors.CheckEdit()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.BtnAddToRpt = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -207,7 +208,7 @@ Partial Class FormStockTakeDet
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(1042, 97)
+        Me.GroupControl1.Size = New System.Drawing.Size(1183, 97)
         Me.GroupControl1.TabIndex = 0
         '
         'LabelControl6
@@ -233,7 +234,7 @@ Partial Class FormStockTakeDet
         Me.PanelControlTopLeft.Controls.Add(Me.TxtNumber)
         Me.PanelControlTopLeft.Controls.Add(Me.LabelControl2)
         Me.PanelControlTopLeft.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlTopLeft.Location = New System.Drawing.Point(755, 2)
+        Me.PanelControlTopLeft.Location = New System.Drawing.Point(896, 2)
         Me.PanelControlTopLeft.Name = "PanelControlTopLeft"
         Me.PanelControlTopLeft.Size = New System.Drawing.Size(285, 93)
         Me.PanelControlTopLeft.TabIndex = 8903
@@ -315,7 +316,7 @@ Partial Class FormStockTakeDet
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.GroupControl2.Location = New System.Drawing.Point(0, 538)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(1042, 45)
+        Me.GroupControl2.Size = New System.Drawing.Size(1183, 45)
         Me.GroupControl2.TabIndex = 1
         '
         'PanelFontSize
@@ -324,7 +325,7 @@ Partial Class FormStockTakeDet
         Me.PanelFontSize.Controls.Add(Me.TxtFontSize)
         Me.PanelFontSize.Controls.Add(Me.LabelControl9)
         Me.PanelFontSize.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelFontSize.Location = New System.Drawing.Point(715, 2)
+        Me.PanelFontSize.Location = New System.Drawing.Point(856, 2)
         Me.PanelFontSize.Name = "PanelFontSize"
         Me.PanelFontSize.Size = New System.Drawing.Size(106, 41)
         Me.PanelFontSize.TabIndex = 8913
@@ -409,7 +410,7 @@ Partial Class FormStockTakeDet
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(821, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(962, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(104, 41)
         Me.BtnPrint.TabIndex = 1
@@ -419,7 +420,7 @@ Partial Class FormStockTakeDet
         '
         Me.BtnPrintLetter.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrintLetter.Image = CType(resources.GetObject("BtnPrintLetter.Image"), System.Drawing.Image)
-        Me.BtnPrintLetter.Location = New System.Drawing.Point(925, 2)
+        Me.BtnPrintLetter.Location = New System.Drawing.Point(1066, 2)
         Me.BtnPrintLetter.Name = "BtnPrintLetter"
         Me.BtnPrintLetter.Size = New System.Drawing.Size(115, 41)
         Me.BtnPrintLetter.TabIndex = 8914
@@ -433,7 +434,7 @@ Partial Class FormStockTakeDet
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl3.Location = New System.Drawing.Point(0, 97)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(1042, 441)
+        Me.GroupControl3.Size = New System.Drawing.Size(1183, 441)
         Me.GroupControl3.TabIndex = 2
         '
         'XTCStockTake
@@ -442,7 +443,7 @@ Partial Class FormStockTakeDet
         Me.XTCStockTake.Location = New System.Drawing.Point(20, 2)
         Me.XTCStockTake.Name = "XTCStockTake"
         Me.XTCStockTake.SelectedTabPage = Me.XTPScan
-        Me.XTCStockTake.Size = New System.Drawing.Size(1020, 437)
+        Me.XTCStockTake.Size = New System.Drawing.Size(1161, 437)
         Me.XTCStockTake.TabIndex = 0
         Me.XTCStockTake.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScan, Me.XTPSummary, Me.XTPCondition, Me.XTPCompare})
         '
@@ -1034,7 +1035,7 @@ Partial Class FormStockTakeDet
         Me.XTPCompare.Controls.Add(Me.PanelControl1)
         Me.XTPCompare.Name = "XTPCompare"
         Me.XTPCompare.PageVisible = False
-        Me.XTPCompare.Size = New System.Drawing.Size(1014, 409)
+        Me.XTPCompare.Size = New System.Drawing.Size(1155, 409)
         Me.XTPCompare.Text = "Compare Stock"
         '
         'GCCompare
@@ -1045,7 +1046,7 @@ Partial Class FormStockTakeDet
         Me.GCCompare.MainView = Me.BGVCompare
         Me.GCCompare.Name = "GCCompare"
         Me.GCCompare.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit3, Me.RepositoryItemTextEdit4, Me.RepositoryItemCheckEdit2})
-        Me.GCCompare.Size = New System.Drawing.Size(1014, 367)
+        Me.GCCompare.Size = New System.Drawing.Size(1155, 367)
         Me.GCCompare.TabIndex = 0
         Me.GCCompare.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVCompare})
         '
@@ -1340,11 +1341,12 @@ Partial Class FormStockTakeDet
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnAddToRpt)
         Me.PanelControl1.Controls.Add(Me.PanelControl2)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1014, 42)
+        Me.PanelControl1.Size = New System.Drawing.Size(1155, 42)
         Me.PanelControl1.TabIndex = 1
         '
         'PanelControl2
@@ -1353,7 +1355,7 @@ Partial Class FormStockTakeDet
         Me.PanelControl2.Controls.Add(Me.BtnSetRemark)
         Me.PanelControl2.Controls.Add(Me.CESelect)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl2.Location = New System.Drawing.Point(682, 2)
+        Me.PanelControl2.Location = New System.Drawing.Point(823, 2)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(330, 38)
         Me.PanelControl2.TabIndex = 2
@@ -1376,11 +1378,22 @@ Partial Class FormStockTakeDet
         Me.CESelect.Size = New System.Drawing.Size(68, 19)
         Me.CESelect.TabIndex = 0
         '
+        'BtnAddToRpt
+        '
+        Me.BtnAddToRpt.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnAddToRpt.Image = CType(resources.GetObject("BtnAddToRpt.Image"), System.Drawing.Image)
+        Me.BtnAddToRpt.Location = New System.Drawing.Point(2, 2)
+        Me.BtnAddToRpt.Name = "BtnAddToRpt"
+        Me.BtnAddToRpt.Size = New System.Drawing.Size(130, 38)
+        Me.BtnAddToRpt.TabIndex = 8915
+        Me.BtnAddToRpt.Text = "Add to Report"
+        Me.BtnAddToRpt.Visible = False
+        '
         'FormStockTakeDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1042, 583)
+        Me.ClientSize = New System.Drawing.Size(1183, 583)
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.GroupControl2)
         Me.Controls.Add(Me.GroupControl1)
@@ -1572,4 +1585,5 @@ Partial Class FormStockTakeDet
     Friend WithEvents BtnSetRemark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnPrintLetter As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents Timer1 As Timer
+    Friend WithEvents BtnAddToRpt As DevExpress.XtraEditors.SimpleButton
 End Class

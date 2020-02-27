@@ -351,11 +351,11 @@
         Cursor = Cursors.WaitCursor
         If XTCStockTake.SelectedTabPageIndex = 0 Then
             If FormStockTake.is_pre = "1" Then 'wh pre stock take
-                If id_report_status = "1" Then
-                    stopCustom("Can't print, please finalize status first")
-                    Cursor = Cursors.Default
-                    Exit Sub
-                End If
+                'If id_report_status = "1" Then
+                '    stopCustom("Can't print, please finalize status first")
+                '    Cursor = Cursors.Default
+                '    Exit Sub
+                'End If
 
                 Cursor = Cursors.WaitCursor
                 GVScan.BestFitColumns()
@@ -430,11 +430,11 @@
             End If
         ElseIf XTCStockTake.SelectedTabPageIndex = 1 Then
             If FormStockTake.is_pre = "1" Then 'wh pre stock take
-                If id_report_status = "1" Then
-                    stopCustom("Can't print, please finalize status first")
-                    Cursor = Cursors.Default
-                    Exit Sub
-                End If
+                'If id_report_status = "1" Then
+                '    stopCustom("Can't print, please finalize status first")
+                '    Cursor = Cursors.Default
+                '    Exit Sub
+                'End If
 
                 Cursor = Cursors.WaitCursor
                 GVSummaryScan.BestFitColumns()

@@ -42,18 +42,7 @@ Partial Public Class ReportScanPreStockTake
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
-        Me.XrTable2 = New DevExpress.XtraReports.UI.XRTable()
-        Me.XrTableRow6 = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.XrTableCell5 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableRow7 = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.XrTableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell8 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableRow8 = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.LabelApp = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell9 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableRow9 = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.LabelAppPosition = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell10 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow2 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -72,13 +61,24 @@ Partial Public Class ReportScanPreStockTake
         Me.LabelPrepare = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.LabelPreparePosition = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
+        Me.XrTable2 = New DevExpress.XtraReports.UI.XRTable()
+        Me.XrTableRow6 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell5 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableRow7 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell8 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableRow8 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.LabelApp = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell9 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableRow9 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.LabelAppPosition = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell10 = New DevExpress.XtraReports.UI.XRTableCell()
         CType(Me.GCScan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVScan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
@@ -140,6 +140,7 @@ Partial Public Class ReportScanPreStockTake
         Me.XrLabel7.SizeF = New System.Drawing.SizeF(15.625!, 14.66667!)
         Me.XrLabel7.StylePriority.UseFont = False
         Me.XrLabel7.Text = ":"
+        Me.XrLabel7.Visible = False
         '
         'LabelStatus
         '
@@ -151,6 +152,7 @@ Partial Public Class ReportScanPreStockTake
         Me.LabelStatus.StylePriority.UseFont = False
         Me.LabelStatus.StylePriority.UseTextAlignment = False
         Me.LabelStatus.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+        Me.LabelStatus.Visible = False
         '
         'XrLabel1
         '
@@ -163,6 +165,7 @@ Partial Public Class ReportScanPreStockTake
         Me.XrLabel1.StylePriority.UseBorders = False
         Me.XrLabel1.StylePriority.UseFont = False
         Me.XrLabel1.Text = "Status"
+        Me.XrLabel1.Visible = False
         '
         'LabelNo
         '
@@ -305,110 +308,12 @@ Partial Public Class ReportScanPreStockTake
         Me.ReportFooter.HeightF = 128.4772!
         Me.ReportFooter.Name = "ReportFooter"
         '
-        'XrTable2
+        'XrPanel1
         '
-        Me.XrTable2.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(386.9583!, 0!)
-        Me.XrTable2.Name = "XrTable2"
-        Me.XrTable2.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow6, Me.XrTableRow7, Me.XrTableRow8, Me.XrTableRow9})
-        Me.XrTable2.SizeF = New System.Drawing.SizeF(402.0834!, 102.4355!)
-        Me.XrTable2.StylePriority.UseBorders = False
-        '
-        'XrTableRow6
-        '
-        Me.XrTableRow6.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell5})
-        Me.XrTableRow6.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrTableRow6.Name = "XrTableRow6"
-        Me.XrTableRow6.StylePriority.UseFont = False
-        Me.XrTableRow6.StylePriority.UseTextAlignment = False
-        Me.XrTableRow6.Weight = 0.458333740234375R
-        '
-        'XrTableCell5
-        '
-        Me.XrTableCell5.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrTableCell5.Name = "XrTableCell5"
-        Me.XrTableCell5.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 110, 0, 0, 100.0!)
-        Me.XrTableCell5.StylePriority.UseFont = False
-        Me.XrTableCell5.StylePriority.UsePadding = False
-        Me.XrTableCell5.StylePriority.UseTextAlignment = False
-        Me.XrTableCell5.Text = "Approved by,"
-        Me.XrTableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell5.Weight = 2.0R
-        '
-        'XrTableRow7
-        '
-        Me.XrTableRow7.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell6, Me.XrTableCell8})
-        Me.XrTableRow7.Name = "XrTableRow7"
-        Me.XrTableRow7.Weight = 2.5999998525673003R
-        '
-        'XrTableCell6
-        '
-        Me.XrTableCell6.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrTableCell6.Name = "XrTableCell6"
-        Me.XrTableCell6.StylePriority.UseFont = False
-        Me.XrTableCell6.Weight = 1.0R
-        '
-        'XrTableCell8
-        '
-        Me.XrTableCell8.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrTableCell8.Name = "XrTableCell8"
-        Me.XrTableCell8.StylePriority.UseFont = False
-        Me.XrTableCell8.Weight = 1.0R
-        '
-        'XrTableRow8
-        '
-        Me.XrTableRow8.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.LabelApp, Me.XrTableCell9})
-        Me.XrTableRow8.Font = New System.Drawing.Font("Segoe UI", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrTableRow8.Name = "XrTableRow8"
-        Me.XrTableRow8.StylePriority.UseFont = False
-        Me.XrTableRow8.StylePriority.UseTextAlignment = False
-        Me.XrTableRow8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
-        Me.XrTableRow8.Weight = 0.48333310209702912R
-        '
-        'LabelApp
-        '
-        Me.LabelApp.Font = New System.Drawing.Font("Segoe UI", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelApp.Name = "LabelApp"
-        Me.LabelApp.StylePriority.UseFont = False
-        Me.LabelApp.StylePriority.UseTextAlignment = False
-        Me.LabelApp.Text = " "
-        Me.LabelApp.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.LabelApp.Weight = 1.0R
-        '
-        'XrTableCell9
-        '
-        Me.XrTableCell9.Font = New System.Drawing.Font("Segoe UI", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrTableCell9.Name = "XrTableCell9"
-        Me.XrTableCell9.StylePriority.UseFont = False
-        Me.XrTableCell9.StylePriority.UseTextAlignment = False
-        Me.XrTableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell9.Weight = 1.0R
-        '
-        'XrTableRow9
-        '
-        Me.XrTableRow9.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.LabelAppPosition, Me.XrTableCell10})
-        Me.XrTableRow9.Name = "XrTableRow9"
-        Me.XrTableRow9.Weight = 0.55575180032117322R
-        '
-        'LabelAppPosition
-        '
-        Me.LabelAppPosition.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelAppPosition.Name = "LabelAppPosition"
-        Me.LabelAppPosition.StylePriority.UseFont = False
-        Me.LabelAppPosition.StylePriority.UseTextAlignment = False
-        Me.LabelAppPosition.Text = "Outbound Team Leader"
-        Me.LabelAppPosition.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.LabelAppPosition.Weight = 1.0R
-        '
-        'XrTableCell10
-        '
-        Me.XrTableCell10.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrTableCell10.Name = "XrTableCell10"
-        Me.XrTableCell10.StylePriority.UseFont = False
-        Me.XrTableCell10.StylePriority.UseTextAlignment = False
-        Me.XrTableCell10.Text = "Dept. Head"
-        Me.XrTableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell10.Weight = 1.0R
+        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1, Me.XrTable3, Me.XrTable2})
+        Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 26.04167!)
+        Me.XrPanel1.Name = "XrPanel1"
+        Me.XrPanel1.SizeF = New System.Drawing.SizeF(798.0001!, 102.4355!)
         '
         'XrTable1
         '
@@ -558,12 +463,110 @@ Partial Public Class ReportScanPreStockTake
         Me.LabelPreparePosition.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.LabelPreparePosition.Weight = 1.0R
         '
-        'XrPanel1
+        'XrTable2
         '
-        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1, Me.XrTable3, Me.XrTable2})
-        Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 26.04167!)
-        Me.XrPanel1.Name = "XrPanel1"
-        Me.XrPanel1.SizeF = New System.Drawing.SizeF(798.0001!, 102.4355!)
+        Me.XrTable2.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(386.9583!, 0!)
+        Me.XrTable2.Name = "XrTable2"
+        Me.XrTable2.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow6, Me.XrTableRow7, Me.XrTableRow8, Me.XrTableRow9})
+        Me.XrTable2.SizeF = New System.Drawing.SizeF(402.0834!, 102.4355!)
+        Me.XrTable2.StylePriority.UseBorders = False
+        '
+        'XrTableRow6
+        '
+        Me.XrTableRow6.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell5})
+        Me.XrTableRow6.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableRow6.Name = "XrTableRow6"
+        Me.XrTableRow6.StylePriority.UseFont = False
+        Me.XrTableRow6.StylePriority.UseTextAlignment = False
+        Me.XrTableRow6.Weight = 0.458333740234375R
+        '
+        'XrTableCell5
+        '
+        Me.XrTableCell5.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell5.Name = "XrTableCell5"
+        Me.XrTableCell5.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 110, 0, 0, 100.0!)
+        Me.XrTableCell5.StylePriority.UseFont = False
+        Me.XrTableCell5.StylePriority.UsePadding = False
+        Me.XrTableCell5.StylePriority.UseTextAlignment = False
+        Me.XrTableCell5.Text = "Approved by,"
+        Me.XrTableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell5.Weight = 2.0R
+        '
+        'XrTableRow7
+        '
+        Me.XrTableRow7.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell6, Me.XrTableCell8})
+        Me.XrTableRow7.Name = "XrTableRow7"
+        Me.XrTableRow7.Weight = 2.5999998525673003R
+        '
+        'XrTableCell6
+        '
+        Me.XrTableCell6.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell6.Name = "XrTableCell6"
+        Me.XrTableCell6.StylePriority.UseFont = False
+        Me.XrTableCell6.Weight = 1.0R
+        '
+        'XrTableCell8
+        '
+        Me.XrTableCell8.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell8.Name = "XrTableCell8"
+        Me.XrTableCell8.StylePriority.UseFont = False
+        Me.XrTableCell8.Weight = 1.0R
+        '
+        'XrTableRow8
+        '
+        Me.XrTableRow8.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.LabelApp, Me.XrTableCell9})
+        Me.XrTableRow8.Font = New System.Drawing.Font("Segoe UI", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableRow8.Name = "XrTableRow8"
+        Me.XrTableRow8.StylePriority.UseFont = False
+        Me.XrTableRow8.StylePriority.UseTextAlignment = False
+        Me.XrTableRow8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
+        Me.XrTableRow8.Weight = 0.48333310209702912R
+        '
+        'LabelApp
+        '
+        Me.LabelApp.Font = New System.Drawing.Font("Segoe UI", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelApp.Name = "LabelApp"
+        Me.LabelApp.StylePriority.UseFont = False
+        Me.LabelApp.StylePriority.UseTextAlignment = False
+        Me.LabelApp.Text = " "
+        Me.LabelApp.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.LabelApp.Weight = 1.0R
+        '
+        'XrTableCell9
+        '
+        Me.XrTableCell9.Font = New System.Drawing.Font("Segoe UI", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell9.Name = "XrTableCell9"
+        Me.XrTableCell9.StylePriority.UseFont = False
+        Me.XrTableCell9.StylePriority.UseTextAlignment = False
+        Me.XrTableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XrTableCell9.Weight = 1.0R
+        '
+        'XrTableRow9
+        '
+        Me.XrTableRow9.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.LabelAppPosition, Me.XrTableCell10})
+        Me.XrTableRow9.Name = "XrTableRow9"
+        Me.XrTableRow9.Weight = 0.55575180032117322R
+        '
+        'LabelAppPosition
+        '
+        Me.LabelAppPosition.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelAppPosition.Name = "LabelAppPosition"
+        Me.LabelAppPosition.StylePriority.UseFont = False
+        Me.LabelAppPosition.StylePriority.UseTextAlignment = False
+        Me.LabelAppPosition.Text = "Outbound Team Leader"
+        Me.LabelAppPosition.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.LabelAppPosition.Weight = 1.0R
+        '
+        'XrTableCell10
+        '
+        Me.XrTableCell10.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell10.Name = "XrTableCell10"
+        Me.XrTableCell10.StylePriority.UseFont = False
+        Me.XrTableCell10.StylePriority.UseTextAlignment = False
+        Me.XrTableCell10.Text = "Dept. Head"
+        Me.XrTableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XrTableCell10.Weight = 1.0R
         '
         'ReportScanPreStockTake
         '
@@ -574,9 +577,9 @@ Partial Public Class ReportScanPreStockTake
         CType(Me.GCScan, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVScan, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub

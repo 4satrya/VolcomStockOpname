@@ -26,6 +26,12 @@ Module Common
     Public again_awb As String = ""
     Public st_user_code As String = ""
 
+    Function getOptMain() As DataTable
+        Dim query As String = "SELECT * FROM tb_opt"
+        Dim data As DataTable = execute_query(query, -1, False, app_host, app_username, app_password, "db_opt")
+        Return data
+    End Function
+
     Function getVersion() As String
         Dim myFileVersionInfo As FileVersionInfo = FileVersionInfo.GetVersionInfo(Application.StartupPath() + "\VolcomStockOpname.exe")
         Return myFileVersionInfo.FileVersion.ToString

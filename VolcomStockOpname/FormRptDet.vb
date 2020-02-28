@@ -42,6 +42,7 @@
             Dim band_new As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BGVRpt.Bands.AddBand(dacc.Rows(a)("comp_number").ToString)
             band_new.AppearanceHeader.Font = New Font(BGVRpt.Appearance.Row.Font.FontFamily, BGVRpt.Appearance.Row.Font.Size, FontStyle.Bold)
             band_new.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+            band_new.Name = "gridBandAcc_" + dacc.Rows(a)("comp_number").ToString
         Next
 
         'data
@@ -55,6 +56,8 @@
 
         'set view opt
         BGVRpt.BestFitColumns()
+        BGVRpt.Bands.MoveTo(1, gridBandDescription)
+        BGVRpt.Bands.MoveTo(200, gridBandGlobal)
         Cursor = Cursors.Default
     End Sub
 
@@ -76,5 +79,12 @@
         ElseIf XTCReport.SelectedTabPageIndex = 1 Then
             viewDetailReport()
         End If
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        'search band
+        For b As Integer = 0 To BGVRpt.Bands.Count - 1
+            MsgBox(BGVRpt.Bands(b).Name.ToString)
+        Next
     End Sub
 End Class

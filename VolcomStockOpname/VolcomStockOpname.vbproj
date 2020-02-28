@@ -349,6 +349,12 @@
     <Compile Include="ReportFGStockBar.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportRpt.Designer.vb">
+      <DependentUpon>ReportRpt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportRpt.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportScan.Designer.vb">
       <DependentUpon>ReportScan.vb</DependentUpon>
     </Compile>
@@ -504,6 +510,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportFGStockBar.resx">
       <DependentUpon>ReportFGStockBar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportRpt.resx">
+      <DependentUpon>ReportRpt.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportScan.resx">
       <DependentUpon>ReportScan.vb</DependentUpon>

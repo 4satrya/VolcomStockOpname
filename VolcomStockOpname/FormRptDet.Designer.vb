@@ -135,6 +135,8 @@ Partial Class FormRptDet
         Me.DECreatedDate.Name = "DECreatedDate"
         Me.DECreatedDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DECreatedDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECreatedDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DECreatedDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DECreatedDate.Size = New System.Drawing.Size(194, 20)
         Me.DECreatedDate.TabIndex = 2
         '

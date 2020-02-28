@@ -32,6 +32,13 @@
     Sub viewDetailReport()
         Cursor = Cursors.WaitCursor
 
+        'delete band acc
+        For b As Integer = BGVRpt.Bands.Count - 1 To 0 Step -1
+            If BGVRpt.Bands(b).Name.ToString.Contains("gridBandAcc_") Then
+                BGVRpt.Bands(b).Dispose()
+            End If
+        Next
+
         'get account
         Dim qacc As String = "SELECT d.comp_number FROM tb_rpt_det d
         WHERE d.id_rpt=" + id + "
@@ -82,9 +89,6 @@
     End Sub
 
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
-        'search band
-        For b As Integer = 0 To BGVRpt.Bands.Count - 1
-            MsgBox(BGVRpt.Bands(b).Name.ToString)
-        Next
+
     End Sub
 End Class

@@ -301,6 +301,8 @@ Partial Class FormRptDet
         Me.BGVRpt.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnBarcode, Me.BandedGridColumnSKU, Me.BandedGridColumnDescription, Me.BandedGridColumnSize, Me.BandedGridColumnTotalSOH, Me.BandedGridColumnValueSOH, Me.BandedGridColumnTotalScan, Me.BandedGridColumnValueScan})
         Me.BGVRpt.GridControl = Me.GCRpt
         Me.BGVRpt.Name = "BGVRpt"
+        Me.BGVRpt.OptionsBehavior.ReadOnly = True
+        Me.BGVRpt.OptionsFind.AlwaysVisible = True
         Me.BGVRpt.OptionsView.ColumnAutoWidth = False
         Me.BGVRpt.OptionsView.ShowFooter = True
         Me.BGVRpt.OptionsView.ShowGroupPanel = False

@@ -300,4 +300,16 @@
         print_raw(GCAccount, "")
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles BtnDelete.Click
+        Dim combine_no As String = GVAccount.GetFocusedRowCellValue("combine_no").ToString
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to delete this combine : " + combine_no + ", from this report ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Dim query As String = "DELETE FROM tb_rpt_det WHERE combine_no='" + combine_no + "' "
+            execute_non_query(query, False, app_host, app_username, app_password, "db_opt")
+            viewCombineList()
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class

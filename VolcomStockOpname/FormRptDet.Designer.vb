@@ -47,6 +47,9 @@ Partial Class FormRptDet
         Me.GridColumncomp_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsoh_qty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnscan_qty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPReport = New DevExpress.XtraTab.XtraTabPage()
         Me.GCRpt = New DevExpress.XtraGrid.GridControl()
         Me.BGVRpt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
@@ -70,9 +73,6 @@ Partial Class FormRptDet
         Me.CEShowHighlights = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnExportToXLSX = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrintDetail = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -93,6 +93,8 @@ Partial Class FormRptDet
         Me.XTPAccount.SuspendLayout()
         CType(Me.GCAccount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAccount, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl6.SuspendLayout()
         Me.XTPReport.SuspendLayout()
         CType(Me.GCRpt, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BGVRpt, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,8 +102,6 @@ Partial Class FormRptDet
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.CEShowHighlights.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl6.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -354,6 +354,36 @@ Partial Class FormRptDet
         Me.GridColumnscan_qty.Visible = True
         Me.GridColumnscan_qty.VisibleIndex = 4
         '
+        'PanelControl6
+        '
+        Me.PanelControl6.Controls.Add(Me.SimpleButton2)
+        Me.PanelControl6.Controls.Add(Me.BtnDelete)
+        Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl6.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl6.Name = "PanelControl6"
+        Me.PanelControl6.Size = New System.Drawing.Size(885, 40)
+        Me.PanelControl6.TabIndex = 2
+        '
+        'SimpleButton2
+        '
+        Me.SimpleButton2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SimpleButton2.Image = CType(resources.GetObject("SimpleButton2.Image"), System.Drawing.Image)
+        Me.SimpleButton2.Location = New System.Drawing.Point(698, 2)
+        Me.SimpleButton2.Name = "SimpleButton2"
+        Me.SimpleButton2.Size = New System.Drawing.Size(90, 36)
+        Me.SimpleButton2.TabIndex = 1
+        Me.SimpleButton2.Text = "Print"
+        '
+        'BtnDelete
+        '
+        Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
+        Me.BtnDelete.Location = New System.Drawing.Point(788, 2)
+        Me.BtnDelete.Name = "BtnDelete"
+        Me.BtnDelete.Size = New System.Drawing.Size(95, 36)
+        Me.BtnDelete.TabIndex = 2
+        Me.BtnDelete.Text = "Delete"
+        '
         'XTPReport
         '
         Me.XTPReport.Controls.Add(Me.GCRpt)
@@ -569,36 +599,6 @@ Partial Class FormRptDet
         Me.BtnPrintDetail.TabIndex = 1
         Me.BtnPrintDetail.Text = "Print"
         '
-        'PanelControl6
-        '
-        Me.PanelControl6.Controls.Add(Me.SimpleButton2)
-        Me.PanelControl6.Controls.Add(Me.BtnDelete)
-        Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl6.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl6.Name = "PanelControl6"
-        Me.PanelControl6.Size = New System.Drawing.Size(885, 40)
-        Me.PanelControl6.TabIndex = 2
-        '
-        'BtnDelete
-        '
-        Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
-        Me.BtnDelete.Location = New System.Drawing.Point(788, 2)
-        Me.BtnDelete.Name = "BtnDelete"
-        Me.BtnDelete.Size = New System.Drawing.Size(95, 36)
-        Me.BtnDelete.TabIndex = 2
-        Me.BtnDelete.Text = "Delete"
-        '
-        'SimpleButton2
-        '
-        Me.SimpleButton2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton2.Image = CType(resources.GetObject("SimpleButton2.Image"), System.Drawing.Image)
-        Me.SimpleButton2.Location = New System.Drawing.Point(698, 2)
-        Me.SimpleButton2.Name = "SimpleButton2"
-        Me.SimpleButton2.Size = New System.Drawing.Size(90, 36)
-        Me.SimpleButton2.TabIndex = 1
-        Me.SimpleButton2.Text = "Print"
-        '
         'FormRptDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -634,6 +634,8 @@ Partial Class FormRptDet
         Me.XTPAccount.ResumeLayout(False)
         CType(Me.GCAccount, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVAccount, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl6.ResumeLayout(False)
         Me.XTPReport.ResumeLayout(False)
         CType(Me.GCRpt, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BGVRpt, System.ComponentModel.ISupportInitialize).EndInit()
@@ -641,8 +643,6 @@ Partial Class FormRptDet
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         CType(Me.CEShowHighlights.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl6.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

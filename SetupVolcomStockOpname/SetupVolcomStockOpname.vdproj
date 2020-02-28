@@ -1138,12 +1138,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6FDA03039BEE11211BB03AF09B8E2DAA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_53242A43656C4EB590E31FA99A39037B"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1337,6 +1331,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_BB587B1F1ED318BF486B5345B3522E3B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_6FDA03039BEE11211BB03AF09B8E2DAA"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -2604,15 +2604,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Volcom Stock Take"
-        "ProductCode" = "8:{3D6986E0-6FFF-4A49-8355-B4B0F0A3FC4F}"
-        "PackageCode" = "8:{812D8DB9-4B65-4A3A-8C85-713FD553B601}"
+        "ProductCode" = "8:{B9B9D4AB-56A9-437D-962F-F9CA47F0FC41}"
+        "PackageCode" = "8:{9A2314E3-9D44-4A15-B7A3-7BB82D959B0E}"
         "UpgradeCode" = "8:{948E77FE-2B0C-4F31-B608-9559A7257742}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.8"
+        "ProductVersion" = "8:1.0.9"
         "Manufacturer" = "8:Volcom Indonesia"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

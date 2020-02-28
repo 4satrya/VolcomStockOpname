@@ -53,6 +53,7 @@
         Dim col_scan_value As String = ""
         Dim col_diff As String = ""
         Dim col_diff_value As String = ""
+        Dim col_note As String = ""
         For a As Integer = 0 To dacc.Rows.Count - 1
             Dim band_new As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BGVRpt.Bands.AddBand(dacc.Rows(a)("comp_number").ToString)
             band_new.AppearanceHeader.Font = New Font(BGVRpt.Appearance.Row.Font.FontFamily, BGVRpt.Appearance.Row.Font.Size, FontStyle.Bold)
@@ -95,7 +96,7 @@
             BGVRpt.Columns("" + dacc.Rows(a)("comp_number").ToString + "#DiffValue").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
             BGVRpt.Columns("" + dacc.Rows(a)("comp_number").ToString + "#DiffValue").SummaryItem.DisplayFormat = "{0:n0}"
 
-            'price str
+            'col str
             col_prc += "IFNULL((CASE WHEN d.comp_number='" + dacc.Rows(a)("comp_number").ToString + "' THEN d.unit_price END),0) AS `" + dacc.Rows(a)("comp_number").ToString + "#Price`, "
             col_soh += "IFNULL(SUM(CASE WHEN d.comp_number='" + dacc.Rows(a)("comp_number").ToString + "' THEN d.soh_qty END),0) AS `" + dacc.Rows(a)("comp_number").ToString + "#SOH`, "
             col_soh_value += "IFNULL(SUM(CASE WHEN d.comp_number='" + dacc.Rows(a)("comp_number").ToString + "' THEN d.soh_value END),0) AS `" + dacc.Rows(a)("comp_number").ToString + "#SOHValue`, "
@@ -103,6 +104,12 @@
             col_scan_value += "IFNULL(SUM(CASE WHEN d.comp_number='" + dacc.Rows(a)("comp_number").ToString + "' THEN d.scan_value END),0) AS `" + dacc.Rows(a)("comp_number").ToString + "#ScanValue`, "
             col_diff += "IFNULL(SUM(CASE WHEN d.comp_number='" + dacc.Rows(a)("comp_number").ToString + "' THEN d.diff_qty END),0) AS `" + dacc.Rows(a)("comp_number").ToString + "#Diff`, "
             col_diff_value += "IFNULL(SUM(CASE WHEN d.comp_number='" + dacc.Rows(a)("comp_number").ToString + "' THEN d.diff_value END),0) AS `" + dacc.Rows(a)("comp_number").ToString + "#DiffValue`, "
+
+            'col note
+            If a > 0 Then
+                col_note += ","
+            End If
+            col_note += "IF((IFNULL(SUM(CASE WHEN d.comp_number='" + dacc.Rows(a)("comp_number").ToString + "' THEN d.diff_qty END),0))!=0, '" + dacc.Rows(a)("comp_number").ToString + ";','') "
         Next
 
         'data
@@ -115,7 +122,9 @@
         " + col_diff + "
         " + col_diff_value + "
         SUM(d.soh_qty) AS `Total SOH`, SUM(d.soh_value) AS `Value SOH`, SUM(d.scan_qty) AS `Total Scan`, SUM(d.scan_value) AS `Value Scan`,
-        SUM(d.diff_qty) AS `Total Diff`, SUM(d.diff_value) AS `Value Diff`
+        SUM(d.diff_qty) AS `Total Diff`, SUM(d.diff_value) AS `Value Diff`,
+        IF(SUM(d.diff_qty)<0, 'Over Fisik', IF(SUM(d.diff_qty)>0,'Missing','')) AS `note`,
+        CONCAT(" + col_note + ") AS `Account Diff`
         FROM tb_rpt_det d
         GROUP BY d.prod_code
         ORDER BY Description ASC "

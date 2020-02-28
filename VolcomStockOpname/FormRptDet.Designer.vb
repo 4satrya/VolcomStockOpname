@@ -21,10 +21,11 @@ Partial Class FormRptDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormRptDet))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtCreatedBy = New DevExpress.XtraEditors.TextEdit()
         Me.DECreatedDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtCreatedBy = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
@@ -45,24 +46,28 @@ Partial Class FormRptDet
         Me.XTPReport = New DevExpress.XtraTab.XtraTabPage()
         Me.GCRpt = New DevExpress.XtraGrid.GridControl()
         Me.BGVRpt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.gridBandDescription = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnBarcode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnSKU = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnDescription = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnSize = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBandGlobal = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnTotalSOH = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnValueSOH = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnTotalScan = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnValueScan = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GVRpt = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.BandedGridColumnTotalDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnValueDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandDescription = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBandGlobal = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumnAccountDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnNote = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GVRpt = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.TxtCreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
         CType(Me.DECreatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreatedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtCreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -80,10 +85,7 @@ Partial Class FormRptDet
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.LabelControl4)
-        Me.PanelControl1.Controls.Add(Me.TxtCreatedBy)
-        Me.PanelControl1.Controls.Add(Me.DECreatedDate)
-        Me.PanelControl1.Controls.Add(Me.LabelControl3)
+        Me.PanelControl1.Controls.Add(Me.PanelControl3)
         Me.PanelControl1.Controls.Add(Me.LabelControl2)
         Me.PanelControl1.Controls.Add(Me.MENote)
         Me.PanelControl1.Controls.Add(Me.TxtNumber)
@@ -94,27 +96,32 @@ Partial Class FormRptDet
         Me.PanelControl1.Size = New System.Drawing.Size(784, 103)
         Me.PanelControl1.TabIndex = 0
         '
+        'PanelControl3
+        '
+        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.LabelControl4)
+        Me.PanelControl3.Controls.Add(Me.DECreatedDate)
+        Me.PanelControl3.Controls.Add(Me.LabelControl3)
+        Me.PanelControl3.Controls.Add(Me.TxtCreatedBy)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl3.Location = New System.Drawing.Point(493, 2)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(289, 99)
+        Me.PanelControl3.TabIndex = 5
+        '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(498, 39)
+        Me.LabelControl4.Location = New System.Drawing.Point(13, 37)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(54, 13)
         Me.LabelControl4.TabIndex = 7
         Me.LabelControl4.Text = "Created By"
         '
-        'TxtCreatedBy
-        '
-        Me.TxtCreatedBy.Enabled = False
-        Me.TxtCreatedBy.Location = New System.Drawing.Point(578, 36)
-        Me.TxtCreatedBy.Name = "TxtCreatedBy"
-        Me.TxtCreatedBy.Size = New System.Drawing.Size(194, 20)
-        Me.TxtCreatedBy.TabIndex = 6
-        '
         'DECreatedDate
         '
         Me.DECreatedDate.EditValue = Nothing
         Me.DECreatedDate.Enabled = False
-        Me.DECreatedDate.Location = New System.Drawing.Point(578, 11)
+        Me.DECreatedDate.Location = New System.Drawing.Point(83, 9)
         Me.DECreatedDate.Name = "DECreatedDate"
         Me.DECreatedDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DECreatedDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -123,11 +130,19 @@ Partial Class FormRptDet
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(498, 14)
+        Me.LabelControl3.Location = New System.Drawing.Point(13, 12)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(65, 13)
         Me.LabelControl3.TabIndex = 5
         Me.LabelControl3.Text = "Created Date"
+        '
+        'TxtCreatedBy
+        '
+        Me.TxtCreatedBy.Enabled = False
+        Me.TxtCreatedBy.Location = New System.Drawing.Point(83, 34)
+        Me.TxtCreatedBy.Name = "TxtCreatedBy"
+        Me.TxtCreatedBy.Size = New System.Drawing.Size(194, 20)
+        Me.TxtCreatedBy.TabIndex = 6
         '
         'LabelControl2
         '
@@ -302,7 +317,7 @@ Partial Class FormRptDet
         Me.BGVRpt.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.BGVRpt.Appearance.HeaderPanel.Options.UseFont = True
         Me.BGVRpt.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandDescription, Me.gridBandGlobal})
-        Me.BGVRpt.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnBarcode, Me.BandedGridColumnSKU, Me.BandedGridColumnDescription, Me.BandedGridColumnSize, Me.BandedGridColumnTotalSOH, Me.BandedGridColumnValueSOH, Me.BandedGridColumnTotalScan, Me.BandedGridColumnValueScan, Me.BandedGridColumnTotalDiff, Me.BandedGridColumnValueDiff})
+        Me.BGVRpt.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnBarcode, Me.BandedGridColumnSKU, Me.BandedGridColumnDescription, Me.BandedGridColumnSize, Me.BandedGridColumnTotalSOH, Me.BandedGridColumnValueSOH, Me.BandedGridColumnTotalScan, Me.BandedGridColumnValueScan, Me.BandedGridColumnTotalDiff, Me.BandedGridColumnValueDiff, Me.BandedGridColumnNote, Me.BandedGridColumnAccountDiff})
         Me.BGVRpt.GridControl = Me.GCRpt
         Me.BGVRpt.Name = "BGVRpt"
         Me.BGVRpt.OptionsBehavior.ReadOnly = True
@@ -310,6 +325,16 @@ Partial Class FormRptDet
         Me.BGVRpt.OptionsView.ColumnAutoWidth = False
         Me.BGVRpt.OptionsView.ShowFooter = True
         Me.BGVRpt.OptionsView.ShowGroupPanel = False
+        '
+        'gridBandDescription
+        '
+        Me.gridBandDescription.Columns.Add(Me.BandedGridColumnBarcode)
+        Me.gridBandDescription.Columns.Add(Me.BandedGridColumnSKU)
+        Me.gridBandDescription.Columns.Add(Me.BandedGridColumnDescription)
+        Me.gridBandDescription.Columns.Add(Me.BandedGridColumnSize)
+        Me.gridBandDescription.Name = "gridBandDescription"
+        Me.gridBandDescription.VisibleIndex = 0
+        Me.gridBandDescription.Width = 300
         '
         'BandedGridColumnBarcode
         '
@@ -338,6 +363,25 @@ Partial Class FormRptDet
         Me.BandedGridColumnSize.FieldName = "Size"
         Me.BandedGridColumnSize.Name = "BandedGridColumnSize"
         Me.BandedGridColumnSize.Visible = True
+        '
+        'gridBandGlobal
+        '
+        Me.gridBandGlobal.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBandGlobal.AppearanceHeader.Options.UseFont = True
+        Me.gridBandGlobal.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBandGlobal.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gridBandGlobal.Caption = "Selisih Global"
+        Me.gridBandGlobal.Columns.Add(Me.BandedGridColumnTotalSOH)
+        Me.gridBandGlobal.Columns.Add(Me.BandedGridColumnValueSOH)
+        Me.gridBandGlobal.Columns.Add(Me.BandedGridColumnTotalScan)
+        Me.gridBandGlobal.Columns.Add(Me.BandedGridColumnValueScan)
+        Me.gridBandGlobal.Columns.Add(Me.BandedGridColumnTotalDiff)
+        Me.gridBandGlobal.Columns.Add(Me.BandedGridColumnValueDiff)
+        Me.gridBandGlobal.Columns.Add(Me.BandedGridColumnAccountDiff)
+        Me.gridBandGlobal.Columns.Add(Me.BandedGridColumnNote)
+        Me.gridBandGlobal.Name = "gridBandGlobal"
+        Me.gridBandGlobal.VisibleIndex = 1
+        Me.gridBandGlobal.Width = 653
         '
         'BandedGridColumnTotalSOH
         '
@@ -378,11 +422,6 @@ Partial Class FormRptDet
         Me.BandedGridColumnValueScan.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Value Scan", "{0:N0}")})
         Me.BandedGridColumnValueScan.Visible = True
         '
-        'GVRpt
-        '
-        Me.GVRpt.GridControl = Me.GCRpt
-        Me.GVRpt.Name = "GVRpt"
-        '
         'BandedGridColumnTotalDiff
         '
         Me.BandedGridColumnTotalDiff.Caption = "Total Selisih"
@@ -403,32 +442,25 @@ Partial Class FormRptDet
         Me.BandedGridColumnValueDiff.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Value Diff", "{0:N0}")})
         Me.BandedGridColumnValueDiff.Visible = True
         '
-        'gridBandDescription
+        'BandedGridColumnAccountDiff
         '
-        Me.gridBandDescription.Columns.Add(Me.BandedGridColumnBarcode)
-        Me.gridBandDescription.Columns.Add(Me.BandedGridColumnSKU)
-        Me.gridBandDescription.Columns.Add(Me.BandedGridColumnDescription)
-        Me.gridBandDescription.Columns.Add(Me.BandedGridColumnSize)
-        Me.gridBandDescription.Name = "gridBandDescription"
-        Me.gridBandDescription.VisibleIndex = 0
-        Me.gridBandDescription.Width = 300
+        Me.BandedGridColumnAccountDiff.Caption = "Account Selisih"
+        Me.BandedGridColumnAccountDiff.FieldName = "Account Diff"
+        Me.BandedGridColumnAccountDiff.Name = "BandedGridColumnAccountDiff"
+        Me.BandedGridColumnAccountDiff.Visible = True
+        Me.BandedGridColumnAccountDiff.Width = 103
         '
-        'gridBandGlobal
+        'BandedGridColumnNote
         '
-        Me.gridBandGlobal.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBandGlobal.AppearanceHeader.Options.UseFont = True
-        Me.gridBandGlobal.AppearanceHeader.Options.UseTextOptions = True
-        Me.gridBandGlobal.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gridBandGlobal.Caption = "Selisih Global"
-        Me.gridBandGlobal.Columns.Add(Me.BandedGridColumnTotalSOH)
-        Me.gridBandGlobal.Columns.Add(Me.BandedGridColumnValueSOH)
-        Me.gridBandGlobal.Columns.Add(Me.BandedGridColumnTotalScan)
-        Me.gridBandGlobal.Columns.Add(Me.BandedGridColumnValueScan)
-        Me.gridBandGlobal.Columns.Add(Me.BandedGridColumnTotalDiff)
-        Me.gridBandGlobal.Columns.Add(Me.BandedGridColumnValueDiff)
-        Me.gridBandGlobal.Name = "gridBandGlobal"
-        Me.gridBandGlobal.VisibleIndex = 1
-        Me.gridBandGlobal.Width = 475
+        Me.BandedGridColumnNote.Caption = "Note"
+        Me.BandedGridColumnNote.FieldName = "note"
+        Me.BandedGridColumnNote.Name = "BandedGridColumnNote"
+        Me.BandedGridColumnNote.Visible = True
+        '
+        'GVRpt
+        '
+        Me.GVRpt.GridControl = Me.GCRpt
+        Me.GVRpt.Name = "GVRpt"
         '
         'FormRptDet
         '
@@ -445,9 +477,12 @@ Partial Class FormRptDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
-        CType(Me.TxtCreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        Me.PanelControl3.PerformLayout()
         CType(Me.DECreatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreatedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtCreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -499,8 +534,11 @@ Partial Class FormRptDet
     Friend WithEvents BandedGridColumnValueSOH As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnTotalScan As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnValueScan As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandDescription As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBandGlobal As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnTotalDiff As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnValueDiff As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnNote As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandDescription As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandGlobal As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnAccountDiff As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
 End Class

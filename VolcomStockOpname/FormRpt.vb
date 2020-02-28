@@ -137,4 +137,11 @@
             End If
         End If
     End Sub
+
+    Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            FormRptDet.id = GVData.GetFocusedRowCellValue("id_rpt").ToString
+            FormRptDet.ShowDialog()
+        End If
+    End Sub
 End Class

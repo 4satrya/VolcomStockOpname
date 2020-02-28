@@ -114,7 +114,8 @@
         " + col_scan_value + "
         " + col_diff + "
         " + col_diff_value + "
-        SUM(d.soh_qty) AS `Total SOH`, SUM(d.soh_value) AS `Value SOH`, SUM(d.scan_qty) AS `Total Scan`, SUM(d.scan_value) AS `Value Scan`
+        SUM(d.soh_qty) AS `Total SOH`, SUM(d.soh_value) AS `Value SOH`, SUM(d.scan_qty) AS `Total Scan`, SUM(d.scan_value) AS `Value Scan`,
+        SUM(d.diff_qty) AS `Total Diff`, SUM(d.diff_value) AS `Value Diff`
         FROM tb_rpt_det d
         GROUP BY d.prod_code
         ORDER BY Description ASC "

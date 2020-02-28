@@ -54,6 +54,8 @@ Partial Class FormRptDet
         Me.BandedGridColumnTotalScan = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnValueScan = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GVRpt = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.BandedGridColumnTotalDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnValueDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBandDescription = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBandGlobal = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -297,8 +299,10 @@ Partial Class FormRptDet
         '
         'BGVRpt
         '
+        Me.BGVRpt.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BGVRpt.Appearance.HeaderPanel.Options.UseFont = True
         Me.BGVRpt.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandDescription, Me.gridBandGlobal})
-        Me.BGVRpt.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnBarcode, Me.BandedGridColumnSKU, Me.BandedGridColumnDescription, Me.BandedGridColumnSize, Me.BandedGridColumnTotalSOH, Me.BandedGridColumnValueSOH, Me.BandedGridColumnTotalScan, Me.BandedGridColumnValueScan})
+        Me.BGVRpt.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnBarcode, Me.BandedGridColumnSKU, Me.BandedGridColumnDescription, Me.BandedGridColumnSize, Me.BandedGridColumnTotalSOH, Me.BandedGridColumnValueSOH, Me.BandedGridColumnTotalScan, Me.BandedGridColumnValueScan, Me.BandedGridColumnTotalDiff, Me.BandedGridColumnValueDiff})
         Me.BGVRpt.GridControl = Me.GCRpt
         Me.BGVRpt.Name = "BGVRpt"
         Me.BGVRpt.OptionsBehavior.ReadOnly = True
@@ -379,6 +383,26 @@ Partial Class FormRptDet
         Me.GVRpt.GridControl = Me.GCRpt
         Me.GVRpt.Name = "GVRpt"
         '
+        'BandedGridColumnTotalDiff
+        '
+        Me.BandedGridColumnTotalDiff.Caption = "Total Selisih"
+        Me.BandedGridColumnTotalDiff.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnTotalDiff.FieldName = "Total Diff"
+        Me.BandedGridColumnTotalDiff.Name = "BandedGridColumnTotalDiff"
+        Me.BandedGridColumnTotalDiff.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Total Diff", "{0:N0}")})
+        Me.BandedGridColumnTotalDiff.Visible = True
+        Me.BandedGridColumnTotalDiff.Width = 100
+        '
+        'BandedGridColumnValueDiff
+        '
+        Me.BandedGridColumnValueDiff.Caption = "Value"
+        Me.BandedGridColumnValueDiff.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnValueDiff.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnValueDiff.FieldName = "Value Diff"
+        Me.BandedGridColumnValueDiff.Name = "BandedGridColumnValueDiff"
+        Me.BandedGridColumnValueDiff.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Value Diff", "{0:N0}")})
+        Me.BandedGridColumnValueDiff.Visible = True
+        '
         'gridBandDescription
         '
         Me.gridBandDescription.Columns.Add(Me.BandedGridColumnBarcode)
@@ -391,7 +415,7 @@ Partial Class FormRptDet
         '
         'gridBandGlobal
         '
-        Me.gridBandGlobal.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gridBandGlobal.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.gridBandGlobal.AppearanceHeader.Options.UseFont = True
         Me.gridBandGlobal.AppearanceHeader.Options.UseTextOptions = True
         Me.gridBandGlobal.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
@@ -400,9 +424,11 @@ Partial Class FormRptDet
         Me.gridBandGlobal.Columns.Add(Me.BandedGridColumnValueSOH)
         Me.gridBandGlobal.Columns.Add(Me.BandedGridColumnTotalScan)
         Me.gridBandGlobal.Columns.Add(Me.BandedGridColumnValueScan)
+        Me.gridBandGlobal.Columns.Add(Me.BandedGridColumnTotalDiff)
+        Me.gridBandGlobal.Columns.Add(Me.BandedGridColumnValueDiff)
         Me.gridBandGlobal.Name = "gridBandGlobal"
         Me.gridBandGlobal.VisibleIndex = 1
-        Me.gridBandGlobal.Width = 300
+        Me.gridBandGlobal.Width = 475
         '
         'FormRptDet
         '
@@ -475,4 +501,6 @@ Partial Class FormRptDet
     Friend WithEvents BandedGridColumnValueScan As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBandDescription As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandGlobal As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnTotalDiff As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnValueDiff As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class

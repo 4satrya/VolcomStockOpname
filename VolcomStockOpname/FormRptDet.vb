@@ -172,4 +172,25 @@
             End If
         End If
     End Sub
+
+    Public Sub custom_cell(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs)
+        Dim View As DevExpress.XtraGrid.Views.Grid.GridView = sender
+
+        If CEShowHighlights.EditValue = True And (e.Column.FieldName.ToString.Contains("#Diff") Or e.Column.FieldName.ToString.Contains("#DiffValue")) Then
+            Dim val As Decimal = e.CellValue
+
+            If val <> 0 Then
+                e.Appearance.BackColor = Color.Yellow
+            Else
+                e.Appearance.BackColor = Color.Empty
+            End If
+        Else
+            e.Appearance.BackColor = Color.Empty
+        End If
+    End Sub
+
+    Private Sub CEShowHighlights_CheckedChanged(sender As Object, e As EventArgs) Handles CEShowHighlights.CheckedChanged
+        AddHandler BGVRpt.RowCellStyle, AddressOf custom_cell
+        GCRpt.Focus()
+    End Sub
 End Class

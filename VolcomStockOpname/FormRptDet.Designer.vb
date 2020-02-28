@@ -62,6 +62,11 @@ Partial Class FormRptDet
         Me.BandedGridColumnAccountDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnNote = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GVRpt = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.CEShowHighlights = New DevExpress.XtraEditors.CheckEdit()
+        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnExportToXLSX = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnPrintDetail = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -82,6 +87,10 @@ Partial Class FormRptDet
         CType(Me.GCRpt, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BGVRpt, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVRpt, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
+        CType(Me.CEShowHighlights.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -157,7 +166,7 @@ Partial Class FormRptDet
         '
         Me.MENote.Location = New System.Drawing.Point(71, 37)
         Me.MENote.Name = "MENote"
-        Me.MENote.Size = New System.Drawing.Size(214, 51)
+        Me.MENote.Size = New System.Drawing.Size(299, 51)
         Me.MENote.TabIndex = 4
         '
         'TxtNumber
@@ -165,7 +174,7 @@ Partial Class FormRptDet
         Me.TxtNumber.Enabled = False
         Me.TxtNumber.Location = New System.Drawing.Point(71, 11)
         Me.TxtNumber.Name = "TxtNumber"
-        Me.TxtNumber.Size = New System.Drawing.Size(214, 20)
+        Me.TxtNumber.Size = New System.Drawing.Size(299, 20)
         Me.TxtNumber.TabIndex = 2
         '
         'LabelControl1
@@ -181,9 +190,9 @@ Partial Class FormRptDet
         Me.PanelControl2.Controls.Add(Me.BtnClose)
         Me.PanelControl2.Controls.Add(Me.BtnSaveChanges)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 513)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 519)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(891, 48)
+        Me.PanelControl2.Size = New System.Drawing.Size(891, 42)
         Me.PanelControl2.TabIndex = 1
         '
         'BtnClose
@@ -192,7 +201,7 @@ Partial Class FormRptDet
         Me.BtnClose.Image = CType(resources.GetObject("BtnClose.Image"), System.Drawing.Image)
         Me.BtnClose.Location = New System.Drawing.Point(675, 2)
         Me.BtnClose.Name = "BtnClose"
-        Me.BtnClose.Size = New System.Drawing.Size(92, 44)
+        Me.BtnClose.Size = New System.Drawing.Size(92, 38)
         Me.BtnClose.TabIndex = 1
         Me.BtnClose.Text = "Close"
         '
@@ -202,7 +211,7 @@ Partial Class FormRptDet
         Me.BtnSaveChanges.Image = CType(resources.GetObject("BtnSaveChanges.Image"), System.Drawing.Image)
         Me.BtnSaveChanges.Location = New System.Drawing.Point(767, 2)
         Me.BtnSaveChanges.Name = "BtnSaveChanges"
-        Me.BtnSaveChanges.Size = New System.Drawing.Size(122, 44)
+        Me.BtnSaveChanges.Size = New System.Drawing.Size(122, 38)
         Me.BtnSaveChanges.TabIndex = 0
         Me.BtnSaveChanges.Text = "Save Changes"
         '
@@ -212,7 +221,7 @@ Partial Class FormRptDet
         Me.XTCReport.Location = New System.Drawing.Point(0, 103)
         Me.XTCReport.Name = "XTCReport"
         Me.XTCReport.SelectedTabPage = Me.XTPAccount
-        Me.XTCReport.Size = New System.Drawing.Size(891, 410)
+        Me.XTCReport.Size = New System.Drawing.Size(891, 416)
         Me.XTCReport.TabIndex = 2
         Me.XTCReport.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPAccount, Me.XTPReport})
         '
@@ -220,7 +229,7 @@ Partial Class FormRptDet
         '
         Me.XTPAccount.Controls.Add(Me.GCAccount)
         Me.XTPAccount.Name = "XTPAccount"
-        Me.XTPAccount.Size = New System.Drawing.Size(885, 382)
+        Me.XTPAccount.Size = New System.Drawing.Size(885, 388)
         Me.XTPAccount.Text = "Combine List"
         '
         'GCAccount
@@ -229,7 +238,7 @@ Partial Class FormRptDet
         Me.GCAccount.Location = New System.Drawing.Point(0, 0)
         Me.GCAccount.MainView = Me.GVAccount
         Me.GCAccount.Name = "GCAccount"
-        Me.GCAccount.Size = New System.Drawing.Size(885, 382)
+        Me.GCAccount.Size = New System.Drawing.Size(885, 388)
         Me.GCAccount.TabIndex = 0
         Me.GCAccount.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAccount})
         '
@@ -299,17 +308,18 @@ Partial Class FormRptDet
         'XTPReport
         '
         Me.XTPReport.Controls.Add(Me.GCRpt)
+        Me.XTPReport.Controls.Add(Me.PanelControl4)
         Me.XTPReport.Name = "XTPReport"
-        Me.XTPReport.Size = New System.Drawing.Size(885, 382)
+        Me.XTPReport.Size = New System.Drawing.Size(885, 388)
         Me.XTPReport.Text = "Detail Report"
         '
         'GCRpt
         '
         Me.GCRpt.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCRpt.Location = New System.Drawing.Point(0, 0)
+        Me.GCRpt.Location = New System.Drawing.Point(0, 40)
         Me.GCRpt.MainView = Me.BGVRpt
         Me.GCRpt.Name = "GCRpt"
-        Me.GCRpt.Size = New System.Drawing.Size(885, 382)
+        Me.GCRpt.Size = New System.Drawing.Size(885, 348)
         Me.GCRpt.TabIndex = 0
         Me.GCRpt.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVRpt, Me.GVRpt})
         '
@@ -471,6 +481,55 @@ Partial Class FormRptDet
         Me.GVRpt.GridControl = Me.GCRpt
         Me.GVRpt.Name = "GVRpt"
         '
+        'PanelControl4
+        '
+        Me.PanelControl4.Controls.Add(Me.CEShowHighlights)
+        Me.PanelControl4.Controls.Add(Me.PanelControl5)
+        Me.PanelControl4.Controls.Add(Me.BtnExportToXLSX)
+        Me.PanelControl4.Controls.Add(Me.BtnPrintDetail)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(885, 40)
+        Me.PanelControl4.TabIndex = 1
+        '
+        'CEShowHighlights
+        '
+        Me.CEShowHighlights.Location = New System.Drawing.Point(12, 11)
+        Me.CEShowHighlights.Name = "CEShowHighlights"
+        Me.CEShowHighlights.Properties.Caption = "highlight yang selisih"
+        Me.CEShowHighlights.Size = New System.Drawing.Size(132, 19)
+        Me.CEShowHighlights.TabIndex = 4
+        '
+        'PanelControl5
+        '
+        Me.PanelControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl5.Location = New System.Drawing.Point(557, 2)
+        Me.PanelControl5.Name = "PanelControl5"
+        Me.PanelControl5.Size = New System.Drawing.Size(109, 36)
+        Me.PanelControl5.TabIndex = 3
+        '
+        'BtnExportToXLSX
+        '
+        Me.BtnExportToXLSX.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnExportToXLSX.Image = CType(resources.GetObject("BtnExportToXLSX.Image"), System.Drawing.Image)
+        Me.BtnExportToXLSX.Location = New System.Drawing.Point(666, 2)
+        Me.BtnExportToXLSX.Name = "BtnExportToXLSX"
+        Me.BtnExportToXLSX.Size = New System.Drawing.Size(127, 36)
+        Me.BtnExportToXLSX.TabIndex = 2
+        Me.BtnExportToXLSX.Text = "Export to XLSX"
+        '
+        'BtnPrintDetail
+        '
+        Me.BtnPrintDetail.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrintDetail.Image = CType(resources.GetObject("BtnPrintDetail.Image"), System.Drawing.Image)
+        Me.BtnPrintDetail.Location = New System.Drawing.Point(793, 2)
+        Me.BtnPrintDetail.Name = "BtnPrintDetail"
+        Me.BtnPrintDetail.Size = New System.Drawing.Size(90, 36)
+        Me.BtnPrintDetail.TabIndex = 1
+        Me.BtnPrintDetail.Text = "Print"
+        '
         'FormRptDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -505,6 +564,10 @@ Partial Class FormRptDet
         CType(Me.GCRpt, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BGVRpt, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVRpt, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
+        CType(Me.CEShowHighlights.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -551,4 +614,9 @@ Partial Class FormRptDet
     Friend WithEvents gridBandDescription As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnno As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBandGlobal As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnExportToXLSX As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnPrintDetail As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents CEShowHighlights As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
 End Class

@@ -51,7 +51,7 @@
             NBStockTake.Visible = False
             NBOpt.Visible = False
             NBWHPreST.Visible = True
-            NBWHST.Visible = False
+            NBWHST.Visible = True
             NBReport.Visible = False
         Else
             NBExport.Visible = False

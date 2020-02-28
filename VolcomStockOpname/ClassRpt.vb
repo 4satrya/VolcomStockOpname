@@ -11,7 +11,8 @@
         Else
             condition = ""
         End If
-        Dim query As String = "SELECT r.id_rpt, r.rpt_created_by, r.rpt_created_date, r.rpt_number, r.rpt_note
+        Dim query As String = "SELECT r.id_rpt, r.rpt_created_by, r.rpt_created_date, r.rpt_number, r.rpt_note,
+        r.report_status, r.report_status_note
         FROM tb_rpt r
         WHERE r.id_rpt>0 "
         query += condition + " "

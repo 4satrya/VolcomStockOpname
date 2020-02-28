@@ -32,6 +32,8 @@ Partial Class FormRpt
         Me.GridColumnrpt_created_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnrpt_number = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnrpt_note = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnreport_status_note = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -96,7 +98,7 @@ Partial Class FormRpt
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_rpt, Me.GridColumnrpt_created_by, Me.GridColumnrpt_created_date, Me.GridColumnrpt_number, Me.GridColumnrpt_note})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_rpt, Me.GridColumnrpt_created_by, Me.GridColumnrpt_created_date, Me.GridColumnrpt_number, Me.GridColumnrpt_note, Me.GridColumnreport_status, Me.GridColumnreport_status_note})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.ReadOnly = True
@@ -144,6 +146,22 @@ Partial Class FormRpt
         Me.GridColumnrpt_note.Visible = True
         Me.GridColumnrpt_note.VisibleIndex = 1
         '
+        'GridColumnreport_status
+        '
+        Me.GridColumnreport_status.Caption = "Status"
+        Me.GridColumnreport_status.FieldName = "report_status"
+        Me.GridColumnreport_status.Name = "GridColumnreport_status"
+        Me.GridColumnreport_status.Visible = True
+        Me.GridColumnreport_status.VisibleIndex = 4
+        '
+        'GridColumnreport_status_note
+        '
+        Me.GridColumnreport_status_note.Caption = "Note Status"
+        Me.GridColumnreport_status_note.FieldName = "report_status_note"
+        Me.GridColumnreport_status_note.Name = "GridColumnreport_status_note"
+        Me.GridColumnreport_status_note.Visible = True
+        Me.GridColumnreport_status_note.VisibleIndex = 5
+        '
         'FormRpt
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -174,4 +192,6 @@ Partial Class FormRpt
     Friend WithEvents GridColumnrpt_number As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnrpt_note As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SplashScreenManager1 As DevExpress.XtraSplashScreen.SplashScreenManager
+    Friend WithEvents GridColumnreport_status As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnreport_status_note As DevExpress.XtraGrid.Columns.GridColumn
 End Class

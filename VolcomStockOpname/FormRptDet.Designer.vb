@@ -31,7 +31,11 @@ Partial Class FormRptDet
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.TxtStatusNote = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEStatus = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.XTCReport = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPAccount = New DevExpress.XtraTab.XtraTabPage()
@@ -64,9 +68,11 @@ Partial Class FormRptDet
         Me.GVRpt = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.CEShowHighlights = New DevExpress.XtraEditors.CheckEdit()
-        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnExportToXLSX = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrintDetail = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -78,6 +84,10 @@ Partial Class FormRptDet
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl5.SuspendLayout()
+        CType(Me.TxtStatusNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCReport, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCReport.SuspendLayout()
         Me.XTPAccount.SuspendLayout()
@@ -90,7 +100,8 @@ Partial Class FormRptDet
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.CEShowHighlights.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl6.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -189,7 +200,7 @@ Partial Class FormRptDet
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.BtnClose)
+        Me.PanelControl2.Controls.Add(Me.PanelControl5)
         Me.PanelControl2.Controls.Add(Me.BtnSaveChanges)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 519)
@@ -197,15 +208,50 @@ Partial Class FormRptDet
         Me.PanelControl2.Size = New System.Drawing.Size(891, 42)
         Me.PanelControl2.TabIndex = 1
         '
-        'BtnClose
+        'PanelControl5
         '
-        Me.BtnClose.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnClose.Image = CType(resources.GetObject("BtnClose.Image"), System.Drawing.Image)
-        Me.BtnClose.Location = New System.Drawing.Point(675, 2)
-        Me.BtnClose.Name = "BtnClose"
-        Me.BtnClose.Size = New System.Drawing.Size(92, 38)
-        Me.BtnClose.TabIndex = 1
-        Me.BtnClose.Text = "Close"
+        Me.PanelControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl5.Controls.Add(Me.TxtStatusNote)
+        Me.PanelControl5.Controls.Add(Me.LabelControl6)
+        Me.PanelControl5.Controls.Add(Me.LEStatus)
+        Me.PanelControl5.Controls.Add(Me.LabelControl5)
+        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl5.Location = New System.Drawing.Point(358, 2)
+        Me.PanelControl5.Name = "PanelControl5"
+        Me.PanelControl5.Size = New System.Drawing.Size(409, 38)
+        Me.PanelControl5.TabIndex = 4
+        '
+        'TxtStatusNote
+        '
+        Me.TxtStatusNote.Location = New System.Drawing.Point(204, 9)
+        Me.TxtStatusNote.Name = "TxtStatusNote"
+        Me.TxtStatusNote.Size = New System.Drawing.Size(199, 20)
+        Me.TxtStatusNote.TabIndex = 5
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(162, 13)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(36, 13)
+        Me.LabelControl6.TabIndex = 8908
+        Me.LabelControl6.Text = "Remark"
+        '
+        'LEStatus
+        '
+        Me.LEStatus.Location = New System.Drawing.Point(44, 9)
+        Me.LEStatus.Name = "LEStatus"
+        Me.LEStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Status")})
+        Me.LEStatus.Size = New System.Drawing.Size(112, 20)
+        Me.LEStatus.TabIndex = 8907
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(7, 12)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(31, 13)
+        Me.LabelControl5.TabIndex = 8906
+        Me.LabelControl5.Text = "Status"
         '
         'BtnSaveChanges
         '
@@ -230,6 +276,7 @@ Partial Class FormRptDet
         'XTPAccount
         '
         Me.XTPAccount.Controls.Add(Me.GCAccount)
+        Me.XTPAccount.Controls.Add(Me.PanelControl6)
         Me.XTPAccount.Name = "XTPAccount"
         Me.XTPAccount.Size = New System.Drawing.Size(885, 388)
         Me.XTPAccount.Text = "Combine List"
@@ -237,10 +284,10 @@ Partial Class FormRptDet
         'GCAccount
         '
         Me.GCAccount.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCAccount.Location = New System.Drawing.Point(0, 0)
+        Me.GCAccount.Location = New System.Drawing.Point(0, 40)
         Me.GCAccount.MainView = Me.GVAccount
         Me.GCAccount.Name = "GCAccount"
-        Me.GCAccount.Size = New System.Drawing.Size(885, 388)
+        Me.GCAccount.Size = New System.Drawing.Size(885, 348)
         Me.GCAccount.TabIndex = 0
         Me.GCAccount.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAccount})
         '
@@ -486,7 +533,6 @@ Partial Class FormRptDet
         'PanelControl4
         '
         Me.PanelControl4.Controls.Add(Me.CEShowHighlights)
-        Me.PanelControl4.Controls.Add(Me.PanelControl5)
         Me.PanelControl4.Controls.Add(Me.BtnExportToXLSX)
         Me.PanelControl4.Controls.Add(Me.BtnPrintDetail)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
@@ -502,15 +548,6 @@ Partial Class FormRptDet
         Me.CEShowHighlights.Properties.Caption = "highlight yang selisih"
         Me.CEShowHighlights.Size = New System.Drawing.Size(132, 19)
         Me.CEShowHighlights.TabIndex = 4
-        '
-        'PanelControl5
-        '
-        Me.PanelControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl5.Location = New System.Drawing.Point(557, 2)
-        Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(109, 36)
-        Me.PanelControl5.TabIndex = 3
         '
         'BtnExportToXLSX
         '
@@ -531,6 +568,36 @@ Partial Class FormRptDet
         Me.BtnPrintDetail.Size = New System.Drawing.Size(90, 36)
         Me.BtnPrintDetail.TabIndex = 1
         Me.BtnPrintDetail.Text = "Print"
+        '
+        'PanelControl6
+        '
+        Me.PanelControl6.Controls.Add(Me.SimpleButton2)
+        Me.PanelControl6.Controls.Add(Me.BtnDelete)
+        Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl6.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl6.Name = "PanelControl6"
+        Me.PanelControl6.Size = New System.Drawing.Size(885, 40)
+        Me.PanelControl6.TabIndex = 2
+        '
+        'BtnDelete
+        '
+        Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
+        Me.BtnDelete.Location = New System.Drawing.Point(788, 2)
+        Me.BtnDelete.Name = "BtnDelete"
+        Me.BtnDelete.Size = New System.Drawing.Size(95, 36)
+        Me.BtnDelete.TabIndex = 2
+        Me.BtnDelete.Text = "Delete"
+        '
+        'SimpleButton2
+        '
+        Me.SimpleButton2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SimpleButton2.Image = CType(resources.GetObject("SimpleButton2.Image"), System.Drawing.Image)
+        Me.SimpleButton2.Location = New System.Drawing.Point(698, 2)
+        Me.SimpleButton2.Name = "SimpleButton2"
+        Me.SimpleButton2.Size = New System.Drawing.Size(90, 36)
+        Me.SimpleButton2.TabIndex = 1
+        Me.SimpleButton2.Text = "Print"
         '
         'FormRptDet
         '
@@ -557,6 +624,11 @@ Partial Class FormRptDet
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl5.ResumeLayout(False)
+        Me.PanelControl5.PerformLayout()
+        CType(Me.TxtStatusNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCReport, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCReport.ResumeLayout(False)
         Me.XTPAccount.ResumeLayout(False)
@@ -569,7 +641,8 @@ Partial Class FormRptDet
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         CType(Me.CEShowHighlights.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl6.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -582,7 +655,6 @@ Partial Class FormRptDet
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents TxtNumber As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents BtnClose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnSaveChanges As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents XTCReport As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPAccount As DevExpress.XtraTab.XtraTabPage
@@ -621,4 +693,11 @@ Partial Class FormRptDet
     Friend WithEvents BtnPrintDetail As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents CEShowHighlights As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LEStatus As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtStatusNote As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnDelete As DevExpress.XtraEditors.SimpleButton
 End Class

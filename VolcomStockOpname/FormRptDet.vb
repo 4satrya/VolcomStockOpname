@@ -1,7 +1,13 @@
 ﻿Public Class FormRptDet
     Public id As String = "-1"
     Private Sub FormRptDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        viewReportStatus()
         actionLoad()
+    End Sub
+
+    Sub viewReportStatus()
+        Dim query As String = "SELECT 'Submitted' AS `report_status` UNION ALL SELECT 'Cancelled' AS `report_status` "
+        viewLookupQuery(LEStatus, query, 0, "report_status", "report_status")
     End Sub
 
     Sub actionLoad()
@@ -13,6 +19,15 @@
         MENote.Text = data.Rows(0)("rpt_note").ToString
         DECreatedDate.EditValue = data.Rows(0)("rpt_created_date")
         TxtCreatedBy.Text = data.Rows(0)("rpt_created_by").ToString
+        LEStatus.ItemIndex = LEStatus.Properties.GetDataSourceRowIndex("report_status", data.Rows(0)("report_status").ToString)
+        TxtStatusNote.Text = data.Rows(0)("report_status_note").ToString
+        If data.Rows(0)("report_status").ToString = "Cancelled" Then
+            BtnSaveChanges.Visible = False
+            MENote.Enabled = False
+            LEStatus.Enabled = False
+            TxtStatusNote.Enabled = False
+        End If
+
         viewCombineList()
         Cursor = Cursors.Default
     End Sub
@@ -138,7 +153,7 @@
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
+    Private Sub BtnClose_Click(sender As Object, e As EventArgs)
         Close()
     End Sub
 
@@ -147,12 +162,21 @@
     End Sub
 
     Private Sub BtnSaveChanges_Click(sender As Object, e As EventArgs) Handles BtnSaveChanges.Click
-        Cursor = Cursors.WaitCursor
-        Dim query As String = "UPDATE tb_rpt SET rpt_note='" + addSlashes(MENote.Text) + "' WHERE id_rpt='" + id + "' "
-        execute_non_query(query, False, app_host, app_username, app_password, "db_opt")
-        FormRpt.viewData()
-        FormRpt.GVData.FocusedRowHandle = find_row(FormRpt.GVData, "id_rpt", id)
-        Cursor = Cursors.Default
+        If LEStatus.Text = "Cancelled" And TxtStatusNote.Text = "" Then
+            stopCustom("Please fill reason cancellation")
+            Exit Sub
+        End If
+
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to save changes this transaction ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Dim query As String = "UPDATE tb_rpt SET rpt_note='" + addSlashes(MENote.Text) + "', report_status='" + addSlashes(LEStatus.Text) + "', report_status_note='" + addSlashes(TxtStatusNote.Text) + "' WHERE id_rpt='" + id + "' "
+            execute_non_query(query, False, app_host, app_username, app_password, "db_opt")
+            FormRpt.viewData()
+            FormRpt.GVData.FocusedRowHandle = find_row(FormRpt.GVData, "id_rpt", id)
+            actionLoad()
+            Cursor = Cursors.Default
+        End If
     End Sub
 
     Private Sub XTCReport_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCReport.SelectedPageChanged
@@ -268,6 +292,12 @@
         Catch ex As Exception
             stopCustom(ex.ToString)
         End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles SimpleButton2.Click
+        Cursor = Cursors.WaitCursor
+        print_raw(GCAccount, "")
         Cursor = Cursors.Default
     End Sub
 End Class

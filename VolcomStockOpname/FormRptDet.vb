@@ -147,7 +147,12 @@
     End Sub
 
     Private Sub BtnSaveChanges_Click(sender As Object, e As EventArgs) Handles BtnSaveChanges.Click
-
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "UPDATE tb_rpt SET rpt_note='" + addSlashes(MENote.Text) + "' WHERE id_rpt='" + id + "' "
+        execute_non_query(query, False, app_host, app_username, app_password, "db_opt")
+        FormRpt.viewData()
+        FormRpt.GVData.FocusedRowHandle = find_row(FormRpt.GVData, "id_rpt", id)
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub XTCReport_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCReport.SelectedPageChanged

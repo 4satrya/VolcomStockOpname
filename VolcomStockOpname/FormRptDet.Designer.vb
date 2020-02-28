@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormRptDet
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormRptDet
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormRptDet))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
@@ -56,7 +56,6 @@ Partial Class FormRptDet
         Me.GVRpt = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.gridBandDescription = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBandGlobal = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TxtCreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -161,7 +160,6 @@ Partial Class FormRptDet
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.SimpleButton1)
         Me.PanelControl2.Controls.Add(Me.BtnClose)
         Me.PanelControl2.Controls.Add(Me.BtnSaveChanges)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -234,7 +232,7 @@ Partial Class FormRptDet
         Me.GridColumncombine_no.FieldName = "combine_no"
         Me.GridColumncombine_no.Name = "GridColumncombine_no"
         Me.GridColumncombine_no.Visible = True
-        Me.GridColumncombine_no.VisibleIndex = 0
+        Me.GridColumncombine_no.VisibleIndex = 2
         '
         'GridColumndb_name
         '
@@ -248,7 +246,7 @@ Partial Class FormRptDet
         Me.GridColumncomp_number.FieldName = "comp_number"
         Me.GridColumncomp_number.Name = "GridColumncomp_number"
         Me.GridColumncomp_number.Visible = True
-        Me.GridColumncomp_number.VisibleIndex = 1
+        Me.GridColumncomp_number.VisibleIndex = 0
         '
         'GridColumncomp_name
         '
@@ -256,7 +254,7 @@ Partial Class FormRptDet
         Me.GridColumncomp_name.FieldName = "comp_name"
         Me.GridColumncomp_name.Name = "GridColumncomp_name"
         Me.GridColumncomp_name.Visible = True
-        Me.GridColumncomp_name.VisibleIndex = 2
+        Me.GridColumncomp_name.VisibleIndex = 1
         '
         'GridColumnsoh_qty
         '
@@ -404,16 +402,6 @@ Partial Class FormRptDet
         Me.gridBandGlobal.VisibleIndex = 1
         Me.gridBandGlobal.Width = 300
         '
-        'SimpleButton1
-        '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
-        Me.SimpleButton1.Location = New System.Drawing.Point(2, 2)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(92, 44)
-        Me.SimpleButton1.TabIndex = 2
-        Me.SimpleButton1.Text = "aaa"
-        '
         'FormRptDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -485,5 +473,4 @@ Partial Class FormRptDet
     Friend WithEvents BandedGridColumnValueScan As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBandDescription As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandGlobal As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
 End Class

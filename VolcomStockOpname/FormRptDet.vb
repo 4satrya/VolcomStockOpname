@@ -22,7 +22,8 @@
         Dim query As String = "SELECT d.combine_no, d.db_name, d.comp_number, d.comp_name, SUM(d.soh_qty) AS `soh_qty`, SUM(d.scan_qty) AS `scan_qty`
         FROM tb_rpt_det d
         WHERE d.id_rpt=" + id + "
-        GROUP BY d.combine_no "
+        GROUP BY d.combine_no 
+        ORDER BY comp_number ASC "
         Dim data As DataTable = execute_query(query, -1, False, app_host, app_username, app_password, "db_opt")
         GCAccount.DataSource = data
         GVAccount.BestFitColumns()
@@ -45,15 +46,34 @@
         GROUP BY d.comp_number
         ORDER BY comp_number ASC "
         Dim dacc As DataTable = execute_query(qacc, -1, False, app_host, app_username, app_password, "db_opt")
+        Dim col_prc As String = ""
+        Dim col_soh As String = ""
         For a As Integer = 0 To dacc.Rows.Count - 1
             Dim band_new As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BGVRpt.Bands.AddBand(dacc.Rows(a)("comp_number").ToString)
             band_new.AppearanceHeader.Font = New Font(BGVRpt.Appearance.Row.Font.FontFamily, BGVRpt.Appearance.Row.Font.Size, FontStyle.Bold)
             band_new.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
             band_new.Name = "gridBandAcc_" + dacc.Rows(a)("comp_number").ToString
+
+            'add to band
+            band_new.Columns.Add(BGVRpt.Columns.AddVisible("" + dacc.Rows(a)("comp_number").ToString + "#Price", "Price"))
+            band_new.Columns.Add(BGVRpt.Columns.AddVisible("" + dacc.Rows(a)("comp_number").ToString + "#SOH", "SOH"))
+            'column propertis
+            BGVRpt.Columns("" + dacc.Rows(a)("comp_number").ToString + "#Price").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            BGVRpt.Columns("" + dacc.Rows(a)("comp_number").ToString + "#Price").DisplayFormat.FormatString = "{0:n0}"
+            BGVRpt.Columns("" + dacc.Rows(a)("comp_number").ToString + "#SOH").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            BGVRpt.Columns("" + dacc.Rows(a)("comp_number").ToString + "#SOH").DisplayFormat.FormatString = "{0:n0}"
+            BGVRpt.Columns("" + dacc.Rows(a)("comp_number").ToString + "#SOH").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+            BGVRpt.Columns("" + dacc.Rows(a)("comp_number").ToString + "#SOH").SummaryItem.DisplayFormat = "{0:n0}"
+
+            'price str
+            col_prc += "IFNULL((CASE WHEN d.comp_number='" + dacc.Rows(a)("comp_number").ToString + "' THEN d.unit_price END),0) AS `" + dacc.Rows(a)("comp_number").ToString + "#Price`, "
+            col_soh += "IFNULL(SUM(CASE WHEN d.comp_number='" + dacc.Rows(a)("comp_number").ToString + "' THEN d.soh_qty END),0) AS `" + dacc.Rows(a)("comp_number").ToString + "#SOH`, "
         Next
 
         'data
         Dim query As String = "SELECT d.prod_code AS `Barcode`, d.prod_code_main AS `SKU`, d.prod_name AS `Description`, d.size AS `Size`,
+        " + col_prc + "
+        " + col_soh + "
         SUM(d.soh_qty) AS `Total SOH`, SUM(d.soh_value) AS `Value SOH`, SUM(d.scan_qty) AS `Total Scan`, SUM(d.scan_value) AS `Value Scan`
         FROM tb_rpt_det d
         GROUP BY d.prod_code
@@ -88,7 +108,7 @@
         End If
     End Sub
 
-    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs)
 
     End Sub
 End Class

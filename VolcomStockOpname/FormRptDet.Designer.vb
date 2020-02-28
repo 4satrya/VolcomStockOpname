@@ -47,6 +47,7 @@ Partial Class FormRptDet
         Me.GCRpt = New DevExpress.XtraGrid.GridControl()
         Me.BGVRpt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.gridBandDescription = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumnno = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnBarcode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnSKU = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnDescription = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -93,7 +94,7 @@ Partial Class FormRptDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(784, 103)
+        Me.PanelControl1.Size = New System.Drawing.Size(891, 103)
         Me.PanelControl1.TabIndex = 0
         '
         'PanelControl3
@@ -104,7 +105,7 @@ Partial Class FormRptDet
         Me.PanelControl3.Controls.Add(Me.LabelControl3)
         Me.PanelControl3.Controls.Add(Me.TxtCreatedBy)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl3.Location = New System.Drawing.Point(493, 2)
+        Me.PanelControl3.Location = New System.Drawing.Point(600, 2)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(289, 99)
         Me.PanelControl3.TabIndex = 5
@@ -182,14 +183,14 @@ Partial Class FormRptDet
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 513)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(784, 48)
+        Me.PanelControl2.Size = New System.Drawing.Size(891, 48)
         Me.PanelControl2.TabIndex = 1
         '
         'BtnClose
         '
         Me.BtnClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnClose.Image = CType(resources.GetObject("BtnClose.Image"), System.Drawing.Image)
-        Me.BtnClose.Location = New System.Drawing.Point(568, 2)
+        Me.BtnClose.Location = New System.Drawing.Point(675, 2)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(92, 44)
         Me.BtnClose.TabIndex = 1
@@ -199,7 +200,7 @@ Partial Class FormRptDet
         '
         Me.BtnSaveChanges.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSaveChanges.Image = CType(resources.GetObject("BtnSaveChanges.Image"), System.Drawing.Image)
-        Me.BtnSaveChanges.Location = New System.Drawing.Point(660, 2)
+        Me.BtnSaveChanges.Location = New System.Drawing.Point(767, 2)
         Me.BtnSaveChanges.Name = "BtnSaveChanges"
         Me.BtnSaveChanges.Size = New System.Drawing.Size(122, 44)
         Me.BtnSaveChanges.TabIndex = 0
@@ -211,7 +212,7 @@ Partial Class FormRptDet
         Me.XTCReport.Location = New System.Drawing.Point(0, 103)
         Me.XTCReport.Name = "XTCReport"
         Me.XTCReport.SelectedTabPage = Me.XTPAccount
-        Me.XTCReport.Size = New System.Drawing.Size(784, 410)
+        Me.XTCReport.Size = New System.Drawing.Size(891, 410)
         Me.XTCReport.TabIndex = 2
         Me.XTCReport.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPAccount, Me.XTPReport})
         '
@@ -219,7 +220,7 @@ Partial Class FormRptDet
         '
         Me.XTPAccount.Controls.Add(Me.GCAccount)
         Me.XTPAccount.Name = "XTPAccount"
-        Me.XTPAccount.Size = New System.Drawing.Size(778, 382)
+        Me.XTPAccount.Size = New System.Drawing.Size(885, 382)
         Me.XTPAccount.Text = "Combine List"
         '
         'GCAccount
@@ -228,7 +229,7 @@ Partial Class FormRptDet
         Me.GCAccount.Location = New System.Drawing.Point(0, 0)
         Me.GCAccount.MainView = Me.GVAccount
         Me.GCAccount.Name = "GCAccount"
-        Me.GCAccount.Size = New System.Drawing.Size(778, 382)
+        Me.GCAccount.Size = New System.Drawing.Size(885, 382)
         Me.GCAccount.TabIndex = 0
         Me.GCAccount.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAccount})
         '
@@ -299,7 +300,7 @@ Partial Class FormRptDet
         '
         Me.XTPReport.Controls.Add(Me.GCRpt)
         Me.XTPReport.Name = "XTPReport"
-        Me.XTPReport.Size = New System.Drawing.Size(778, 382)
+        Me.XTPReport.Size = New System.Drawing.Size(885, 382)
         Me.XTPReport.Text = "Detail Report"
         '
         'GCRpt
@@ -308,7 +309,7 @@ Partial Class FormRptDet
         Me.GCRpt.Location = New System.Drawing.Point(0, 0)
         Me.GCRpt.MainView = Me.BGVRpt
         Me.GCRpt.Name = "GCRpt"
-        Me.GCRpt.Size = New System.Drawing.Size(778, 382)
+        Me.GCRpt.Size = New System.Drawing.Size(885, 382)
         Me.GCRpt.TabIndex = 0
         Me.GCRpt.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVRpt, Me.GVRpt})
         '
@@ -317,7 +318,7 @@ Partial Class FormRptDet
         Me.BGVRpt.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.BGVRpt.Appearance.HeaderPanel.Options.UseFont = True
         Me.BGVRpt.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandDescription, Me.gridBandGlobal})
-        Me.BGVRpt.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnBarcode, Me.BandedGridColumnSKU, Me.BandedGridColumnDescription, Me.BandedGridColumnSize, Me.BandedGridColumnTotalSOH, Me.BandedGridColumnValueSOH, Me.BandedGridColumnTotalScan, Me.BandedGridColumnValueScan, Me.BandedGridColumnTotalDiff, Me.BandedGridColumnValueDiff, Me.BandedGridColumnNote, Me.BandedGridColumnAccountDiff})
+        Me.BGVRpt.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnBarcode, Me.BandedGridColumnSKU, Me.BandedGridColumnDescription, Me.BandedGridColumnSize, Me.BandedGridColumnTotalSOH, Me.BandedGridColumnValueSOH, Me.BandedGridColumnTotalScan, Me.BandedGridColumnValueScan, Me.BandedGridColumnTotalDiff, Me.BandedGridColumnValueDiff, Me.BandedGridColumnNote, Me.BandedGridColumnAccountDiff, Me.BandedGridColumnno})
         Me.BGVRpt.GridControl = Me.GCRpt
         Me.BGVRpt.Name = "BGVRpt"
         Me.BGVRpt.OptionsBehavior.ReadOnly = True
@@ -328,13 +329,21 @@ Partial Class FormRptDet
         '
         'gridBandDescription
         '
+        Me.gridBandDescription.Columns.Add(Me.BandedGridColumnno)
         Me.gridBandDescription.Columns.Add(Me.BandedGridColumnBarcode)
         Me.gridBandDescription.Columns.Add(Me.BandedGridColumnSKU)
         Me.gridBandDescription.Columns.Add(Me.BandedGridColumnDescription)
         Me.gridBandDescription.Columns.Add(Me.BandedGridColumnSize)
         Me.gridBandDescription.Name = "gridBandDescription"
         Me.gridBandDescription.VisibleIndex = 0
-        Me.gridBandDescription.Width = 300
+        Me.gridBandDescription.Width = 375
+        '
+        'BandedGridColumnno
+        '
+        Me.BandedGridColumnno.Caption = "No"
+        Me.BandedGridColumnno.FieldName = "no"
+        Me.BandedGridColumnno.Name = "BandedGridColumnno"
+        Me.BandedGridColumnno.Visible = True
         '
         'BandedGridColumnBarcode
         '
@@ -466,7 +475,7 @@ Partial Class FormRptDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(784, 561)
+        Me.ClientSize = New System.Drawing.Size(891, 561)
         Me.Controls.Add(Me.XTCReport)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
@@ -537,8 +546,9 @@ Partial Class FormRptDet
     Friend WithEvents BandedGridColumnTotalDiff As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnValueDiff As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnNote As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandDescription As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBandGlobal As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnAccountDiff As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents gridBandDescription As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnno As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandGlobal As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class

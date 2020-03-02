@@ -200,6 +200,12 @@
     <Compile Include="FormRpt.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormRptDet.Designer.vb">
+      <DependentUpon>FormRptDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRptDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormRptNew.Designer.vb">
       <DependentUpon>FormRptNew.vb</DependentUpon>
     </Compile>
@@ -343,6 +349,12 @@
     <Compile Include="ReportFGStockBar.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportRpt.Designer.vb">
+      <DependentUpon>ReportRpt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportRpt.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportScan.Designer.vb">
       <DependentUpon>ReportScan.vb</DependentUpon>
     </Compile>
@@ -426,6 +438,9 @@
     <EmbeddedResource Include="FormRpt.resx">
       <DependentUpon>FormRpt.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormRptDet.resx">
+      <DependentUpon>FormRptDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormRptNew.resx">
       <DependentUpon>FormRptNew.vb</DependentUpon>
     </EmbeddedResource>
@@ -495,6 +510,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportFGStockBar.resx">
       <DependentUpon>ReportFGStockBar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportRpt.resx">
+      <DependentUpon>ReportRpt.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportScan.resx">
       <DependentUpon>ReportScan.vb</DependentUpon>

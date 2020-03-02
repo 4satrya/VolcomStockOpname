@@ -109,4 +109,24 @@
     Private Sub LEViewUser_EditValueChanged(sender As Object, e As EventArgs) Handles LEViewUser.EditValueChanged
         GCScan.DataSource = Nothing
     End Sub
+
+    Private Sub ToolStripCancel_Click(sender As Object, e As EventArgs) Handles ToolStripCancel.Click
+        FormConfirmation.ShowDialog()
+    End Sub
+
+    Private Sub GVScan_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GVScan.PopupMenuShowing
+        If GVScan.GetFocusedRowCellValue("id_report_status").ToString = "6" Then
+            ToolStripCancel.Visible = True
+        Else
+            ToolStripCancel.Visible = False
+        End If
+    End Sub
+
+    Private Sub GVCombine_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GVCombine.PopupMenuShowing
+        If GVCombine.GetFocusedRowCellValue("id_report_status").ToString = "6" Then
+            ToolStripCancel.Visible = True
+        Else
+            ToolStripCancel.Visible = False
+        End If
+    End Sub
 End Class

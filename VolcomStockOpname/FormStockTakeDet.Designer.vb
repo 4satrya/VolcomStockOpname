@@ -32,7 +32,8 @@ Partial Class FormStockTakeDet
         Me.SLEWHStockSum = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView14 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.GroupControlBottom = New DevExpress.XtraEditors.GroupControl()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelFontSize = New DevExpress.XtraEditors.PanelControl()
         Me.TxtFontSize = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
@@ -45,6 +46,9 @@ Partial Class FormStockTakeDet
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrintLetter = New DevExpress.XtraEditors.SimpleButton()
+        Me.PCNote = New DevExpress.XtraEditors.PanelControl()
+        Me.TextEditNote = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.XTCStockTake = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPScan = New DevExpress.XtraTab.XtraTabPage()
@@ -152,14 +156,19 @@ Partial Class FormStockTakeDet
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEWHStockSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView14, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl2.SuspendLayout()
+        CType(Me.GroupControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControlBottom.SuspendLayout()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
         CType(Me.PanelFontSize, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelFontSize.SuspendLayout()
         CType(Me.TxtFontSize.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtApp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEAck.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCNote, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCNote.SuspendLayout()
+        CType(Me.TextEditNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.XTCStockTake, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -300,24 +309,34 @@ Partial Class FormStockTakeDet
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Account"
         '
-        'GroupControl2
+        'GroupControlBottom
         '
-        Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControl2.Controls.Add(Me.PanelFontSize)
-        Me.GroupControl2.Controls.Add(Me.TxtApp)
-        Me.GroupControl2.Controls.Add(Me.LabelControl8)
-        Me.GroupControl2.Controls.Add(Me.LEAck)
-        Me.GroupControl2.Controls.Add(Me.LabelControl7)
-        Me.GroupControl2.Controls.Add(Me.BtnSetStatus)
-        Me.GroupControl2.Controls.Add(Me.LEStatus)
-        Me.GroupControl2.Controls.Add(Me.LabelControl5)
-        Me.GroupControl2.Controls.Add(Me.BtnPrint)
-        Me.GroupControl2.Controls.Add(Me.BtnPrintLetter)
-        Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 538)
-        Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(1183, 45)
-        Me.GroupControl2.TabIndex = 1
+        Me.GroupControlBottom.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControlBottom.Controls.Add(Me.PanelControl3)
+        Me.GroupControlBottom.Controls.Add(Me.PCNote)
+        Me.GroupControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.GroupControlBottom.Location = New System.Drawing.Point(0, 489)
+        Me.GroupControlBottom.Name = "GroupControlBottom"
+        Me.GroupControlBottom.Size = New System.Drawing.Size(1183, 94)
+        Me.GroupControlBottom.TabIndex = 1
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.PanelFontSize)
+        Me.PanelControl3.Controls.Add(Me.TxtApp)
+        Me.PanelControl3.Controls.Add(Me.LabelControl8)
+        Me.PanelControl3.Controls.Add(Me.LEAck)
+        Me.PanelControl3.Controls.Add(Me.LabelControl7)
+        Me.PanelControl3.Controls.Add(Me.BtnSetStatus)
+        Me.PanelControl3.Controls.Add(Me.LEStatus)
+        Me.PanelControl3.Controls.Add(Me.LabelControl5)
+        Me.PanelControl3.Controls.Add(Me.BtnPrint)
+        Me.PanelControl3.Controls.Add(Me.BtnPrintLetter)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelControl3.Location = New System.Drawing.Point(20, 2)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(1161, 45)
+        Me.PanelControl3.TabIndex = 8915
         '
         'PanelFontSize
         '
@@ -325,9 +344,9 @@ Partial Class FormStockTakeDet
         Me.PanelFontSize.Controls.Add(Me.TxtFontSize)
         Me.PanelFontSize.Controls.Add(Me.LabelControl9)
         Me.PanelFontSize.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelFontSize.Location = New System.Drawing.Point(856, 2)
+        Me.PanelFontSize.Location = New System.Drawing.Point(836, 0)
         Me.PanelFontSize.Name = "PanelFontSize"
-        Me.PanelFontSize.Size = New System.Drawing.Size(106, 41)
+        Me.PanelFontSize.Size = New System.Drawing.Size(106, 45)
         Me.PanelFontSize.TabIndex = 8913
         Me.PanelFontSize.Visible = False
         '
@@ -350,14 +369,14 @@ Partial Class FormStockTakeDet
         '
         'TxtApp
         '
-        Me.TxtApp.Location = New System.Drawing.Point(523, 13)
+        Me.TxtApp.Location = New System.Drawing.Point(513, 11)
         Me.TxtApp.Name = "TxtApp"
         Me.TxtApp.Size = New System.Drawing.Size(174, 20)
         Me.TxtApp.TabIndex = 8910
         '
         'LabelControl8
         '
-        Me.LabelControl8.Location = New System.Drawing.Point(455, 16)
+        Me.LabelControl8.Location = New System.Drawing.Point(445, 14)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(62, 13)
         Me.LabelControl8.TabIndex = 8909
@@ -365,7 +384,7 @@ Partial Class FormStockTakeDet
         '
         'LEAck
         '
-        Me.LEAck.Location = New System.Drawing.Point(275, 13)
+        Me.LEAck.Location = New System.Drawing.Point(260, 11)
         Me.LEAck.Name = "LEAck"
         Me.LEAck.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEAck.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_user", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("employee_name", "Name")})
@@ -375,7 +394,7 @@ Partial Class FormStockTakeDet
         '
         'LabelControl7
         '
-        Me.LabelControl7.Location = New System.Drawing.Point(191, 16)
+        Me.LabelControl7.Location = New System.Drawing.Point(176, 14)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(78, 13)
         Me.LabelControl7.TabIndex = 8907
@@ -383,7 +402,7 @@ Partial Class FormStockTakeDet
         '
         'BtnSetStatus
         '
-        Me.BtnSetStatus.Location = New System.Drawing.Point(703, 13)
+        Me.BtnSetStatus.Location = New System.Drawing.Point(693, 11)
         Me.BtnSetStatus.Name = "BtnSetStatus"
         Me.BtnSetStatus.Size = New System.Drawing.Size(53, 20)
         Me.BtnSetStatus.TabIndex = 8906
@@ -391,7 +410,7 @@ Partial Class FormStockTakeDet
         '
         'LEStatus
         '
-        Me.LEStatus.Location = New System.Drawing.Point(73, 13)
+        Me.LEStatus.Location = New System.Drawing.Point(53, 11)
         Me.LEStatus.Name = "LEStatus"
         Me.LEStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Status")})
@@ -400,7 +419,7 @@ Partial Class FormStockTakeDet
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(36, 16)
+        Me.LabelControl5.Location = New System.Drawing.Point(16, 14)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl5.TabIndex = 8904
@@ -410,9 +429,9 @@ Partial Class FormStockTakeDet
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(962, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(942, 0)
         Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(104, 41)
+        Me.BtnPrint.Size = New System.Drawing.Size(104, 45)
         Me.BtnPrint.TabIndex = 1
         Me.BtnPrint.Text = "Print (F4)"
         '
@@ -420,12 +439,38 @@ Partial Class FormStockTakeDet
         '
         Me.BtnPrintLetter.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrintLetter.Image = CType(resources.GetObject("BtnPrintLetter.Image"), System.Drawing.Image)
-        Me.BtnPrintLetter.Location = New System.Drawing.Point(1066, 2)
+        Me.BtnPrintLetter.Location = New System.Drawing.Point(1046, 0)
         Me.BtnPrintLetter.Name = "BtnPrintLetter"
-        Me.BtnPrintLetter.Size = New System.Drawing.Size(115, 41)
+        Me.BtnPrintLetter.Size = New System.Drawing.Size(115, 45)
         Me.BtnPrintLetter.TabIndex = 8914
         Me.BtnPrintLetter.Text = "Print - Letter"
         Me.BtnPrintLetter.Visible = False
+        '
+        'PCNote
+        '
+        Me.PCNote.Controls.Add(Me.TextEditNote)
+        Me.PCNote.Controls.Add(Me.LabelControl10)
+        Me.PCNote.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PCNote.Location = New System.Drawing.Point(20, 47)
+        Me.PCNote.Name = "PCNote"
+        Me.PCNote.Size = New System.Drawing.Size(1161, 45)
+        Me.PCNote.TabIndex = 8916
+        Me.PCNote.Visible = False
+        '
+        'TextEditNote
+        '
+        Me.TextEditNote.Location = New System.Drawing.Point(53, 13)
+        Me.TextEditNote.Name = "TextEditNote"
+        Me.TextEditNote.Size = New System.Drawing.Size(634, 20)
+        Me.TextEditNote.TabIndex = 8912
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Location = New System.Drawing.Point(16, 16)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl10.TabIndex = 8911
+        Me.LabelControl10.Text = "Note"
         '
         'GroupControl3
         '
@@ -434,7 +479,7 @@ Partial Class FormStockTakeDet
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl3.Location = New System.Drawing.Point(0, 97)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(1183, 441)
+        Me.GroupControl3.Size = New System.Drawing.Size(1183, 392)
         Me.GroupControl3.TabIndex = 2
         '
         'XTCStockTake
@@ -443,7 +488,7 @@ Partial Class FormStockTakeDet
         Me.XTCStockTake.Location = New System.Drawing.Point(20, 2)
         Me.XTCStockTake.Name = "XTCStockTake"
         Me.XTCStockTake.SelectedTabPage = Me.XTPScan
-        Me.XTCStockTake.Size = New System.Drawing.Size(1161, 437)
+        Me.XTCStockTake.Size = New System.Drawing.Size(1161, 388)
         Me.XTCStockTake.TabIndex = 0
         Me.XTCStockTake.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScan, Me.XTPSummary, Me.XTPCondition, Me.XTPCompare})
         '
@@ -452,7 +497,7 @@ Partial Class FormStockTakeDet
         Me.XTPScan.Controls.Add(Me.GCScan)
         Me.XTPScan.Controls.Add(Me.PanelControlNav)
         Me.XTPScan.Name = "XTPScan"
-        Me.XTPScan.Size = New System.Drawing.Size(1155, 409)
+        Me.XTPScan.Size = New System.Drawing.Size(1155, 360)
         Me.XTPScan.Text = "Scan Result"
         '
         'GCScan
@@ -463,7 +508,7 @@ Partial Class FormStockTakeDet
         Me.GCScan.MainView = Me.GVScan
         Me.GCScan.Name = "GCScan"
         Me.GCScan.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCScan.Size = New System.Drawing.Size(1155, 363)
+        Me.GCScan.Size = New System.Drawing.Size(1155, 314)
         Me.GCScan.TabIndex = 1
         Me.GCScan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScan})
         '
@@ -831,7 +876,7 @@ Partial Class FormStockTakeDet
         '
         Me.XTPSummary.Controls.Add(Me.GCSummaryScan)
         Me.XTPSummary.Name = "XTPSummary"
-        Me.XTPSummary.Size = New System.Drawing.Size(1155, 409)
+        Me.XTPSummary.Size = New System.Drawing.Size(1155, 360)
         Me.XTPSummary.Text = "Summary By Product"
         '
         'GCSummaryScan
@@ -841,7 +886,7 @@ Partial Class FormStockTakeDet
         Me.GCSummaryScan.MainView = Me.GVSummaryScan
         Me.GCSummaryScan.Name = "GCSummaryScan"
         Me.GCSummaryScan.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1})
-        Me.GCSummaryScan.Size = New System.Drawing.Size(1155, 409)
+        Me.GCSummaryScan.Size = New System.Drawing.Size(1155, 360)
         Me.GCSummaryScan.TabIndex = 1
         Me.GCSummaryScan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummaryScan})
         '
@@ -966,7 +1011,7 @@ Partial Class FormStockTakeDet
         '
         Me.XTPCondition.Controls.Add(Me.GCCat)
         Me.XTPCondition.Name = "XTPCondition"
-        Me.XTPCondition.Size = New System.Drawing.Size(1155, 409)
+        Me.XTPCondition.Size = New System.Drawing.Size(1155, 360)
         Me.XTPCondition.Text = "Summary By Category"
         '
         'GCCat
@@ -976,7 +1021,7 @@ Partial Class FormStockTakeDet
         Me.GCCat.MainView = Me.GVCat
         Me.GCCat.Name = "GCCat"
         Me.GCCat.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit2})
-        Me.GCCat.Size = New System.Drawing.Size(1155, 409)
+        Me.GCCat.Size = New System.Drawing.Size(1155, 360)
         Me.GCCat.TabIndex = 2
         Me.GCCat.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCat})
         '
@@ -1035,7 +1080,7 @@ Partial Class FormStockTakeDet
         Me.XTPCompare.Controls.Add(Me.PanelControl1)
         Me.XTPCompare.Name = "XTPCompare"
         Me.XTPCompare.PageVisible = False
-        Me.XTPCompare.Size = New System.Drawing.Size(1155, 409)
+        Me.XTPCompare.Size = New System.Drawing.Size(1155, 360)
         Me.XTPCompare.Text = "Compare Stock"
         '
         'GCCompare
@@ -1046,7 +1091,7 @@ Partial Class FormStockTakeDet
         Me.GCCompare.MainView = Me.BGVCompare
         Me.GCCompare.Name = "GCCompare"
         Me.GCCompare.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit3, Me.RepositoryItemTextEdit4, Me.RepositoryItemCheckEdit2})
-        Me.GCCompare.Size = New System.Drawing.Size(1155, 367)
+        Me.GCCompare.Size = New System.Drawing.Size(1155, 318)
         Me.GCCompare.TabIndex = 0
         Me.GCCompare.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVCompare})
         '
@@ -1394,7 +1439,7 @@ Partial Class FormStockTakeDet
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1183, 583)
         Me.Controls.Add(Me.GroupControl3)
-        Me.Controls.Add(Me.GroupControl2)
+        Me.Controls.Add(Me.GroupControlBottom)
         Me.Controls.Add(Me.GroupControl1)
         Me.KeyPreview = True
         Me.MinimizeBox = False
@@ -1414,9 +1459,11 @@ Partial Class FormStockTakeDet
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEWHStockSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView14, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl2.ResumeLayout(False)
-        Me.GroupControl2.PerformLayout()
+        CType(Me.GroupControlBottom, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControlBottom.ResumeLayout(False)
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        Me.PanelControl3.PerformLayout()
         CType(Me.PanelFontSize, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelFontSize.ResumeLayout(False)
         Me.PanelFontSize.PerformLayout()
@@ -1424,6 +1471,10 @@ Partial Class FormStockTakeDet
         CType(Me.TxtApp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEAck.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCNote, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCNote.ResumeLayout(False)
+        Me.PCNote.PerformLayout()
+        CType(Me.TextEditNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         CType(Me.XTCStockTake, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1465,7 +1516,7 @@ Partial Class FormStockTakeDet
     End Sub
 
     Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents GroupControlBottom As DevExpress.XtraEditors.GroupControl
     Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents XTCStockTake As DevExpress.XtraTab.XtraTabControl
@@ -1585,4 +1636,8 @@ Partial Class FormStockTakeDet
     Friend WithEvents BtnPrintLetter As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents Timer1 As Timer
     Friend WithEvents BtnAddToRpt As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCNote As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents TextEditNote As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
 End Class

@@ -19,6 +19,7 @@ Partial Class FormVerStockTake
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormVerStockTake))
         Me.XTCStockTake = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPScan = New DevExpress.XtraTab.XtraTabPage()
@@ -40,6 +41,9 @@ Partial Class FormVerStockTake
         Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRemarkRef = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.LEViewUser = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnImport = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExport = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
@@ -66,9 +70,8 @@ Partial Class FormVerStockTake
         Me.BtnRefCom = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrintCom = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreateCom = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.LEViewUser = New DevExpress.XtraEditors.LookUpEdit()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ToolStripCancel = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCStockTake, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStockTake.SuspendLayout()
         Me.XTPScan.SuspendLayout()
@@ -77,6 +80,9 @@ Partial Class FormVerStockTake
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.LEViewUser.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabPage2.SuspendLayout()
         CType(Me.GCCombine, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,9 +90,7 @@ Partial Class FormVerStockTake
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
-        CType(Me.LEViewUser.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCStockTake
@@ -110,6 +114,7 @@ Partial Class FormVerStockTake
         '
         'GCScan
         '
+        Me.GCScan.ContextMenuStrip = Me.ContextMenuStrip
         Me.GCScan.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCScan.Location = New System.Drawing.Point(0, 42)
         Me.GCScan.MainView = Me.GVScan
@@ -295,6 +300,34 @@ Partial Class FormVerStockTake
         Me.PanelControl1.Size = New System.Drawing.Size(1044, 42)
         Me.PanelControl1.TabIndex = 1
         '
+        'PanelControl3
+        '
+        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.LEViewUser)
+        Me.PanelControl3.Controls.Add(Me.LabelControl1)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl3.Location = New System.Drawing.Point(239, 2)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(204, 38)
+        Me.PanelControl3.TabIndex = 10
+        '
+        'LEViewUser
+        '
+        Me.LEViewUser.Location = New System.Drawing.Point(68, 9)
+        Me.LEViewUser.Name = "LEViewUser"
+        Me.LEViewUser.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEViewUser.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_user_type", "id_user_type", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("type_user", "Type")})
+        Me.LEViewUser.Size = New System.Drawing.Size(131, 20)
+        Me.LEViewUser.TabIndex = 7
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(8, 12)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(54, 13)
+        Me.LabelControl1.TabIndex = 8
+        Me.LabelControl1.Text = "Created By"
+        '
         'BtnImport
         '
         Me.BtnImport.Dock = System.Windows.Forms.DockStyle.Right
@@ -370,17 +403,18 @@ Partial Class FormVerStockTake
         Me.XtraTabPage2.Controls.Add(Me.GCCombine)
         Me.XtraTabPage2.Controls.Add(Me.PanelControl2)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(867, 490)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1044, 490)
         Me.XtraTabPage2.Text = "Combine"
         '
         'GCCombine
         '
+        Me.GCCombine.ContextMenuStrip = Me.ContextMenuStrip
         Me.GCCombine.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCCombine.Location = New System.Drawing.Point(0, 42)
         Me.GCCombine.MainView = Me.GVCombine
         Me.GCCombine.Name = "GCCombine"
         Me.GCCombine.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2})
-        Me.GCCombine.Size = New System.Drawing.Size(867, 448)
+        Me.GCCombine.Size = New System.Drawing.Size(1044, 448)
         Me.GCCombine.TabIndex = 1
         Me.GCCombine.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCombine})
         '
@@ -520,14 +554,14 @@ Partial Class FormVerStockTake
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(867, 42)
+        Me.PanelControl2.Size = New System.Drawing.Size(1044, 42)
         Me.PanelControl2.TabIndex = 2
         '
         'BtnRefCom
         '
         Me.BtnRefCom.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnRefCom.Image = CType(resources.GetObject("BtnRefCom.Image"), System.Drawing.Image)
-        Me.BtnRefCom.Location = New System.Drawing.Point(568, 2)
+        Me.BtnRefCom.Location = New System.Drawing.Point(745, 2)
         Me.BtnRefCom.Name = "BtnRefCom"
         Me.BtnRefCom.Size = New System.Drawing.Size(97, 38)
         Me.BtnRefCom.TabIndex = 2
@@ -537,7 +571,7 @@ Partial Class FormVerStockTake
         '
         Me.BtnPrintCom.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrintCom.Image = CType(resources.GetObject("BtnPrintCom.Image"), System.Drawing.Image)
-        Me.BtnPrintCom.Location = New System.Drawing.Point(665, 2)
+        Me.BtnPrintCom.Location = New System.Drawing.Point(842, 2)
         Me.BtnPrintCom.Name = "BtnPrintCom"
         Me.BtnPrintCom.Size = New System.Drawing.Size(91, 38)
         Me.BtnPrintCom.TabIndex = 4
@@ -547,39 +581,23 @@ Partial Class FormVerStockTake
         '
         Me.BtnCreateCom.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCreateCom.Image = CType(resources.GetObject("BtnCreateCom.Image"), System.Drawing.Image)
-        Me.BtnCreateCom.Location = New System.Drawing.Point(756, 2)
+        Me.BtnCreateCom.Location = New System.Drawing.Point(933, 2)
         Me.BtnCreateCom.Name = "BtnCreateCom"
         Me.BtnCreateCom.Size = New System.Drawing.Size(109, 38)
         Me.BtnCreateCom.TabIndex = 3
         Me.BtnCreateCom.Text = "Create New "
         '
-        'PanelControl3
+        'ContextMenuStrip
         '
-        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl3.Controls.Add(Me.LEViewUser)
-        Me.PanelControl3.Controls.Add(Me.LabelControl1)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl3.Location = New System.Drawing.Point(239, 2)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(204, 38)
-        Me.PanelControl3.TabIndex = 10
+        Me.ContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripCancel})
+        Me.ContextMenuStrip.Name = "ContextMenuStrip"
+        Me.ContextMenuStrip.Size = New System.Drawing.Size(111, 26)
         '
-        'LEViewUser
+        'ToolStripCancel
         '
-        Me.LEViewUser.Location = New System.Drawing.Point(68, 9)
-        Me.LEViewUser.Name = "LEViewUser"
-        Me.LEViewUser.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEViewUser.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_user_type", "id_user_type", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("type_user", "Type")})
-        Me.LEViewUser.Size = New System.Drawing.Size(131, 20)
-        Me.LEViewUser.TabIndex = 7
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(8, 12)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(54, 13)
-        Me.LabelControl1.TabIndex = 8
-        Me.LabelControl1.Text = "Created By"
+        Me.ToolStripCancel.Name = "ToolStripCancel"
+        Me.ToolStripCancel.Size = New System.Drawing.Size(152, 22)
+        Me.ToolStripCancel.Text = "Cancel"
         '
         'FormVerStockTake
         '
@@ -599,6 +617,10 @@ Partial Class FormVerStockTake
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        Me.PanelControl3.PerformLayout()
+        CType(Me.LEViewUser.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabPage2.ResumeLayout(False)
         CType(Me.GCCombine, System.ComponentModel.ISupportInitialize).EndInit()
@@ -606,10 +628,7 @@ Partial Class FormVerStockTake
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
-        Me.PanelControl3.PerformLayout()
-        CType(Me.LEViewUser.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -663,4 +682,6 @@ Partial Class FormVerStockTake
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LEViewUser As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents ContextMenuStrip As ContextMenuStrip
+    Friend WithEvents ToolStripCancel As ToolStripMenuItem
 End Class

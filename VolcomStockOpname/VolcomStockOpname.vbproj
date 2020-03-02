@@ -116,6 +116,12 @@
     <Compile Include="FormAuth.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormConfirmation.Designer.vb">
+      <DependentUpon>FormConfirmation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormConfirmation.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormDatabase.Designer.vb">
       <DependentUpon>FormDatabase.vb</DependentUpon>
     </Compile>
@@ -228,6 +234,12 @@
       <DependentUpon>FormStockTake.vb</DependentUpon>
     </Compile>
     <Compile Include="FormStockTake.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStockTakeCancel.Designer.vb">
+      <DependentUpon>FormStockTakeCancel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockTakeCancel.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormStockTakeCombine.Designer.vb">
@@ -396,6 +408,9 @@
     <EmbeddedResource Include="FormAuth.resx">
       <DependentUpon>FormAuth.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormConfirmation.resx">
+      <DependentUpon>FormConfirmation.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDatabase.resx">
       <DependentUpon>FormDatabase.vb</DependentUpon>
     </EmbeddedResource>
@@ -452,6 +467,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockTake.resx">
       <DependentUpon>FormStockTake.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStockTakeCancel.resx">
+      <DependentUpon>FormStockTakeCancel.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockTakeCombine.resx">
       <DependentUpon>FormStockTakeCombine.vb</DependentUpon>

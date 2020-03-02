@@ -19,10 +19,13 @@ Partial Class FormStockTake
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormStockTake))
         Me.XTCStockTake = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPScan = New DevExpress.XtraTab.XtraTabPage()
         Me.GCScan = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ToolStripCancel = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVScan = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnId = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNumberScan = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -72,6 +75,7 @@ Partial Class FormStockTake
         Me.XTCStockTake.SuspendLayout()
         Me.XTPScan.SuspendLayout()
         CType(Me.GCScan, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip.SuspendLayout()
         CType(Me.GVScan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -109,6 +113,7 @@ Partial Class FormStockTake
         '
         'GCScan
         '
+        Me.GCScan.ContextMenuStrip = Me.ContextMenuStrip
         Me.GCScan.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCScan.Location = New System.Drawing.Point(0, 42)
         Me.GCScan.MainView = Me.GVScan
@@ -117,6 +122,18 @@ Partial Class FormStockTake
         Me.GCScan.Size = New System.Drawing.Size(1116, 452)
         Me.GCScan.TabIndex = 0
         Me.GCScan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScan})
+        '
+        'ContextMenuStrip
+        '
+        Me.ContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripCancel})
+        Me.ContextMenuStrip.Name = "ContextMenuStrip"
+        Me.ContextMenuStrip.Size = New System.Drawing.Size(111, 26)
+        '
+        'ToolStripCancel
+        '
+        Me.ToolStripCancel.Name = "ToolStripCancel"
+        Me.ToolStripCancel.Size = New System.Drawing.Size(110, 22)
+        Me.ToolStripCancel.Text = "Cancel"
         '
         'GVScan
         '
@@ -379,6 +396,7 @@ Partial Class FormStockTake
         '
         'GCCombine
         '
+        Me.GCCombine.ContextMenuStrip = Me.ContextMenuStrip
         Me.GCCombine.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCCombine.Location = New System.Drawing.Point(0, 42)
         Me.GCCombine.MainView = Me.GVCombine
@@ -570,6 +588,7 @@ Partial Class FormStockTake
         Me.XTCStockTake.ResumeLayout(False)
         Me.XTPScan.ResumeLayout(False)
         CType(Me.GCScan, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip.ResumeLayout(False)
         CType(Me.GVScan, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -637,4 +656,6 @@ Partial Class FormStockTake
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LEViewUser As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents ContextMenuStrip As ContextMenuStrip
+    Friend WithEvents ToolStripCancel As ToolStripMenuItem
 End Class

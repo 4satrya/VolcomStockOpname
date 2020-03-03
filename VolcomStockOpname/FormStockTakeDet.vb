@@ -416,6 +416,12 @@
                 Tool.ShowPreviewDialog()
                 Cursor = Cursors.Default
             Else 'stock take IA reguler
+                If id_report_status = "1" And is_combine = "2" Then
+                    stopCustom("Can't print, please finalize status first")
+                    Cursor = Cursors.Default
+                    Exit Sub
+                End If
+
                 Cursor = Cursors.WaitCursor
                 GVScan.BestFitColumns()
                 ReportScan.dt = GCScan.DataSource
@@ -456,11 +462,11 @@
             End If
         ElseIf XTCStockTake.SelectedTabPageIndex = 1 Then
             If FormStockTake.is_pre = "1" Then 'wh pre stock take
-                'If id_report_status = "1" Then
-                '    stopCustom("Can't print, please finalize status first")
-                '    Cursor = Cursors.Default
-                '    Exit Sub
-                'End If
+                If id_report_status = "1" And is_combine = "2" Then
+                    stopCustom("Can't print, please finalize status first")
+                    Cursor = Cursors.Default
+                    Exit Sub
+                End If
 
                 Cursor = Cursors.WaitCursor
                 GVSummaryScan.BestFitColumns()
@@ -494,6 +500,12 @@
                 Tool.ShowPreviewDialog()
                 Cursor = Cursors.Default
             Else 'IA Reguler
+                If id_report_status = "1" And is_combine = "2" Then
+                    stopCustom("Can't print, please finalize status first")
+                    Cursor = Cursors.Default
+                    Exit Sub
+                End If
+
                 Cursor = Cursors.WaitCursor
                 GVSummaryScan.BestFitColumns()
                 ReportScan.dt = GCSummaryScan.DataSource
@@ -993,6 +1005,12 @@
 
     Private Sub BtnPrintLetter_Click(sender As Object, e As EventArgs) Handles BtnPrintLetter.Click
         If XTCStockTake.SelectedTabPageIndex = 0 Then
+            If id_report_status = "1" And is_combine = "2" Then
+                stopCustom("Can't print, please finalize status first")
+                Cursor = Cursors.Default
+                Exit Sub
+            End If
+
             Cursor = Cursors.WaitCursor
             GVScan.BestFitColumns()
             ReportScanVerStockTakeSlip.dt = GCScan.DataSource
@@ -1027,6 +1045,12 @@
             Tool.ShowPreviewDialog()
             Cursor = Cursors.Default
         ElseIf XTCStockTake.SelectedTabPageIndex = 1 Then
+            If id_report_status = "1" And is_combine = "2" Then
+                stopCustom("Can't print, please finalize status first")
+                Cursor = Cursors.Default
+                Exit Sub
+            End If
+
             Cursor = Cursors.WaitCursor
             GVSummaryScan.BestFitColumns()
             ReportScanVerStockTakeSlip.dt = GCSummaryScan.DataSource

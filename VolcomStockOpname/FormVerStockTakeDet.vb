@@ -175,8 +175,16 @@
                 w1 += "v.id_st_trans=" + dr.Rows(i)("id_st_trans").ToString + " "
                 w2 += "pd.id_st_trans=" + dr.Rows(i)("id_st_trans").ToString + " "
             Next
-            w1 = "(" + w1 + ")"
-            w2 = "(" + w2 + ")"
+            If w1 <> "" Then
+                w1 = "(" + w1 + ")"
+            Else
+                w1 = "v.id_st_trans=-1 "
+            End If
+            If w2 <> "" Then
+                w2 = "(" + w2 + ")"
+            Else
+                w2 = "pd.id_st_trans=-1 "
+            End If
         Else
             w1 = "v.id_st_trans=" + id_st_trans + " "
             w2 = "pd.id_st_trans=" + id_st_trans + " "

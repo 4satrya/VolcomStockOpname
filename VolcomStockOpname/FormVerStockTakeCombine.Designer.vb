@@ -29,6 +29,7 @@ Partial Class FormVerStockTakeCombine
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnOK = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.CENoScan = New DevExpress.XtraEditors.CheckEdit()
         Me.MERemark = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.GCCheck = New DevExpress.XtraGrid.GridControl()
@@ -38,6 +39,7 @@ Partial Class FormVerStockTakeCombine
         Me.GridColumnResult = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnId = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnst_trans_ver_number = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -47,6 +49,7 @@ Partial Class FormVerStockTakeCombine
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.CENoScan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCheck, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCheck, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -104,7 +107,7 @@ Partial Class FormVerStockTakeCombine
         Me.PanelControl2.Controls.Add(Me.BtnCancel)
         Me.PanelControl2.Controls.Add(Me.BtnOK)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 336)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 356)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(484, 39)
         Me.PanelControl2.TabIndex = 3
@@ -131,13 +134,22 @@ Partial Class FormVerStockTakeCombine
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.CENoScan)
         Me.PanelControl3.Controls.Add(Me.MERemark)
         Me.PanelControl3.Controls.Add(Me.LabelControl2)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 281)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 279)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(484, 55)
+        Me.PanelControl3.Size = New System.Drawing.Size(484, 77)
         Me.PanelControl3.TabIndex = 5
+        '
+        'CENoScan
+        '
+        Me.CENoScan.Location = New System.Drawing.Point(293, 48)
+        Me.CENoScan.Name = "CENoScan"
+        Me.CENoScan.Properties.Caption = "Compare without scanned data"
+        Me.CENoScan.Size = New System.Drawing.Size(173, 19)
+        Me.CENoScan.TabIndex = 8909
         '
         'MERemark
         '
@@ -161,13 +173,13 @@ Partial Class FormVerStockTakeCombine
         Me.GCCheck.MainView = Me.GVCheck
         Me.GCCheck.Name = "GCCheck"
         Me.GCCheck.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCCheck.Size = New System.Drawing.Size(484, 239)
+        Me.GCCheck.Size = New System.Drawing.Size(484, 237)
         Me.GCCheck.TabIndex = 6
         Me.GCCheck.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCheck})
         '
         'GVCheck
         '
-        Me.GVCheck.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNumber, Me.GridColumnQty, Me.GridColumnResult, Me.GridColumnId})
+        Me.GVCheck.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNumber, Me.GridColumnQty, Me.GridColumnResult, Me.GridColumnId, Me.GridColumnst_trans_ver_number})
         Me.GVCheck.GridControl = Me.GCCheck
         Me.GVCheck.Name = "GVCheck"
         Me.GVCheck.OptionsView.ShowFooter = True
@@ -175,12 +187,12 @@ Partial Class FormVerStockTakeCombine
         '
         'GridColumnNumber
         '
-        Me.GridColumnNumber.Caption = "Number"
+        Me.GridColumnNumber.Caption = "Ref Number"
         Me.GridColumnNumber.FieldName = "st_trans_number"
         Me.GridColumnNumber.Name = "GridColumnNumber"
         Me.GridColumnNumber.OptionsColumn.AllowEdit = False
         Me.GridColumnNumber.Visible = True
-        Me.GridColumnNumber.VisibleIndex = 0
+        Me.GridColumnNumber.VisibleIndex = 1
         '
         'GridColumnQty
         '
@@ -192,7 +204,7 @@ Partial Class FormVerStockTakeCombine
         Me.GridColumnQty.OptionsColumn.AllowEdit = False
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 1
+        Me.GridColumnQty.VisibleIndex = 2
         '
         'GridColumnResult
         '
@@ -203,7 +215,7 @@ Partial Class FormVerStockTakeCombine
         Me.GridColumnResult.FieldName = "is_select"
         Me.GridColumnResult.Name = "GridColumnResult"
         Me.GridColumnResult.Visible = True
-        Me.GridColumnResult.VisibleIndex = 2
+        Me.GridColumnResult.VisibleIndex = 3
         '
         'RepositoryItemCheckEdit1
         '
@@ -219,11 +231,19 @@ Partial Class FormVerStockTakeCombine
         Me.GridColumnId.Name = "GridColumnId"
         Me.GridColumnId.OptionsColumn.AllowEdit = False
         '
+        'GridColumnst_trans_ver_number
+        '
+        Me.GridColumnst_trans_ver_number.Caption = "Number"
+        Me.GridColumnst_trans_ver_number.FieldName = "st_trans_ver_number"
+        Me.GridColumnst_trans_ver_number.Name = "GridColumnst_trans_ver_number"
+        Me.GridColumnst_trans_ver_number.Visible = True
+        Me.GridColumnst_trans_ver_number.VisibleIndex = 0
+        '
         'FormVerStockTakeCombine
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(484, 375)
+        Me.ClientSize = New System.Drawing.Size(484, 395)
         Me.Controls.Add(Me.GCCheck)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControl2)
@@ -245,6 +265,7 @@ Partial Class FormVerStockTakeCombine
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.CENoScan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCCheck, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCheck, System.ComponentModel.ISupportInitialize).EndInit()
@@ -271,4 +292,6 @@ Partial Class FormVerStockTakeCombine
     Friend WithEvents GridColumnResult As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumnId As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CENoScan As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GridColumnst_trans_ver_number As DevExpress.XtraGrid.Columns.GridColumn
 End Class

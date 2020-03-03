@@ -71,6 +71,8 @@ Partial Class FormStockTake
         Me.BtnPrintCom = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreateCom = New DevExpress.XtraEditors.SimpleButton()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCStockTake, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStockTake.SuspendLayout()
         Me.XTPScan.SuspendLayout()
@@ -137,7 +139,7 @@ Partial Class FormStockTake
         '
         'GVScan
         '
-        Me.GVScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnNumberScan, Me.GridColumnCreatedScan, Me.GridColumnPreparedBy, Me.GridColumnLastUpdate, Me.GridColumnUpdatedBy, Me.GridColumn1, Me.GridColumnComp, Me.GridColumnqty, Me.GridColumnIsSelect, Me.GridColumnIdReportStatus, Me.GridColumnRemark})
+        Me.GVScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnNumberScan, Me.GridColumnCreatedScan, Me.GridColumnPreparedBy, Me.GridColumnLastUpdate, Me.GridColumnUpdatedBy, Me.GridColumn1, Me.GridColumn11, Me.GridColumnComp, Me.GridColumnqty, Me.GridColumnIsSelect, Me.GridColumnIdReportStatus, Me.GridColumnRemark})
         Me.GVScan.GridControl = Me.GCScan
         Me.GVScan.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnqty, "{0:n0}")})
         Me.GVScan.Name = "GVScan"
@@ -249,7 +251,7 @@ Partial Class FormStockTake
         Me.GridColumnIsSelect.FieldName = "is_select"
         Me.GridColumnIsSelect.Name = "GridColumnIsSelect"
         Me.GridColumnIsSelect.Visible = True
-        Me.GridColumnIsSelect.VisibleIndex = 9
+        Me.GridColumnIsSelect.VisibleIndex = 10
         Me.GridColumnIsSelect.Width = 70
         '
         'RepositoryItemCheckEdit1
@@ -408,7 +410,7 @@ Partial Class FormStockTake
         '
         'GVCombine
         '
-        Me.GVCombine.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn12, Me.GridColumnRmk})
+        Me.GVCombine.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn13, Me.GridColumn9, Me.GridColumn10, Me.GridColumn12, Me.GridColumnRmk})
         Me.GVCombine.GridControl = Me.GCCombine
         Me.GVCombine.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumn10, "{0:n0}")})
         Me.GVCombine.Name = "GVCombine"
@@ -575,6 +577,24 @@ Partial Class FormStockTake
         Me.BtnCreateCom.TabIndex = 3
         Me.BtnCreateCom.Text = "Create New "
         '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Status Note"
+        Me.GridColumn11.FieldName = "report_status_note"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsColumn.AllowEdit = False
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 9
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Status Note"
+        Me.GridColumn13.FieldName = "report_status_note"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.OptionsColumn.AllowEdit = False
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 9
+        '
         'FormStockTake
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -658,4 +678,6 @@ Partial Class FormStockTake
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents ContextMenuStrip As ContextMenuStrip
     Friend WithEvents ToolStripCancel As ToolStripMenuItem
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -24,6 +24,8 @@ Partial Class FormVerStockTake
         Me.XTCStockTake = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPScan = New DevExpress.XtraTab.XtraTabPage()
         Me.GCScan = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ToolStripCancel = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVScan = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnId = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNumberScan = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -70,12 +72,13 @@ Partial Class FormVerStockTake
         Me.BtnRefCom = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrintCom = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreateCom = New DevExpress.XtraEditors.SimpleButton()
-        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ToolStripCancel = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCStockTake, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStockTake.SuspendLayout()
         Me.XTPScan.SuspendLayout()
         CType(Me.GCScan, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip.SuspendLayout()
         CType(Me.GVScan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -90,7 +93,6 @@ Partial Class FormVerStockTake
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        Me.ContextMenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCStockTake
@@ -124,9 +126,21 @@ Partial Class FormVerStockTake
         Me.GCScan.TabIndex = 0
         Me.GCScan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScan})
         '
+        'ContextMenuStrip
+        '
+        Me.ContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripCancel})
+        Me.ContextMenuStrip.Name = "ContextMenuStrip"
+        Me.ContextMenuStrip.Size = New System.Drawing.Size(111, 26)
+        '
+        'ToolStripCancel
+        '
+        Me.ToolStripCancel.Name = "ToolStripCancel"
+        Me.ToolStripCancel.Size = New System.Drawing.Size(110, 22)
+        Me.ToolStripCancel.Text = "Cancel"
+        '
         'GVScan
         '
-        Me.GVScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnNumberScan, Me.GridColumn11, Me.GridColumnCreatedScan, Me.GridColumnPreparedBy, Me.GridColumnLastUpdate, Me.GridColumnUpdatedBy, Me.GridColumn1, Me.GridColumnComp, Me.GridColumnqty, Me.GridColumnIsSelect, Me.GridColumnIdReportStatus, Me.GridColumnRemark, Me.GridColumnRemarkRef})
+        Me.GVScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnNumberScan, Me.GridColumn11, Me.GridColumnCreatedScan, Me.GridColumnPreparedBy, Me.GridColumnLastUpdate, Me.GridColumnUpdatedBy, Me.GridColumn1, Me.GridColumn13, Me.GridColumnComp, Me.GridColumnqty, Me.GridColumnIsSelect, Me.GridColumnIdReportStatus, Me.GridColumnRemark, Me.GridColumnRemarkRef})
         Me.GVScan.GridControl = Me.GCScan
         Me.GVScan.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnqty, "{0:n0}")})
         Me.GVScan.Name = "GVScan"
@@ -248,7 +262,7 @@ Partial Class FormVerStockTake
         Me.GridColumnIsSelect.FieldName = "is_select"
         Me.GridColumnIsSelect.Name = "GridColumnIsSelect"
         Me.GridColumnIsSelect.Visible = True
-        Me.GridColumnIsSelect.VisibleIndex = 11
+        Me.GridColumnIsSelect.VisibleIndex = 12
         Me.GridColumnIsSelect.Width = 49
         '
         'RepositoryItemCheckEdit1
@@ -420,7 +434,7 @@ Partial Class FormVerStockTake
         '
         'GVCombine
         '
-        Me.GVCombine.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn12, Me.GridColumnRmk})
+        Me.GVCombine.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn14, Me.GridColumn9, Me.GridColumn10, Me.GridColumn12, Me.GridColumnRmk})
         Me.GVCombine.GridControl = Me.GCCombine
         Me.GVCombine.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumn10, "{0:n0}")})
         Me.GVCombine.Name = "GVCombine"
@@ -587,17 +601,23 @@ Partial Class FormVerStockTake
         Me.BtnCreateCom.TabIndex = 3
         Me.BtnCreateCom.Text = "Create New "
         '
-        'ContextMenuStrip
+        'GridColumn13
         '
-        Me.ContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripCancel})
-        Me.ContextMenuStrip.Name = "ContextMenuStrip"
-        Me.ContextMenuStrip.Size = New System.Drawing.Size(111, 26)
+        Me.GridColumn13.Caption = "Status Note"
+        Me.GridColumn13.FieldName = "report_status_note"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.OptionsColumn.AllowEdit = False
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 11
         '
-        'ToolStripCancel
+        'GridColumn14
         '
-        Me.ToolStripCancel.Name = "ToolStripCancel"
-        Me.ToolStripCancel.Size = New System.Drawing.Size(152, 22)
-        Me.ToolStripCancel.Text = "Cancel"
+        Me.GridColumn14.Caption = "Status Note"
+        Me.GridColumn14.FieldName = "report_status_note"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.OptionsColumn.AllowEdit = False
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 9
         '
         'FormVerStockTake
         '
@@ -613,6 +633,7 @@ Partial Class FormVerStockTake
         Me.XTCStockTake.ResumeLayout(False)
         Me.XTPScan.ResumeLayout(False)
         CType(Me.GCScan, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip.ResumeLayout(False)
         CType(Me.GVScan, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -628,7 +649,6 @@ Partial Class FormVerStockTake
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
-        Me.ContextMenuStrip.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -684,4 +704,6 @@ Partial Class FormVerStockTake
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents ContextMenuStrip As ContextMenuStrip
     Friend WithEvents ToolStripCancel As ToolStripMenuItem
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

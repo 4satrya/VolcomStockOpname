@@ -15,6 +15,7 @@
         Dim column As String = ""
         Dim column_by As String = ""
         Dim column_update As String = ""
+        Dim query_cancel_combine As String = ""
 
         If FormMain.XtraTabbedMdiManager1.SelectedPage.MdiChild.Name = "FormStockTake" Then
             table = "tb_st_trans"
@@ -26,6 +27,7 @@
                 id_st_trans = FormStockTake.GVScan.GetFocusedRowCellValue("id_st_trans").ToString
             ElseIf FormStockTake.XTCStockTake.SelectedTabPageIndex = 1 Then
                 id_st_trans = FormStockTake.GVCombine.GetFocusedRowCellValue("id_st_trans").ToString
+                query_cancel_combine = "; UPDATE tb_st_trans SET id_combine=NULL WHERE id_combine=" + id_st_trans + "; "
             End If
         ElseIf FormMain.XtraTabbedMdiManager1.SelectedPage.MdiChild.Name = "FormVerStockTake" Then
             table = "tb_st_trans_ver"
@@ -37,10 +39,11 @@
                 id_st_trans = FormVerStockTake.GVScan.GetFocusedRowCellValue("id_st_trans_ver").ToString
             ElseIf FormVerStockTake.XTCStockTake.SelectedTabPageIndex = 1 Then
                 id_st_trans = FormVerStockTake.GVCombine.GetFocusedRowCellValue("id_st_trans_ver").ToString
+                query_cancel_combine = "; UPDATE tb_st_trans_ver SET id_combine=NULL WHERE id_combine=" + id_st_trans + "; "
             End If
         End If
 
-        execute_non_query("UPDATE " + table + " SET id_report_status = 5, report_status_note = '" + addSlashes(MemoNote.Text) + "', " + column_by + " = " + id_user + ", " + column_update + " = NOW() WHERE " + column + " = " + id_st_trans, True, "", "", "", "")
+        execute_non_query("UPDATE " + table + " SET id_report_status = 5, report_status_note = '" + addSlashes(MemoNote.Text) + "', " + column_by + " = " + id_user + ", " + column_update + " = NOW() WHERE " + column + " = " + id_st_trans + query_cancel_combine, True, "", "", "", "")
 
         If FormMain.XtraTabbedMdiManager1.SelectedPage.MdiChild.Name = "FormStockTake" Then
             If FormStockTake.XTCStockTake.SelectedTabPageIndex = 0 Then

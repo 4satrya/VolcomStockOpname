@@ -704,7 +704,7 @@
                     TxtScan.Focus()
                 Else
                     Dim code_check As String = ""
-                    If code.Length > 12 Then
+                    If code.Length = 16 Then
                         code_check = code.Substring(0, 12)
                     Else
                         code_check = code

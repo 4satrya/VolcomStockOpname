@@ -38,7 +38,7 @@
     Private Sub BtnOK_Click(sender As Object, e As EventArgs) Handles BtnOK.Click
         makeSafeGV(GVCheck)
         GVCheck.ActiveFilterString = "[is_select]='Yes' "
-        If GVCheck.RowCount > 0 Then
+        If GVCheck.RowCount > 0 Or CENoScan.EditValue = True Then
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to continue this process ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = DialogResult.Yes Then
                 Cursor = Cursors.WaitCursor
@@ -60,17 +60,20 @@
                 VALUES ('" + SLEWHStockSum.EditValue.ToString + "', '" + header_number("7") + "', '" + MERemark.Text + "', NOW(), '" + id_user + "', 1); SELECT LAST_INSERT_ID(); "
                 Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
 
-                'update
-                Dim query_upd As String = "UPDATE tb_st_trans_ver SET id_combine=" + id_new + " WHERE id_st_trans_ver>0 AND (" + id_st_trans_ver + ") "
-                execute_non_query(query_upd, True, "", "", "", "")
+                If CENoScan.EditValue = False Then
+                    'update
+                    Dim query_upd As String = "UPDATE tb_st_trans_ver SET id_combine=" + id_new + " WHERE id_st_trans_ver>0 AND (" + id_st_trans_ver + ") "
+                    execute_non_query(query_upd, True, "", "", "", "")
 
-                'insert detail
-                Dim qd As String = "INSERT INTO tb_st_trans_ver_det(id_st_trans_ver, id_st_trans_ver_det_ref, is_not_match,is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, id_product, code, name, size, qty, id_design_price, design_price) 
-                SELECT '" + id_new + "', std.id_st_trans_ver_det, is_not_match, is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, id_product, code, name, size, qty, id_design_price, design_price 
-                FROM tb_st_trans_ver_det std
-                INNER JOIN tb_st_trans_ver st ON st.id_st_trans_ver = std.id_st_trans_ver 
-                WHERE st.id_st_trans_ver>0 AND (" + id_st_trans_ver_det + ") "
-                execute_non_query(qd, True, "", "", "", "")
+                    'insert detail
+                    Dim qd As String = "INSERT INTO tb_st_trans_ver_det(id_st_trans_ver, id_st_trans_ver_det_ref, is_not_match,is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, id_product, code, name, size, qty, id_design_price, design_price) 
+                    SELECT '" + id_new + "', std.id_st_trans_ver_det, is_not_match, is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, id_product, code, name, size, qty, id_design_price, design_price 
+                    FROM tb_st_trans_ver_det std
+                    INNER JOIN tb_st_trans_ver st ON st.id_st_trans_ver = std.id_st_trans_ver 
+                    WHERE st.id_st_trans_ver>0 AND (" + id_st_trans_ver_det + ") "
+                    execute_non_query(qd, True, "", "", "", "")
+                End If
+
 
 
                 FormVerStockTake.viewCombine()

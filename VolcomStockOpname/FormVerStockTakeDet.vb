@@ -786,7 +786,7 @@
                         End If
 
                         'temporary krn pake BOF
-                        If is_12_digit = "1" Then
+                        If is_12_digit = "1" And CEHideNotice12digit.EditValue = False Then
                             stopCustomDialog("SCAN BARCODE 12 DIGIT ")
                         End If
 

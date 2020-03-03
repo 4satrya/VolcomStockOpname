@@ -31,6 +31,7 @@ Partial Class FormMain
         Me.NBStockTake = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBWHPreST = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBWHST = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBReport = New DevExpress.XtraNavBar.NavBarItem()
         Me.PCLeft = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControlInfo = New DevExpress.XtraEditors.PanelControl()
         Me.TxtPosition = New DevExpress.XtraEditors.LabelControl()
@@ -43,7 +44,6 @@ Partial Class FormMain
         Me.LabelInfo = New DevExpress.XtraEditors.LabelControl()
         Me.XtraTabbedMdiManager1 = New DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(Me.components)
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomStockOpname.WaitForm1), True, True)
-        Me.NBReport = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.NBMain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCLeft.SuspendLayout()
@@ -131,6 +131,12 @@ Partial Class FormMain
         Me.NBWHST.Caption = "WH Stocktake"
         Me.NBWHST.Name = "NBWHST"
         Me.NBWHST.SmallImage = CType(resources.GetObject("NBWHST.SmallImage"), System.Drawing.Image)
+        '
+        'NBReport
+        '
+        Me.NBReport.Caption = "Report"
+        Me.NBReport.Name = "NBReport"
+        Me.NBReport.SmallImage = CType(resources.GetObject("NBReport.SmallImage"), System.Drawing.Image)
         '
         'PCLeft
         '
@@ -268,12 +274,6 @@ Partial Class FormMain
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'NBReport
-        '
-        Me.NBReport.Caption = "Report"
-        Me.NBReport.Name = "NBReport"
-        Me.NBReport.SmallImage = CType(resources.GetObject("NBReport.SmallImage"), System.Drawing.Image)
         '
         'FormMain
         '

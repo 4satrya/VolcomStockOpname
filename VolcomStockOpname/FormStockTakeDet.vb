@@ -27,6 +27,10 @@
 
 
     Private Sub FormStockTakeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'hide note
+        PCNote.Visible = False
+        GroupControlBottom.Height = 49
+
         'opt
         Dim data_opt As DataTable = getOptMain()
         UseKeyboard = data_opt.Rows(0)("is_use_keyboard").ToString
@@ -45,11 +49,7 @@
     Sub viewReportStatus()
         Dim query As String = ""
         If is_combine = "2" Then
-            If FormStockTake.is_pre = "1" Then
-                query = "SELECT * FROM tb_lookup_report_status s WHERE s.id_report_status=5 OR  s.id_report_status=1 OR s.id_report_status=6 "
-            Else
-                query = "SELECT * FROM tb_lookup_report_status s WHERE s.id_report_status=5 OR  s.id_report_status=1 "
-            End If
+            query = "SELECT * FROM tb_lookup_report_status s WHERE s.id_report_status=5 OR  s.id_report_status=1 OR s.id_report_status=6 "
         Else
             query = "SELECT * FROM tb_lookup_report_status s WHERE s.id_report_status=1 OR s.id_report_status=3 OR s.id_report_status=5 OR s.id_report_status=6 "
         End If
@@ -110,6 +110,7 @@
             address_primary = data.Rows(0)("address_primary").ToString
             comp_number = data.Rows(0)("comp_number").ToString
             comp_name = data.Rows(0)("comp_name").ToString
+            TextEditNote.EditValue = data.Rows(0)("report_status_note").ToString
 
             'soh period
             Dim dto As DataTable = execute_query("SELECT * FROM tb_st_opt", -1, True, "", "", "", "")
@@ -289,6 +290,7 @@
                 BtnSetStatus.Enabled = False
                 PanelControlNav.Visible = False
                 MERemark.Enabled = False
+                TextEditNote.Enabled = False
             Else
                 LEStatus.Enabled = True
                 LEAck.Enabled = True
@@ -296,6 +298,7 @@
                 BtnSetStatus.Enabled = True
                 PanelControlNav.Visible = True
                 MERemark.Enabled = True
+                TextEditNote.Enabled = True
             End If
         Else
             PanelControlNav.Visible = False
@@ -306,12 +309,14 @@
                 TxtApp.Enabled = False
                 BtnSetStatus.Enabled = False
                 MERemark.Enabled = False
+                TextEditNote.Enabled = False
             Else
                 LEStatus.Enabled = True
                 LEAck.Enabled = True
                 TxtApp.Enabled = True
                 BtnSetStatus.Enabled = True
                 MERemark.Enabled = True
+                TextEditNote.Enabled = True
             End If
         End If
 
@@ -323,35 +328,40 @@
     End Sub
 
     Private Sub BtnSetStatus_Click(sender As Object, e As EventArgs) Handles BtnSetStatus.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to " + LEStatus.Text.ToLower + " this transaction ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = DialogResult.Yes Then
-            Dim acknowledge_by As String = "0"
-            Try
-                acknowledge_by = LEAck.EditValue.ToString
-            Catch ex As Exception
-            End Try
-            If acknowledge_by = "" Or acknowledge_by = "0" Then
-                acknowledge_by = "NULL"
-            End If
-            Dim approved_by As String = addSlashes(TxtApp.Text)
-            Dim query As String = "UPDATE tb_st_trans SET id_report_status ='" + LEStatus.EditValue.ToString + "', st_trans_updated_by=" + id_user + ", acknowledge_by=" + acknowledge_by + ", approved_by='" + approved_by + "' WHERE id_st_trans='" + id_st_trans + "' "
-            execute_non_query(query, True, "", "", "", "")
-
-            If is_combine = "1" Then
-                If LEStatus.EditValue.ToString = "5" Then
-                    Dim query_upd As String = "UPDATE tb_st_trans SET id_combine=NULL WHERE id_combine=" + id_st_trans + " "
-                    execute_non_query(query_upd, True, "", "", "", "")
+        If PCNote.Visible And TextEditNote.Text = "" Then
+            stopCustom("Please fill note.")
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to " + LEStatus.Text.ToLower + " this transaction ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = DialogResult.Yes Then
+                Dim acknowledge_by As String = "0"
+                Try
+                    acknowledge_by = LEAck.EditValue.ToString
+                Catch ex As Exception
+                End Try
+                If acknowledge_by = "" Or acknowledge_by = "0" Then
+                    acknowledge_by = "NULL"
                 End If
-                FormStockTake.viewCombine()
-                FormStockTake.GVCombine.FocusedRowHandle = find_row(FormStockTake.GVScan, "id_st_trans", id_st_trans)
-            Else
-                FormStockTake.viewScan()
-                FormStockTake.GVScan.FocusedRowHandle = find_row(FormStockTake.GVScan, "id_st_trans", id_st_trans)
-            End If
+                Dim cancel_note As String = If(TextEditNote.Text = "", "NULL", "'" + addSlashes(TextEditNote.Text) + "'")
+                Dim approved_by As String = addSlashes(TxtApp.Text)
+                Dim query As String = "UPDATE tb_st_trans SET id_report_status ='" + LEStatus.EditValue.ToString + "', st_trans_updated_by=" + id_user + ", acknowledge_by=" + acknowledge_by + ", approved_by='" + approved_by + "', report_status_note=" + cancel_note + " WHERE id_st_trans='" + id_st_trans + "' "
+                execute_non_query(query, True, "", "", "", "")
 
-            XTCStockTake.SelectedTabPageIndex = 0
-            action = "upd"
-            actionLoad()
+                If is_combine = "1" Then
+                    If LEStatus.EditValue.ToString = "5" Then
+                        Dim query_upd As String = "UPDATE tb_st_trans SET id_combine=NULL WHERE id_combine=" + id_st_trans + " "
+                        execute_non_query(query_upd, True, "", "", "", "")
+                    End If
+                    FormStockTake.viewCombine()
+                    FormStockTake.GVCombine.FocusedRowHandle = find_row(FormStockTake.GVScan, "id_st_trans", id_st_trans)
+                Else
+                    FormStockTake.viewScan()
+                    FormStockTake.GVScan.FocusedRowHandle = find_row(FormStockTake.GVScan, "id_st_trans", id_st_trans)
+                End If
+
+                XTCStockTake.SelectedTabPageIndex = 0
+                action = "upd"
+                actionLoad()
+            End If
         End If
     End Sub
 
@@ -367,11 +377,11 @@
         Cursor = Cursors.WaitCursor
         If XTCStockTake.SelectedTabPageIndex = 0 Then
             If FormStockTake.is_pre = "1" Then 'wh pre stock take
-                'If id_report_status = "1" Then
-                '    stopCustom("Can't print, please finalize status first")
-                '    Cursor = Cursors.Default
-                '    Exit Sub
-                'End If
+                If id_report_status = "1" And is_combine = "2" Then
+                    stopCustom("Can't print, please finalize status first")
+                    Cursor = Cursors.Default
+                    Exit Sub
+                End If
 
                 Cursor = Cursors.WaitCursor
                 GVScan.BestFitColumns()
@@ -406,6 +416,12 @@
                 Tool.ShowPreviewDialog()
                 Cursor = Cursors.Default
             Else 'stock take IA reguler
+                If id_report_status = "1" And is_combine = "2" Then
+                    stopCustom("Can't print, please finalize status first")
+                    Cursor = Cursors.Default
+                    Exit Sub
+                End If
+
                 Cursor = Cursors.WaitCursor
                 GVScan.BestFitColumns()
                 ReportScan.dt = GCScan.DataSource
@@ -446,11 +462,11 @@
             End If
         ElseIf XTCStockTake.SelectedTabPageIndex = 1 Then
             If FormStockTake.is_pre = "1" Then 'wh pre stock take
-                'If id_report_status = "1" Then
-                '    stopCustom("Can't print, please finalize status first")
-                '    Cursor = Cursors.Default
-                '    Exit Sub
-                'End If
+                If id_report_status = "1" And is_combine = "2" Then
+                    stopCustom("Can't print, please finalize status first")
+                    Cursor = Cursors.Default
+                    Exit Sub
+                End If
 
                 Cursor = Cursors.WaitCursor
                 GVSummaryScan.BestFitColumns()
@@ -484,6 +500,12 @@
                 Tool.ShowPreviewDialog()
                 Cursor = Cursors.Default
             Else 'IA Reguler
+                If id_report_status = "1" And is_combine = "2" Then
+                    stopCustom("Can't print, please finalize status first")
+                    Cursor = Cursors.Default
+                    Exit Sub
+                End If
+
                 Cursor = Cursors.WaitCursor
                 GVSummaryScan.BestFitColumns()
                 ReportScan.dt = GCSummaryScan.DataSource
@@ -983,6 +1005,12 @@
 
     Private Sub BtnPrintLetter_Click(sender As Object, e As EventArgs) Handles BtnPrintLetter.Click
         If XTCStockTake.SelectedTabPageIndex = 0 Then
+            If id_report_status = "1" And is_combine = "2" Then
+                stopCustom("Can't print, please finalize status first")
+                Cursor = Cursors.Default
+                Exit Sub
+            End If
+
             Cursor = Cursors.WaitCursor
             GVScan.BestFitColumns()
             ReportScanVerStockTakeSlip.dt = GCScan.DataSource
@@ -1017,6 +1045,12 @@
             Tool.ShowPreviewDialog()
             Cursor = Cursors.Default
         ElseIf XTCStockTake.SelectedTabPageIndex = 1 Then
+            If id_report_status = "1" And is_combine = "2" Then
+                stopCustom("Can't print, please finalize status first")
+                Cursor = Cursors.Default
+                Exit Sub
+            End If
+
             Cursor = Cursors.WaitCursor
             GVSummaryScan.BestFitColumns()
             ReportScanVerStockTakeSlip.dt = GCSummaryScan.DataSource
@@ -1037,6 +1071,40 @@
 
             'Parse val
             Report.LabelTitle.Text = "STOCKTAKE SLIP"
+            Report.LabelNo.Text = TxtNumber.Text
+            Report.LabelAccount.Text = SLEWHStockSum.Text
+            Report.LabelRemark.Text = TxtNumber.Text
+            Report.LabelDate.Text = DECreated.Text
+            Report.LabelPrepare.Text = prepared_by
+            Report.LabelRemark.Text = MERemark.Text.ToString
+            Report.LabelRefNo.Text = "-"
+            Report.LabelRef.Text = "-"
+
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
+            Cursor = Cursors.Default
+        ElseIf XTCStockTake.SelectedTabPageIndex = 3 Then
+            Cursor = Cursors.WaitCursor
+            BGVCompare.BestFitColumns()
+            ReportScanVerStockTakeSlip.dt = GCCompare.DataSource
+            ReportScanVerStockTakeSlip.id_report = id_st_trans
+            Dim Report As New ReportScanVerStockTakeSlip()
+            Report.GCScan.MainView = Report.BGVScan
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            BGVCompare.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.BGVScan.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            'Grid Detail
+            ReportStyleBanded(Report.BGVScan)
+
+            'Parse val
+            Report.LabelTitle.Text = "STOCKTAKE SLIP - COMPARE STOCK"
             Report.LabelNo.Text = TxtNumber.Text
             Report.LabelAccount.Text = SLEWHStockSum.Text
             Report.LabelRemark.Text = TxtNumber.Text
@@ -1100,5 +1168,15 @@
         FormRpt.id_pop_up = "1"
         FormRpt.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub LEStatus_EditValueChanged(sender As Object, e As EventArgs) Handles LEStatus.EditValueChanged
+        If LEStatus.EditValue.ToString = "5" Then
+            PCNote.Visible = True
+            GroupControlBottom.Height = 94
+        Else
+            PCNote.Visible = False
+            GroupControlBottom.Height = 49
+        End If
     End Sub
 End Class

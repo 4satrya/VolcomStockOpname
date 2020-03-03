@@ -17,6 +17,10 @@
     Dim is_record_unreg As String = ""
 
     Private Sub FormVerStockTakeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'hide note
+        PCNote.Visible = False
+        GroupControlBottom.Height = 49
+
         viewWHStockSum()
         viewReportStatus()
         viewAck()
@@ -26,7 +30,7 @@
     Sub viewReportStatus()
         Dim query As String = ""
         If is_combine = "2" Then
-            query = "SELECT * FROM tb_lookup_report_status s WHERE s.id_report_status=5 OR  s.id_report_status=1 "
+            query = "SELECT * FROM tb_lookup_report_status s WHERE s.id_report_status=5 OR  s.id_report_status=1 OR s.id_report_status=6 "
         Else
             query = "SELECT * FROM tb_lookup_report_status s WHERE s.id_report_status=1 OR s.id_report_status=3 OR s.id_report_status=5 OR s.id_report_status=6 "
         End If
@@ -297,35 +301,40 @@
     End Sub
 
     Private Sub BtnSetStatus_Click(sender As Object, e As EventArgs) Handles BtnSetStatus.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to " + LEStatus.Text.ToLower + " this transaction ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = DialogResult.Yes Then
-            Dim acknowledge_by As String = "0"
-            Try
-                acknowledge_by = LEAck.EditValue.ToString
-            Catch ex As Exception
-            End Try
-            If acknowledge_by = "" Or acknowledge_by = "0" Then
-                acknowledge_by = "NULL"
-            End If
-            Dim approved_by As String = addSlashes(TxtApp.Text)
-            Dim query As String = "UPDATE tb_st_trans_ver SET id_report_status ='" + LEStatus.EditValue.ToString + "', st_trans_ver_updated_by=" + id_user + ", acknowledge_by=" + acknowledge_by + ", approved_by='" + approved_by + "' WHERE id_st_trans_ver='" + id_st_trans_ver + "' "
-            execute_non_query(query, True, "", "", "", "")
-
-            If is_combine = "1" Then
-                If LEStatus.EditValue.ToString = "5" Then
-                    Dim query_upd As String = "UPDATE tb_st_trans_ver SET id_combine=NULL WHERE id_combine=" + id_st_trans_ver + " "
-                    execute_non_query(query_upd, True, "", "", "", "")
+        If PCNote.Visible And TextEditNote.Text = "" Then
+            stopCustom("Please fill note.")
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to " + LEStatus.Text.ToLower + " this transaction ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = DialogResult.Yes Then
+                Dim acknowledge_by As String = "0"
+                Try
+                    acknowledge_by = LEAck.EditValue.ToString
+                Catch ex As Exception
+                End Try
+                If acknowledge_by = "" Or acknowledge_by = "0" Then
+                    acknowledge_by = "NULL"
                 End If
-                FormVerStockTake.viewCombine()
-                FormVerStockTake.GVCombine.FocusedRowHandle = find_row(FormVerStockTake.GVScan, "id_st_trans_ver", id_st_trans_ver)
-            Else
-                FormVerStockTake.viewScan()
-                FormVerStockTake.GVScan.FocusedRowHandle = find_row(FormVerStockTake.GVScan, "id_st_trans_ver", id_st_trans_ver)
-            End If
+                Dim cancel_note As String = If(TextEditNote.Text = "", "NULL", "'" + addSlashes(TextEditNote.Text) + "'")
+                Dim approved_by As String = addSlashes(TxtApp.Text)
+                Dim query As String = "UPDATE tb_st_trans_ver SET id_report_status ='" + LEStatus.EditValue.ToString + "', st_trans_ver_updated_by=" + id_user + ", acknowledge_by=" + acknowledge_by + ", approved_by='" + approved_by + "', report_status_note=" + cancel_note + " WHERE id_st_trans_ver='" + id_st_trans_ver + "' "
+                execute_non_query(query, True, "", "", "", "")
 
-            XTCStockTake.SelectedTabPageIndex = 0
-            action = "upd"
-            actionLoad()
+                If is_combine = "1" Then
+                    If LEStatus.EditValue.ToString = "5" Then
+                        Dim query_upd As String = "UPDATE tb_st_trans_ver SET id_combine=NULL WHERE id_combine=" + id_st_trans_ver + " "
+                        execute_non_query(query_upd, True, "", "", "", "")
+                    End If
+                    FormVerStockTake.viewCombine()
+                    FormVerStockTake.GVCombine.FocusedRowHandle = find_row(FormVerStockTake.GVScan, "id_st_trans_ver", id_st_trans_ver)
+                Else
+                    FormVerStockTake.viewScan()
+                    FormVerStockTake.GVScan.FocusedRowHandle = find_row(FormVerStockTake.GVScan, "id_st_trans_ver", id_st_trans_ver)
+                End If
+
+                XTCStockTake.SelectedTabPageIndex = 0
+                action = "upd"
+                actionLoad()
+            End If
         End If
     End Sub
 
@@ -341,7 +350,7 @@
     Sub print()
         Cursor = Cursors.WaitCursor
         If XTCStockTake.SelectedTabPageIndex = 0 Then
-            If id_report_status = "1" Then
+            If id_report_status = "1" And is_combine = "2" Then
                 stopCustom("Can't print, please finalize status first")
                 Cursor = Cursors.Default
                 Exit Sub
@@ -914,5 +923,15 @@
         FormRpt.id_pop_up = "2"
         FormRpt.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub LEStatus_EditValueChanged(sender As Object, e As EventArgs) Handles LEStatus.EditValueChanged
+        If LEStatus.EditValue.ToString = "5" Then
+            PCNote.Visible = True
+            GroupControlBottom.Height = 94
+        Else
+            PCNote.Visible = False
+            GroupControlBottom.Height = 49
+        End If
     End Sub
 End Class

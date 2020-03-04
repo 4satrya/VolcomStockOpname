@@ -704,7 +704,7 @@
                     TxtScan.Focus()
                 Else
                     Dim code_check As String = ""
-                    If code.Length > 12 Then
+                    If code.Length = 16 Then
                         code_check = code.Substring(0, 12)
                     Else
                         code_check = code
@@ -786,7 +786,7 @@
                         End If
 
                         'temporary krn pake BOF
-                        If is_12_digit = "1" Then
+                        If is_12_digit = "1" And CEHideNotice12digit.EditValue = False Then
                             stopCustomDialog("SCAN BARCODE 12 DIGIT ")
                         End If
 

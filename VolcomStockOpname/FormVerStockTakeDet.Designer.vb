@@ -37,6 +37,7 @@ Partial Class FormVerStockTakeDet
         Me.GridView14 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControlBottom = New DevExpress.XtraEditors.GroupControl()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelFontSize = New DevExpress.XtraEditors.PanelControl()
         Me.TxtFontSize = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
@@ -48,6 +49,9 @@ Partial Class FormVerStockTakeDet
         Me.LEStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.PCNote = New DevExpress.XtraEditors.PanelControl()
+        Me.TextEditNote = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.XTCStockTake = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPScan = New DevExpress.XtraTab.XtraTabPage()
@@ -81,6 +85,7 @@ Partial Class FormVerStockTakeDet
         Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRefNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
+        Me.CEHideNotice12digit = New DevExpress.XtraEditors.CheckEdit()
         Me.CheckEditAllow = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnDelAll = New DevExpress.XtraEditors.SimpleButton()
         Me.CheckEditSale = New DevExpress.XtraEditors.CheckEdit()
@@ -160,10 +165,6 @@ Partial Class FormVerStockTakeDet
         Me.BtnAddToRpt = New DevExpress.XtraEditors.SimpleButton()
         Me.ContextMenuStripCompare = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.PCNote = New DevExpress.XtraEditors.PanelControl()
-        Me.TextEditNote = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -178,12 +179,17 @@ Partial Class FormVerStockTakeDet
         CType(Me.GridView14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlBottom.SuspendLayout()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
         CType(Me.PanelFontSize, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelFontSize.SuspendLayout()
         CType(Me.TxtFontSize.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtApp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEAck.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCNote, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCNote.SuspendLayout()
+        CType(Me.TextEditNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.XTCStockTake, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -195,6 +201,7 @@ Partial Class FormVerStockTakeDet
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
+        CType(Me.CEHideNotice12digit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CheckEditAllow.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CheckEditSale.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CheckEditNoTag.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -218,11 +225,6 @@ Partial Class FormVerStockTakeDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         Me.ContextMenuStripCompare.SuspendLayout()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
-        CType(Me.PCNote, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PCNote.SuspendLayout()
-        CType(Me.TextEditNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -375,6 +377,23 @@ Partial Class FormVerStockTakeDet
         Me.GroupControlBottom.Size = New System.Drawing.Size(1042, 94)
         Me.GroupControlBottom.TabIndex = 2
         '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.PanelFontSize)
+        Me.PanelControl2.Controls.Add(Me.TxtApp)
+        Me.PanelControl2.Controls.Add(Me.LabelControl8)
+        Me.PanelControl2.Controls.Add(Me.LEAck)
+        Me.PanelControl2.Controls.Add(Me.LabelControl7)
+        Me.PanelControl2.Controls.Add(Me.BtnSetStatus)
+        Me.PanelControl2.Controls.Add(Me.LEStatus)
+        Me.PanelControl2.Controls.Add(Me.LabelControl5)
+        Me.PanelControl2.Controls.Add(Me.BtnPrint)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelControl2.Location = New System.Drawing.Point(20, 2)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(1020, 45)
+        Me.PanelControl2.TabIndex = 8914
+        '
         'PanelFontSize
         '
         Me.PanelFontSize.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -471,6 +490,32 @@ Partial Class FormVerStockTakeDet
         Me.BtnPrint.Size = New System.Drawing.Size(104, 41)
         Me.BtnPrint.TabIndex = 1
         Me.BtnPrint.Text = "Print (F4)"
+        '
+        'PCNote
+        '
+        Me.PCNote.Controls.Add(Me.TextEditNote)
+        Me.PCNote.Controls.Add(Me.LabelControl12)
+        Me.PCNote.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PCNote.Location = New System.Drawing.Point(20, 47)
+        Me.PCNote.Name = "PCNote"
+        Me.PCNote.Size = New System.Drawing.Size(1020, 45)
+        Me.PCNote.TabIndex = 8917
+        Me.PCNote.Visible = False
+        '
+        'TextEditNote
+        '
+        Me.TextEditNote.Location = New System.Drawing.Point(53, 13)
+        Me.TextEditNote.Name = "TextEditNote"
+        Me.TextEditNote.Size = New System.Drawing.Size(634, 20)
+        Me.TextEditNote.TabIndex = 8912
+        '
+        'LabelControl12
+        '
+        Me.LabelControl12.Location = New System.Drawing.Point(16, 16)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl12.TabIndex = 8911
+        Me.LabelControl12.Text = "Note"
         '
         'GroupControl3
         '
@@ -797,6 +842,7 @@ Partial Class FormVerStockTakeDet
         '
         'PanelControlNav
         '
+        Me.PanelControlNav.Controls.Add(Me.CEHideNotice12digit)
         Me.PanelControlNav.Controls.Add(Me.CheckEditAllow)
         Me.PanelControlNav.Controls.Add(Me.BtnDelAll)
         Me.PanelControlNav.Controls.Add(Me.CheckEditSale)
@@ -812,11 +858,19 @@ Partial Class FormVerStockTakeDet
         Me.PanelControlNav.Size = New System.Drawing.Size(1014, 46)
         Me.PanelControlNav.TabIndex = 0
         '
+        'CEHideNotice12digit
+        '
+        Me.CEHideNotice12digit.Location = New System.Drawing.Point(533, 24)
+        Me.CEHideNotice12digit.Name = "CEHideNotice12digit"
+        Me.CEHideNotice12digit.Properties.Caption = "Hide Notice 12 digit"
+        Me.CEHideNotice12digit.Size = New System.Drawing.Size(111, 19)
+        Me.CEHideNotice12digit.TabIndex = 8910
+        '
         'CheckEditAllow
         '
-        Me.CheckEditAllow.Location = New System.Drawing.Point(466, 24)
+        Me.CheckEditAllow.Location = New System.Drawing.Point(430, 24)
         Me.CheckEditAllow.Name = "CheckEditAllow"
-        Me.CheckEditAllow.Properties.Caption = "Allow product outside list"
+        Me.CheckEditAllow.Properties.Caption = "Allow outside list"
         Me.CheckEditAllow.Size = New System.Drawing.Size(150, 19)
         Me.CheckEditAllow.TabIndex = 8909
         '
@@ -834,13 +888,13 @@ Partial Class FormVerStockTakeDet
         '
         Me.CheckEditSale.Location = New System.Drawing.Point(308, 24)
         Me.CheckEditSale.Name = "CheckEditSale"
-        Me.CheckEditSale.Properties.Caption = "Hide notice for sale product"
+        Me.CheckEditSale.Properties.Caption = "Hide notice for sale"
         Me.CheckEditSale.Size = New System.Drawing.Size(156, 19)
         Me.CheckEditSale.TabIndex = 8906
         '
         'CheckEditNoTag
         '
-        Me.CheckEditNoTag.Location = New System.Drawing.Point(466, 5)
+        Me.CheckEditNoTag.Location = New System.Drawing.Point(430, 5)
         Me.CheckEditNoTag.Name = "CheckEditNoTag"
         Me.CheckEditNoTag.Properties.Caption = "No Tag"
         Me.CheckEditNoTag.Size = New System.Drawing.Size(60, 19)
@@ -893,7 +947,7 @@ Partial Class FormVerStockTakeDet
         '
         Me.XTPSummary.Controls.Add(Me.GCSummaryScan)
         Me.XTPSummary.Name = "XTPSummary"
-        Me.XTPSummary.Size = New System.Drawing.Size(1014, 371)
+        Me.XTPSummary.Size = New System.Drawing.Size(1014, 322)
         Me.XTPSummary.Text = "Summary By Product"
         '
         'GCSummaryScan
@@ -903,7 +957,7 @@ Partial Class FormVerStockTakeDet
         Me.GCSummaryScan.MainView = Me.GVSummaryScan
         Me.GCSummaryScan.Name = "GCSummaryScan"
         Me.GCSummaryScan.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1})
-        Me.GCSummaryScan.Size = New System.Drawing.Size(1014, 371)
+        Me.GCSummaryScan.Size = New System.Drawing.Size(1014, 322)
         Me.GCSummaryScan.TabIndex = 1
         Me.GCSummaryScan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummaryScan})
         '
@@ -1027,7 +1081,7 @@ Partial Class FormVerStockTakeDet
         '
         Me.XTPScanCompare.Controls.Add(Me.GCCS)
         Me.XTPScanCompare.Name = "XTPScanCompare"
-        Me.XTPScanCompare.Size = New System.Drawing.Size(1014, 371)
+        Me.XTPScanCompare.Size = New System.Drawing.Size(1014, 322)
         Me.XTPScanCompare.Text = "Compare Pre Stocktake"
         '
         'GCCS
@@ -1036,7 +1090,7 @@ Partial Class FormVerStockTakeDet
         Me.GCCS.Location = New System.Drawing.Point(0, 0)
         Me.GCCS.MainView = Me.GVCS
         Me.GCCS.Name = "GCCS"
-        Me.GCCS.Size = New System.Drawing.Size(1014, 371)
+        Me.GCCS.Size = New System.Drawing.Size(1014, 322)
         Me.GCCS.TabIndex = 0
         Me.GCCS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCS})
         '
@@ -1246,7 +1300,7 @@ Partial Class FormVerStockTakeDet
         Me.XTPCondition.Controls.Add(Me.GCCat)
         Me.XTPCondition.Name = "XTPCondition"
         Me.XTPCondition.PageVisible = False
-        Me.XTPCondition.Size = New System.Drawing.Size(1014, 371)
+        Me.XTPCondition.Size = New System.Drawing.Size(1014, 322)
         Me.XTPCondition.Text = "Summary By Category"
         '
         'GCCat
@@ -1256,7 +1310,7 @@ Partial Class FormVerStockTakeDet
         Me.GCCat.MainView = Me.GVCat
         Me.GCCat.Name = "GCCat"
         Me.GCCat.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit2})
-        Me.GCCat.Size = New System.Drawing.Size(1014, 371)
+        Me.GCCat.Size = New System.Drawing.Size(1014, 322)
         Me.GCCat.TabIndex = 2
         Me.GCCat.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCat})
         '
@@ -1315,7 +1369,7 @@ Partial Class FormVerStockTakeDet
         Me.XTPCompare.Controls.Add(Me.PanelControl1)
         Me.XTPCompare.Name = "XTPCompare"
         Me.XTPCompare.PageVisible = False
-        Me.XTPCompare.Size = New System.Drawing.Size(1014, 371)
+        Me.XTPCompare.Size = New System.Drawing.Size(1014, 322)
         Me.XTPCompare.Text = "Compare Stock"
         '
         'GCCompare
@@ -1325,7 +1379,7 @@ Partial Class FormVerStockTakeDet
         Me.GCCompare.MainView = Me.BGVCompare
         Me.GCCompare.Name = "GCCompare"
         Me.GCCompare.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit3})
-        Me.GCCompare.Size = New System.Drawing.Size(1014, 329)
+        Me.GCCompare.Size = New System.Drawing.Size(1014, 280)
         Me.GCCompare.TabIndex = 0
         Me.GCCompare.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVCompare})
         '
@@ -1574,49 +1628,6 @@ Partial Class FormVerStockTakeDet
         Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
         Me.ViewDetailToolStripMenuItem.Text = "View Detail"
         '
-        'PanelControl2
-        '
-        Me.PanelControl2.Controls.Add(Me.PanelFontSize)
-        Me.PanelControl2.Controls.Add(Me.TxtApp)
-        Me.PanelControl2.Controls.Add(Me.LabelControl8)
-        Me.PanelControl2.Controls.Add(Me.LEAck)
-        Me.PanelControl2.Controls.Add(Me.LabelControl7)
-        Me.PanelControl2.Controls.Add(Me.BtnSetStatus)
-        Me.PanelControl2.Controls.Add(Me.LEStatus)
-        Me.PanelControl2.Controls.Add(Me.LabelControl5)
-        Me.PanelControl2.Controls.Add(Me.BtnPrint)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl2.Location = New System.Drawing.Point(20, 2)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1020, 45)
-        Me.PanelControl2.TabIndex = 8914
-        '
-        'PCNote
-        '
-        Me.PCNote.Controls.Add(Me.TextEditNote)
-        Me.PCNote.Controls.Add(Me.LabelControl12)
-        Me.PCNote.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PCNote.Location = New System.Drawing.Point(20, 47)
-        Me.PCNote.Name = "PCNote"
-        Me.PCNote.Size = New System.Drawing.Size(1020, 45)
-        Me.PCNote.TabIndex = 8917
-        Me.PCNote.Visible = False
-        '
-        'TextEditNote
-        '
-        Me.TextEditNote.Location = New System.Drawing.Point(53, 13)
-        Me.TextEditNote.Name = "TextEditNote"
-        Me.TextEditNote.Size = New System.Drawing.Size(634, 20)
-        Me.TextEditNote.TabIndex = 8912
-        '
-        'LabelControl12
-        '
-        Me.LabelControl12.Location = New System.Drawing.Point(16, 16)
-        Me.LabelControl12.Name = "LabelControl12"
-        Me.LabelControl12.Size = New System.Drawing.Size(23, 13)
-        Me.LabelControl12.TabIndex = 8911
-        Me.LabelControl12.Text = "Note"
-        '
         'FormVerStockTakeDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1647,6 +1658,9 @@ Partial Class FormVerStockTakeDet
         CType(Me.GridView14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControlBottom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlBottom.ResumeLayout(False)
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
         CType(Me.PanelFontSize, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelFontSize.ResumeLayout(False)
         Me.PanelFontSize.PerformLayout()
@@ -1654,6 +1668,10 @@ Partial Class FormVerStockTakeDet
         CType(Me.TxtApp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEAck.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCNote, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCNote.ResumeLayout(False)
+        Me.PCNote.PerformLayout()
+        CType(Me.TextEditNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         CType(Me.XTCStockTake, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1666,6 +1684,7 @@ Partial Class FormVerStockTakeDet
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
         Me.PanelControlNav.PerformLayout()
+        CType(Me.CEHideNotice12digit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CheckEditAllow.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CheckEditSale.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CheckEditNoTag.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1689,13 +1708,6 @@ Partial Class FormVerStockTakeDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.ContextMenuStripCompare.ResumeLayout(False)
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl2.ResumeLayout(False)
-        Me.PanelControl2.PerformLayout()
-        CType(Me.PCNote, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PCNote.ResumeLayout(False)
-        Me.PCNote.PerformLayout()
-        CType(Me.TextEditNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1843,4 +1855,5 @@ Partial Class FormVerStockTakeDet
     Friend WithEvents PCNote As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TextEditNote As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents CEHideNotice12digit As DevExpress.XtraEditors.CheckEdit
 End Class

@@ -24,6 +24,7 @@ Partial Public Class ReportScanVerStockTakeSlip
         Me.GCScan = New DevExpress.XtraGrid.GridControl()
         Me.GVScan = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.BGVScan = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.LabelRef = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
@@ -82,15 +83,14 @@ Partial Public Class ReportScanVerStockTakeSlip
         Me.XrTableCell9 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableRow13 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell10 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.BGVScan = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         CType(Me.GCScan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVScan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BGVScan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BGVScan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
@@ -135,6 +135,15 @@ Partial Public Class ReportScanVerStockTakeSlip
         Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
         Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
         '
+        'BGVScan
+        '
+        Me.BGVScan.GridControl = Me.GCScan
+        Me.BGVScan.Name = "BGVScan"
+        Me.BGVScan.OptionsBehavior.AutoExpandAllGroups = True
+        Me.BGVScan.OptionsBehavior.Editable = False
+        Me.BGVScan.OptionsView.ShowFooter = True
+        Me.BGVScan.OptionsView.ShowGroupPanel = False
+        '
         'TopMargin
         '
         Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LabelRef, Me.XrLabel9, Me.XrLabel8, Me.XrLabel7, Me.XrLabel2, Me.LabelRefNo, Me.LabelTitle, Me.XrLabel3, Me.XrLabel5, Me.LabelAccount, Me.XrLabel13, Me.XrLabel6, Me.LabelRemark, Me.XrLabel12, Me.XrLabel4, Me.LabelDate, Me.LabelNo})
@@ -146,7 +155,7 @@ Partial Public Class ReportScanVerStockTakeSlip
         'LabelRef
         '
         Me.LabelRef.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelRef.LocationFloat = New DevExpress.Utils.PointFloat(689.6666!, 61.45833!)
+        Me.LabelRef.LocationFloat = New DevExpress.Utils.PointFloat(689.6666!, 76.12502!)
         Me.LabelRef.Name = "LabelRef"
         Me.LabelRef.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LabelRef.SizeF = New System.Drawing.SizeF(108.3334!, 14.66667!)
@@ -157,7 +166,7 @@ Partial Public Class ReportScanVerStockTakeSlip
         'XrLabel9
         '
         Me.XrLabel9.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(674.0416!, 61.45832!)
+        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(674.0416!, 76.125!)
         Me.XrLabel9.Name = "XrLabel9"
         Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel9.SizeF = New System.Drawing.SizeF(15.625!, 14.66667!)
@@ -170,7 +179,7 @@ Partial Public Class ReportScanVerStockTakeSlip
         '
         Me.XrLabel8.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel8.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(629.2499!, 61.45832!)
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(629.2499!, 76.125!)
         Me.XrLabel8.Name = "XrLabel8"
         Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel8.SizeF = New System.Drawing.SizeF(44.79175!, 14.66667!)
@@ -182,7 +191,7 @@ Partial Public Class ReportScanVerStockTakeSlip
         '
         Me.XrLabel7.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel7.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(629.2499!, 46.79165!)
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(629.2499!, 61.45833!)
         Me.XrLabel7.Name = "XrLabel7"
         Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel7.SizeF = New System.Drawing.SizeF(44.79175!, 14.66667!)
@@ -193,7 +202,7 @@ Partial Public Class ReportScanVerStockTakeSlip
         'XrLabel2
         '
         Me.XrLabel2.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(674.0416!, 46.79166!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(674.0416!, 61.45835!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel2.SizeF = New System.Drawing.SizeF(15.625!, 14.66667!)
@@ -205,7 +214,7 @@ Partial Public Class ReportScanVerStockTakeSlip
         'LabelRefNo
         '
         Me.LabelRefNo.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelRefNo.LocationFloat = New DevExpress.Utils.PointFloat(689.6666!, 46.79165!)
+        Me.LabelRefNo.LocationFloat = New DevExpress.Utils.PointFloat(689.6666!, 61.45833!)
         Me.LabelRefNo.Name = "LabelRefNo"
         Me.LabelRefNo.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LabelRefNo.SizeF = New System.Drawing.SizeF(108.3334!, 14.66667!)
@@ -316,11 +325,11 @@ Partial Public Class ReportScanVerStockTakeSlip
         '
         'LabelNo
         '
-        Me.LabelNo.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelNo.LocationFloat = New DevExpress.Utils.PointFloat(710.5001!, 25.875!)
+        Me.LabelNo.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelNo.LocationFloat = New DevExpress.Utils.PointFloat(629.2499!, 25.875!)
         Me.LabelNo.Name = "LabelNo"
         Me.LabelNo.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LabelNo.SizeF = New System.Drawing.SizeF(87.5!, 20.91666!)
+        Me.LabelNo.SizeF = New System.Drawing.SizeF(168.7502!, 35.58335!)
         Me.LabelNo.StylePriority.UseFont = False
         Me.LabelNo.StylePriority.UseTextAlignment = False
         Me.LabelNo.Text = "P999999"
@@ -657,15 +666,6 @@ Partial Public Class ReportScanVerStockTakeSlip
         Me.XrTableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.XrTableCell10.Weight = 1.0R
         '
-        'BGVScan
-        '
-        Me.BGVScan.GridControl = Me.GCScan
-        Me.BGVScan.Name = "BGVScan"
-        Me.BGVScan.OptionsBehavior.AutoExpandAllGroups = True
-        Me.BGVScan.OptionsBehavior.Editable = False
-        Me.BGVScan.OptionsView.ShowFooter = True
-        Me.BGVScan.OptionsView.ShowGroupPanel = False
-        '
         'ReportScanVerStockTakeSlip
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportFooter})
@@ -675,11 +675,11 @@ Partial Public Class ReportScanVerStockTakeSlip
         CType(Me.GCScan, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVScan, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BGVScan, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BGVScan, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub

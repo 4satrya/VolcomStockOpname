@@ -599,7 +599,7 @@
 	            SELECT vd.`code`, SUM(vd.qty) AS `qty` 
 	            FROM tb_st_trans_ver_det vd
 	            INNER JOIN tb_st_trans_ver v ON v.id_st_trans_ver = vd.id_st_trans_ver
-	            WHERE v.id_report_status!=5 
+	            WHERE v.id_report_status!=5 AND v.id_st_trans=" + id_st_trans + "
 	            GROUP BY vd.`code`
             ) r ON r.`code` = sd.`code`
             WHERE sd.id_st_trans=" + id_st_trans + " AND sd.`code`='" + code + "'

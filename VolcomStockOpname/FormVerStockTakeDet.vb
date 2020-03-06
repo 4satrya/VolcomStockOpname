@@ -15,6 +15,7 @@
     Dim soh_period As String = ""
     Dim sales_until_period As String = ""
     Dim is_record_unreg As String = ""
+    Dim after_load As Boolean = False
 
     Private Sub FormVerStockTakeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'hide note
@@ -25,6 +26,7 @@
         viewReportStatus()
         viewAck()
         actionLoad()
+        after_load = True
     End Sub
 
     Sub viewReportStatus()
@@ -877,17 +879,19 @@
     End Sub
 
     Private Sub MERemark_EditValueChanged(sender As Object, e As EventArgs) Handles MERemark.EditValueChanged
-        Cursor = Cursors.WaitCursor
-        Dim query As String = "UPDATE tb_st_trans_ver SET remark='" + addSlashes(MERemark.Text) + "', st_trans_ver_updated_by='" + id_user + "' WHERE id_st_trans_ver='" + id_st_trans_ver + "' "
-        execute_non_query(query, True, "", "", "", "")
-        If is_combine = "1" Then
-            FormVerStockTake.viewCombine()
-            FormVerStockTake.GVCombine.FocusedRowHandle = find_row(FormVerStockTake.GVCombine, "id_st_trans_ver", id_st_trans_ver)
-        Else
-            FormVerStockTake.viewScan()
-            FormVerStockTake.GVScan.FocusedRowHandle = find_row(FormVerStockTake.GVScan, "id_st_trans_ver", id_st_trans_ver)
+        If after_load Then
+            Cursor = Cursors.WaitCursor
+            Dim query As String = "UPDATE tb_st_trans_ver SET remark='" + addSlashes(MERemark.Text) + "', st_trans_ver_updated_by='" + id_user + "' WHERE id_st_trans_ver='" + id_st_trans_ver + "' "
+            execute_non_query(query, True, "", "", "", "")
+            If is_combine = "1" Then
+                FormVerStockTake.viewCombine()
+                FormVerStockTake.GVCombine.FocusedRowHandle = find_row(FormVerStockTake.GVCombine, "id_st_trans_ver", id_st_trans_ver)
+            Else
+                FormVerStockTake.viewScan()
+                FormVerStockTake.GVScan.FocusedRowHandle = find_row(FormVerStockTake.GVScan, "id_st_trans_ver", id_st_trans_ver)
+            End If
+            Cursor = Cursors.Default
         End If
-        Cursor = Cursors.Default
     End Sub
 
     Private Sub SetQtyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetQtyToolStripMenuItem.Click

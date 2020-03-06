@@ -19,6 +19,7 @@ Partial Class FormHome
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormHome))
         Dim TileViewItemElement1 As DevExpress.XtraGrid.Views.Tile.TileViewItemElement = New DevExpress.XtraGrid.Views.Tile.TileViewItemElement()
         Dim TileViewItemElement2 As DevExpress.XtraGrid.Views.Tile.TileViewItemElement = New DevExpress.XtraGrid.Views.Tile.TileViewItemElement()
         Dim TileViewItemElement3 As DevExpress.XtraGrid.Views.Tile.TileViewItemElement = New DevExpress.XtraGrid.Views.Tile.TileViewItemElement()
@@ -26,12 +27,16 @@ Partial Class FormHome
         Me.TileViewColumnAccountDesc = New DevExpress.XtraGrid.Columns.TileViewColumn()
         Me.TileViewColumnDBName = New DevExpress.XtraGrid.Columns.TileViewColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelPeriodName = New DevExpress.XtraEditors.LabelControl()
         Me.GCConn = New DevExpress.XtraGrid.GridControl()
         Me.GVCon = New DevExpress.XtraGrid.Views.Tile.TileView()
         Me.TileViewColumnAcc = New DevExpress.XtraGrid.Columns.TileViewColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
         CType(Me.GCConn, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCon, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -65,12 +70,32 @@ Partial Class FormHome
         'PanelControl1
         '
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl1.Controls.Add(Me.PanelControl2)
         Me.PanelControl1.Controls.Add(Me.LabelPeriodName)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(864, 67)
         Me.PanelControl1.TabIndex = 0
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.BtnSearch)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl2.Location = New System.Drawing.Point(304, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(126, 67)
+        Me.PanelControl2.TabIndex = 4
+        '
+        'BtnSearch
+        '
+        Me.BtnSearch.Image = CType(resources.GetObject("BtnSearch.Image"), System.Drawing.Image)
+        Me.BtnSearch.Location = New System.Drawing.Point(6, 24)
+        Me.BtnSearch.Name = "BtnSearch"
+        Me.BtnSearch.Size = New System.Drawing.Size(109, 20)
+        Me.BtnSearch.TabIndex = 3
+        Me.BtnSearch.Text = "Search Account"
         '
         'LabelPeriodName
         '
@@ -103,7 +128,6 @@ Partial Class FormHome
         Me.GVCon.GridControl = Me.GCConn
         Me.GVCon.Name = "GVCon"
         Me.GVCon.OptionsBehavior.Editable = False
-        Me.GVCon.OptionsFind.AlwaysVisible = True
         Me.GVCon.OptionsTiles.ItemSize = New System.Drawing.Size(360, 180)
         TileViewItemElement1.Appearance.Normal.Font = New System.Drawing.Font("Segoe UI Semibold", 27.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         TileViewItemElement1.Appearance.Normal.ForeColor = System.Drawing.Color.White
@@ -153,6 +177,8 @@ Partial Class FormHome
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
         CType(Me.GCConn, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCon, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -167,4 +193,6 @@ Partial Class FormHome
     Friend WithEvents TileViewColumnAccountDesc As DevExpress.XtraGrid.Columns.TileViewColumn
     Friend WithEvents TileViewColumnDBName As DevExpress.XtraGrid.Columns.TileViewColumn
     Friend WithEvents TileViewColumnAcc As DevExpress.XtraGrid.Columns.TileViewColumn
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnSearch As DevExpress.XtraEditors.SimpleButton
 End Class

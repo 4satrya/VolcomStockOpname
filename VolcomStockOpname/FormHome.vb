@@ -38,4 +38,8 @@
             End Try
         End If
     End Sub
+
+    Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles BtnSearch.Click
+        GVCon.OptionsFind.AlwaysVisible = True
+    End Sub
 End Class

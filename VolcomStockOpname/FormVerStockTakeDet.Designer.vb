@@ -112,15 +112,12 @@ Partial Class FormVerStockTakeDet
         Me.XTPScanCompare = New DevExpress.XtraTab.XtraTabPage()
         Me.GCCS = New DevExpress.XtraGrid.GridControl()
         Me.GVCS = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.gridBandInfoNo = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnCSNo = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBandPre = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnBarcodePre = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnNamePre = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnSizePre = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnQtyPre = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnPricePre = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandStockTake = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnAmountPre = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnBarcodeVer = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnNameVer = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -128,7 +125,6 @@ Partial Class FormVerStockTakeDet
         Me.BandedGridColumnQtyVer = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnSizeVer = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnAmountVer = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBanddiff = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnQtyDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnAmountDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnNoteCS = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -165,6 +161,10 @@ Partial Class FormVerStockTakeDet
         Me.BtnAddToRpt = New DevExpress.XtraEditors.SimpleButton()
         Me.ContextMenuStripCompare = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.gridBandInfoNo = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridBandPre = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandStockTake = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBanddiff = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1106,13 +1106,6 @@ Partial Class FormVerStockTakeDet
         Me.GVCS.OptionsView.ShowFooter = True
         Me.GVCS.OptionsView.ShowGroupPanel = False
         '
-        'gridBandInfoNo
-        '
-        Me.gridBandInfoNo.Columns.Add(Me.BandedGridColumnCSNo)
-        Me.gridBandInfoNo.Name = "gridBandInfoNo"
-        Me.gridBandInfoNo.VisibleIndex = 0
-        Me.gridBandInfoNo.Width = 38
-        '
         'BandedGridColumnCSNo
         '
         Me.BandedGridColumnCSNo.Caption = "No"
@@ -1120,18 +1113,6 @@ Partial Class FormVerStockTakeDet
         Me.BandedGridColumnCSNo.Name = "BandedGridColumnCSNo"
         Me.BandedGridColumnCSNo.Visible = True
         Me.BandedGridColumnCSNo.Width = 38
-        '
-        'GridBandPre
-        '
-        Me.GridBandPre.Caption = "PRE STOCKTAKE"
-        Me.GridBandPre.Columns.Add(Me.BandedGridColumnBarcodePre)
-        Me.GridBandPre.Columns.Add(Me.BandedGridColumnNamePre)
-        Me.GridBandPre.Columns.Add(Me.BandedGridColumnSizePre)
-        Me.GridBandPre.Columns.Add(Me.BandedGridColumnQtyPre)
-        Me.GridBandPre.Columns.Add(Me.BandedGridColumnPricePre)
-        Me.GridBandPre.Name = "GridBandPre"
-        Me.GridBandPre.VisibleIndex = 1
-        Me.GridBandPre.Width = 390
         '
         'BandedGridColumnBarcodePre
         '
@@ -1173,20 +1154,6 @@ Partial Class FormVerStockTakeDet
         Me.BandedGridColumnPricePre.FieldName = "price_pre"
         Me.BandedGridColumnPricePre.Name = "BandedGridColumnPricePre"
         Me.BandedGridColumnPricePre.Visible = True
-        '
-        'gridBandStockTake
-        '
-        Me.gridBandStockTake.Caption = "STOCKTAKE"
-        Me.gridBandStockTake.Columns.Add(Me.BandedGridColumnAmountPre)
-        Me.gridBandStockTake.Columns.Add(Me.BandedGridColumnBarcodeVer)
-        Me.gridBandStockTake.Columns.Add(Me.BandedGridColumnNameVer)
-        Me.gridBandStockTake.Columns.Add(Me.BandedGridColumnPriceVer)
-        Me.gridBandStockTake.Columns.Add(Me.BandedGridColumnQtyVer)
-        Me.gridBandStockTake.Columns.Add(Me.BandedGridColumnSizeVer)
-        Me.gridBandStockTake.Columns.Add(Me.BandedGridColumnAmountVer)
-        Me.gridBandStockTake.Name = "gridBandStockTake"
-        Me.gridBandStockTake.VisibleIndex = 2
-        Me.gridBandStockTake.Width = 525
         '
         'BandedGridColumnAmountPre
         '
@@ -1251,16 +1218,6 @@ Partial Class FormVerStockTakeDet
         Me.BandedGridColumnAmountVer.UnboundExpression = "[qty_ver] * [price_ver]"
         Me.BandedGridColumnAmountVer.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnAmountVer.Visible = True
-        '
-        'gridBanddiff
-        '
-        Me.gridBanddiff.Caption = "DIFF"
-        Me.gridBanddiff.Columns.Add(Me.BandedGridColumnQtyDiff)
-        Me.gridBanddiff.Columns.Add(Me.BandedGridColumnAmountDiff)
-        Me.gridBanddiff.Columns.Add(Me.BandedGridColumnNoteCS)
-        Me.gridBanddiff.Name = "gridBanddiff"
-        Me.gridBanddiff.VisibleIndex = 3
-        Me.gridBanddiff.Width = 225
         '
         'BandedGridColumnQtyDiff
         '
@@ -1628,6 +1585,49 @@ Partial Class FormVerStockTakeDet
         Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
         Me.ViewDetailToolStripMenuItem.Text = "View Detail"
         '
+        'gridBandInfoNo
+        '
+        Me.gridBandInfoNo.Columns.Add(Me.BandedGridColumnCSNo)
+        Me.gridBandInfoNo.Name = "gridBandInfoNo"
+        Me.gridBandInfoNo.VisibleIndex = 0
+        Me.gridBandInfoNo.Width = 38
+        '
+        'GridBandPre
+        '
+        Me.GridBandPre.Caption = "PRE STOCKTAKE"
+        Me.GridBandPre.Columns.Add(Me.BandedGridColumnBarcodePre)
+        Me.GridBandPre.Columns.Add(Me.BandedGridColumnNamePre)
+        Me.GridBandPre.Columns.Add(Me.BandedGridColumnSizePre)
+        Me.GridBandPre.Columns.Add(Me.BandedGridColumnQtyPre)
+        Me.GridBandPre.Columns.Add(Me.BandedGridColumnPricePre)
+        Me.GridBandPre.Columns.Add(Me.BandedGridColumnAmountPre)
+        Me.GridBandPre.Name = "GridBandPre"
+        Me.GridBandPre.VisibleIndex = 1
+        Me.GridBandPre.Width = 465
+        '
+        'gridBandStockTake
+        '
+        Me.gridBandStockTake.Caption = "STOCKTAKE"
+        Me.gridBandStockTake.Columns.Add(Me.BandedGridColumnBarcodeVer)
+        Me.gridBandStockTake.Columns.Add(Me.BandedGridColumnNameVer)
+        Me.gridBandStockTake.Columns.Add(Me.BandedGridColumnPriceVer)
+        Me.gridBandStockTake.Columns.Add(Me.BandedGridColumnQtyVer)
+        Me.gridBandStockTake.Columns.Add(Me.BandedGridColumnSizeVer)
+        Me.gridBandStockTake.Columns.Add(Me.BandedGridColumnAmountVer)
+        Me.gridBandStockTake.Name = "gridBandStockTake"
+        Me.gridBandStockTake.VisibleIndex = 2
+        Me.gridBandStockTake.Width = 450
+        '
+        'gridBanddiff
+        '
+        Me.gridBanddiff.Caption = "DIFF"
+        Me.gridBanddiff.Columns.Add(Me.BandedGridColumnQtyDiff)
+        Me.gridBanddiff.Columns.Add(Me.BandedGridColumnAmountDiff)
+        Me.gridBanddiff.Columns.Add(Me.BandedGridColumnNoteCS)
+        Me.gridBanddiff.Name = "gridBanddiff"
+        Me.gridBanddiff.VisibleIndex = 3
+        Me.gridBanddiff.Width = 225
+        '
         'FormVerStockTakeDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1845,10 +1845,6 @@ Partial Class FormVerStockTakeDet
     Friend WithEvents BandedGridColumnAmountDiff As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnCSNo As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnNoteCS As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandInfoNo As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GridBandPre As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBandStockTake As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBanddiff As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnAddToRpt As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
@@ -1856,4 +1852,8 @@ Partial Class FormVerStockTakeDet
     Friend WithEvents TextEditNote As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents CEHideNotice12digit As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents gridBandInfoNo As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridBandPre As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandStockTake As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBanddiff As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class

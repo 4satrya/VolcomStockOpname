@@ -103,6 +103,7 @@ Partial Class FormHome
         Me.GVCon.GridControl = Me.GCConn
         Me.GVCon.Name = "GVCon"
         Me.GVCon.OptionsBehavior.Editable = False
+        Me.GVCon.OptionsFind.AlwaysVisible = True
         Me.GVCon.OptionsTiles.ItemSize = New System.Drawing.Size(360, 180)
         TileViewItemElement1.Appearance.Normal.Font = New System.Drawing.Font("Segoe UI Semibold", 27.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         TileViewItemElement1.Appearance.Normal.ForeColor = System.Drawing.Color.White

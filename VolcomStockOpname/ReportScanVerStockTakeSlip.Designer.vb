@@ -80,7 +80,7 @@ Partial Public Class ReportScanVerStockTakeSlip
         Me.XrTableRow11 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell8 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableRow12 = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.XrTableCell9 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.LabelApp2 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableRow13 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell10 = New DevExpress.XtraReports.UI.XRTableCell()
         CType(Me.GCScan, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -632,7 +632,7 @@ Partial Public Class ReportScanVerStockTakeSlip
         '
         'XrTableRow12
         '
-        Me.XrTableRow12.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell9})
+        Me.XrTableRow12.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.LabelApp2})
         Me.XrTableRow12.Font = New System.Drawing.Font("Segoe UI", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrTableRow12.Name = "XrTableRow12"
         Me.XrTableRow12.StylePriority.UseFont = False
@@ -640,15 +640,15 @@ Partial Public Class ReportScanVerStockTakeSlip
         Me.XrTableRow12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
         Me.XrTableRow12.Weight = 0.483333102097029R
         '
-        'XrTableCell9
+        'LabelApp2
         '
-        Me.XrTableCell9.Font = New System.Drawing.Font("Segoe UI", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrTableCell9.Name = "XrTableCell9"
-        Me.XrTableCell9.StylePriority.UseFont = False
-        Me.XrTableCell9.StylePriority.UseTextAlignment = False
-        Me.XrTableCell9.Text = " "
-        Me.XrTableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell9.Weight = 1.0R
+        Me.LabelApp2.Font = New System.Drawing.Font("Segoe UI", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelApp2.Name = "LabelApp2"
+        Me.LabelApp2.StylePriority.UseFont = False
+        Me.LabelApp2.StylePriority.UseTextAlignment = False
+        Me.LabelApp2.Text = " "
+        Me.LabelApp2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.LabelApp2.Weight = 1.0R
         '
         'XrTableRow13
         '
@@ -715,7 +715,7 @@ Partial Public Class ReportScanVerStockTakeSlip
     Friend WithEvents XrTableRow11 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell8 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableRow12 As DevExpress.XtraReports.UI.XRTableRow
-    Friend WithEvents XrTableCell9 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents LabelApp2 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableRow13 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell10 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTable1 As DevExpress.XtraReports.UI.XRTable

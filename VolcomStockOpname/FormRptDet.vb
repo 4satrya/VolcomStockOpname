@@ -152,7 +152,6 @@
 
         'set view opt
         SplashScreenManager1.SetWaitFormDescription("Set column options")
-        'BGVRpt.BestFitColumns()
         BGVRpt.Bands.MoveTo(1, gridBandDescription)
         BGVRpt.Bands.MoveTo(200, gridBandGlobal)
 

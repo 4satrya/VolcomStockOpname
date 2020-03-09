@@ -227,8 +227,8 @@
         im.id_design_price, im.design_price, im.qty_soh, im.qty_scan, sr.remark AS `store_remark`, 'No' AS `is_select`
         FROM (
 	        SELECT s.id_product, 
-            IF(!ISNULL(sc.id_design_price), sc.id_design_price, IF(c.id_store_type=1, fd.id_design_price,s.id_design_price)) AS `id_design_price`, 
-            IF(!ISNULL(sc.design_price), sc.design_price, IF(c.id_store_type=1, fd.design_price,s.design_price)) AS `design_price`, 
+            IF(!ISNULL(sc.id_design_price), sc.id_design_price, IF(c.id_store_type=1 OR c.id_wh_type=1, fd.id_design_price,s.id_design_price)) AS `id_design_price`, 
+            IF(!ISNULL(sc.design_price), sc.design_price, IF(c.id_store_type=1 OR c.id_wh_type=1, fd.design_price,s.design_price)) AS `design_price`, 
             SUM(s.qty) AS `qty_soh`, IFNULL(sc.qty_scan,0) AS `qty_scan`
 	        FROM tb_st_stock s 
 	        LEFT JOIN (

@@ -79,7 +79,7 @@
     Sub viewRsvBarcode()
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT p.product_full_code AS `barcode`,d.design_code AS `code`, d.design_display_name AS `name`, cd.code_detail_name AS `size`, "
-        query += "s.qty, IF(c.id_store_type=1, fd.design_price,s.design_price) AS `design_price`, c.comp_name, c.comp_number
+        query += "s.qty, IF(c.id_store_type=1 OR c.id_wh_type=1, fd.design_price,s.design_price) AS `design_price`, c.comp_name, c.comp_number
         FROM tb_st_stock s
         INNER JOIN tb_m_product p ON p.id_product = s.id_product
         INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
@@ -112,7 +112,7 @@
             End If
             bcounter += 1
         End While
-        query += "SUM(s.qty) AS `total_qty` , IF(c.id_store_type=1, fd.design_price,s.design_price) AS `design_price`, c.comp_name, c.comp_number
+        query += "SUM(s.qty) AS `total_qty` , IF(c.id_store_type=1 OR c.id_wh_type=1, fd.design_price,s.design_price) AS `design_price`, c.comp_name, c.comp_number
         FROM tb_st_stock s
         INNER JOIN tb_m_product p ON p.id_product = s.id_product
         INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product

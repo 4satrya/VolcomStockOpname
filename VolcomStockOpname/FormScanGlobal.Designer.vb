@@ -189,6 +189,7 @@ Partial Class FormScanGlobal
         Me.GVScan.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmount, "{0:n0}")})
         Me.GVScan.Name = "GVScan"
         Me.GVScan.OptionsBehavior.Editable = False
+        Me.GVScan.OptionsFind.AlwaysVisible = True
         Me.GVScan.OptionsMenu.ShowConditionalFormattingItem = True
         Me.GVScan.OptionsView.ColumnAutoWidth = False
         Me.GVScan.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways

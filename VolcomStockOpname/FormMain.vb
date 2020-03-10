@@ -268,4 +268,16 @@
         FormRpt.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBScanGlobal_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBScanGlobal.LinkClicked
+        Try
+            FormScanGlobal.MdiParent = Me
+            FormScanGlobal.Show()
+            FormScanGlobal.WindowState = FormWindowState.Maximized
+            FormScanGlobal.Focus()
+        Catch ex As Exception
+            errorConnection()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class

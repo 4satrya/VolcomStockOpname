@@ -32,6 +32,7 @@ Partial Class FormMain
         Me.NBWHPreST = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBWHST = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBReport = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBScanGlobal = New DevExpress.XtraNavBar.NavBarItem()
         Me.PCLeft = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControlInfo = New DevExpress.XtraEditors.PanelControl()
         Me.TxtPosition = New DevExpress.XtraEditors.LabelControl()
@@ -44,7 +45,6 @@ Partial Class FormMain
         Me.LabelInfo = New DevExpress.XtraEditors.LabelControl()
         Me.XtraTabbedMdiManager1 = New DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(Me.components)
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomStockOpname.WaitForm1), True, True)
-        Me.NBScanGlobal = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.NBMain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCLeft.SuspendLayout()
@@ -137,6 +137,12 @@ Partial Class FormMain
         Me.NBReport.Caption = "Report"
         Me.NBReport.Name = "NBReport"
         Me.NBReport.SmallImage = CType(resources.GetObject("NBReport.SmallImage"), System.Drawing.Image)
+        '
+        'NBScanGlobal
+        '
+        Me.NBScanGlobal.Caption = "Scan Global"
+        Me.NBScanGlobal.Name = "NBScanGlobal"
+        Me.NBScanGlobal.SmallImage = CType(resources.GetObject("NBScanGlobal.SmallImage"), System.Drawing.Image)
         '
         'PCLeft
         '
@@ -274,12 +280,6 @@ Partial Class FormMain
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'NBScanGlobal
-        '
-        Me.NBScanGlobal.Caption = "Scan Global"
-        Me.NBScanGlobal.Name = "NBScanGlobal"
-        Me.NBScanGlobal.SmallImage = CType(resources.GetObject("NBScanGlobal.SmallImage"), System.Drawing.Image)
         '
         'FormMain
         '

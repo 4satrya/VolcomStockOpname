@@ -20,6 +20,13 @@ Partial Class FormScanGlobal
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnExportXLS = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnExpanseAllGroup = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnCollapse = New DevExpress.XtraEditors.SimpleButton()
+        Me.SLEAccount = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnViewPre = New DevExpress.XtraEditors.SimpleButton()
         Me.XTCGlobal = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPreStockTake = New DevExpress.XtraTab.XtraTabPage()
@@ -48,11 +55,15 @@ Partial Class FormScanGlobal
         Me.GridColumnPrcType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRefNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnst_trans_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncomp_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPStockTake = New DevExpress.XtraTab.XtraTabPage()
-        Me.BtnCollapse = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnExpanseAllGroup = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.SLEAccount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCGlobal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCGlobal.SuspendLayout()
         Me.XTPPreStockTake.SuspendLayout()
@@ -63,8 +74,12 @@ Partial Class FormScanGlobal
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnPrint)
+        Me.PanelControl1.Controls.Add(Me.BtnExportXLS)
         Me.PanelControl1.Controls.Add(Me.BtnExpanseAllGroup)
         Me.PanelControl1.Controls.Add(Me.BtnCollapse)
+        Me.PanelControl1.Controls.Add(Me.SLEAccount)
+        Me.PanelControl1.Controls.Add(Me.PanelControl2)
         Me.PanelControl1.Controls.Add(Me.BtnViewPre)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
@@ -72,9 +87,66 @@ Partial Class FormScanGlobal
         Me.PanelControl1.Size = New System.Drawing.Size(1112, 49)
         Me.PanelControl1.TabIndex = 0
         '
+        'BtnPrint
+        '
+        Me.BtnPrint.Location = New System.Drawing.Point(293, 12)
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(75, 23)
+        Me.BtnPrint.TabIndex = 6
+        Me.BtnPrint.Text = "Print"
+        '
+        'BtnExportXLS
+        '
+        Me.BtnExportXLS.Location = New System.Drawing.Point(374, 12)
+        Me.BtnExportXLS.Name = "BtnExportXLS"
+        Me.BtnExportXLS.Size = New System.Drawing.Size(95, 23)
+        Me.BtnExportXLS.TabIndex = 5
+        Me.BtnExportXLS.Text = "Export to XLSX"
+        '
+        'BtnExpanseAllGroup
+        '
+        Me.BtnExpanseAllGroup.Location = New System.Drawing.Point(602, 12)
+        Me.BtnExpanseAllGroup.Name = "BtnExpanseAllGroup"
+        Me.BtnExpanseAllGroup.Size = New System.Drawing.Size(122, 23)
+        Me.BtnExpanseAllGroup.TabIndex = 2
+        Me.BtnExpanseAllGroup.Text = "Expanse All Group"
+        '
+        'BtnCollapse
+        '
+        Me.BtnCollapse.Location = New System.Drawing.Point(474, 12)
+        Me.BtnCollapse.Name = "BtnCollapse"
+        Me.BtnCollapse.Size = New System.Drawing.Size(122, 23)
+        Me.BtnCollapse.TabIndex = 1
+        Me.BtnCollapse.Text = "Collapse All Group"
+        '
+        'SLEAccount
+        '
+        Me.SLEAccount.Location = New System.Drawing.Point(12, 14)
+        Me.SLEAccount.Name = "SLEAccount"
+        Me.SLEAccount.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEAccount.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEAccount.Size = New System.Drawing.Size(194, 20)
+        Me.SLEAccount.TabIndex = 4
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl2.Location = New System.Drawing.Point(844, 2)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(266, 45)
+        Me.PanelControl2.TabIndex = 3
+        '
         'BtnViewPre
         '
-        Me.BtnViewPre.Location = New System.Drawing.Point(12, 12)
+        Me.BtnViewPre.Location = New System.Drawing.Point(212, 12)
         Me.BtnViewPre.Name = "BtnViewPre"
         Me.BtnViewPre.Size = New System.Drawing.Size(75, 23)
         Me.BtnViewPre.TabIndex = 0
@@ -111,17 +183,19 @@ Partial Class FormScanGlobal
         '
         'GVScan
         '
-        Me.GVScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnDescription, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnNoStock, Me.GridColumnNoMaster, Me.GridColumnSale, Me.GridColumnIdPrice, Me.GridColumnIdProduct, Me.GridColumnIsUniqueCode, Me.GridColumnIdTransDet, Me.GridColumnOK, Me.GridColumnReject, Me.GridColumnproductStatus, Me.GridColumnIniqueNotFound, Me.GridColumnNoTag, Me.GridColumnPrcType, Me.GridColumnRemark, Me.GridColumnRefNumber})
+        Me.GVScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnDescription, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnNoStock, Me.GridColumnNoMaster, Me.GridColumnSale, Me.GridColumnIdPrice, Me.GridColumnIdProduct, Me.GridColumnIsUniqueCode, Me.GridColumnIdTransDet, Me.GridColumnOK, Me.GridColumnReject, Me.GridColumnproductStatus, Me.GridColumnIniqueNotFound, Me.GridColumnNoTag, Me.GridColumnPrcType, Me.GridColumnRemark, Me.GridColumnRefNumber, Me.GridColumnst_trans_date, Me.GridColumncomp_number, Me.GridColumncomp_name})
         Me.GVScan.GridControl = Me.GCScan
+        Me.GVScan.GroupCount = 1
         Me.GVScan.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmount, "{0:n0}")})
         Me.GVScan.Name = "GVScan"
-        Me.GVScan.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVScan.OptionsBehavior.Editable = False
         Me.GVScan.OptionsMenu.ShowConditionalFormattingItem = True
         Me.GVScan.OptionsView.ColumnAutoWidth = False
+        Me.GVScan.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVScan.OptionsView.ShowFooter = True
         Me.GVScan.OptionsView.ShowGroupedColumns = True
         Me.GVScan.OptionsView.ShowGroupPanel = False
+        Me.GVScan.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumncomp_number, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumnNo
         '
@@ -140,7 +214,7 @@ Partial Class FormScanGlobal
         Me.GridColumnCode.Name = "GridColumnCode"
         Me.GridColumnCode.OptionsColumn.AllowEdit = False
         Me.GridColumnCode.Visible = True
-        Me.GridColumnCode.VisibleIndex = 3
+        Me.GridColumnCode.VisibleIndex = 6
         Me.GridColumnCode.Width = 170
         '
         'GridColumnDescription
@@ -150,7 +224,7 @@ Partial Class FormScanGlobal
         Me.GridColumnDescription.Name = "GridColumnDescription"
         Me.GridColumnDescription.OptionsColumn.AllowEdit = False
         Me.GridColumnDescription.Visible = True
-        Me.GridColumnDescription.VisibleIndex = 4
+        Me.GridColumnDescription.VisibleIndex = 7
         Me.GridColumnDescription.Width = 338
         '
         'GridColumnSize
@@ -160,7 +234,7 @@ Partial Class FormScanGlobal
         Me.GridColumnSize.Name = "GridColumnSize"
         Me.GridColumnSize.OptionsColumn.AllowEdit = False
         Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 5
+        Me.GridColumnSize.VisibleIndex = 8
         Me.GridColumnSize.Width = 70
         '
         'GridColumnQty
@@ -173,7 +247,7 @@ Partial Class FormScanGlobal
         Me.GridColumnQty.OptionsColumn.AllowEdit = False
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 8
+        Me.GridColumnQty.VisibleIndex = 11
         Me.GridColumnQty.Width = 69
         '
         'GridColumnPrice
@@ -184,7 +258,7 @@ Partial Class FormScanGlobal
         Me.GridColumnPrice.FieldName = "design_price"
         Me.GridColumnPrice.Name = "GridColumnPrice"
         Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 9
+        Me.GridColumnPrice.VisibleIndex = 12
         Me.GridColumnPrice.Width = 149
         '
         'GridColumnAmount
@@ -199,7 +273,7 @@ Partial Class FormScanGlobal
         Me.GridColumnAmount.UnboundExpression = "[design_price] * [qty]"
         Me.GridColumnAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 10
+        Me.GridColumnAmount.VisibleIndex = 13
         Me.GridColumnAmount.Width = 239
         '
         'GridColumnNoStock
@@ -212,7 +286,7 @@ Partial Class FormScanGlobal
         Me.GridColumnNoStock.Name = "GridColumnNoStock"
         Me.GridColumnNoStock.OptionsColumn.AllowEdit = False
         Me.GridColumnNoStock.Visible = True
-        Me.GridColumnNoStock.VisibleIndex = 12
+        Me.GridColumnNoStock.VisibleIndex = 15
         Me.GridColumnNoStock.Width = 78
         '
         'RepositoryItemCheckEdit1
@@ -232,7 +306,7 @@ Partial Class FormScanGlobal
         Me.GridColumnNoMaster.Name = "GridColumnNoMaster"
         Me.GridColumnNoMaster.OptionsColumn.AllowEdit = False
         Me.GridColumnNoMaster.Visible = True
-        Me.GridColumnNoMaster.VisibleIndex = 17
+        Me.GridColumnNoMaster.VisibleIndex = 20
         Me.GridColumnNoMaster.Width = 67
         '
         'GridColumnSale
@@ -245,7 +319,7 @@ Partial Class FormScanGlobal
         Me.GridColumnSale.Name = "GridColumnSale"
         Me.GridColumnSale.OptionsColumn.AllowEdit = False
         Me.GridColumnSale.Visible = True
-        Me.GridColumnSale.VisibleIndex = 13
+        Me.GridColumnSale.VisibleIndex = 16
         Me.GridColumnSale.Width = 54
         '
         'GridColumnIdPrice
@@ -287,7 +361,7 @@ Partial Class FormScanGlobal
         Me.GridColumnOK.FieldName = "is_ok_v"
         Me.GridColumnOK.Name = "GridColumnOK"
         Me.GridColumnOK.Visible = True
-        Me.GridColumnOK.VisibleIndex = 11
+        Me.GridColumnOK.VisibleIndex = 14
         Me.GridColumnOK.Width = 63
         '
         'GridColumnReject
@@ -299,7 +373,7 @@ Partial Class FormScanGlobal
         Me.GridColumnReject.FieldName = "is_reject_v"
         Me.GridColumnReject.Name = "GridColumnReject"
         Me.GridColumnReject.Visible = True
-        Me.GridColumnReject.VisibleIndex = 14
+        Me.GridColumnReject.VisibleIndex = 17
         Me.GridColumnReject.Width = 62
         '
         'GridColumnproductStatus
@@ -308,7 +382,7 @@ Partial Class FormScanGlobal
         Me.GridColumnproductStatus.FieldName = "design_cat"
         Me.GridColumnproductStatus.Name = "GridColumnproductStatus"
         Me.GridColumnproductStatus.Visible = True
-        Me.GridColumnproductStatus.VisibleIndex = 7
+        Me.GridColumnproductStatus.VisibleIndex = 10
         Me.GridColumnproductStatus.Width = 90
         '
         'GridColumnIniqueNotFound
@@ -320,7 +394,7 @@ Partial Class FormScanGlobal
         Me.GridColumnIniqueNotFound.FieldName = "is_unique_not_found_v"
         Me.GridColumnIniqueNotFound.Name = "GridColumnIniqueNotFound"
         Me.GridColumnIniqueNotFound.Visible = True
-        Me.GridColumnIniqueNotFound.VisibleIndex = 16
+        Me.GridColumnIniqueNotFound.VisibleIndex = 19
         Me.GridColumnIniqueNotFound.Width = 122
         '
         'GridColumnNoTag
@@ -334,7 +408,7 @@ Partial Class FormScanGlobal
         Me.GridColumnNoTag.FieldName = "is_no_tag_v"
         Me.GridColumnNoTag.Name = "GridColumnNoTag"
         Me.GridColumnNoTag.Visible = True
-        Me.GridColumnNoTag.VisibleIndex = 15
+        Me.GridColumnNoTag.VisibleIndex = 18
         Me.GridColumnNoTag.Width = 74
         '
         'GridColumnPrcType
@@ -343,7 +417,7 @@ Partial Class FormScanGlobal
         Me.GridColumnPrcType.FieldName = "design_price_type"
         Me.GridColumnPrcType.Name = "GridColumnPrcType"
         Me.GridColumnPrcType.Visible = True
-        Me.GridColumnPrcType.VisibleIndex = 6
+        Me.GridColumnPrcType.VisibleIndex = 9
         Me.GridColumnPrcType.Width = 76
         '
         'GridColumnRemark
@@ -353,7 +427,7 @@ Partial Class FormScanGlobal
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.OptionsColumn.AllowEdit = False
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 2
+        Me.GridColumnRemark.VisibleIndex = 4
         Me.GridColumnRemark.Width = 93
         '
         'GridColumnRefNumber
@@ -365,27 +439,38 @@ Partial Class FormScanGlobal
         Me.GridColumnRefNumber.VisibleIndex = 1
         Me.GridColumnRefNumber.Width = 82
         '
+        'GridColumnst_trans_date
+        '
+        Me.GridColumnst_trans_date.Caption = "Created Date"
+        Me.GridColumnst_trans_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
+        Me.GridColumnst_trans_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnst_trans_date.FieldName = "st_trans_date"
+        Me.GridColumnst_trans_date.Name = "GridColumnst_trans_date"
+        Me.GridColumnst_trans_date.Visible = True
+        Me.GridColumnst_trans_date.VisibleIndex = 5
+        '
+        'GridColumncomp_number
+        '
+        Me.GridColumncomp_number.Caption = "Account"
+        Me.GridColumncomp_number.FieldName = "comp_number"
+        Me.GridColumncomp_number.Name = "GridColumncomp_number"
+        Me.GridColumncomp_number.Visible = True
+        Me.GridColumncomp_number.VisibleIndex = 2
+        '
+        'GridColumncomp_name
+        '
+        Me.GridColumncomp_name.Caption = "Account Description"
+        Me.GridColumncomp_name.FieldName = "comp_name"
+        Me.GridColumncomp_name.Name = "GridColumncomp_name"
+        Me.GridColumncomp_name.Visible = True
+        Me.GridColumncomp_name.VisibleIndex = 3
+        Me.GridColumncomp_name.Width = 133
+        '
         'XTPStockTake
         '
         Me.XTPStockTake.Name = "XTPStockTake"
         Me.XTPStockTake.Size = New System.Drawing.Size(1106, 422)
         Me.XTPStockTake.Text = "Stock Take"
-        '
-        'BtnCollapse
-        '
-        Me.BtnCollapse.Location = New System.Drawing.Point(93, 12)
-        Me.BtnCollapse.Name = "BtnCollapse"
-        Me.BtnCollapse.Size = New System.Drawing.Size(122, 23)
-        Me.BtnCollapse.TabIndex = 1
-        Me.BtnCollapse.Text = "Collapse All Group"
-        '
-        'BtnExpanseAllGroup
-        '
-        Me.BtnExpanseAllGroup.Location = New System.Drawing.Point(221, 12)
-        Me.BtnExpanseAllGroup.Name = "BtnExpanseAllGroup"
-        Me.BtnExpanseAllGroup.Size = New System.Drawing.Size(122, 23)
-        Me.BtnExpanseAllGroup.TabIndex = 2
-        Me.BtnExpanseAllGroup.Text = "Collapse All Group"
         '
         'FormScanGlobal
         '
@@ -400,6 +485,9 @@ Partial Class FormScanGlobal
         Me.Text = "Global Scan"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        CType(Me.SLEAccount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCGlobal, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCGlobal.ResumeLayout(False)
         Me.XTPPreStockTake.ResumeLayout(False)
@@ -442,4 +530,12 @@ Partial Class FormScanGlobal
     Friend WithEvents BtnViewPre As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnCollapse As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnExpanseAllGroup As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnst_trans_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncomp_number As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncomp_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SLEAccount As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnExportXLS As DevExpress.XtraEditors.SimpleButton
 End Class

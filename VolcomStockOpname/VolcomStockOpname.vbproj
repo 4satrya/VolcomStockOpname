@@ -332,6 +332,7 @@
     <Compile Include="FormVerStockTakeNew.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GridExtensions.vb" />
     <Compile Include="Library\Common.vb" />
     <Compile Include="Library\Database.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

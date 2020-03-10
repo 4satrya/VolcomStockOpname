@@ -29,6 +29,98 @@
 
     Private Sub BtnViewPre_Click(sender As Object, e As EventArgs) Handles BtnViewPre.Click
         If XTCGlobal.SelectedTabPageIndex = 0 Then
+            If XTCStock.SelectedTabPageIndex = 0 Then
+                'by code
+                Cursor = Cursors.WaitCursor
+                FormMain.SplashScreenManager1.ShowWaitForm()
+                Dim cond_db As String = ""
+                If SLEAccount.EditValue <> "0" Then
+                    cond_db = "AND d.db_name='" + SLEAccount.EditValue.ToString + "' "
+                End If
+                Dim query As String = "SELECT * FROM tb_periode_det d WHERE d.id_periode=" + id_periode + " " + cond_db + " "
+                Dim data As DataTable = execute_query(query, -1, False, app_host, app_username, app_password, "db_opt")
+                Dim qd As String = ""
+                For i As Integer = 0 To data.Rows.Count - 1
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Generate query " + data.Rows(i)("account").ToString)
+                    Dim dbn As String = data.Rows(i)("db_name").ToString
+                    If i > 0 Then
+                        qd += "UNION ALL "
+                    End If
+                    qd += "SELECT d.design_code AS `code`, d.design_display_name AS `name`, SUBSTRING(p.product_full_code, 10, 1) AS `sizetype`, "
+                    Dim bcounter As Integer = 1
+                    While bcounter <= 10
+                        If bcounter = 10 Then
+                            qd += "SUM(CASE WHEN SUBSTRING(cd.code,2,1)='0' THEN s.qty  END) `0`, "
+                        Else
+                            qd += "SUM(CASE WHEN SUBSTRING(cd.code,2,1)='" + bcounter.ToString + "' THEN s.qty  END) `" + bcounter.ToString + "`, "
+                        End If
+                        bcounter += 1
+                    End While
+                    qd += "SUM(s.qty) AS `total_qty` , IF(c.id_store_type=1 OR c.id_wh_type=1, fd.design_price,s.design_price) AS `design_price`, c.comp_name, c.comp_number
+                    FROM " + dbn + ".tb_st_stock s
+                    INNER JOIN " + dbn + ".tb_m_product p ON p.id_product = s.id_product
+                    INNER JOIN " + dbn + ".tb_m_product_code pc ON pc.id_product = p.id_product
+                    INNER JOIN " + dbn + ".tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+                    INNER JOIN " + dbn + ".tb_m_design d ON d.id_design = p.id_design
+                    INNER JOIN " + dbn + ".tb_m_comp c ON c.id_drawer_def = s.id_wh_drawer
+                    LEFT JOIN " + dbn + ".tb_m_design_first_del fd ON fd.id_design = d.id_design AND fd.id_comp = c.id_comp
+                    WHERE 1=1 "
+                    qd += "GROUP BY p.id_design, SUBSTRING(p.product_full_code, 10, 1) "
+                Next
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Fetching data")
+                Dim dd As DataTable = execute_query(qd, -1, True, "", "", "", "")
+                GCRsv.DataSource = dd
+                GVRsv.Columns("1").Caption = "1" + System.Environment.NewLine + "XXS"
+                GVRsv.Columns("2").Caption = "2" + System.Environment.NewLine + "XS"
+                GVRsv.Columns("3").Caption = "3" + System.Environment.NewLine + "S"
+                GVRsv.Columns("4").Caption = "4" + System.Environment.NewLine + "M"
+                GVRsv.Columns("5").Caption = "5" + System.Environment.NewLine + "ML"
+                GVRsv.Columns("6").Caption = "6" + System.Environment.NewLine + "L"
+                GVRsv.Columns("7").Caption = "7" + System.Environment.NewLine + "XL"
+                GVRsv.Columns("8").Caption = "8" + System.Environment.NewLine + "XXL"
+                GVRsv.Columns("9").Caption = "9" + System.Environment.NewLine + "ALL"
+                GVRsv.Columns("0").Caption = "0" + System.Environment.NewLine + "SM"
+                GVRsv.RefreshData()
+                FormMain.SplashScreenManager1.CloseWaitForm()
+                Cursor = Cursors.Default
+            ElseIf XTCStock.SelectedTabPageIndex = 1 Then
+                'by barcode
+                Cursor = Cursors.WaitCursor
+                FormMain.SplashScreenManager1.ShowWaitForm()
+                Dim cond_db As String = ""
+                If SLEAccount.EditValue <> "0" Then
+                    cond_db = "AND d.db_name='" + SLEAccount.EditValue.ToString + "' "
+                End If
+                Dim query As String = "SELECT * FROM tb_periode_det d WHERE d.id_periode=" + id_periode + " " + cond_db + " "
+                Dim data As DataTable = execute_query(query, -1, False, app_host, app_username, app_password, "db_opt")
+                Dim qd As String = ""
+                For i As Integer = 0 To data.Rows.Count - 1
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Generate query " + data.Rows(i)("account").ToString)
+                    Dim dbn As String = data.Rows(i)("db_name").ToString
+                    If i > 0 Then
+                        qd += "UNION ALL "
+                    End If
+                    qd += "SELECT p.id_product,p.product_full_code AS `barcode`,d.design_code AS `code`, d.design_display_name AS `name`, cd.code_detail_name AS `size`, "
+                    qd += "s.qty, IF(c.id_store_type=1 OR c.id_wh_type=1, fd.design_price,s.design_price) AS `design_price`, c.comp_name, c.comp_number
+                    FROM " + dbn + ".tb_st_stock s
+                    INNER JOIN " + dbn + ".tb_m_product p ON p.id_product = s.id_product
+                    INNER JOIN " + dbn + ".tb_m_product_code pc ON pc.id_product = p.id_product
+                    INNER JOIN " + dbn + ".tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+                    INNER JOIN " + dbn + ".tb_m_design d ON d.id_design = p.id_design
+                    INNER JOIN " + dbn + ".tb_m_comp c ON c.id_drawer_def = s.id_wh_drawer
+                    LEFT JOIN " + dbn + ".tb_m_design_first_del fd ON fd.id_design = d.id_design AND fd.id_comp = c.id_comp
+                    WHERE 1=1 "
+                Next
+                If qd <> "" Then
+                    qd += "ORDER BY id_product ASC "
+                End If
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Fetching data")
+                Dim dd As DataTable = execute_query(qd, -1, True, "", "", "", "")
+                GCRsvBar.DataSource = dd
+                FormMain.SplashScreenManager1.CloseWaitForm()
+                Cursor = Cursors.Default
+            End If
+        ElseIf XTCGlobal.SelectedTabPageIndex = 1 Then
             Cursor = Cursors.WaitCursor
             FormMain.SplashScreenManager1.ShowWaitForm()
             Dim cond_db As String = ""
@@ -66,7 +158,7 @@
             GCScan.DataSource = dd
             FormMain.SplashScreenManager1.CloseWaitForm()
             Cursor = Cursors.Default
-        ElseIf XTCGlobal.SelectedTabPageIndex = 1 Then
+        ElseIf XTCGlobal.SelectedTabPageIndex = 2 Then
             Cursor = Cursors.WaitCursor
             FormMain.SplashScreenManager1.ShowWaitForm()
             Dim cond_db As String = ""
@@ -125,9 +217,15 @@
     Private Sub BtnColEx_Click(sender As Object, e As EventArgs) Handles BtnCollapse.Click
         If XTCGlobal.SelectedTabPageIndex = 0 Then
             Cursor = Cursors.WaitCursor
-            GVScan.CollapseAllGroups()
+            If XTCStock.SelectedTabPageIndex = 0 Then
+                GVRsv.CollapseAllGroups()
+            ElseIf XTCStock.SelectedTabPageIndex = 1 Then
+                GVRsvBar.CollapseAllGroups()
+            End If
             Cursor = Cursors.Default
         ElseIf XTCGlobal.SelectedTabPageIndex = 1 Then
+
+        ElseIf XTCGlobal.SelectedTabPageIndex = 2 Then
             Cursor = Cursors.WaitCursor
             GVST.CollapseAllGroups()
             Cursor = Cursors.Default
@@ -137,9 +235,17 @@
     Private Sub BtnExpanseAllGroup_Click(sender As Object, e As EventArgs) Handles BtnExpanseAllGroup.Click
         If XTCGlobal.SelectedTabPageIndex = 0 Then
             Cursor = Cursors.WaitCursor
-            GVScan.ExpandAllGroups()
+            If XTCStock.SelectedTabPageIndex = 0 Then
+                GVRsv.ExpandAllGroups()
+            ElseIf XTCStock.SelectedTabPageIndex = 1 Then
+                GVRsvBar.ExpandAllGroups()
+            End If
             Cursor = Cursors.Default
         ElseIf XTCGlobal.SelectedTabPageIndex = 1 Then
+            Cursor = Cursors.WaitCursor
+            GVScan.ExpandAllGroups()
+            Cursor = Cursors.Default
+        ElseIf XTCGlobal.SelectedTabPageIndex = 2 Then
             Cursor = Cursors.WaitCursor
             GVST.ExpandAllGroups()
             Cursor = Cursors.Default
@@ -157,6 +263,8 @@
     End Sub
 
     Private Sub SLEAccount_EditValueChanged(sender As Object, e As EventArgs) Handles SLEAccount.EditValueChanged
+        GCRsv.DataSource = Nothing
+        GCRsvBar.DataSource = Nothing
         GCScan.DataSource = Nothing
         GCST.DataSource = Nothing
     End Sub
@@ -164,8 +272,14 @@
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
         If XTCGlobal.SelectedTabPageIndex = 0 Then
-            print_raw(GCScan, "")
+            If XTCStock.SelectedTabPageIndex = 0 Then
+                print_raw(GCRsv, "")
+            ElseIf XTCStock.SelectedTabPageIndex = 1 Then
+                print_raw(GCRsvBar, "")
+            End If
         ElseIf XTCGlobal.SelectedTabPageIndex = 1 Then
+            print_raw(GCScan, "")
+        ElseIf XTCGlobal.SelectedTabPageIndex = 2 Then
             print_raw(GCST, "")
         End If
         Cursor = Cursors.Default
@@ -174,6 +288,36 @@
     Private Sub BtnExportXLS_Click(sender As Object, e As EventArgs) Handles BtnExportXLS.Click
         Cursor = Cursors.WaitCursor
         If XTCGlobal.SelectedTabPageIndex = 0 Then
+            If XTCStock.SelectedTabPageIndex = 0 Then
+                If GVRsv.RowCount > 0 Then
+                    Cursor = Cursors.WaitCursor
+
+                    Dim path As String = Application.StartupPath & "\download\"
+                    'create directory if not exist
+                    If Not IO.Directory.Exists(path) Then
+                        System.IO.Directory.CreateDirectory(path)
+                    End If
+                    Dim uTime As Integer = (DateTime.UtcNow - New DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds
+                    path = path + "soh_global_" + SLEAccount.ToString + "_" + uTime.ToString + ".xlsx"
+                    exportToXLSDataAware(path, "soh global", GCRsv)
+                    Cursor = Cursors.Default
+                End If
+            ElseIf XTCStock.SelectedTabPageIndex = 1 Then
+                If GVRsvBar.RowCount > 0 Then
+                    Cursor = Cursors.WaitCursor
+
+                    Dim path As String = Application.StartupPath & "\download\"
+                    'create directory if not exist
+                    If Not IO.Directory.Exists(path) Then
+                        System.IO.Directory.CreateDirectory(path)
+                    End If
+                    Dim uTime As Integer = (DateTime.UtcNow - New DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds
+                    path = path + "soh_global_barcode_" + SLEAccount.ToString + "_" + uTime.ToString + ".xlsx"
+                    exportToXLSDataAware(path, "soh global barcode", GCRsvBar)
+                    Cursor = Cursors.Default
+                End If
+            End If
+        ElseIf XTCGlobal.SelectedTabPageIndex = 1 Then
             If GVScan.RowCount > 0 Then
                 Cursor = Cursors.WaitCursor
 
@@ -187,7 +331,7 @@
                 exportToXLSDataAware(path, "scan global pre", GCScan)
                 Cursor = Cursors.Default
             End If
-        ElseIf XTCGlobal.SelectedTabPageIndex = 1 Then
+        ElseIf XTCGlobal.SelectedTabPageIndex = 2 Then
             If GVST.RowCount > 0 Then
                 Cursor = Cursors.WaitCursor
 

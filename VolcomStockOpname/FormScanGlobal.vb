@@ -116,8 +116,8 @@
                 System.IO.Directory.CreateDirectory(path)
             End If
             Dim uTime As Integer = (DateTime.UtcNow - New DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds
-            path = path + "scan_global_" + SLEAccount.ToString + "_" + uTime.ToString + ".xlsx"
-            exportToXLSDataAware(path, "scan global", GCScan)
+            path = path + "scan_global_pre_stocktake_" + SLEAccount.ToString + "_" + uTime.ToString + ".xlsx"
+            exportToXLSDataAware(path, "scan global pre", GCScan)
             Cursor = Cursors.Default
         End If
         Cursor = Cursors.Default

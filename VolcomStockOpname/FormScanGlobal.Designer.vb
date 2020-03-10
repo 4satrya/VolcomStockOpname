@@ -49,6 +49,8 @@ Partial Class FormScanGlobal
         Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRefNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPStockTake = New DevExpress.XtraTab.XtraTabPage()
+        Me.BtnCollapse = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnExpanseAllGroup = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.XTCGlobal, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,6 +63,8 @@ Partial Class FormScanGlobal
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnExpanseAllGroup)
+        Me.PanelControl1.Controls.Add(Me.BtnCollapse)
         Me.PanelControl1.Controls.Add(Me.BtnViewPre)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
@@ -114,6 +118,7 @@ Partial Class FormScanGlobal
         Me.GVScan.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVScan.OptionsBehavior.Editable = False
         Me.GVScan.OptionsMenu.ShowConditionalFormattingItem = True
+        Me.GVScan.OptionsView.ColumnAutoWidth = False
         Me.GVScan.OptionsView.ShowFooter = True
         Me.GVScan.OptionsView.ShowGroupedColumns = True
         Me.GVScan.OptionsView.ShowGroupPanel = False
@@ -366,6 +371,22 @@ Partial Class FormScanGlobal
         Me.XTPStockTake.Size = New System.Drawing.Size(1106, 422)
         Me.XTPStockTake.Text = "Stock Take"
         '
+        'BtnCollapse
+        '
+        Me.BtnCollapse.Location = New System.Drawing.Point(93, 12)
+        Me.BtnCollapse.Name = "BtnCollapse"
+        Me.BtnCollapse.Size = New System.Drawing.Size(122, 23)
+        Me.BtnCollapse.TabIndex = 1
+        Me.BtnCollapse.Text = "Collapse All Group"
+        '
+        'BtnExpanseAllGroup
+        '
+        Me.BtnExpanseAllGroup.Location = New System.Drawing.Point(221, 12)
+        Me.BtnExpanseAllGroup.Name = "BtnExpanseAllGroup"
+        Me.BtnExpanseAllGroup.Size = New System.Drawing.Size(122, 23)
+        Me.BtnExpanseAllGroup.TabIndex = 2
+        Me.BtnExpanseAllGroup.Text = "Collapse All Group"
+        '
         'FormScanGlobal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -419,4 +440,6 @@ Partial Class FormScanGlobal
     Friend WithEvents GridColumnRemark As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnRefNumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnViewPre As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnCollapse As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnExpanseAllGroup As DevExpress.XtraEditors.SimpleButton
 End Class

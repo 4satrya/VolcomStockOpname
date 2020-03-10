@@ -31,8 +31,16 @@
                 LEFT JOIN " + dbn + ".tb_lookup_design_cat cat ON cat.id_design_cat = typ.id_design_cat  "
                 qd += "WHERE st.id_report_status!=5 AND st.is_combine=2 AND st.is_pre=1 ORDER BY std.id_st_trans ASC, std.name ASC, RIGHT(p.product_full_code,3) ASC "
             Next
-            Dim dd As DataTable = execute_query(qd, -1, False, "", "", "", "")
+            Dim dd As DataTable = execute_query(qd, -1, True, "", "", "", "")
+            GCScan.DataSource = dd
+            Cursor = Cursors.Default
+        End If
+    End Sub
 
+    Private Sub BtnColEx_Click(sender As Object, e As EventArgs) Handles BtnCollapse.Click
+        If XTCGlobal.SelectedTabPageIndex = 0 Then
+            Cursor = Cursors.WaitCursor
+            GVScan.CollapseAllGroups()
             Cursor = Cursors.Default
         End If
     End Sub

@@ -44,6 +44,7 @@ Partial Class FormMain
         Me.LabelInfo = New DevExpress.XtraEditors.LabelControl()
         Me.XtraTabbedMdiManager1 = New DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(Me.components)
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomStockOpname.WaitForm1), True, True)
+        Me.NBScanGlobal = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.NBMain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCLeft.SuspendLayout()
@@ -65,7 +66,7 @@ Partial Class FormMain
         Me.NBMain.Appearance.Item.Options.UseForeColor = True
         Me.NBMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.NBMain.Groups.AddRange(New DevExpress.XtraNavBar.NavBarGroup() {Me.NBGGeneral})
-        Me.NBMain.Items.AddRange(New DevExpress.XtraNavBar.NavBarItem() {Me.NBExport, Me.NBImport, Me.NBStock, Me.NBStockTake, Me.NBDashboard, Me.NBOpt, Me.NBWHPreST, Me.NBWHST, Me.NBReport})
+        Me.NBMain.Items.AddRange(New DevExpress.XtraNavBar.NavBarItem() {Me.NBExport, Me.NBImport, Me.NBStock, Me.NBStockTake, Me.NBDashboard, Me.NBOpt, Me.NBWHPreST, Me.NBWHST, Me.NBReport, Me.NBScanGlobal})
         Me.NBMain.Location = New System.Drawing.Point(0, 174)
         Me.NBMain.LookAndFeel.SkinName = "DevExpress Dark Style"
         Me.NBMain.LookAndFeel.UseDefaultLookAndFeel = False
@@ -80,9 +81,8 @@ Partial Class FormMain
         '
         Me.NBGGeneral.Caption = "Main Menu"
         Me.NBGGeneral.Expanded = True
-        Me.NBGGeneral.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDashboard), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBExport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBImport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBStock), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBOpt), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBStockTake), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBWHPreST), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBWHST), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBReport)})
+        Me.NBGGeneral.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDashboard), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBExport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBImport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBStock), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBOpt), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBStockTake), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBWHPreST), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBWHST), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBReport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBScanGlobal)})
         Me.NBGGeneral.Name = "NBGGeneral"
-        Me.NBGGeneral.TopVisibleLinkIndex = 3
         '
         'NBDashboard
         '
@@ -275,6 +275,12 @@ Partial Class FormMain
         '
         Me.SplashScreenManager1.ClosingDelay = 500
         '
+        'NBScanGlobal
+        '
+        Me.NBScanGlobal.Caption = "Scan Global"
+        Me.NBScanGlobal.Name = "NBScanGlobal"
+        Me.NBScanGlobal.SmallImage = CType(resources.GetObject("NBScanGlobal.SmallImage"), System.Drawing.Image)
+        '
         'FormMain
         '
         Me.Appearance.BackColor = System.Drawing.Color.White
@@ -330,4 +336,5 @@ Partial Class FormMain
     Friend WithEvents LabelInfo As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents NBReport As DevExpress.XtraNavBar.NavBarItem
+    Friend WithEvents NBScanGlobal As DevExpress.XtraNavBar.NavBarItem
 End Class

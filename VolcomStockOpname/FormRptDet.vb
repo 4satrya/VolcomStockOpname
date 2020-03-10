@@ -47,8 +47,10 @@
 
     Sub viewDetailReport()
         Cursor = Cursors.WaitCursor
+        SplashScreenManager1.ShowWaitForm()
 
         'delete band acc
+        SplashScreenManager1.SetWaitFormDescription("Restore band column")
         For b As Integer = BGVRpt.Bands.Count - 1 To 0 Step -1
             If BGVRpt.Bands(b).Name.ToString.Contains("gridBandAcc_") Then
                 BGVRpt.Bands(b).Dispose()
@@ -70,6 +72,7 @@
         Dim col_diff_value As String = ""
         Dim col_note As String = ""
         For a As Integer = 0 To dacc.Rows.Count - 1
+            SplashScreenManager1.SetWaitFormDescription("Generate column " + dacc.Rows(a)("comp_number").ToString)
             Dim band_new As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BGVRpt.Bands.AddBand(dacc.Rows(a)("comp_number").ToString)
             band_new.AppearanceHeader.Font = New Font(BGVRpt.Appearance.Row.Font.FontFamily, BGVRpt.Appearance.Row.Font.Size, FontStyle.Bold)
             band_new.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
@@ -128,6 +131,7 @@
         Next
 
         'data
+        SplashScreenManager1.SetWaitFormDescription("Fetching data")
         Dim query As String = "SELECT d.prod_code AS `Barcode`, d.prod_code_main AS `SKU`, d.prod_name AS `Description`, d.size AS `Size`,
         " + col_prc + "
         " + col_soh + "
@@ -147,9 +151,11 @@
         GCRpt.DataSource = data
 
         'set view opt
-        BGVRpt.BestFitColumns()
+        SplashScreenManager1.SetWaitFormDescription("Set column options")
         BGVRpt.Bands.MoveTo(1, gridBandDescription)
         BGVRpt.Bands.MoveTo(200, gridBandGlobal)
+
+        SplashScreenManager1.CloseWaitForm()
         Cursor = Cursors.Default
     End Sub
 

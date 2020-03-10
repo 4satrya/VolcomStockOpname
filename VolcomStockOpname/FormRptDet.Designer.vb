@@ -73,6 +73,7 @@ Partial Class FormRptDet
         Me.CEShowHighlights = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnExportToXLSX = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrintDetail = New DevExpress.XtraEditors.SimpleButton()
+        Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomStockOpname.WaitForm1), True, True)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -599,6 +600,10 @@ Partial Class FormRptDet
         Me.BtnPrintDetail.TabIndex = 1
         Me.BtnPrintDetail.Text = "Print"
         '
+        'SplashScreenManager1
+        '
+        Me.SplashScreenManager1.ClosingDelay = 500
+        '
         'FormRptDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -700,4 +705,5 @@ Partial Class FormRptDet
     Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnDelete As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SplashScreenManager1 As DevExpress.XtraSplashScreen.SplashScreenManager
 End Class

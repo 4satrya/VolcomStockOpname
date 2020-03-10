@@ -218,6 +218,12 @@
     <Compile Include="FormRptNew.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormScanGlobal.Designer.vb">
+      <DependentUpon>FormScanGlobal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormScanGlobal.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormStart.Designer.vb">
       <DependentUpon>FormStart.vb</DependentUpon>
     </Compile>
@@ -326,6 +332,7 @@
     <Compile Include="FormVerStockTakeNew.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GridExtensions.vb" />
     <Compile Include="Library\Common.vb" />
     <Compile Include="Library\Database.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -458,6 +465,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRptNew.resx">
       <DependentUpon>FormRptNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormScanGlobal.resx">
+      <DependentUpon>FormScanGlobal.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStart.resx">
       <DependentUpon>FormStart.vb</DependentUpon>

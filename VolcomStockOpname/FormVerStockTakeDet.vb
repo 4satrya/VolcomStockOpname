@@ -696,43 +696,50 @@
                         TxtScan.Focus()
                         Exit Sub
                     Else
-                        'masuk & not match
-                        'pengecekan kondisi
-                        Dim is_ok As String = "2"
-                        Dim is_not_match As String = "1"
-                        Dim is_no_stock As String = dm.Rows(0)("is_no_stock").ToString
-                        Dim is_no_master As String = dm.Rows(0)("is_no_master").ToString
-                        Dim is_sale As String = dm.Rows(0)("is_sale").ToString
-                        Dim is_unique_not_found As String = dm.Rows(0)("is_unique_not_found").ToString
+                        'update 12 maret 2020
+                        If CheckEditAllow.EditValue.ToString = "False" Then
+                            stopCustomDialog("Qty not match")
+                            TxtScan.Text = ""
+                            TxtScan.Focus()
+                        Else
+                            'masuk & not match
+                            'pengecekan kondisi
+                            Dim is_ok As String = "2"
+                            Dim is_not_match As String = "1"
+                            Dim is_no_stock As String = dm.Rows(0)("is_no_stock").ToString
+                            Dim is_no_master As String = dm.Rows(0)("is_no_master").ToString
+                            Dim is_sale As String = dm.Rows(0)("is_sale").ToString
+                            Dim is_unique_not_found As String = dm.Rows(0)("is_unique_not_found").ToString
 
-                        Dim err_head As String = "PROBLEM PRODUCT : " + System.Environment.NewLine
-                        Dim err As String = ""
-                        If is_not_match = "1" Then
-                            err += "- QTY NOT MATCH " + System.Environment.NewLine
-                        End If
-                        If is_no_stock = "1" Then
-                            err += "- NO STOCK " + System.Environment.NewLine
-                        End If
-                        If is_no_master = "1" Then
-                            err += "- NO MASTER " + System.Environment.NewLine
-                        End If
-                        If is_sale = "1" And CheckEditSale.EditValue.ToString = "False" Then
-                            err += "- PRODUCT SALE " + System.Environment.NewLine
-                        End If
-                        If is_unique_not_found = "1" Then
-                            err += "- UNIQUE CODE NOT FOUND " + System.Environment.NewLine
-                        End If
-                        If err <> "" Then
-                            stopCustomDialog(err_head + err)
-                        End If
+                            Dim err_head As String = "PROBLEM PRODUCT : " + System.Environment.NewLine
+                            Dim err As String = ""
+                            If is_not_match = "1" Then
+                                err += "- QTY NOT MATCH " + System.Environment.NewLine
+                            End If
+                            If is_no_stock = "1" Then
+                                err += "- NO STOCK " + System.Environment.NewLine
+                            End If
+                            If is_no_master = "1" Then
+                                err += "- NO MASTER " + System.Environment.NewLine
+                            End If
+                            If is_sale = "1" And CheckEditSale.EditValue.ToString = "False" Then
+                                err += "- PRODUCT SALE " + System.Environment.NewLine
+                            End If
+                            If is_unique_not_found = "1" Then
+                                err += "- UNIQUE CODE NOT FOUND " + System.Environment.NewLine
+                            End If
+                            If err <> "" Then
+                                stopCustomDialog(err_head + err)
+                            End If
 
-                        'insert 
-                        insertDB(is_ok, is_not_match, is_no_stock, is_no_master, is_no_tag, is_sale, is_reject, is_unique_not_found, dm.Rows(0)("id_product").ToString, addSlashes(code), addSlashes(dm.Rows(0)("name").ToString), addSlashes(dm.Rows(0)("size").ToString), dm.Rows(0)("id_design_price").ToString, decimalSQL(dm.Rows(0)("design_price").ToString))
-                        updatedBy()
-                        viewDetail()
-                        GVScan.FocusedRowHandle = GVScan.RowCount - 1
-                        TxtScan.Text = ""
-                        TxtScan.Focus()
+                            'insert 
+                            insertDB(is_ok, is_not_match, is_no_stock, is_no_master, is_no_tag, is_sale, is_reject, is_unique_not_found, dm.Rows(0)("id_product").ToString, addSlashes(code), addSlashes(dm.Rows(0)("name").ToString), addSlashes(dm.Rows(0)("size").ToString), dm.Rows(0)("id_design_price").ToString, decimalSQL(dm.Rows(0)("design_price").ToString))
+                            updatedBy()
+                            viewDetail()
+                            GVScan.FocusedRowHandle = GVScan.RowCount - 1
+                            TxtScan.Text = ""
+                            TxtScan.Focus()
+                        End If
                     End If
                 End If
             Else

@@ -1,4 +1,6 @@
 ﻿Public Class FormMain
+    Dim dtopt As DataTable
+
     Private Sub NBExport_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBExport.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
@@ -110,6 +112,7 @@
         Catch ex As Exception
             FormDatabase.ShowDialog()
         End Try
+        dtopt = getOptMain()
     End Sub
 
     Sub optionMenu()
@@ -221,6 +224,12 @@
 
     Private Sub NBWHPreST_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBWHPreST.LinkClicked
         Cursor = Cursors.WaitCursor
+        If id_role_login = "4" And dtopt.Rows(0)("is_show_pre_st") = "2" Then
+            stopCustom("This menu not available for this time")
+            Cursor = Cursors.Default
+            Exit Sub
+        End If
+
         Try
             'jika telah terbuka
             FormStockTake.Close()

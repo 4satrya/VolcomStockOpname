@@ -2735,7 +2735,7 @@ Module Common
 
         BandedGridView1.AppearancePrint.FooterPanel.BackColor = Color.Transparent
         BandedGridView1.AppearancePrint.FooterPanel.ForeColor = Color.Black
-        BandedGridView1.AppearancePrint.FooterPanel.Font = New Font("Segoe UI", 7, FontStyle.Bold)
+        BandedGridView1.AppearancePrint.FooterPanel.Font = New Font("Segoe UI", 8.25, FontStyle.Bold)
 
         BandedGridView1.AppearancePrint.Row.Font = New Font("Segoe UI", 7, FontStyle.Regular)
 

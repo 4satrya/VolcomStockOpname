@@ -56,9 +56,14 @@
                 Next
 
                 'insert
-                Dim query As String = "INSERT INTO tb_st_trans_ver (id_wh_drawer, st_trans_ver_number, remark, st_trans_ver_date, st_trans_ver_by, is_combine) 
-                VALUES ('" + SLEWHStockSum.EditValue.ToString + "', '" + header_number("7") + "', '" + MERemark.Text + "', NOW(), '" + id_user + "', 1); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_st_trans_ver(id_wh_drawer, st_trans_ver_number, remark, st_trans_ver_date, st_trans_ver_by, is_combine) 
+                VALUES ('" + SLEWHStockSum.EditValue.ToString + "', '', '" + MERemark.Text + "', NOW(), '" + id_user + "', 1); SELECT LAST_INSERT_ID(); "
                 Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
+
+                'update number
+                Dim trans_number As String = header_number("7", id_new)
+                Dim query_numb As String = "UPDATE tb_st_trans_ver SET st_trans_ver_number='" + trans_number + "' WHERE id_st_trans_ver='" + id_new + "' "
+                execute_non_query(query_numb, True, "", "", "", "")
 
                 If CENoScan.EditValue = False Then
                     'update

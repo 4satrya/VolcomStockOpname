@@ -57,8 +57,13 @@
 
                 'insert
                 Dim query As String = "INSERT INTO tb_st_trans (id_wh_drawer, st_trans_number, remark, st_trans_date, st_trans_by, is_combine, is_pre) 
-                VALUES ('" + SLEWHStockSum.EditValue.ToString + "', '" + getTransNumber() + "', '" + MERemark.Text + "', NOW(), '" + id_user + "', 1, '" + FormStockTake.is_pre + "'); SELECT LAST_INSERT_ID(); "
+                VALUES ('" + SLEWHStockSum.EditValue.ToString + "', '', '" + MERemark.Text + "', NOW(), '" + id_user + "', 1, '" + FormStockTake.is_pre + "'); SELECT LAST_INSERT_ID(); "
                 Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
+
+                'update number
+                Dim trans_number As String = getTransNumber(id_new)
+                Dim query_numb As String = "UPDATE tb_st_trans SET st_trans_number='" + trans_number + "' WHERE id_st_trans='" + id_new + "' "
+                execute_non_query(query_numb, True, "", "", "", "")
 
                 If CENoScan.EditValue = False Then
                     'update
@@ -89,11 +94,11 @@
         End If
     End Sub
 
-    Function getTransNumber()
+    Function getTransNumber(ByVal id_report As String)
         If FormStockTake.is_pre = "1" Then 'wh pre stock take
-            Return header_number("5")
+            Return header_number("5", id_report)
         Else 'stock take
-            Return header_number("2")
+            Return header_number("2", id_report)
         End If
     End Function
 

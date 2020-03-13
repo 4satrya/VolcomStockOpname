@@ -130,7 +130,7 @@ Module Common
         End If
     End Sub
     '=>=========== opt code header sample =====================
-    Function header_number(ByVal opt As String)
+    Function header_number(ByVal opt As String, ByVal id_rpt As String)
         'opt
         '1 = purc sample
         '2 = rec sample
@@ -156,30 +156,32 @@ Module Common
         header_number_x = ""
 
         If opt = "1" Then 'stock take
-            header_number_x = combine_header_number(st_user_code, Integer.Parse(get_setup_field("st_inc")), 5)
+            header_number_x = combine_header_number(st_user_code, Integer.Parse(id_rpt), 5)
             increase_inc("1")
         ElseIf opt = "2" Then 'stock take combine
-            header_number_x = combine_header_number("IA", Integer.Parse(get_setup_field("stc_inc")), 5)
+            header_number_x = combine_header_number("IA", Integer.Parse(id_rpt), 5)
             increase_inc("3")
         ElseIf opt = "3" Then 'file
             header_number_x = combine_header_number("", Integer.Parse(get_setup_field("file_inc")), 0)
             increase_inc("2")
         ElseIf opt = "4" Then 'WH pre stock take
-            header_number_x = combine_header_number("PS", Integer.Parse(get_setup_field("st_pre_inc")), 5)
+            header_number_x = combine_header_number("PS", Integer.Parse(id_rpt), 5)
             increase_inc("4")
         ElseIf opt = "5" Then 'WH pre stock take combine
-            header_number_x = combine_header_number("PSC", Integer.Parse(get_setup_field("st_pre_comb_inc")), 5)
+            header_number_x = combine_header_number("PSC", Integer.Parse(id_rpt), 5)
             increase_inc("5")
         ElseIf opt = "6" Then 'WH stock take
-            header_number_x = combine_header_number("S", Integer.Parse(get_setup_field("st_ver_inc")), 5)
+            header_number_x = combine_header_number("S", Integer.Parse(id_rpt), 5)
             increase_inc("6")
         ElseIf opt = "7" Then 'WH stock take combine
-            header_number_x = combine_header_number("SC", Integer.Parse(get_setup_field("st_ver_comb_inc")), 5)
+            header_number_x = combine_header_number("SC", Integer.Parse(id_rpt), 5)
             increase_inc("7")
         End If
 
         Return header_number_x
     End Function
+
+
     ' for setup increase increment header
     Sub increase_inc(ByVal opt As String)
         Dim query As String

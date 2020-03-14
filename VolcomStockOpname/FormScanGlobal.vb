@@ -211,6 +211,108 @@
             GCST.DataSource = dd
             FormMain.SplashScreenManager1.CloseWaitForm()
             Cursor = Cursors.Default
+        ElseIf XTCGlobal.SelectedTabPageIndex = 3 Then
+            Cursor = Cursors.WaitCursor
+            FormMain.SplashScreenManager1.ShowWaitForm()
+            Dim cond_db As String = ""
+            If SLEAccount.EditValue <> "0" Then
+                cond_db = "AND d.db_name='" + SLEAccount.EditValue.ToString + "' "
+            End If
+            Dim query As String = "SELECT * FROM tb_periode_det d WHERE d.id_periode=" + id_periode + " " + cond_db + " "
+            Dim data As DataTable = execute_query(query, -1, False, app_host, app_username, app_password, "db_opt")
+            Dim qd As String = ""
+            For i As Integer = 0 To data.Rows.Count - 1
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Generate query " + data.Rows(i)("account").ToString)
+                Dim dbn As String = data.Rows(i)("db_name").ToString
+                Dim account As String = data.Rows(i)("account").ToString
+                Dim account_desc As String = data.Rows(i)("account_desc").ToString
+                If i > 0 Then
+                    qd += "UNION ALL "
+                End If
+                qd += "SELECT '" + account + "' AS `account`, '" + account_desc + "' AS `account_desc`, 
+                IFNULL(soh.soh_qty,0) AS `soh_qty`, IFNULL(soh.soh_amount,0) AS `soh_amount`, 
+                IFNULL(pre.pre_qty,0) AS `pre_qty`, IFNULL(pre.pre_amount,0) AS `pre_amount`,
+                (IFNULL(st_store.st_store_qty,0) + IFNULL(st_wh.st_wh_qty,0)) AS `st_qty`, (IFNULL(st_store.st_store_amount,0) + IFNULL(st_wh.st_wh_amount,0)) AS `st_amount`
+                FROM (
+	                SELECT SUM(s.qty) AS `soh_qty` , 
+	                SUM(IF(c.id_store_type=1 OR c.id_wh_type=1, fd.design_price,s.design_price) * s.qty) AS `soh_amount`
+	                FROM " + dbn + ".tb_st_stock s
+	                INNER JOIN " + dbn + ".tb_m_product p ON p.id_product = s.id_product
+	                INNER JOIN " + dbn + ".tb_m_design d ON d.id_design = p.id_design
+	                INNER JOIN " + dbn + ".tb_m_comp c ON c.id_drawer_def = s.id_wh_drawer
+	                LEFT JOIN " + dbn + ".tb_m_design_first_del fd ON fd.id_design = d.id_design AND fd.id_comp = c.id_comp
+                ) soh
+                JOIN (
+	                SELECT SUM(td.qty) AS `pre_qty` , SUM(td.qty * td.design_price) AS `pre_amount`
+	                FROM " + dbn + ".tb_st_trans t
+	                INNER JOIN " + dbn + ".tb_st_trans_det td ON td.id_st_trans = t.id_st_trans
+	                WHERE t.id_report_status!=5 AND t.is_pre=1 AND t.is_combine=2
+                ) pre
+                JOIN (
+	                SELECT SUM(td.qty) AS `st_store_qty` , SUM(td.qty * td.design_price) AS `st_store_amount`
+	                FROM " + dbn + ".tb_st_trans t
+	                INNER JOIN " + dbn + ".tb_st_trans_det td ON td.id_st_trans = t.id_st_trans
+	                WHERE t.id_report_status!=5 AND t.is_pre=2 AND t.is_combine=2
+                ) st_store 
+                JOIN (
+	                SELECT SUM(td.qty) AS `st_wh_qty` , SUM(td.qty * td.design_price) AS `st_wh_amount`
+	                FROM " + dbn + ".tb_st_trans_ver t
+	                INNER JOIN " + dbn + ".tb_st_trans_ver_det td ON td.id_st_trans_ver = t.id_st_trans_ver
+	                WHERE t.id_report_status!=5 AND t.is_combine=2
+                ) st_wh "
+            Next
+            If qd <> "" Then
+                qd += "ORDER BY account ASC "
+            End If
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Fetching data")
+            Dim dd As DataTable = execute_query(qd, -1, True, "", "", "", "")
+            GCSummary.DataSource = dd
+            GVSummary.BestFitColumns()
+            FormMain.SplashScreenManager1.CloseWaitForm()
+            Cursor = Cursors.Default
+        ElseIf XTCGlobal.SelectedTabPageIndex = 4 Then
+            Cursor = Cursors.WaitCursor
+            FormMain.SplashScreenManager1.ShowWaitForm()
+            Dim cond_db As String = ""
+            If SLEAccount.EditValue <> "0" Then
+                cond_db = "AND d.db_name='" + SLEAccount.EditValue.ToString + "' "
+            End If
+            Dim query As String = "SELECT * FROM tb_periode_det d WHERE d.id_periode=" + id_periode + " " + cond_db + " "
+            Dim data As DataTable = execute_query(query, -1, False, app_host, app_username, app_password, "db_opt")
+            Dim qd As String = ""
+            For i As Integer = 0 To data.Rows.Count - 1
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Generate query " + data.Rows(i)("account").ToString)
+                Dim dbn As String = data.Rows(i)("db_name").ToString
+                Dim account As String = data.Rows(i)("account").ToString
+                Dim account_desc As String = data.Rows(i)("account_desc").ToString
+                If i > 0 Then
+                    qd += "UNION ALL "
+                End If
+                qd += "SELECT '" + account + "' AS `account`, '" + account_desc + "' AS `account_desc`,p.id_st_trans, p.st_trans_number AS `pre_number`,p.remark AS `pre_remark`, 
+                SUM(pd.qty) AS `pre_qty`, SUM(pd.qty * pd.design_price) AS `pre_amount`, 
+                s.st_number AS `st_number`,s.st_remark AS `st_remark`, IFNULL(s.st_qty,0) AS `st_qty`, IFNULL(s.st_amount,0) AS `st_amount`
+                FROM " + dbn + ".tb_st_trans p
+                INNER JOIN " + dbn + ".tb_st_trans_det pd ON pd.id_st_trans = p.id_st_trans
+                LEFT JOIN (
+	                SELECT s.id_st_trans,s.st_trans_ver_number AS `st_number` , s.remark AS `st_remark`, 
+	                SUM(sd.qty) AS `st_qty`, SUM(sd.qty * sd.design_price) AS `st_amount`
+	                FROM " + dbn + ".tb_st_trans_ver s
+	                INNER JOIN " + dbn + ".tb_st_trans_ver_det sd ON sd.id_st_trans_ver = s.id_st_trans_ver
+	                WHERE s.id_report_status!=5 AND s.is_combine=2
+	                GROUP BY s.id_st_trans
+                ) s ON s.id_st_trans = p.id_st_trans
+                WHERE p.is_pre=1 AND p.id_report_status!=5 AND p.is_combine=2
+                GROUP BY p.id_st_trans "
+            Next
+            If qd <> "" Then
+                'qd += "ORDER BY account ASC "
+            End If
+            FormMain.SplashScreenManager1.SetWaitFormDescription("Fetching data")
+            Dim dd As DataTable = execute_query(qd, -1, True, "", "", "", "")
+            GCSummaryPreST.DataSource = dd
+            GVSummaryPreST.BestFitColumns()
+            FormMain.SplashScreenManager1.CloseWaitForm()
+            Cursor = Cursors.Default
         End If
     End Sub
 
@@ -228,6 +330,14 @@
         ElseIf XTCGlobal.SelectedTabPageIndex = 2 Then
             Cursor = Cursors.WaitCursor
             GVST.CollapseAllGroups()
+            Cursor = Cursors.Default
+        ElseIf XTCGlobal.SelectedTabPageIndex = 3 Then
+            Cursor = Cursors.WaitCursor
+            GVST.CollapseAllGroups()
+            Cursor = Cursors.Default
+        ElseIf XTCGlobal.SelectedTabPageIndex = 4 Then
+            Cursor = Cursors.WaitCursor
+            GVSummaryPreST.CollapseAllGroups()
             Cursor = Cursors.Default
         End If
     End Sub
@@ -248,6 +358,14 @@
         ElseIf XTCGlobal.SelectedTabPageIndex = 2 Then
             Cursor = Cursors.WaitCursor
             GVST.ExpandAllGroups()
+            Cursor = Cursors.Default
+        ElseIf XTCGlobal.SelectedTabPageIndex = 3 Then
+            Cursor = Cursors.WaitCursor
+            GVST.ExpandAllGroups()
+            Cursor = Cursors.Default
+        ElseIf XTCGlobal.SelectedTabPageIndex = 4 Then
+            Cursor = Cursors.WaitCursor
+            GVSummaryPreST.ExpandAllGroups()
             Cursor = Cursors.Default
         End If
     End Sub
@@ -281,6 +399,10 @@
             print_raw(GCScan, "")
         ElseIf XTCGlobal.SelectedTabPageIndex = 2 Then
             print_raw(GCST, "")
+        ElseIf XTCGlobal.SelectedTabPageIndex = 3 Then
+            print_raw(GCSummary, "")
+        ElseIf XTCGlobal.SelectedTabPageIndex = 4 Then
+            print_raw(GCSummaryPreST, "")
         End If
         Cursor = Cursors.Default
     End Sub
@@ -345,11 +467,55 @@
                 exportToXLSDataAware(path, "scan global", GCST)
                 Cursor = Cursors.Default
             End If
+        ElseIf XTCGlobal.SelectedTabPageIndex = 3 Then
+            If GVSummary.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+
+                Dim path As String = Application.StartupPath & "\download\"
+                'create directory if not exist
+                If Not IO.Directory.Exists(path) Then
+                    System.IO.Directory.CreateDirectory(path)
+                End If
+                Dim uTime As Integer = (DateTime.UtcNow - New DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds
+                path = path + "summary_global_stocktake_" + SLEAccount.ToString + "_" + uTime.ToString + ".xlsx"
+                exportToXLSDataAware(path, "summary global", GCSummary)
+                Cursor = Cursors.Default
+            End If
+        ElseIf XTCGlobal.SelectedTabPageIndex = 4 Then
+            If GVSummaryPreST.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
+
+                Dim path As String = Application.StartupPath & "\download\"
+                'create directory if not exist
+                If Not IO.Directory.Exists(path) Then
+                    System.IO.Directory.CreateDirectory(path)
+                End If
+                Dim uTime As Integer = (DateTime.UtcNow - New DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds
+                path = path + "summary_pre_stocktake_" + SLEAccount.ToString + "_" + uTime.ToString + ".xlsx"
+                exportToXLSDataAware(path, "summary pre st", GCSummaryPreST)
+                Cursor = Cursors.Default
+            End If
         End If
         Cursor = Cursors.Default
     End Sub
 
     Private Sub GVST_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVST.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            Dim view As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+            If view.GroupedColumns.Count <> 0 AndAlso Not e.IsForGroupRow Then
+                Dim rowHandle As Integer = view.GetRowHandle(e.ListSourceRowIndex)
+                e.DisplayText = (view.GetRowGroupIndexByRowHandle(rowHandle) + 1).ToString()
+            End If
+        End If
+    End Sub
+
+    Private Sub GVSummary_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVSummary.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub GVSummaryPreST_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVSummaryPreST.CustomColumnDisplayText
         If e.Column.FieldName = "no" Then
             Dim view As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
             If view.GroupedColumns.Count <> 0 AndAlso Not e.IsForGroupRow Then

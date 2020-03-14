@@ -127,6 +127,22 @@ Partial Class FormScanGlobal
         Me.GridColumnst_trans_ver_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncomp_number_ver = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncomp_name_ver = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCSummary = New DevExpress.XtraGrid.GridControl()
+        Me.GVSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnaccount_sum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnaccount_desc_sum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsoh_qty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsoh_amount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnpre_qty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnpre_amount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndiff_pre_qty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndiff_pre_amount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnst_qty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnst_amount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndiff_soh_qty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEAccount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -153,6 +169,9 @@ Partial Class FormScanGlobal
         CType(Me.GCST, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVST, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPSummary.SuspendLayout()
+        CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -244,7 +263,7 @@ Partial Class FormScanGlobal
         Me.XTCGlobal.SelectedTabPage = Me.XTPSOH
         Me.XTCGlobal.Size = New System.Drawing.Size(1112, 450)
         Me.XTCGlobal.TabIndex = 1
-        Me.XTCGlobal.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSOH, Me.XTPPreStockTake, Me.XTPStockTake})
+        Me.XTCGlobal.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSOH, Me.XTPPreStockTake, Me.XTPStockTake, Me.XTPSummary})
         '
         'XTPSOH
         '
@@ -1319,6 +1338,176 @@ Partial Class FormScanGlobal
         Me.GridColumncomp_name_ver.VisibleIndex = 3
         Me.GridColumncomp_name_ver.Width = 99
         '
+        'XTPSummary
+        '
+        Me.XTPSummary.Controls.Add(Me.GCSummary)
+        Me.XTPSummary.Name = "XTPSummary"
+        Me.XTPSummary.Size = New System.Drawing.Size(1106, 422)
+        Me.XTPSummary.Text = "Summary"
+        '
+        'GCSummary
+        '
+        Me.GCSummary.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSummary.Location = New System.Drawing.Point(0, 0)
+        Me.GCSummary.MainView = Me.GVSummary
+        Me.GCSummary.Name = "GCSummary"
+        Me.GCSummary.Size = New System.Drawing.Size(1106, 422)
+        Me.GCSummary.TabIndex = 0
+        Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
+        '
+        'GVSummary
+        '
+        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn47, Me.GridColumnaccount_sum, Me.GridColumnaccount_desc_sum, Me.GridColumnsoh_qty, Me.GridColumnsoh_amount, Me.GridColumnpre_qty, Me.GridColumnpre_amount, Me.GridColumndiff_pre_qty, Me.GridColumndiff_pre_amount, Me.GridColumnst_qty, Me.GridColumnst_amount, Me.GridColumndiff_soh_qty, Me.GridColumn48})
+        Me.GVSummary.GridControl = Me.GCSummary
+        Me.GVSummary.Name = "GVSummary"
+        Me.GVSummary.OptionsBehavior.Editable = False
+        Me.GVSummary.OptionsFind.AlwaysVisible = True
+        Me.GVSummary.OptionsView.ColumnAutoWidth = False
+        Me.GVSummary.OptionsView.ShowFooter = True
+        Me.GVSummary.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn47
+        '
+        Me.GridColumn47.Caption = "No"
+        Me.GridColumn47.FieldName = "no"
+        Me.GridColumn47.Name = "GridColumn47"
+        Me.GridColumn47.Visible = True
+        Me.GridColumn47.VisibleIndex = 0
+        '
+        'GridColumnaccount_sum
+        '
+        Me.GridColumnaccount_sum.Caption = "Account"
+        Me.GridColumnaccount_sum.FieldName = "account"
+        Me.GridColumnaccount_sum.Name = "GridColumnaccount_sum"
+        Me.GridColumnaccount_sum.Visible = True
+        Me.GridColumnaccount_sum.VisibleIndex = 1
+        '
+        'GridColumnaccount_desc_sum
+        '
+        Me.GridColumnaccount_desc_sum.Caption = "Account Desc."
+        Me.GridColumnaccount_desc_sum.FieldName = "account_desc"
+        Me.GridColumnaccount_desc_sum.Name = "GridColumnaccount_desc_sum"
+        Me.GridColumnaccount_desc_sum.Visible = True
+        Me.GridColumnaccount_desc_sum.VisibleIndex = 2
+        '
+        'GridColumnsoh_qty
+        '
+        Me.GridColumnsoh_qty.Caption = "SOH"
+        Me.GridColumnsoh_qty.DisplayFormat.FormatString = "N0"
+        Me.GridColumnsoh_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnsoh_qty.FieldName = "soh_qty"
+        Me.GridColumnsoh_qty.Name = "GridColumnsoh_qty"
+        Me.GridColumnsoh_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty", "{0:N0}")})
+        Me.GridColumnsoh_qty.Visible = True
+        Me.GridColumnsoh_qty.VisibleIndex = 3
+        '
+        'GridColumnsoh_amount
+        '
+        Me.GridColumnsoh_amount.Caption = "Amount"
+        Me.GridColumnsoh_amount.DisplayFormat.FormatString = "N0"
+        Me.GridColumnsoh_amount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnsoh_amount.FieldName = "soh_amount"
+        Me.GridColumnsoh_amount.Name = "GridColumnsoh_amount"
+        Me.GridColumnsoh_amount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_amount", "{0:N0}")})
+        Me.GridColumnsoh_amount.Visible = True
+        Me.GridColumnsoh_amount.VisibleIndex = 4
+        '
+        'GridColumnpre_qty
+        '
+        Me.GridColumnpre_qty.Caption = "Prepare WH"
+        Me.GridColumnpre_qty.DisplayFormat.FormatString = "N0"
+        Me.GridColumnpre_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnpre_qty.FieldName = "pre_qty"
+        Me.GridColumnpre_qty.Name = "GridColumnpre_qty"
+        Me.GridColumnpre_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pre_qty", "{0:N0}")})
+        Me.GridColumnpre_qty.Visible = True
+        Me.GridColumnpre_qty.VisibleIndex = 5
+        '
+        'GridColumnpre_amount
+        '
+        Me.GridColumnpre_amount.Caption = "Amount"
+        Me.GridColumnpre_amount.DisplayFormat.FormatString = "N0"
+        Me.GridColumnpre_amount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnpre_amount.FieldName = "pre_amount"
+        Me.GridColumnpre_amount.Name = "GridColumnpre_amount"
+        Me.GridColumnpre_amount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pre_amount", "{0:N0}")})
+        Me.GridColumnpre_amount.Visible = True
+        Me.GridColumnpre_amount.VisibleIndex = 6
+        '
+        'GridColumndiff_pre_qty
+        '
+        Me.GridColumndiff_pre_qty.Caption = "Diff"
+        Me.GridColumndiff_pre_qty.DisplayFormat.FormatString = "N0"
+        Me.GridColumndiff_pre_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndiff_pre_qty.FieldName = "diff_pre_qty"
+        Me.GridColumndiff_pre_qty.Name = "GridColumndiff_pre_qty"
+        Me.GridColumndiff_pre_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_pre_qty", "{0:N0}")})
+        Me.GridColumndiff_pre_qty.UnboundExpression = "[soh_qty] - [pre_qty]"
+        Me.GridColumndiff_pre_qty.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumndiff_pre_qty.Visible = True
+        Me.GridColumndiff_pre_qty.VisibleIndex = 7
+        '
+        'GridColumndiff_pre_amount
+        '
+        Me.GridColumndiff_pre_amount.Caption = "Diff Amount"
+        Me.GridColumndiff_pre_amount.DisplayFormat.FormatString = "N0"
+        Me.GridColumndiff_pre_amount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndiff_pre_amount.FieldName = "diff_pre_amount"
+        Me.GridColumndiff_pre_amount.Name = "GridColumndiff_pre_amount"
+        Me.GridColumndiff_pre_amount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_pre_amount", "{0:N0}")})
+        Me.GridColumndiff_pre_amount.UnboundExpression = "[soh_amount] - [pre_amount]"
+        Me.GridColumndiff_pre_amount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumndiff_pre_amount.Visible = True
+        Me.GridColumndiff_pre_amount.VisibleIndex = 8
+        '
+        'GridColumnst_qty
+        '
+        Me.GridColumnst_qty.Caption = "Stock-Take"
+        Me.GridColumnst_qty.DisplayFormat.FormatString = "N0"
+        Me.GridColumnst_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnst_qty.FieldName = "st_qty"
+        Me.GridColumnst_qty.Name = "GridColumnst_qty"
+        Me.GridColumnst_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "st_qty", "{0:N0}")})
+        Me.GridColumnst_qty.Visible = True
+        Me.GridColumnst_qty.VisibleIndex = 9
+        '
+        'GridColumnst_amount
+        '
+        Me.GridColumnst_amount.Caption = "Amount"
+        Me.GridColumnst_amount.DisplayFormat.FormatString = "N0"
+        Me.GridColumnst_amount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnst_amount.FieldName = "st_amount"
+        Me.GridColumnst_amount.Name = "GridColumnst_amount"
+        Me.GridColumnst_amount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "st_amount", "{0:N0}")})
+        Me.GridColumnst_amount.Visible = True
+        Me.GridColumnst_amount.VisibleIndex = 10
+        '
+        'GridColumndiff_soh_qty
+        '
+        Me.GridColumndiff_soh_qty.Caption = "Diff"
+        Me.GridColumndiff_soh_qty.DisplayFormat.FormatString = "N0"
+        Me.GridColumndiff_soh_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndiff_soh_qty.FieldName = "diff_soh_qty"
+        Me.GridColumndiff_soh_qty.Name = "GridColumndiff_soh_qty"
+        Me.GridColumndiff_soh_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_soh_qty", "{0:N0}")})
+        Me.GridColumndiff_soh_qty.UnboundExpression = "[soh_qty] - [st_qty]"
+        Me.GridColumndiff_soh_qty.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumndiff_soh_qty.Visible = True
+        Me.GridColumndiff_soh_qty.VisibleIndex = 11
+        '
+        'GridColumn48
+        '
+        Me.GridColumn48.Caption = "Diff Amount"
+        Me.GridColumn48.DisplayFormat.FormatString = "N0"
+        Me.GridColumn48.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn48.FieldName = "diff_st_amount"
+        Me.GridColumn48.Name = "GridColumn48"
+        Me.GridColumn48.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_st_amount", "{0:N0}")})
+        Me.GridColumn48.UnboundExpression = "[soh_amount] - [st_amount]"
+        Me.GridColumn48.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn48.Visible = True
+        Me.GridColumn48.VisibleIndex = 12
+        '
         'FormScanGlobal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1356,6 +1545,9 @@ Partial Class FormScanGlobal
         CType(Me.GCST, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVST, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPSummary.ResumeLayout(False)
+        CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1468,4 +1660,20 @@ Partial Class FormScanGlobal
     Friend WithEvents GridColumn46 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnBarcode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents XTPSummary As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCSummary As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVSummary As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn47 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnaccount_sum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnaccount_desc_sum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsoh_qty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsoh_amount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnpre_qty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnpre_amount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndiff_pre_qty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndiff_pre_amount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnst_qty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnst_amount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndiff_soh_qty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn48 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -97,6 +97,41 @@
         GCCat.DataSource = data
     End Sub
 
+    Sub viewComparePre()
+        Dim query As String = "SELECT p.st_trans_number, p.remark, pd.id_product AS `id_product_pre`, pd.`code` AS `barcode_pre`, pd.`name` AS `name_pre`, pd.size AS `size_pre`, SUM(pd.qty) AS `qty_pre`, pd.design_price AS `price_pre`,
+        vd.id_product AS `id_product_ver`, vd.`code` AS `barcode_ver`, vd.`name` AS `name_ver`, vd.size AS `size_ver`, IFNULL(vd.qty,0) AS `qty_ver`, IFNULL(vd.design_price,0) AS `price_ver`
+        FROM tb_st_trans_det pd
+        INNER JOIN tb_st_trans p ON p.id_st_trans = pd.id_st_trans
+        LEFT JOIN (
+            SELECT vd.id_product, vd.`code`, vd.`name`, vd.size, SUM(vd.qty) AS `qty`, vd.design_price ,v.id_st_trans
+            FROM tb_st_trans_ver_det vd
+            INNER JOIN tb_st_trans_ver v ON v.id_st_trans_ver = vd.id_st_trans_ver
+            WHERE v.id_report_status!=5 AND v.is_combine=2
+            GROUP BY vd.code, v.id_st_trans
+        ) vd ON vd.`code` = pd.`code` AND vd.id_st_trans = p.id_st_trans
+        WHERE  p.is_combine=2 AND p.id_report_status!=5
+        GROUP BY pd.`code`, p.id_st_trans
+        UNION ALL
+        SELECT vd.st_trans_number, vd.remark, pd.id_product AS `id_product_pre`, pd.`code` AS `barcode_pre`, pd.`name` AS `name_pre`, pd.size AS `size_pre`, IFNULL(SUM(pd.qty),0) AS `qty_pre`, IFNULL(pd.design_price,0) AS `price_pre`,
+        vd.id_product AS `id_product_ver`, vd.`code` AS `barcode_ver`, vd.`name` AS `name_ver`, vd.size AS `size_ver`, (vd.qty) AS `qty_ver`, vd.design_price AS `price_ver`
+        FROM tb_st_trans_det pd
+        INNER JOIN tb_st_trans p ON p.id_st_trans = pd.id_st_trans
+        RIGHT JOIN (
+            SELECT vd.id_product, vd.`code`, vd.`name`, vd.size, SUM(vd.qty) AS `qty`, vd.design_price , v.id_st_trans, vr.st_trans_number, vr.remark
+            FROM tb_st_trans_ver_det vd
+            INNER JOIN tb_st_trans_ver v ON v.id_st_trans_ver = vd.id_st_trans_ver
+            INNER JOIN tb_st_trans vr ON vr.id_st_trans = v.id_st_trans
+            WHERE v.id_report_status!=5 AND v.is_combine=2
+            GROUP BY vd.code,  v.id_st_trans
+        ) vd ON vd.`code` = pd.`code` AND vd.id_st_trans = p.id_st_trans
+        WHERE ISNULL(pd.`code`)
+        GROUP BY vd.`code`, vd.id_st_trans
+        ORDER BY name_pre ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCCS.DataSource = data
+        GVCS.BestFitColumns()
+    End Sub
+
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         print()
     End Sub
@@ -113,6 +148,9 @@
             GVCat.BestFitColumns()
             print_raw(GCCat, "")
             Cursor = Cursors.Default
+        ElseIf XTCStockTake.SelectedTabPageIndex = 3 Then
+            GVCS.BestFitColumns()
+            print_raw(GCCS, "")
         End If
     End Sub
 
@@ -123,6 +161,8 @@
             viewSummary()
         ElseIf XTCStockTake.SelectedTabPageIndex = 2 Then
             viewSummaryCat()
+        ElseIf XTCStockTake.SelectedTabPageIndex = 3 Then
+            viewComparePre()
         End If
     End Sub
 
@@ -148,6 +188,16 @@
     Private Sub GVCat_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVCat.CustomColumnDisplayText
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub GVCS_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVCS.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            Dim view As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+            If view.GroupedColumns.Count <> 0 AndAlso Not e.IsForGroupRow Then
+                Dim rowHandle As Integer = view.GetRowHandle(e.ListSourceRowIndex)
+                e.DisplayText = (view.GetRowGroupIndexByRowHandle(rowHandle) + 1).ToString()
+            End If
         End If
     End Sub
 End Class

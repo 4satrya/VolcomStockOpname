@@ -46,7 +46,7 @@
             NBStockTake.Visible = False
             NBOpt.Visible = False
             NBWHPreST.Visible = True
-            NBWHST.Visible = False
+            NBWHST.Visible = True
             NBReport.Visible = True
             NBScanGlobal.Visible = True
         ElseIf id_role_login = "4" Then

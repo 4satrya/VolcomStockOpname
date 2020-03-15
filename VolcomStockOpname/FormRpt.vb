@@ -87,7 +87,7 @@
                 ElseIf id_pop_up = "2" Then
                     'ver stocktake
                     'cek existing
-                    Dim qry_cek As String = "SELECT * FROM tb_rpt_det rd WHERE rd.db_name='" + app_database + "'AND rd.combine_no='" + FormStockTakeDet.TxtNumber.Text + "' AND rd.combine_type=2 "
+                    Dim qry_cek As String = "SELECT * FROM tb_rpt_det rd WHERE rd.db_name='" + app_database + "'AND rd.combine_no='" + FormVerStockTakeDet.TxtNumber.Text + "' AND rd.combine_type=2 "
                     Dim data_cek As DataTable = execute_query(qry_cek, -1, False, app_host, app_username, app_password, "db_opt")
                     If data_cek.Rows.Count > 0 Then
                         stopCustom("This number already added to this report")

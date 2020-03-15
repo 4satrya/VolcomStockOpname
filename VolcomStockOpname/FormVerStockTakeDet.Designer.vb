@@ -166,6 +166,7 @@ Partial Class FormVerStockTakeDet
         Me.BtnAddToRpt = New DevExpress.XtraEditors.SimpleButton()
         Me.ContextMenuStripCompare = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CEHideAllNotice = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -227,6 +228,7 @@ Partial Class FormVerStockTakeDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         Me.ContextMenuStripCompare.SuspendLayout()
+        CType(Me.CEHideAllNotice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -853,6 +855,7 @@ Partial Class FormVerStockTakeDet
         '
         'PanelControlNav
         '
+        Me.PanelControlNav.Controls.Add(Me.CEHideAllNotice)
         Me.PanelControlNav.Controls.Add(Me.CEHideNotice12digit)
         Me.PanelControlNav.Controls.Add(Me.CheckEditAllow)
         Me.PanelControlNav.Controls.Add(Me.BtnDelAll)
@@ -1639,6 +1642,14 @@ Partial Class FormVerStockTakeDet
         Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
         Me.ViewDetailToolStripMenuItem.Text = "View Detail"
         '
+        'CEHideAllNotice
+        '
+        Me.CEHideAllNotice.Location = New System.Drawing.Point(533, 5)
+        Me.CEHideAllNotice.Name = "CEHideAllNotice"
+        Me.CEHideAllNotice.Properties.Caption = "Hide All Notice"
+        Me.CEHideAllNotice.Size = New System.Drawing.Size(111, 19)
+        Me.CEHideAllNotice.TabIndex = 8911
+        '
         'FormVerStockTakeDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1720,6 +1731,7 @@ Partial Class FormVerStockTakeDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.ContextMenuStripCompare.ResumeLayout(False)
+        CType(Me.CEHideAllNotice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1869,4 +1881,5 @@ Partial Class FormVerStockTakeDet
     Friend WithEvents gridBandStockTake As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBanddiff As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents CEA4 As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents CEHideAllNotice As DevExpress.XtraEditors.CheckEdit
 End Class

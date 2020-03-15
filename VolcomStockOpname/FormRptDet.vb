@@ -37,7 +37,7 @@
         Dim query As String = "SELECT d.combine_no, d.db_name, d.comp_number, d.comp_name, SUM(d.soh_qty) AS `soh_qty`, SUM(d.scan_qty) AS `scan_qty`
         FROM tb_rpt_det d
         WHERE d.id_rpt=" + id + "
-        GROUP BY d.combine_no 
+        GROUP BY d.combine_no, d.comp_number
         ORDER BY comp_number ASC "
         Dim data As DataTable = execute_query(query, -1, False, app_host, app_username, app_password, "db_opt")
         GCAccount.DataSource = data
@@ -309,10 +309,12 @@
 
     Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles BtnDelete.Click
         Dim combine_no As String = GVAccount.GetFocusedRowCellValue("combine_no").ToString
+        Dim comp_number As String = GVAccount.GetFocusedRowCellValue("comp_number").ToString
+        Dim db_name As String = GVAccount.GetFocusedRowCellValue("db_name").ToString
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to delete this combine : " + combine_no + ", from this report ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = DialogResult.Yes Then
             Cursor = Cursors.WaitCursor
-            Dim query As String = "DELETE FROM tb_rpt_det WHERE combine_no='" + combine_no + "' "
+            Dim query As String = "DELETE FROM tb_rpt_det WHERE combine_no='" + combine_no + "' AND comp_number='" + comp_number + "' AND db_name='" + db_name + "' "
             execute_non_query(query, False, app_host, app_username, app_password, "db_opt")
             viewCombineList()
             Cursor = Cursors.Default

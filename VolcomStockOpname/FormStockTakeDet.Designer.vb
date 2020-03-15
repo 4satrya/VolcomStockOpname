@@ -146,6 +146,7 @@ Partial Class FormStockTakeDet
         Me.BtnSetRemark = New DevExpress.XtraEditors.SimpleButton()
         Me.CESelect = New DevExpress.XtraEditors.CheckEdit()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.CEHideAllNotice = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -204,6 +205,7 @@ Partial Class FormStockTakeDet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.CESelect.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEHideAllNotice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -344,9 +346,9 @@ Partial Class FormStockTakeDet
         Me.PanelFontSize.Controls.Add(Me.TxtFontSize)
         Me.PanelFontSize.Controls.Add(Me.LabelControl9)
         Me.PanelFontSize.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelFontSize.Location = New System.Drawing.Point(836, 0)
+        Me.PanelFontSize.Location = New System.Drawing.Point(834, 2)
         Me.PanelFontSize.Name = "PanelFontSize"
-        Me.PanelFontSize.Size = New System.Drawing.Size(106, 45)
+        Me.PanelFontSize.Size = New System.Drawing.Size(106, 41)
         Me.PanelFontSize.TabIndex = 8913
         Me.PanelFontSize.Visible = False
         '
@@ -429,9 +431,9 @@ Partial Class FormStockTakeDet
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(942, 0)
+        Me.BtnPrint.Location = New System.Drawing.Point(940, 2)
         Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(104, 45)
+        Me.BtnPrint.Size = New System.Drawing.Size(104, 41)
         Me.BtnPrint.TabIndex = 1
         Me.BtnPrint.Text = "Print (F4)"
         '
@@ -439,9 +441,9 @@ Partial Class FormStockTakeDet
         '
         Me.BtnPrintLetter.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrintLetter.Image = CType(resources.GetObject("BtnPrintLetter.Image"), System.Drawing.Image)
-        Me.BtnPrintLetter.Location = New System.Drawing.Point(1046, 0)
+        Me.BtnPrintLetter.Location = New System.Drawing.Point(1044, 2)
         Me.BtnPrintLetter.Name = "BtnPrintLetter"
-        Me.BtnPrintLetter.Size = New System.Drawing.Size(115, 45)
+        Me.BtnPrintLetter.Size = New System.Drawing.Size(115, 41)
         Me.BtnPrintLetter.TabIndex = 8914
         Me.BtnPrintLetter.Text = "Print - Letter"
         Me.BtnPrintLetter.Visible = False
@@ -800,6 +802,7 @@ Partial Class FormStockTakeDet
         '
         'PanelControlNav
         '
+        Me.PanelControlNav.Controls.Add(Me.CEHideAllNotice)
         Me.PanelControlNav.Controls.Add(Me.CheckEditSale)
         Me.PanelControlNav.Controls.Add(Me.CheckEditNoTag)
         Me.PanelControlNav.Controls.Add(Me.CheckEditReject)
@@ -1433,6 +1436,14 @@ Partial Class FormStockTakeDet
         Me.CESelect.Size = New System.Drawing.Size(68, 19)
         Me.CESelect.TabIndex = 0
         '
+        'CEHideAllNotice
+        '
+        Me.CEHideAllNotice.Location = New System.Drawing.Point(621, 14)
+        Me.CEHideAllNotice.Name = "CEHideAllNotice"
+        Me.CEHideAllNotice.Properties.Caption = "Hide All Notice"
+        Me.CEHideAllNotice.Size = New System.Drawing.Size(98, 19)
+        Me.CEHideAllNotice.TabIndex = 8908
+        '
         'FormStockTakeDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1511,6 +1522,7 @@ Partial Class FormStockTakeDet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.CESelect.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEHideAllNotice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1640,4 +1652,5 @@ Partial Class FormStockTakeDet
     Friend WithEvents PCNote As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TextEditNote As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents CEHideAllNotice As DevExpress.XtraEditors.CheckEdit
 End Class

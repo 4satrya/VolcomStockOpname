@@ -780,7 +780,7 @@
             End If
 
             'temporary krn pake BOF
-            If is_12_digit = "1" Then
+            If is_12_digit = "1" And CEHideAllNotice.EditValue = False Then
                 stopCustomDialog("SCAN BARCODE 12 DIGIT ")
             End If
 
@@ -801,7 +801,7 @@
                 If is_unique_not_found = "1" Then
                     err += "- UNIQUE CODE NOT FOUND " + System.Environment.NewLine
                 End If
-                If err <> "" Then
+                If err <> "" And CEHideAllNotice.EditValue = False Then
                     stopCustomDialog(err_head + err)
                 End If
             End If

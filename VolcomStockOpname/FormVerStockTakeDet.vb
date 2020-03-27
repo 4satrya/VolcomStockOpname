@@ -630,8 +630,8 @@
             End If
 
             'cek reference
-            Dim qm As String = "SELECT sd.id_product, sd.code, sd.name, sd.size, SUM(sd.qty) AS `qty`, (SUM(sd.qty)-IFNULL(r.qty,0)) AS `avl_qty`,
-            sd.id_design_price, sd.design_price,
+            Dim qm As String = "SELECT IFNULL(sd.id_product,0) AS `id_product`, sd.code, sd.name, sd.size, SUM(sd.qty) AS `qty`, (SUM(sd.qty)-IFNULL(r.qty,0)) AS `avl_qty`,
+            IFNULL(sd.id_design_price,0) AS `id_design_price`, sd.design_price,
             sd.is_ok, sd.is_no_stock, sd.is_no_master, sd.is_sale, sd.is_reject, sd.is_unique_not_found, sd.is_no_tag
             FROM tb_st_trans_det sd
             LEFT JOIN (
@@ -884,8 +884,14 @@
     End Sub
 
     Sub insertDB(ByVal is_ok As String, ByVal is_not_match As String, ByVal is_no_stock As String, ByVal is_no_master As String, ByVal is_no_tag As String, ByVal is_sale As String, ByVal is_reject As String, ByVal is_unique_not_found As String, ByVal id_product As String, ByVal code As String, ByVal name As String, ByVal size As String, ByVal id_design_price As String, ByVal design_price As String)
+        If id_product = "0" Then
+            id_product = "NULL"
+        End If
+        If id_design_price = "0" Then
+            id_design_price = "NULL"
+        End If
         Dim query_ins As String = "INSERT INTO tb_st_trans_ver_det(id_st_trans_ver, is_ok, is_not_match, is_no_stock, is_no_master, is_no_tag, is_sale, is_reject, is_unique_not_found, id_product, code, name, size, qty, id_design_price, design_price) 
-        VALUES ('" + id_st_trans_ver + "', '" + is_ok + "','" + is_not_match + "', '" + is_no_stock + "', '" + is_no_master + "', '" + is_no_tag + "', '" + is_sale + "','" + is_reject + "', '" + is_unique_not_found + "', '" + id_product + "','" + code + "', '" + name + "','" + size + "', 1, '" + id_design_price + "', '" + design_price + "') "
+        VALUES ('" + id_st_trans_ver + "', '" + is_ok + "','" + is_not_match + "', '" + is_no_stock + "', '" + is_no_master + "', '" + is_no_tag + "', '" + is_sale + "','" + is_reject + "', '" + is_unique_not_found + "', " + id_product + ",'" + code + "', '" + name + "','" + size + "', 1, " + id_design_price + ", '" + design_price + "') "
         execute_non_query(query_ins, True, "", "", "", "")
     End Sub
 

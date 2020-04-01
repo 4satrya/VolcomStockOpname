@@ -255,7 +255,7 @@
         INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
         INNER JOIN tb_m_design d ON d.id_design = p.id_design
-        INNER JOIN tb_m_design_price prc ON prc.id_design_price = im.id_design_price
+        LEFT JOIN tb_m_design_price prc ON prc.id_design_price = im.id_design_price
         INNER JOIN tb_lookup_design_price_type prct ON prct.id_design_price_type = prc.id_design_price_type
         INNER JOIN tb_lookup_design_cat dc ON dc.id_design_cat = prct.id_design_cat
         LEFT JOIN tb_st_store_remark sr ON sr.id_product = p.id_product AND sr.code = p.product_full_code AND sr.id_st_trans = " + id_st_trans + "
@@ -740,6 +740,21 @@
                     Exit Sub
                 Else
                     makeSafeGV(GVScan)
+                End If
+
+                'cek di transaksi lain
+                Dim qdup As String = "SELECT m.st_trans_number 
+                        FROM tb_st_trans_det d 
+                        INNER JOIN tb_st_trans m ON m.id_st_trans = d.id_st_trans
+                        WHERE d.`code`='" + code + "' AND m.id_report_status!=5 LIMIT 1 "
+                Dim ddup As DataTable = execute_query(qdup, -1, True, "", "", "", "")
+                If ddup.Rows.Count > 0 Then
+                    stopCustomDialog("Already scanned in transaction number : " + ddup.Rows(0)("st_trans_number").ToString)
+                    makeSafeGV(GVScan)
+                    GVScan.FocusedRowHandle = GVScan.RowCount - 1
+                    TxtScan.Text = ""
+                    TxtScan.Focus()
+                    Exit Sub
                 End If
             ElseIf dt_check.Rows(0)("is_old_design") = "3" Then 'unique code peralihan
                 code_saved = code

@@ -255,7 +255,7 @@
         INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
         INNER JOIN tb_m_design d ON d.id_design = p.id_design
-        LEFT JOIN tb_m_design_price prc ON prc.id_design_price = im.id_design_price
+        INNER JOIN tb_m_design_price prc ON prc.id_design_price = im.id_design_price
         INNER JOIN tb_lookup_design_price_type prct ON prct.id_design_price_type = prc.id_design_price_type
         INNER JOIN tb_lookup_design_cat dc ON dc.id_design_cat = prct.id_design_cat
         LEFT JOIN tb_st_store_remark sr ON sr.id_product = p.id_product AND sr.code = p.product_full_code AND sr.id_st_trans = " + id_st_trans + "

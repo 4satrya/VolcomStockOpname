@@ -13,7 +13,7 @@
             INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
             INNER JOIN tb_m_design d ON d.id_design = p.id_design
             INNER JOIN tb_m_comp c ON c.id_drawer_def = s.id_wh_drawer
-            LEFT JOIN tb_m_design_first_del fd ON fd.id_design = d.id_design AND fd.id_comp = c.id_comp
+            LEFT JOIN tb_m_design_first_del_erp fd ON fd.id_design = d.id_design AND fd.id_comp = c.id_comp
             WHERE (" + comp + ") ORDER BY s.id_product ASC "
         Else
             query = "SELECT p.product_full_code AS `barcode`,d.design_code AS `code`, d.design_display_name AS `name`, cd.code_detail_name AS `size`, 

@@ -102,15 +102,32 @@ Public Class FormFGBackupStockDet
                 Dim comp_u As String = ""
                 Dim id_comp_bof As String = ""
                 Dim is_wh As Boolean = False
+                Dim qfd As String = ""
+                Dim comp_in As String = ""
                 For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
                     If GVData.GetRowCellValue(i, "is_select").ToString = "Yes" Then
                         If jum_i > 0 Then
                             comp += "OR "
                             comp_u += "OR "
+                            qfd += "UNION ALL "
+                            comp_in += ","
                         End If
                         comp += "c.id_drawer_def='" + GVData.GetRowCellValue(i, "id_drawer_def").ToString + "' "
                         comp_u += "f.id_comp='" + GVData.GetRowCellValue(i, "id_comp").ToString + "' "
                         id_comp_bof = GVData.GetRowCellValue(i, "id_comp").ToString
+                        qfd += "SELECT d.id_design, '" + GVData.GetRowCellValue(i, "id_comp").ToString + "' AS `id_comp`, NULL AS `id_pl_sales_order_del`, np.id_design_price, np.design_price,NOW()
+                        FROM tb_m_design d
+                        LEFT JOIN (
+                          SELECT * FROM (
+                             SELECT prc.id_design, prc.id_design_price,prc.design_price 
+                             FROM tb_m_design_price prc
+                             WHERE prc.id_design_price_type=1 AND prc.design_price_start_date<=NOW()
+                             ORDER BY prc.design_price_start_date DESC, prc.id_design_price DESC
+                          ) p
+                          GROUP BY p.id_design
+                        ) np ON np.id_design = d.id_design
+                        WHERE d.id_lookup_status_order!=2 AND !ISNULL(np.id_design_price) "
+                        comp_in += GVData.GetRowCellValue(i, "id_comp").ToString
                         jum_i += 1
 
                         If GVData.GetRowCellValue(i, "id_comp_cat").ToString = "5" Then
@@ -145,9 +162,10 @@ Public Class FormFGBackupStockDet
                     FormMain.SplashScreenManager1.SetWaitFormDescription("Processing XLS bof")
                     load_excel_data(id_comp_bof)
                     FormMain.SplashScreenManager1.CloseWaitForm()
+                    FormMain.SplashScreenManager1.ShowWaitForm()
                 End If
 
-                FormMain.SplashScreenManager1.ShowWaitForm()
+
                 '-- company/store/wh
                 FormMain.SplashScreenManager1.SetWaitFormDescription("Backup master store/wh")
                 Dim dic As New Dictionary(Of String, String)()
@@ -186,7 +204,11 @@ Public Class FormFGBackupStockDet
                 dic.Add("tb_lookup_design_price_type", "SELECT * FROM tb_lookup_design_price_type")
                 If Not is_bof Then
                     dic.Add("tb_m_design_price", "SELECT * FROM tb_m_design_price")
-                    dic.Add("tb_m_design_first_del", "SELECT * FROM tb_m_design_first_del f WHERE (" + comp_u + ") ")
+
+                    'fist delivery
+                    Dim query_fd As String = "TRUNCATE tb_m_design_first_del_erp; INSERT INTO tb_m_design_first_del_erp(id_design, id_comp, id_pl_sales_order_del, id_design_price, design_price, input_date) " + qfd + ";"
+                    execute_non_query(query_fd, False, app_host_main, app_username_main, app_password_main, app_database_main)
+                    dic.Add("tb_m_design_first_del", "SELECT * FROM tb_m_design_first_del_erp")
                 Else
                     dic.Add("tb_m_design_price", "SELECT * FROM tb_m_design_price_bof")
                     dic.Add("tb_m_design_first_del", "SELECT * FROM tb_m_design_first_del_bof f WHERE (" + comp_u + ") ")
@@ -215,185 +237,13 @@ Public Class FormFGBackupStockDet
                 '-- stock
                 FormMain.SplashScreenManager1.SetWaitFormDescription("Backup stock")
                 If Not is_bof Then
-                    execute_non_query("TRUNCATE `tb_st_stock`", False, app_host_main, app_username_main, app_password_main, app_database_main)
-                    Dim query_ins As String = "
-                    INSERT INTO tb_st_stock (id_wh_drawer, id_product, qty, id_design_price, design_price)
-                    SELECT f.id_wh_drawer, f.id_product, 
-                    SUM(IF(f.id_stock_status=1, (IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0)) AS qty, prc.id_design_price,prc.design_price
-                    FROM tb_storage_fg f 
-                    INNER JOIN tb_m_comp c ON c.id_drawer_def = f.id_wh_drawer AND (" + comp + ")
-                    INNER JOIN tb_m_product p ON p.id_product = f.id_product
-                    LEFT JOIN (
-	                    SELECT * FROM (
-	                    SELECT price.id_design, price.id_design_price, price.design_price, price_type.id_design_cat,dc.design_cat
-	                    FROM tb_m_design_price price 
-	                    INNER JOIN tb_lookup_design_price_type price_type 
-	                    ON price.id_design_price_type = price_type.id_design_price_type
-	                    INNER JOIN  tb_lookup_design_cat dc ON dc.id_design_cat = price_type.id_design_cat
-	                    INNER JOIN tb_lookup_currency curr ON curr.id_currency = price.id_currency 
-	                    INNER JOIN tb_m_user `user` ON user.id_user = price.id_user 
-	                    INNER JOIN tb_m_employee emp ON emp.id_employee = user.id_employee 
-	                    WHERE price.is_active_wh=1 AND price.design_price_start_date <= DATE('" + date_stock_DB + "')
-	                    ORDER BY price.design_price_start_date DESC, price.id_design_price DESC ) a
-	                    GROUP BY a.id_design
-                    ) prc ON prc.id_design = p.id_design
-                    WHERE DATE(f.storage_product_datetime)<=DATE('" + date_stock_DB + "')
-                    GROUP BY f.id_wh_drawer, f.id_product 
-                    HAVING qty>0"
-                    execute_non_query(query_ins, False, app_host_main, app_username_main, app_password_main, app_database_main)
+                    execute_non_query("CALL generate_st('" + comp_in + "', '2020-03-31'); ", False, app_host_main, app_username_main, app_password_main, app_database_main)
                 End If
                 dic.Add("tb_st_stock", "SELECT * FROM tb_st_stock")
 
                 If Not is_bof Then
                     '-- unique
-                    execute_non_query("TRUNCATE `tb_st_unique`", False, app_host_main, app_username_main, app_password_main, app_database_main)
-                    Dim query_ins_unique As String = " INSERT INTO tb_st_unique (id_product,id_comp, unique_code) 
-                    SELECT a.id_product, b.id_comp,(a.product_code_unique) AS product_full_code
-                    FROM(
-	                    SELECT a.id_pl_prod_order_rec_det_unique, a.id_product, d.product_full_code,CONCAT(d.product_full_code, a.pl_prod_order_rec_det_counting) AS product_code_unique, 
-	                    (a.pl_prod_order_rec_det_counting) AS product_counting_code,
-	                    COUNT(CONCAT(d.product_full_code, a.pl_prod_order_rec_det_counting)) AS jum_rec, a.bom_unit_price
-	                    FROM tb_pl_prod_order_rec_det_counting a
-	                    INNER JOIN tb_pl_prod_order_rec_det b ON a.id_pl_prod_order_rec_det = b.id_pl_prod_order_rec_det
-	                    INNER JOIN tb_pl_prod_order_rec c ON c.id_pl_prod_order_rec = b.id_pl_prod_order_rec
-	                    INNER JOIN tb_m_product d ON d.id_product = a.id_product
-	                    INNER JOIN tb_m_design dsg ON dsg.id_design = d.id_design
-	                    WHERE c.id_report_status = 6
-	                    AND dsg.is_old_design = 2
-	                    GROUP BY CONCAT(d.product_full_code, a.pl_prod_order_rec_det_counting)
-                    ) a
-                    LEFT JOIN (
-	                    SELECT a.id_pl_prod_order_rec_det_unique, b.id_product, d.product_full_code, CONCAT(d.product_full_code, a.pl_sales_order_del_det_counting) AS product_code_unique,
-	                    (a.pl_sales_order_del_det_counting) AS product_counting_code,
-	                    COUNT(CONCAT(d.product_full_code, a.pl_sales_order_del_det_counting)) AS jum_del, c.id_report_status, f.id_comp
-	                    FROM tb_pl_sales_order_del_det_counting a
-	                    INNER JOIN tb_pl_sales_order_del_det b ON a.id_pl_sales_order_del_det = b.id_pl_sales_order_del_det
-	                    INNER JOIN tb_pl_sales_order_del c ON c.id_pl_sales_order_del = b.id_pl_sales_order_del
-	                    INNER JOIN tb_m_product d ON d.id_product = b.id_product
-	                    INNER JOIN tb_m_design dsg ON dsg.id_design = d.id_design
-	                    INNER JOIN tb_m_comp_contact e ON e.id_comp_contact = c.id_store_contact_to
-	                    INNER JOIN tb_m_comp f ON f.id_comp = e.id_comp 
-	                    WHERE c.id_report_status !=5
-	                    AND (" + comp_u + ")
-	                    AND dsg.is_old_design = 2
-	                    GROUP BY CONCAT(d.product_full_code, a.pl_sales_order_del_det_counting)
-                    ) b ON a.id_pl_prod_order_rec_det_unique = b.id_pl_prod_order_rec_det_unique
-                    LEFT JOIN (
-	                    SELECT a.id_pl_prod_order_rec_det_unique, b.id_product, d.product_full_code, CONCAT(d.product_full_code, a.sales_return_det_counting) AS product_code_unique,
-	                    (a.sales_return_det_counting) AS product_counting_code,
-	                    COUNT(CONCAT(d.product_full_code, a.sales_return_det_counting)) AS jum_ret, f.id_comp
-	                    FROM tb_sales_return_det_counting a
-	                    INNER JOIN tb_sales_return_det b ON a.id_sales_return_det = b.id_sales_return_det
-	                    INNER JOIN tb_sales_return c ON c.id_sales_return = b.id_sales_return
-	                    INNER JOIN tb_m_product d ON d.id_product = b.id_product
-	                    INNER JOIN tb_m_design dsg ON dsg.id_design = d.id_design
-	                    INNER JOIN tb_m_comp_contact e ON e.id_comp_contact = c.id_store_contact_from
-	                    INNER JOIN tb_m_comp f ON f.id_comp = e.id_comp 
-	                    WHERE c.id_report_status !=5
-	                    AND  (" + comp_u + ")
-	                    AND dsg.is_old_design = 2
-	                    GROUP BY CONCAT(d.product_full_code, a.sales_return_det_counting)
-                    )c ON a.id_pl_prod_order_rec_det_unique = c.id_pl_prod_order_rec_det_unique
-                    WHERE (a.jum_rec + ( CONCAT('-', COALESCE(b.jum_del, 0)) + COALESCE(c.jum_ret, 0) )) = 0 "
-                    If is_wh Then
-                        query_ins_unique += "UNION ALL 
-                        SELECT a.id_product, null as `id_comp`,(a.product_code_unique) AS product_full_code
-                        FROM(
-	                        SELECT a.id_pl_prod_order_rec_det_unique, a.id_product, d.product_full_code,CONCAT(d.product_full_code, a.pl_prod_order_rec_det_counting) AS product_code_unique, 
-	                        (a.pl_prod_order_rec_det_counting) AS product_counting_code,
-	                        COUNT(CONCAT(d.product_full_code, a.pl_prod_order_rec_det_counting)) AS jum_rec, 
-	                        a.bom_unit_price
-	                        FROM tb_pl_prod_order_rec_det_counting a
-	                        INNER JOIN tb_pl_prod_order_rec_det b ON a.id_pl_prod_order_rec_det = b.id_pl_prod_order_rec_det
-	                        INNER JOIN tb_pl_prod_order_rec c ON c.id_pl_prod_order_rec = b.id_pl_prod_order_rec
-	                        INNER JOIN tb_m_product d ON d.id_product = a.id_product
-	                        INNER JOIN tb_m_design dsg ON dsg.id_design = d.id_design
-	                        WHERE c.id_report_status = '6' AND (a.id_product>0 )
-	                        AND dsg.is_old_design = '2'
-	                        GROUP BY a.id_pl_prod_order_rec_det_unique
-                        ) a
-                        LEFT JOIN (
-	                        SELECT a.id_pl_prod_order_rec_det_unique, b.id_product, d.product_full_code, CONCAT(d.product_full_code, a.pl_sales_order_del_det_counting) AS product_code_unique,
-	                        (a.pl_sales_order_del_det_counting) AS product_counting_code,
-	                        COUNT(CONCAT(d.product_full_code, a.pl_sales_order_del_det_counting)) AS jum_del
-	                        FROM tb_pl_sales_order_del_det_counting a
-	                        INNER JOIN tb_pl_sales_order_del_det b ON a.id_pl_sales_order_del_det = b.id_pl_sales_order_del_det
-	                        INNER JOIN tb_pl_sales_order_del c ON c.id_pl_sales_order_del = b.id_pl_sales_order_del
-	                        INNER JOIN tb_m_product d ON d.id_product = b.id_product
-	                        INNER JOIN tb_m_design dsg ON dsg.id_design = d.id_design
-	                        WHERE c.id_report_status !='5' AND (b.id_product>0 )
-	                        AND dsg.is_old_design = '2'
-	                        GROUP BY a.id_pl_prod_order_rec_det_unique
-                        ) b ON a.id_pl_prod_order_rec_det_unique = b.id_pl_prod_order_rec_det_unique
-                        LEFT JOIN (
-	                        SELECT a.id_pl_prod_order_rec_det_unique, b.id_product, d.product_full_code, CONCAT(d.product_full_code, a.sales_return_det_counting) AS product_code_unique,
-	                        (a.sales_return_det_counting) AS product_counting_code,
-	                        COUNT(CONCAT(d.product_full_code, a.sales_return_det_counting)) AS jum_ret
-	                        FROM tb_sales_return_det_counting a
-	                        INNER JOIN tb_sales_return_det b ON a.id_sales_return_det = b.id_sales_return_det
-	                        INNER JOIN tb_sales_return c ON c.id_sales_return = b.id_sales_return
-	                        INNER JOIN tb_m_product d ON d.id_product = b.id_product
-	                        INNER JOIN tb_m_design dsg ON dsg.id_design = d.id_design
-	                        WHERE c.id_report_status !='5' AND (b.id_product>0 )
-	                        AND dsg.is_old_design = '2'
-	                        GROUP BY a.id_pl_prod_order_rec_det_unique
-                        )c ON a.id_pl_prod_order_rec_det_unique = c.id_pl_prod_order_rec_det_unique
-                        LEFT JOIN (
-	                        SELECT a.id_pl_prod_order_rec_det_unique, b.id_product, d.product_full_code, CONCAT(d.product_full_code, a.fg_woff_det_counting) AS product_code_unique,
-	                        (a.fg_woff_det_counting) AS product_counting_code,
-	                        COUNT(CONCAT(d.product_full_code, a.fg_woff_det_counting)) AS jum_woff
-	                        FROM tb_fg_woff_det_counting a
-	                        INNER JOIN tb_fg_woff_det b ON a.id_fg_woff_det = b.id_fg_woff_det
-	                        INNER JOIN tb_fg_woff c ON c.id_fg_woff = b.id_fg_woff
-	                        INNER JOIN tb_m_product d ON d.id_product = b.id_product
-	                        INNER JOIN tb_m_design dsg ON dsg.id_design = d.id_design
-	                        WHERE c.id_report_status !='5' AND (b.id_product>0 )
-	                        AND dsg.is_old_design = '2'
-	                        GROUP BY a.id_pl_prod_order_rec_det_unique
-                        )d ON a.id_pl_prod_order_rec_det_unique = d.id_pl_prod_order_rec_det_unique
-                        LEFT JOIN (
-	                        SELECT a.id_pl_prod_order_rec_det_unique, a.id_product, d.product_full_code, CONCAT(d.product_full_code, a.fg_repair_det_counting) AS product_code_unique,
-	                        (a.fg_repair_det_counting) AS product_counting_code,
-	                        COUNT(CONCAT(d.product_full_code, a.fg_repair_det_counting)) AS jum_repair
-	                        FROM tb_fg_repair_det a
-	                        INNER JOIN tb_fg_repair b ON b.id_fg_repair = a.id_fg_repair
-	                        INNER JOIN tb_m_product d ON d.id_product = a.id_product
-	                        INNER JOIN tb_m_design dsg ON dsg.id_design = d.id_design
-	                        WHERE 
-	                        b.id_report_status !='5' 
-	                        AND (a.id_product>0 )
-	                        AND dsg.is_old_design = '2'
-	                        GROUP BY a.id_pl_prod_order_rec_det_unique
-                        )e ON a.id_pl_prod_order_rec_det_unique = e.id_pl_prod_order_rec_det_unique
-                        LEFT JOIN (
-	                        SELECT a.id_pl_prod_order_rec_det_unique, a.id_product, d.product_full_code, CONCAT(d.product_full_code, a.fg_repair_return_rec_det_counting) AS product_code_unique,
-	                        (a.fg_repair_return_rec_det_counting) AS product_counting_code,
-	                        COUNT(CONCAT(d.product_full_code, a.fg_repair_return_rec_det_counting)) AS jum_rec_repair
-	                        FROM tb_fg_repair_return_rec_det a
-	                        INNER JOIN tb_fg_repair_return_rec b ON b.id_fg_repair_return_rec = a.id_fg_repair_return_rec
-	                        INNER JOIN tb_m_product d ON d.id_product = a.id_product
-	                        INNER JOIN tb_m_design dsg ON dsg.id_design = d.id_design
-	                        WHERE 
-	                        b.id_report_status ='6' 
-	                        AND (a.id_product>0 )
-	                        AND dsg.is_old_design = '2'
-	                        GROUP BY a.id_pl_prod_order_rec_det_unique
-                        )f ON a.id_pl_prod_order_rec_det_unique = f.id_pl_prod_order_rec_det_unique
-                        LEFT JOIN (
-	                        SELECT a.id_pl_prod_order_rec_det_unique, a.id_product, d.product_full_code, CONCAT(d.product_full_code, a.counting_code) AS product_code_unique,
-	                        (a.counting_code) AS product_counting_code,
-	                        COUNT(CONCAT(d.product_full_code, a.counting_code)) AS jum_prob, a.report_mark_type
-	                        FROM tb_fg_unique_problem a
-	                        INNER JOIN tb_m_product d ON d.id_product = a.id_product
-	                        INNER JOIN tb_m_design dsg ON dsg.id_design = d.id_design
-	                        WHERE 1=1
-	                        AND (a.id_product>0 )
-	                        AND dsg.is_old_design = '2'
-	                        GROUP BY a.id_pl_prod_order_rec_det_unique
-                        )p ON a.id_pl_prod_order_rec_det_unique = p.id_pl_prod_order_rec_det_unique
-                        WHERE (a.jum_rec + ( CONCAT('-', COALESCE(b.jum_del, 0)) + COALESCE(c.jum_ret, 0) ) - COALESCE(d.jum_woff, 0) - COALESCE(e.jum_repair, 0)+ COALESCE(f.jum_rec_repair, 0) + (COALESCE(IF(p.report_mark_type=37 OR p.report_mark_type=46 OR p.report_mark_type=94, CONCAT('+',p.jum_prob), CONCAT('-',p.jum_prob)), 0)) ) = '1' "
-                    End If
-                    execute_non_query(query_ins_unique, False, app_host_main, app_username_main, app_password_main, app_database_main)
+                    execute_non_query("CALL generate_st_unique('" + comp_in + "')", False, app_host_main, app_username_main, app_password_main, app_database_main)
                     dic.Add("tb_st_unique", "SELECT * FROM tb_st_unique")
                 End If
 

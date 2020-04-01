@@ -741,6 +741,21 @@
                 Else
                     makeSafeGV(GVScan)
                 End If
+
+                'cek di transaksi lain
+                Dim qdup As String = "SELECT m.st_trans_number 
+                        FROM tb_st_trans_det d 
+                        INNER JOIN tb_st_trans m ON m.id_st_trans = d.id_st_trans
+                        WHERE d.`code`='" + code + "' AND m.id_report_status!=5 LIMIT 1 "
+                Dim ddup As DataTable = execute_query(qdup, -1, True, "", "", "", "")
+                If ddup.Rows.Count > 0 Then
+                    stopCustomDialog("Already scanned in transaction number : " + ddup.Rows(0)("st_trans_number").ToString)
+                    makeSafeGV(GVScan)
+                    GVScan.FocusedRowHandle = GVScan.RowCount - 1
+                    TxtScan.Text = ""
+                    TxtScan.Focus()
+                    Exit Sub
+                End If
             ElseIf dt_check.Rows(0)("is_old_design") = "3" Then 'unique code peralihan
                 code_saved = code
             Else '

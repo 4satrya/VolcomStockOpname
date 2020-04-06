@@ -39,6 +39,7 @@ Partial Class FormDatabase
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnLocal = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnMainHost = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -54,12 +55,12 @@ Partial Class FormDatabase
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 257)
+        Me.GCData.Location = New System.Drawing.Point(0, 276)
         Me.GCData.LookAndFeel.SkinName = "Visual Studio 2013 Light"
         Me.GCData.LookAndFeel.UseDefaultLookAndFeel = False
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(359, 167)
+        Me.GCData.Size = New System.Drawing.Size(359, 148)
         Me.GCData.TabIndex = 6
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -114,14 +115,14 @@ Partial Class FormDatabase
         '
         'TxtHost
         '
-        Me.TxtHost.Location = New System.Drawing.Point(24, 78)
+        Me.TxtHost.Location = New System.Drawing.Point(24, 101)
         Me.TxtHost.Name = "TxtHost"
         Me.TxtHost.Size = New System.Drawing.Size(311, 20)
         Me.TxtHost.TabIndex = 3
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(24, 149)
+        Me.LabelControl3.Location = New System.Drawing.Point(24, 172)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(46, 13)
         Me.LabelControl3.TabIndex = 2
@@ -129,7 +130,7 @@ Partial Class FormDatabase
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(24, 104)
+        Me.LabelControl2.Location = New System.Drawing.Point(24, 127)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(48, 13)
         Me.LabelControl2.TabIndex = 1
@@ -137,7 +138,7 @@ Partial Class FormDatabase
         '
         'TxtPass
         '
-        Me.TxtPass.Location = New System.Drawing.Point(24, 168)
+        Me.TxtPass.Location = New System.Drawing.Point(24, 191)
         Me.TxtPass.Name = "TxtPass"
         Me.TxtPass.Properties.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.TxtPass.Size = New System.Drawing.Size(311, 20)
@@ -145,7 +146,7 @@ Partial Class FormDatabase
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(24, 59)
+        Me.LabelControl1.Location = New System.Drawing.Point(24, 82)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(22, 13)
         Me.LabelControl1.TabIndex = 0
@@ -153,14 +154,14 @@ Partial Class FormDatabase
         '
         'TxtUsername
         '
-        Me.TxtUsername.Location = New System.Drawing.Point(24, 123)
+        Me.TxtUsername.Location = New System.Drawing.Point(24, 146)
         Me.TxtUsername.Name = "TxtUsername"
         Me.TxtUsername.Size = New System.Drawing.Size(311, 20)
         Me.TxtUsername.TabIndex = 4
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(24, 194)
+        Me.LabelControl4.Location = New System.Drawing.Point(24, 217)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(46, 13)
         Me.LabelControl4.TabIndex = 6
@@ -169,7 +170,7 @@ Partial Class FormDatabase
         'TxtDB
         '
         Me.TxtDB.Enabled = False
-        Me.TxtDB.Location = New System.Drawing.Point(24, 213)
+        Me.TxtDB.Location = New System.Drawing.Point(24, 236)
         Me.TxtDB.Name = "TxtDB"
         Me.TxtDB.Size = New System.Drawing.Size(159, 20)
         Me.TxtDB.TabIndex = 7
@@ -177,7 +178,7 @@ Partial Class FormDatabase
         'BtnConnect
         '
         Me.BtnConnect.Image = CType(resources.GetObject("BtnConnect.Image"), System.Drawing.Image)
-        Me.BtnConnect.Location = New System.Drawing.Point(189, 213)
+        Me.BtnConnect.Location = New System.Drawing.Point(189, 236)
         Me.BtnConnect.Name = "BtnConnect"
         Me.BtnConnect.Size = New System.Drawing.Size(62, 20)
         Me.BtnConnect.TabIndex = 8
@@ -186,7 +187,7 @@ Partial Class FormDatabase
         'BtnImport
         '
         Me.BtnImport.Image = CType(resources.GetObject("BtnImport.Image"), System.Drawing.Image)
-        Me.BtnImport.Location = New System.Drawing.Point(257, 213)
+        Me.BtnImport.Location = New System.Drawing.Point(257, 236)
         Me.BtnImport.Name = "BtnImport"
         Me.BtnImport.Size = New System.Drawing.Size(78, 20)
         Me.BtnImport.TabIndex = 9
@@ -194,6 +195,7 @@ Partial Class FormDatabase
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnMainHost)
         Me.PanelControl1.Controls.Add(Me.SimpleButton2)
         Me.PanelControl1.Controls.Add(Me.BtnLocal)
         Me.PanelControl1.Controls.Add(Me.BtnImport)
@@ -209,7 +211,7 @@ Partial Class FormDatabase
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(359, 257)
+        Me.PanelControl1.Size = New System.Drawing.Size(359, 276)
         Me.PanelControl1.TabIndex = 7
         '
         'SimpleButton2
@@ -245,6 +247,23 @@ Partial Class FormDatabase
         Me.BtnLocal.Size = New System.Drawing.Size(355, 23)
         Me.BtnLocal.TabIndex = 10
         Me.BtnLocal.Text = "Local Server"
+        '
+        'BtnMainHost
+        '
+        Me.BtnMainHost.Appearance.BackColor = System.Drawing.Color.Crimson
+        Me.BtnMainHost.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnMainHost.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnMainHost.Appearance.Options.UseBackColor = True
+        Me.BtnMainHost.Appearance.Options.UseFont = True
+        Me.BtnMainHost.Appearance.Options.UseForeColor = True
+        Me.BtnMainHost.Dock = System.Windows.Forms.DockStyle.Top
+        Me.BtnMainHost.Location = New System.Drawing.Point(2, 48)
+        Me.BtnMainHost.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnMainHost.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnMainHost.Name = "BtnMainHost"
+        Me.BtnMainHost.Size = New System.Drawing.Size(355, 23)
+        Me.BtnMainHost.TabIndex = 12
+        Me.BtnMainHost.Text = "Main Server"
         '
         'FormDatabase
         '
@@ -294,4 +313,5 @@ Partial Class FormDatabase
     Friend WithEvents BtnSetting As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnLocal As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnMainHost As DevExpress.XtraEditors.SimpleButton
 End Class

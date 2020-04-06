@@ -180,18 +180,38 @@ Public Class FormDatabase
     End Sub
 
     Private Sub BtnLocal_Click(sender As Object, e As EventArgs) Handles BtnLocal.Click
-        GCData.DataSource = Nothing
-        TxtHost.Text = "localhost"
-        TxtPass.Text = "mtvolcom14"
-        TxtUsername.Text = "root"
-        viewDB()
+        Try
+            Dim dt As DataTable = execute_query("SELECT * FROM tb_opt", -1, False, app_host_main, app_username_main, app_password_main, app_database_main)
+            GCData.DataSource = Nothing
+            TxtHost.Text = dt.Rows(0)("local_st_host").ToString
+            TxtPass.Text = dt.Rows(0)("local_st_pass").ToString
+            TxtUsername.Text = dt.Rows(0)("local_st_user").ToString
+            viewDB()
+        Catch ex As Exception
+        End Try
     End Sub
 
     Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles SimpleButton2.Click
-        GCData.DataSource = Nothing
-        TxtHost.Text = "192.168.1.5"
-        TxtPass.Text = "mtvolcom14"
-        TxtUsername.Text = "external_user"
-        viewDB()
+        Try
+            Dim dt As DataTable = execute_query("SELECT * FROM tb_opt", -1, False, app_host_main, app_username_main, app_password_main, app_database_main)
+            GCData.DataSource = Nothing
+            TxtHost.Text = dt.Rows(0)("wh_st_host").ToString
+            TxtPass.Text = dt.Rows(0)("wh_st_pass").ToString
+            TxtUsername.Text = dt.Rows(0)("wh_st_user").ToString
+            viewDB()
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    Private Sub BtnMainHost_Click(sender As Object, e As EventArgs) Handles BtnMainHost.Click
+        Try
+            Dim dt As DataTable = execute_query("SELECT * FROM tb_opt", -1, False, app_host_main, app_username_main, app_password_main, app_database_main)
+            GCData.DataSource = Nothing
+            TxtHost.Text = dt.Rows(0)("main_st_host").ToString
+            TxtPass.Text = dt.Rows(0)("main_st_pass").ToString
+            TxtUsername.Text = dt.Rows(0)("main_st_user").ToString
+            viewDB()
+        Catch ex As Exception
+        End Try
     End Sub
 End Class

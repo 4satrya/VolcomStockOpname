@@ -115,7 +115,7 @@
             BGVRpt.Columns("" + dacc.Rows(a)("comp_number").ToString + "#DiffValue").SummaryItem.DisplayFormat = "{0:n0}"
 
             'col str
-            col_prc += "IFNULL((CASE WHEN d.comp_number='" + dacc.Rows(a)("comp_number").ToString + "' THEN d.unit_price END),0) AS `" + dacc.Rows(a)("comp_number").ToString + "#Price`, "
+            col_prc += "IFNULL(MAX(CASE WHEN d.comp_number='" + dacc.Rows(a)("comp_number").ToString + "' THEN d.unit_price END),0) AS `" + dacc.Rows(a)("comp_number").ToString + "#Price`, "
             col_soh += "IFNULL(SUM(CASE WHEN d.comp_number='" + dacc.Rows(a)("comp_number").ToString + "' THEN d.soh_qty END),0) AS `" + dacc.Rows(a)("comp_number").ToString + "#SOH`, "
             col_soh_value += "IFNULL(SUM(CASE WHEN d.comp_number='" + dacc.Rows(a)("comp_number").ToString + "' THEN d.soh_value END),0) AS `" + dacc.Rows(a)("comp_number").ToString + "#SOHValue`, "
             col_scan += "IFNULL(SUM(CASE WHEN d.comp_number='" + dacc.Rows(a)("comp_number").ToString + "' THEN d.scan_qty END),0) AS `" + dacc.Rows(a)("comp_number").ToString + "#Scan`, "

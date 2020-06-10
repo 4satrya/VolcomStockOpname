@@ -58,7 +58,7 @@ Public Class FormFGBackupStockDet
         0 As `qty_soh` , c.id_drawer_def, c.id_comp_cat, cat.comp_cat_name AS `comp_cat`
         FROM tb_m_comp c 
         INNER JOIN tb_m_comp_cat cat ON cat.id_comp_cat = c.id_comp_cat 
-        WHERE (c.id_comp_cat=5 Or c.id_comp_cat=6)
+        WHERE (c.id_comp_cat=5 Or c.id_comp_cat=6) AND c.is_only_for_alloc=2
         ORDER BY c.comp_number  "
         Dim data As DataTable = execute_query(query, -1, False, app_host_main, app_username_main, app_password_main, app_database_main)
         GCData.DataSource = data
@@ -135,6 +135,10 @@ Public Class FormFGBackupStockDet
                         End If
                     End If
                 Next
+
+                'cari gudang induk
+                comp_in = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) AS `comp` FROM tb_m_comp c WHERE c.id_wh_group=" + comp_in + "", 0, False, app_host_main, app_username_main, app_password_main, app_database_main)
+                Dim id_drawer_def As String = GVData.GetFocusedRowCellValue("id_drawer_def")
 
                 'connection string
                 Dim date_stock_DB = DateTime.Parse(DEStock.EditValue.ToString).ToString("yyyy-MM-dd")
@@ -237,7 +241,7 @@ Public Class FormFGBackupStockDet
                 '-- stock
                 FormMain.SplashScreenManager1.SetWaitFormDescription("Backup stock")
                 If Not is_bof Then
-                    execute_non_query("CALL generate_st('" + comp_in + "', '2020-03-31'); ", False, app_host_main, app_username_main, app_password_main, app_database_main)
+                    execute_non_query("CALL generate_st('" + comp_in + "', '" + date_stock_DB + "', '" + id_drawer_def + "'); ", False, app_host_main, app_username_main, app_password_main, app_database_main)
                 End If
                 dic.Add("tb_st_stock", "SELECT * FROM tb_st_stock")
 

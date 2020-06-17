@@ -128,7 +128,7 @@ Public Class FormDatabase
 
                 'restore db
                 FormMain.SplashScreenManager1.SetWaitFormDescription("Restoring data")
-                Dim constring As String = "server=" + TxtHost.Text + ";user=" + TxtUsername.Text + ";pwd=" + TxtPass.Text + ";database=" + db_new + ";"
+                Dim constring As String = "server=" + TxtHost.Text + ";user=" + TxtUsername.Text + ";pwd=" + TxtPass.Text + ";database=" + db_new + ";default command timeout=1800;"
                 Using conn As New MySqlConnection(constring)
                     Using cmd As New MySqlCommand()
                         Using mb As New MySqlBackup(cmd)

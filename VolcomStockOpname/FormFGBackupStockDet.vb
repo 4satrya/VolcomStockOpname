@@ -137,7 +137,10 @@ Public Class FormFGBackupStockDet
                 Next
 
                 'cari gudang induk
-                comp_in = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) AS `comp` FROM tb_m_comp c WHERE c.id_wh_group=" + comp_in + "", 0, False, app_host_main, app_username_main, app_password_main, app_database_main)
+                Dim comp_grp As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) AS `comp` FROM tb_m_comp c WHERE c.id_wh_group=" + comp_in + "", 0, False, app_host_main, app_username_main, app_password_main, app_database_main)
+                If comp_grp <> "" Then
+                    comp_in = comp_grp
+                End If
                 Dim id_drawer_def As String = GVData.GetFocusedRowCellValue("id_drawer_def")
 
                 'connection string

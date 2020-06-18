@@ -797,6 +797,16 @@
                         WHERE u.unique_code='" + code + "' "
                             is_unique_not_found = execute_query(query_u, 0, True, "", "", "", "")
 
+                            'jika ada unik tdk sesuai
+                            If is_unique_not_found = "1" Then
+                                stopCustomDialog("Unique code not found !")
+                                makeSafeGV(GVScan)
+                                GVScan.FocusedRowHandle = GVScan.RowCount - 1
+                                TxtScan.Text = ""
+                                TxtScan.Focus()
+                                Exit Sub
+                            End If
+
                             'CHECK DUPLICATE
                             makeSafeGV(GVScan)
                             GVScan.ActiveFilterString = "[code]='" + code + "' "

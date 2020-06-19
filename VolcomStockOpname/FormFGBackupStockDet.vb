@@ -104,6 +104,7 @@ Public Class FormFGBackupStockDet
                 Dim is_wh As Boolean = False
                 Dim qfd As String = ""
                 Dim comp_in As String = ""
+                Dim id_comp_in As String = ""
                 For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
                     If GVData.GetRowCellValue(i, "is_select").ToString = "Yes" Then
                         If jum_i > 0 Then
@@ -135,6 +136,8 @@ Public Class FormFGBackupStockDet
                         End If
                     End If
                 Next
+
+                id_comp_in = comp_in
 
                 'cari gudang induk
                 Dim comp_grp As String = execute_query("SELECT GROUP_CONCAT(DISTINCT c.id_comp) AS `comp` FROM tb_m_comp c WHERE c.id_wh_group=" + comp_in + "", 0, False, app_host_main, app_username_main, app_password_main, app_database_main)
@@ -344,8 +347,30 @@ Public Class FormFGBackupStockDet
                 xlsOptions.ExportMode = XlsExportMode.SingleFile
                 reportxls.ExportToXls(reportPathXls, xlsOptions)
 
+                'upload file
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Upload to cloud")
+
+                Dim connection_opt As DataTable = execute_query("SELECT cloud_host, cloud_username, cloud_password, cloud_mysql_host, cloud_mysql_username, cloud_mysql_password, cloud_mysql_db FROM tb_opt", -1, False, app_host_main, app_username_main, app_password_main, app_database_main)
+
+                Dim connection_info As Renci.SshNet.ConnectionInfo = New Renci.SshNet.ConnectionInfo(connection_opt.Rows(0)("cloud_host").ToString, 22, connection_opt.Rows(0)("cloud_username").ToString, New Renci.SshNet.PasswordAuthenticationMethod(connection_opt.Rows(0)("cloud_username").ToString, connection_opt.Rows(0)("cloud_password").ToString))
+
+                Dim sftp As Renci.SshNet.SftpClient = New Renci.SshNet.SftpClient(connection_info)
+
+                sftp.Connect()
+
+                Dim file_stream As IO.Stream = IO.File.OpenRead(file)
+
+                sftp.UploadFile(file_stream, "/mnt/internal/" + fileName, True)
+
+                sftp.Disconnect()
+
                 FormMain.SplashScreenManager1.CloseWaitForm()
                 openFile("\" + date_stock)
+
+                'insert database
+                execute_non_query("UPDATE tb_save_cloud SET is_active = 2 WHERE id_comp = '" + id_comp_in + "'", False, connection_opt.Rows(0)("cloud_mysql_host").ToString, connection_opt.Rows(0)("cloud_mysql_username").ToString, connection_opt.Rows(0)("cloud_mysql_password").ToString, connection_opt.Rows(0)("cloud_mysql_db").ToString)
+
+                execute_non_query("INSERT INTO tb_save_cloud (id_comp, filename, is_active, created_date) VALUES ('" + id_comp_in + "', '" + fileName + "', 1, NOW())", False, connection_opt.Rows(0)("cloud_mysql_host").ToString, connection_opt.Rows(0)("cloud_mysql_username").ToString, connection_opt.Rows(0)("cloud_mysql_password").ToString, connection_opt.Rows(0)("cloud_mysql_db").ToString)
             End If
         End If
     End Sub

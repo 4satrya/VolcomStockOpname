@@ -214,4 +214,75 @@ Public Class FormDatabase
         Catch ex As Exception
         End Try
     End Sub
+
+    Private Sub BtnImportCloud_Click(sender As Object, e As EventArgs) Handles BtnImportCloud.Click
+        initialServerCentre()
+
+        import_from_cloud("371")
+    End Sub
+
+    Sub import_from_cloud(id_comp As String)
+        FormMain.SplashScreenManager1.ShowWaitForm()
+
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Download from cloud")
+
+        Dim path_root As String = Application.StartupPath + "\download\database\"
+
+        Dim connection_opt As DataTable = execute_query("SELECT cloud_host, cloud_username, cloud_password, cloud_mysql_host, cloud_mysql_username, cloud_mysql_password, cloud_mysql_db FROM tb_opt", -1, False, app_host_main, app_username_main, app_password_main, app_database_main)
+
+        'create directory if not exist
+        If Not IO.Directory.Exists(path_root) Then
+            System.IO.Directory.CreateDirectory(path_root)
+        End If
+
+        Dim dir_cloud As String = "/mnt/internal/"
+
+        Dim file_cloud As String = execute_query("SELECT filename FROM tb_save_cloud WHERE is_active = 1 AND id_comp = '" + id_comp + "'", 0, False, connection_opt.Rows(0)("cloud_mysql_host").ToString, connection_opt.Rows(0)("cloud_mysql_username").ToString, connection_opt.Rows(0)("cloud_mysql_password").ToString, connection_opt.Rows(0)("cloud_mysql_db").ToString)
+
+        'download file
+        Dim connection_info As Renci.SshNet.ConnectionInfo = New Renci.SshNet.ConnectionInfo(connection_opt.Rows(0)("cloud_host").ToString, 22, connection_opt.Rows(0)("cloud_username").ToString, New Renci.SshNet.PasswordAuthenticationMethod(connection_opt.Rows(0)("cloud_username").ToString, connection_opt.Rows(0)("cloud_password").ToString))
+
+        Dim sftp As Renci.SshNet.SftpClient = New Renci.SshNet.SftpClient(connection_info)
+
+        sftp.Connect()
+
+        Dim file_stream As IO.Stream = IO.File.Create(path_root + "/" + file_cloud)
+
+        sftp.DownloadFile(dir_cloud + "/" + file_cloud, file_stream)
+
+        file_stream.Close()
+
+        Dim db_new As String = file_cloud.Replace(".sql", "")
+
+        'create new db
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Creating new database")
+        Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Convert Zero Datetime=True", TxtHost.Text, TxtUsername.Text, TxtPass.Text)
+        Dim connection As MySqlConnection = New MySqlConnection(connection_string)
+        connection.Open()
+        Dim command As MySqlCommand = connection.CreateCommand()
+        command.CommandText = "CREATE DATABASE `" + db_new + "`"
+        command.ExecuteNonQuery()
+        command.Dispose()
+        connection.Close()
+        connection.Dispose()
+
+        'restore db
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Restoring data")
+        Dim constring As String = "server=" + TxtHost.Text + ";user=" + TxtUsername.Text + ";pwd=" + TxtPass.Text + ";database=" + db_new + ";default command timeout=1800;"
+        Using conn As New MySqlConnection(constring)
+            Using cmd As New MySqlCommand()
+                Using mb As New MySqlBackup(cmd)
+                    cmd.Connection = conn
+                    conn.Open()
+                    mb.ImportInfo.TargetDatabase = db_new
+                    mb.ImportInfo.EnableEncryption = True
+                    mb.ImportInfo.EncryptionPassword = "csmtafc"
+                    mb.ImportFromFile(path_root + "/" + file_cloud)
+                    conn.Close()
+                End Using
+            End Using
+        End Using
+
+        FormMain.SplashScreenManager1.CloseWaitForm()
+    End Sub
 End Class

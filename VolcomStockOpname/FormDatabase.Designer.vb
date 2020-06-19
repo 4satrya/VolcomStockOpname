@@ -37,9 +37,10 @@ Partial Class FormDatabase
         Me.BtnConnect = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImport = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnMainHost = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnLocal = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnMainHost = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnImportCloud = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -55,12 +56,12 @@ Partial Class FormDatabase
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 276)
+        Me.GCData.Location = New System.Drawing.Point(0, 301)
         Me.GCData.LookAndFeel.SkinName = "Visual Studio 2013 Light"
         Me.GCData.LookAndFeel.UseDefaultLookAndFeel = False
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(359, 148)
+        Me.GCData.Size = New System.Drawing.Size(359, 224)
         Me.GCData.TabIndex = 6
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -78,7 +79,7 @@ Partial Class FormDatabase
         Me.PanelControl2.Controls.Add(Me.SimpleButton1)
         Me.PanelControl2.Controls.Add(Me.BtnSave)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 424)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 525)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(359, 36)
         Me.PanelControl2.TabIndex = 8
@@ -195,6 +196,7 @@ Partial Class FormDatabase
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnImportCloud)
         Me.PanelControl1.Controls.Add(Me.BtnMainHost)
         Me.PanelControl1.Controls.Add(Me.SimpleButton2)
         Me.PanelControl1.Controls.Add(Me.BtnLocal)
@@ -211,8 +213,25 @@ Partial Class FormDatabase
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(359, 276)
+        Me.PanelControl1.Size = New System.Drawing.Size(359, 301)
         Me.PanelControl1.TabIndex = 7
+        '
+        'BtnMainHost
+        '
+        Me.BtnMainHost.Appearance.BackColor = System.Drawing.Color.Crimson
+        Me.BtnMainHost.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnMainHost.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnMainHost.Appearance.Options.UseBackColor = True
+        Me.BtnMainHost.Appearance.Options.UseFont = True
+        Me.BtnMainHost.Appearance.Options.UseForeColor = True
+        Me.BtnMainHost.Dock = System.Windows.Forms.DockStyle.Top
+        Me.BtnMainHost.Location = New System.Drawing.Point(2, 48)
+        Me.BtnMainHost.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnMainHost.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnMainHost.Name = "BtnMainHost"
+        Me.BtnMainHost.Size = New System.Drawing.Size(355, 23)
+        Me.BtnMainHost.TabIndex = 12
+        Me.BtnMainHost.Text = "Main Server"
         '
         'SimpleButton2
         '
@@ -248,28 +267,20 @@ Partial Class FormDatabase
         Me.BtnLocal.TabIndex = 10
         Me.BtnLocal.Text = "Local Server"
         '
-        'BtnMainHost
+        'BtnImportCloud
         '
-        Me.BtnMainHost.Appearance.BackColor = System.Drawing.Color.Crimson
-        Me.BtnMainHost.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnMainHost.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BtnMainHost.Appearance.Options.UseBackColor = True
-        Me.BtnMainHost.Appearance.Options.UseFont = True
-        Me.BtnMainHost.Appearance.Options.UseForeColor = True
-        Me.BtnMainHost.Dock = System.Windows.Forms.DockStyle.Top
-        Me.BtnMainHost.Location = New System.Drawing.Point(2, 48)
-        Me.BtnMainHost.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BtnMainHost.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BtnMainHost.Name = "BtnMainHost"
-        Me.BtnMainHost.Size = New System.Drawing.Size(355, 23)
-        Me.BtnMainHost.TabIndex = 12
-        Me.BtnMainHost.Text = "Main Server"
+        Me.BtnImportCloud.Image = CType(resources.GetObject("BtnImportCloud.Image"), System.Drawing.Image)
+        Me.BtnImportCloud.Location = New System.Drawing.Point(189, 262)
+        Me.BtnImportCloud.Name = "BtnImportCloud"
+        Me.BtnImportCloud.Size = New System.Drawing.Size(146, 20)
+        Me.BtnImportCloud.TabIndex = 13
+        Me.BtnImportCloud.Text = "Import From Cloud"
         '
         'FormDatabase
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(359, 460)
+        Me.ClientSize = New System.Drawing.Size(359, 561)
         Me.Controls.Add(Me.GCData)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
@@ -314,4 +325,5 @@ Partial Class FormDatabase
     Friend WithEvents BtnLocal As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnMainHost As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnImportCloud As DevExpress.XtraEditors.SimpleButton
 End Class

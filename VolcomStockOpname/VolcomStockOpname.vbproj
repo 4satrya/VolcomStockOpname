@@ -140,6 +140,12 @@
     <Compile Include="FormDatabasePeriodeDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDatabaseStore.Designer.vb">
+      <DependentUpon>FormDatabaseStore.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDatabaseStore.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormDatabaseUI.Designer.vb">
       <DependentUpon>FormDatabaseUI.vb</DependentUpon>
     </Compile>
@@ -426,6 +432,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDatabasePeriodeDet.resx">
       <DependentUpon>FormDatabasePeriodeDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDatabaseStore.resx">
+      <DependentUpon>FormDatabaseStore.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDatabaseUI.resx">
       <DependentUpon>FormDatabaseUI.vb</DependentUpon>

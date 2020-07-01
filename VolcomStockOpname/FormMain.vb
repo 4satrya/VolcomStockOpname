@@ -86,28 +86,35 @@
             apply_skin()
             read_database_configuration()
             check_connection(True, "", "", "", "")
-            If id_user = "" And app_database <> "db_opt" Then
-                FormLogin.ShowDialog()
 
-                'current db
-                setInfoDb()
+            Dim is_login_store As String = execute_query("SELECT is_login_store FROM tb_opt", 0, False, app_host, app_username, app_password, "db_opt")
 
-                'open dashboard
-                Try
-                    FormHome.MdiParent = Me
-                    FormHome.Show()
-                    FormHome.WindowState = FormWindowState.Maximized
-                    FormHome.Focus()
-                Catch ex As Exception
-                    errorConnection()
-                End Try
-                Cursor = Cursors.Default
+            If is_login_store = "1" Then
+                FormDatabaseStore.ShowDialog()
             Else
-                'initial server centre
-                initialServerCentre()
-                FormLogin.id_menu = "1"
-                FormLogin.is_first = "1"
-                FormLogin.ShowDialog()
+                If id_user = "" And app_database <> "db_opt" Then
+                    FormLogin.ShowDialog()
+
+                    'current db
+                    setInfoDb()
+
+                    'open dashboard
+                    Try
+                        FormHome.MdiParent = Me
+                        FormHome.Show()
+                        FormHome.WindowState = FormWindowState.Maximized
+                        FormHome.Focus()
+                    Catch ex As Exception
+                        errorConnection()
+                    End Try
+                    Cursor = Cursors.Default
+                Else
+                    'initial server centre
+                    initialServerCentre()
+                    FormLogin.id_menu = "1"
+                    FormLogin.is_first = "1"
+                    FormLogin.ShowDialog()
+                End If
             End If
         Catch ex As Exception
             FormDatabase.ShowDialog()

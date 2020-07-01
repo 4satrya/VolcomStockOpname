@@ -222,7 +222,7 @@ Public Class FormFGBackupStockDet
                 End If
                 '-- user
                 FormMain.SplashScreenManager1.SetWaitFormDescription("Backup user data")
-                dic.Add("tb_m_user", "SELECT u.* FROM tb_m_user u INNER JOIN tb_st_user s ON s.id_user = u.id_user ")
+                dic.Add("tb_m_user", "(SELECT u.* FROM tb_m_user u INNER JOIN tb_st_user s ON s.id_user = u.id_user WHERE u.is_external_user = 2) UNION ALL (SELECT u.* FROM tb_m_user u WHERE u.is_external_user = 1)")
                 dic.Add("tb_m_employee", "SELECT e.* FROM tb_m_user u INNER JOIN tb_st_user s ON s.id_user = u.id_user 
                 INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee ")
                 dic.Add("tb_st_user", "SELECT s.* FROM tb_st_user s ")

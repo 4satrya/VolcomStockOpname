@@ -2,7 +2,7 @@
     Dim url_import As String = ""
 
     Private Sub FormDatabaseStore_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        BtnConnect_Click(BtnConnect, New EventArgs)
     End Sub
 
     Private Sub BtnConnect_Click(sender As Object, e As EventArgs) Handles BtnConnect.Click
@@ -25,6 +25,8 @@
         Catch ex As Exception
             DevExpress.XtraEditors.XtraMessageBox.Show("Connection failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+
+        GVData.ActiveFilterString = "[Database] Like 'db_%'"
 
         Cursor = Cursors.Default
     End Sub

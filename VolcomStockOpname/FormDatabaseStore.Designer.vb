@@ -102,6 +102,7 @@ Partial Class FormDatabaseStore
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.Editable = False
+        Me.GVData.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
         'PanelControl2

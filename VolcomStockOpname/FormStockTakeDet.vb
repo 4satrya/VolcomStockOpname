@@ -60,8 +60,8 @@
         Dim query As String = "
         SELECT 0 AS `id_user`, '-' AS `employee_name`
         UNION ALL
-        SELECT u.id_user, e.employee_name FROM tb_m_user u
-        INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee "
+        SELECT u.id_user, IF(u.is_external_user = 1, u.name_external, e.employee_name) AS employee_name FROM tb_m_user u
+        LEFT JOIN tb_m_employee e ON e.id_employee = u.id_employee "
         viewLookupQuery(LEAck, query, 0, "employee_name", "id_user")
     End Sub
 

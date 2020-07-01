@@ -18,6 +18,24 @@ Public Class FormStockTake
         viewUserType()
         viewScan()
         viewCombine()
+
+        If id_role_login = "5" Then
+            XtraTabPage2.PageVisible = False
+
+            BtnImport.Visible = False
+            BtnExport.Visible = False
+            PCSelectAll.Visible = False
+
+            BtnExportStop.Visible = True
+
+            Dim is_stop_scan As String = execute_query("SELECT is_stop_scan FROM tb_st_opt", 0, True, "", "", "", "")
+
+            If is_stop_scan = "1" Then
+                stopCustom("Access denied.")
+
+                BeginInvoke(New MethodInvoker(AddressOf Close))
+            End If
+        End If
     End Sub
 
     Sub viewUserType()
@@ -315,6 +333,104 @@ Public Class FormStockTake
             ToolStripCancel.Visible = True
         Else
             ToolStripCancel.Visible = False
+        End If
+    End Sub
+
+    Private Sub BtnExportStop_Click(sender As Object, e As EventArgs) Handles BtnExportStop.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to export to .sql file and stop scan?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = DialogResult.Yes Then
+            makeSafeGV(GVScan)
+
+            GVScan.ActiveFilterString = ""
+
+            For i = 0 To GVScan.RowCount - 1
+                If GVScan.IsValidRowHandle(i) Then
+                    If Not GVScan.GetRowCellValue(i, "id_report_status").ToString = "5" Then
+                        GVScan.SetRowCellValue(i, "is_select", "Yes")
+                    End If
+                End If
+            Next
+
+            'export
+            GVScan.ActiveFilterString = "[is_select]='Yes' "
+
+            If GVScan.RowCount > 0 Then
+                FormMain.SplashScreenManager1.ShowWaitForm()
+                Dim id_st_trans As String = ""
+                For i As Integer = 0 To ((GVScan.RowCount - 1) - GetGroupRowCount(GVScan))
+                    If GVScan.GetRowCellValue(i, "is_select").ToString = "Yes" Then
+                        If i > 0 Then
+                            id_st_trans += "OR "
+                        End If
+                        id_st_trans += "id_st_trans='" + GVScan.GetRowCellValue(i, "id_st_trans").ToString + "' "
+                    End If
+                Next
+
+                'create table copy
+                Dim query_copy_trans As String = "DROP TABLE IF EXISTS tb_st_trans_" + st_user_code + "; CREATE TABLE IF NOT EXISTS tb_st_trans_" + st_user_code + " SELECT * FROM tb_st_trans WHERE id_st_trans>0 AND (" + id_st_trans + "); 
+                truncate table tb_st_trans_" + st_user_code + "; 
+                INSERT tb_st_trans_" + st_user_code + " SELECT * FROM tb_st_trans WHERE id_st_trans>0 AND (" + id_st_trans + "); "
+                execute_non_query(query_copy_trans, True, "", "", "", "")
+                Dim query_copy_trans_det As String = "DROP TABLE IF EXISTS tb_st_trans_det_" + st_user_code + "; CREATE TABLE IF NOT EXISTS tb_st_trans_det_" + st_user_code + " SELECT * FROM tb_st_trans_det WHERE id_st_trans>0 AND (" + id_st_trans + "); 
+                truncate table tb_st_trans_det_" + st_user_code + "; 
+                INSERT tb_st_trans_det_" + st_user_code + " SELECT * FROM tb_st_trans_det WHERE id_st_trans>0 AND (" + id_st_trans + "); "
+                execute_non_query(query_copy_trans_det, True, "", "", "", "")
+
+                'connection string
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Check connection ...")
+                Dim dbc_str As String() = Split(app_database, "_")
+                Dim name_dir = dbc_str(1) + "_" + dbc_str(2) + "_" + st_user_code + "_" + header_number("3", "0")
+                Dim constring As String = "server=" + app_host + ";user=" + app_username + ";pwd=" + app_password + ";database=" + app_database + ";allow zero datetime=yes;"
+                Dim path_root As String = Application.StartupPath + "\download\scan\" + name_dir
+                'create directory if not exist
+                If Not IO.Directory.Exists(path_root) Then
+                    System.IO.Directory.CreateDirectory(path_root)
+                End If
+                Dim fileName As String = name_dir + ".sql"
+                Dim file As String = IO.Path.Combine(path_root, fileName)
+
+                'disable scan
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Disable scan ...")
+                execute_non_query("UPDATE tb_st_opt SET is_stop_scan = 1", True, "", "", "", "")
+
+                '-- scan data
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Backup scan data")
+                Dim dic As New Dictionary(Of String, String)()
+                dic.Add("tb_st_trans_" + st_user_code.ToLower, "SELECT * FROM tb_st_trans_" + st_user_code.ToLower)
+                dic.Add("tb_st_trans_det_" + st_user_code.ToLower, "SELECT * FROM tb_st_trans_det_" + st_user_code.ToLower)
+
+                'dump
+                FormMain.SplashScreenManager1.SetWaitFormDescription("Creating dump")
+                Using conn As New MySqlConnection(constring)
+                    Using cmd As New MySqlCommand()
+                        Using mb As New MySqlBackup(cmd)
+                            cmd.Connection = conn
+                            conn.Open()
+                            mb.ExportInfo.AddCreateDatabase = False
+                            mb.ExportInfo.ExportTableStructure = True
+                            mb.ExportInfo.ExportRows = True
+                            mb.ExportInfo.TablesToBeExportedDic = dic
+                            mb.ExportInfo.ExportProcedures = False
+                            mb.ExportInfo.ExportFunctions = False
+                            mb.ExportInfo.ExportTriggers = False
+                            mb.ExportInfo.ExportEvents = False
+                            mb.ExportInfo.ExportViews = False
+                            mb.ExportInfo.EnableEncryption = True
+                            mb.ExportInfo.EncryptionPassword = "csmtafc"
+                            mb.ExportToFile(file)
+                        End Using
+                    End Using
+                End Using
+
+                FormMain.SplashScreenManager1.CloseWaitForm()
+                openFile("\" + name_dir)
+
+                Close()
+            Else
+                stopCustom("No scan data selected.")
+            End If
+
+            GVScan.ActiveFilterString = ""
         End If
     End Sub
 End Class

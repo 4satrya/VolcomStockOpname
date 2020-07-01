@@ -59,6 +59,17 @@
             NBWHST.Visible = True
             NBReport.Visible = False
             NBScanGlobal.Visible = False
+        ElseIf id_role_login = "5" Then
+            'STORE
+            NBExport.Visible = False
+            NBImport.Visible = False
+            NBStockTake.Visible = True
+            NBOpt.Visible = False
+            NBWHPreST.Visible = False
+            NBWHST.Visible = False
+            NBReport.Visible = False
+            NBScanGlobal.Visible = False
+            NBStock.Visible = False
         Else
             NBExport.Visible = False
             NBImport.Visible = False

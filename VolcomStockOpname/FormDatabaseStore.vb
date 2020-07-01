@@ -104,15 +104,23 @@
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        write_database_configuration(app_host, app_username, app_password, GVData.GetFocusedRowCellDisplayText("Database").ToString)
-        read_database_configuration()
+        If GVData.RowCount > 0 Then
+            Try
+                write_database_configuration(app_host, app_username, app_password, GVData.GetFocusedRowCellDisplayText("Database").ToString)
+                read_database_configuration()
 
-        Dim dataDb As DataTable = execute_query("SELECT * FROM tb_m_comp", -1, False, app_host, app_username, app_password, GVData.GetFocusedRowCellDisplayText("Database").ToString)
+                Dim dataDb As DataTable = execute_query("SELECT * FROM tb_m_comp", -1, False, app_host, app_username, app_password, GVData.GetFocusedRowCellDisplayText("Database").ToString)
 
-        FormMain.LabelInfo.Text = "Active: " + dataDb.Rows(0)("comp_number").ToString + "; " + GVData.GetFocusedRowCellDisplayText("Database").ToString
+                FormMain.LabelInfo.Text = "Active: " + dataDb.Rows(0)("comp_number").ToString + "; " + GVData.GetFocusedRowCellDisplayText("Database").ToString
 
-        Close()
+                Close()
 
-        FormLogin.ShowDialog()
+                FormLogin.ShowDialog()
+            Catch ex As Exception
+                stopCustom("Connection error.")
+            End Try
+        Else
+            stopCustom("Please select database.")
+        End If
     End Sub
 End Class

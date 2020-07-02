@@ -358,6 +358,27 @@ Public Class FormFGBackupStockDet
                     xlsOptions.ExportMode = XlsExportMode.SingleFile
                     reportxls.ExportToXls(reportPathXls, xlsOptions)
 
+                    'zipping
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Creating zip file")
+
+                    Dim new_path_root As String = Path.Combine(path_root, date_stock)
+
+                    'create directory
+                    Directory.CreateDirectory(new_path_root)
+
+                    'copy file
+                    FileCopy(file, Path.Combine(new_path_root, fileName))
+                    FileCopy(reportPath, Path.Combine(new_path_root, fileNamePdf))
+                    FileCopy(reportPathXls, Path.Combine(new_path_root, fileNameXls))
+
+                    'zip directory
+                    Dim fileNameZip As String = date_stock + ".zip"
+
+                    Compression.ZipFile.CreateFromDirectory(new_path_root, Path.Combine(path_root, fileNameZip))
+
+                    'remove directory
+                    Directory.Delete(new_path_root, True)
+
                     FormMain.SplashScreenManager1.CloseWaitForm()
                     openFile("\" + date_stock)
                 End If

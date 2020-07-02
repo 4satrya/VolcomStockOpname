@@ -78,6 +78,10 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression.ZipFile, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.ZipFile.4.3.0\lib\netstandard1.3\System.IO.Compression.ZipFile.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -138,6 +142,12 @@
       <DependentUpon>FormDatabasePeriodeDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormDatabasePeriodeDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDatabaseStore.Designer.vb">
+      <DependentUpon>FormDatabaseStore.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDatabaseStore.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormDatabaseUI.Designer.vb">
@@ -427,6 +437,9 @@
     <EmbeddedResource Include="FormDatabasePeriodeDet.resx">
       <DependentUpon>FormDatabasePeriodeDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormDatabaseStore.resx">
+      <DependentUpon>FormDatabaseStore.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDatabaseUI.resx">
       <DependentUpon>FormDatabaseUI.vb</DependentUpon>
     </EmbeddedResource>
@@ -569,6 +582,7 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

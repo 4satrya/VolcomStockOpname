@@ -28,7 +28,7 @@ Public Class FormStockTake
 
             BtnExportStop.Visible = True
 
-            Dim is_stop_scan As String = execute_query("SELECT is_stop_scan FROM tb_st_opt", 0, True, "", "", "", "")
+            Dim is_stop_scan As String = execute_query("SELECT is_stop_scan FROM tb_m_user WHERE id_user = '" + id_user + "'", 0, True, "", "", "", "")
 
             If is_stop_scan = "1" Then
                 stopCustom("Access denied.")
@@ -391,7 +391,7 @@ Public Class FormStockTake
 
                 'disable scan
                 FormMain.SplashScreenManager1.SetWaitFormDescription("Disable scan ...")
-                execute_non_query("UPDATE tb_st_opt SET is_stop_scan = 1", True, "", "", "", "")
+                execute_non_query("UPDATE tb_m_user SET is_stop_scan = 1 WHERE id_user = '" + id_user + "'", True, "", "", "", "")
 
                 '-- scan data
                 FormMain.SplashScreenManager1.SetWaitFormDescription("Backup scan data")

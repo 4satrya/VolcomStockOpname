@@ -33,12 +33,21 @@ Partial Class FormHome
         Me.GCConn = New DevExpress.XtraGrid.GridControl()
         Me.GVCon = New DevExpress.XtraGrid.Views.Tile.TileView()
         Me.TileViewColumnAcc = New DevExpress.XtraGrid.Columns.TileViewColumn()
+        Me.PCPeriod = New DevExpress.XtraEditors.PanelControl()
+        Me.SLUEPeriod = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.GCConn, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCon, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCPeriod, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCPeriod.SuspendLayout()
+        CType(Me.SLUEPeriod.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TileViewColumnAccount
@@ -70,6 +79,7 @@ Partial Class FormHome
         'PanelControl1
         '
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl1.Controls.Add(Me.PCPeriod)
         Me.PanelControl1.Controls.Add(Me.PanelControl2)
         Me.PanelControl1.Controls.Add(Me.LabelPeriodName)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
@@ -162,6 +172,47 @@ Partial Class FormHome
         Me.TileViewColumnAcc.Visible = True
         Me.TileViewColumnAcc.VisibleIndex = 3
         '
+        'PCPeriod
+        '
+        Me.PCPeriod.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PCPeriod.Controls.Add(Me.SLUEPeriod)
+        Me.PCPeriod.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PCPeriod.Location = New System.Drawing.Point(430, 0)
+        Me.PCPeriod.Name = "PCPeriod"
+        Me.PCPeriod.Size = New System.Drawing.Size(189, 67)
+        Me.PCPeriod.TabIndex = 5
+        '
+        'SLUEPeriod
+        '
+        Me.SLUEPeriod.Location = New System.Drawing.Point(10, 24)
+        Me.SLUEPeriod.Name = "SLUEPeriod"
+        Me.SLUEPeriod.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUEPeriod.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLUEPeriod.Size = New System.Drawing.Size(170, 20)
+        Me.SLUEPeriod.TabIndex = 0
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "GridColumn1"
+        Me.GridColumn1.FieldName = "id_periode"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Periode"
+        Me.GridColumn2.FieldName = "description"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
+        '
         'FormHome
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -181,6 +232,10 @@ Partial Class FormHome
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.GCConn, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCon, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCPeriod, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCPeriod.ResumeLayout(False)
+        CType(Me.SLUEPeriod.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -195,4 +250,9 @@ Partial Class FormHome
     Friend WithEvents TileViewColumnAcc As DevExpress.XtraGrid.Columns.TileViewColumn
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnSearch As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PCPeriod As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SLUEPeriod As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

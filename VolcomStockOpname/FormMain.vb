@@ -98,7 +98,12 @@
             read_database_configuration()
             check_connection(True, "", "", "", "")
 
-            Dim is_login_store As String = execute_query("SELECT is_login_store FROM tb_opt", 0, False, app_host, app_username, app_password, "db_opt")
+            Dim is_login_store As String = "2"
+            Try
+                is_login_store = execute_query("SELECT is_login_store FROM tb_opt", 0, False, app_host, app_username, app_password, "db_opt")
+            Catch ex As Exception
+                is_login_store = "2"
+            End Try
 
             If is_login_store = "1" Then
                 FormDatabaseStore.ShowDialog()

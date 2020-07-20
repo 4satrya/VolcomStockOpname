@@ -798,7 +798,7 @@
                             is_unique_not_found = execute_query(query_u, 0, True, "", "", "", "")
 
                             'jika ada unik tdk sesuai
-                            If is_unique_not_found = "1" Then
+                            If is_unique_not_found = "1" And is_no_tag = "2" Then
                                 stopCustomDialog("Unique code not found !")
                                 makeSafeGV(GVScan)
                                 GVScan.FocusedRowHandle = GVScan.RowCount - 1
@@ -807,18 +807,20 @@
                                 Exit Sub
                             End If
 
-                            'CHECK DUPLICATE
-                            makeSafeGV(GVScan)
-                            GVScan.ActiveFilterString = "[code]='" + code + "' "
-                            If GVScan.RowCount > 0 Then
-                                stopCustomDialog("Duplicate scan !")
+                            If code.Length = 16 Then
+                                'CHECK DUPLICATE
                                 makeSafeGV(GVScan)
-                                GVScan.FocusedRowHandle = GVScan.RowCount - 1
-                                TxtScan.Text = ""
-                                TxtScan.Focus()
-                                Exit Sub
-                            Else
-                                makeSafeGV(GVScan)
+                                GVScan.ActiveFilterString = "[code]='" + code + "' "
+                                If GVScan.RowCount > 0 Then
+                                    stopCustomDialog("Duplicate scan !")
+                                    makeSafeGV(GVScan)
+                                    GVScan.FocusedRowHandle = GVScan.RowCount - 1
+                                    TxtScan.Text = ""
+                                    TxtScan.Focus()
+                                    Exit Sub
+                                Else
+                                    makeSafeGV(GVScan)
+                                End If
                             End If
                         ElseIf dt_check.Rows(0)("is_old_design") = "3" Then 'unique code peralihan
                             code_saved = code

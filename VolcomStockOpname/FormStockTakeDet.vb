@@ -120,6 +120,11 @@
 
             viewDetail()
             allow_status()
+
+            'disable no tag
+            If FormStockTake.is_pre = "1" Then
+                CheckEditNoTag.Enabled = False
+            End If
         End If
     End Sub
 
@@ -728,8 +733,8 @@
                     WHERE u.unique_code='" + code + "' "
                 is_unique_not_found = execute_query(query_u, 0, True, "", "", "", "")
 
-                'jika ada unik tdk sesuai
-                If is_unique_not_found = "1" Then
+                'jika ada unik tdk sesuai dan no tag tidak dicentang
+                If is_unique_not_found = "1" And is_no_tag = "2" Then
                     stopCustomDialog("Unique code not found !")
                     makeSafeGV(GVScan)
                     GVScan.FocusedRowHandle = GVScan.RowCount - 1
@@ -739,32 +744,34 @@
                 End If
 
                 'CHECK DUPLICATE
-                makeSafeGV(GVScan)
-                GVScan.ActiveFilterString = "[code]='" + code + "' "
-                If GVScan.RowCount > 0 Then
-                    stopCustomDialog("Duplicate scan !")
+                If code.Length = 16 Then
                     makeSafeGV(GVScan)
-                    GVScan.FocusedRowHandle = GVScan.RowCount - 1
-                    TxtScan.Text = ""
-                    TxtScan.Focus()
-                    Exit Sub
-                Else
-                    makeSafeGV(GVScan)
-                End If
+                    GVScan.ActiveFilterString = "[code]='" + code + "' "
+                    If GVScan.RowCount > 0 Then
+                        stopCustomDialog("Duplicate scan !")
+                        makeSafeGV(GVScan)
+                        GVScan.FocusedRowHandle = GVScan.RowCount - 1
+                        TxtScan.Text = ""
+                        TxtScan.Focus()
+                        Exit Sub
+                    Else
+                        makeSafeGV(GVScan)
+                    End If
 
-                'cek di transaksi lain
-                Dim qdup As String = "SELECT m.st_trans_number 
+                    'cek di transaksi lain
+                    Dim qdup As String = "SELECT m.st_trans_number 
                         FROM tb_st_trans_det d 
                         INNER JOIN tb_st_trans m ON m.id_st_trans = d.id_st_trans
                         WHERE d.`code`='" + code + "' AND m.id_report_status!=5 LIMIT 1 "
-                Dim ddup As DataTable = execute_query(qdup, -1, True, "", "", "", "")
-                If ddup.Rows.Count > 0 Then
-                    stopCustomDialog("Already scanned in transaction number : " + ddup.Rows(0)("st_trans_number").ToString)
-                    makeSafeGV(GVScan)
-                    GVScan.FocusedRowHandle = GVScan.RowCount - 1
-                    TxtScan.Text = ""
-                    TxtScan.Focus()
-                    Exit Sub
+                    Dim ddup As DataTable = execute_query(qdup, -1, True, "", "", "", "")
+                    If ddup.Rows.Count > 0 Then
+                        stopCustomDialog("Already scanned in transaction number : " + ddup.Rows(0)("st_trans_number").ToString)
+                        makeSafeGV(GVScan)
+                        GVScan.FocusedRowHandle = GVScan.RowCount - 1
+                        TxtScan.Text = ""
+                        TxtScan.Focus()
+                        Exit Sub
+                    End If
                 End If
             ElseIf dt_check.Rows(0)("is_old_design") = "3" Then 'unique code peralihan
                 code_saved = code

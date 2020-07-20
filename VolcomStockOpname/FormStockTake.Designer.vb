@@ -19,12 +19,11 @@ Partial Class FormStockTake
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormStockTake))
         Me.XTCStockTake = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPScan = New DevExpress.XtraTab.XtraTabPage()
         Me.GCScan = New DevExpress.XtraGrid.GridControl()
-        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip()
         Me.ToolStripCancel = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVScan = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnId = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -34,6 +33,7 @@ Partial Class FormStockTake
         Me.GridColumnLastUpdate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnUpdatedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnComp = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnqty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIsSelect = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -61,6 +61,7 @@ Partial Class FormStockTake
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -71,8 +72,8 @@ Partial Class FormStockTake
         Me.BtnPrintCom = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreateCom = New DevExpress.XtraEditors.SimpleButton()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnExportStop = New DevExpress.XtraEditors.SimpleButton()
+        Me.PCSelectAll = New DevExpress.XtraEditors.PanelControl()
         CType(Me.XTCStockTake, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStockTake.SuspendLayout()
         Me.XTPScan.SuspendLayout()
@@ -92,6 +93,8 @@ Partial Class FormStockTake
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.PCSelectAll, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCSelectAll.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCStockTake
@@ -219,6 +222,15 @@ Partial Class FormStockTake
         Me.GridColumn1.VisibleIndex = 8
         Me.GridColumn1.Width = 197
         '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Status Note"
+        Me.GridColumn11.FieldName = "report_status_note"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsColumn.AllowEdit = False
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 9
+        '
         'GridColumnComp
         '
         Me.GridColumnComp.Caption = "Account"
@@ -278,10 +290,11 @@ Partial Class FormStockTake
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnExportStop)
+        Me.PanelControl1.Controls.Add(Me.PCSelectAll)
         Me.PanelControl1.Controls.Add(Me.PanelControl3)
         Me.PanelControl1.Controls.Add(Me.BtnRefresh)
         Me.PanelControl1.Controls.Add(Me.BtnList)
-        Me.PanelControl1.Controls.Add(Me.CheckEdit1)
         Me.PanelControl1.Controls.Add(Me.BtnExport)
         Me.PanelControl1.Controls.Add(Me.BtnImport)
         Me.PanelControl1.Controls.Add(Me.BtnPrint)
@@ -342,10 +355,10 @@ Partial Class FormStockTake
         '
         'CheckEdit1
         '
-        Me.CheckEdit1.Location = New System.Drawing.Point(225, 11)
+        Me.CheckEdit1.Location = New System.Drawing.Point(6, 9)
         Me.CheckEdit1.Name = "CheckEdit1"
         Me.CheckEdit1.Properties.Caption = "Select All"
-        Me.CheckEdit1.Size = New System.Drawing.Size(75, 19)
+        Me.CheckEdit1.Size = New System.Drawing.Size(76, 19)
         Me.CheckEdit1.TabIndex = 4
         '
         'BtnExport
@@ -491,6 +504,15 @@ Partial Class FormStockTake
         Me.GridColumn8.VisibleIndex = 8
         Me.GridColumn8.Width = 215
         '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Status Note"
+        Me.GridColumn13.FieldName = "report_status_note"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.OptionsColumn.AllowEdit = False
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 9
+        '
         'GridColumn9
         '
         Me.GridColumn9.Caption = "Account"
@@ -577,23 +599,26 @@ Partial Class FormStockTake
         Me.BtnCreateCom.TabIndex = 3
         Me.BtnCreateCom.Text = "Create New "
         '
-        'GridColumn11
+        'BtnExportStop
         '
-        Me.GridColumn11.Caption = "Status Note"
-        Me.GridColumn11.FieldName = "report_status_note"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.OptionsColumn.AllowEdit = False
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 9
+        Me.BtnExportStop.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnExportStop.Image = CType(resources.GetObject("BtnExportStop.Image"), System.Drawing.Image)
+        Me.BtnExportStop.Location = New System.Drawing.Point(311, 2)
+        Me.BtnExportStop.Name = "BtnExportStop"
+        Me.BtnExportStop.Size = New System.Drawing.Size(152, 38)
+        Me.BtnExportStop.TabIndex = 10
+        Me.BtnExportStop.Text = "Export && Stop Scan"
+        Me.BtnExportStop.Visible = False
         '
-        'GridColumn13
+        'PCSelectAll
         '
-        Me.GridColumn13.Caption = "Status Note"
-        Me.GridColumn13.FieldName = "report_status_note"
-        Me.GridColumn13.Name = "GridColumn13"
-        Me.GridColumn13.OptionsColumn.AllowEdit = False
-        Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 9
+        Me.PCSelectAll.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PCSelectAll.Controls.Add(Me.CheckEdit1)
+        Me.PCSelectAll.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PCSelectAll.Location = New System.Drawing.Point(219, 2)
+        Me.PCSelectAll.Name = "PCSelectAll"
+        Me.PCSelectAll.Size = New System.Drawing.Size(92, 38)
+        Me.PCSelectAll.TabIndex = 11
         '
         'FormStockTake
         '
@@ -624,6 +649,8 @@ Partial Class FormStockTake
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
+        CType(Me.PCSelectAll, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCSelectAll.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -680,4 +707,6 @@ Partial Class FormStockTake
     Friend WithEvents ToolStripCancel As ToolStripMenuItem
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnExportStop As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PCSelectAll As DevExpress.XtraEditors.PanelControl
 End Class

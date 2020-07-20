@@ -34,7 +34,7 @@ Public Class FormLogin
             Dim data As DataTable
             Try
                 Cursor = Cursors.WaitCursor
-                query = String.Format("SELECT * FROM tb_m_user a INNER JOIN tb_m_employee b ON a.id_employee = b.id_employee INNER JOIN tb_st_user s ON s.id_user = a.id_user WHERE a.username = '{0}' AND a.password=MD5('{1}') AND b.id_employee_active=1", username, password)
+                query = String.Format("SELECT * FROM tb_m_user a LEFT JOIN tb_m_employee b ON a.id_employee = b.id_employee LEFT JOIN tb_st_user s ON s.id_user = a.id_user WHERE a.username = '{0}' AND a.password=MD5('{1}')", username, password)
                 If Not is_first Then
                     data = execute_query(query, -1, True, "", "", "", "")
                 Else
@@ -53,6 +53,16 @@ Public Class FormLogin
                     is_change_pass_user = data.Rows(0)("is_change").ToString
                     Dim show_notif As String = data.Rows(0)("show_notif").ToString
                     st_user_code = data.Rows(0)("st_user_code").ToString
+
+                    'external user
+                    Try
+                        If data.Rows(0)("is_external_user").ToString = "1" Then
+                            name_user = data.Rows(0)("name_external").ToString
+                            position_user = data.Rows(0)("position_external").ToString
+                        End If
+                    Catch ex As Exception
+                    End Try
+
                     'checkMenu() 'check menu based on role
 
                     'log

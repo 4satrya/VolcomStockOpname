@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormStockTakeDet
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormStockTakeDet
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormStockTakeDet))
@@ -84,7 +84,6 @@ Partial Class FormStockTakeDet
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.CERecordUniqueNotFound = New DevExpress.XtraEditors.CheckEdit()
-        Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
         Me.CEHideAllNotice = New DevExpress.XtraEditors.CheckEdit()
         Me.CheckEditSale = New DevExpress.XtraEditors.CheckEdit()
         Me.CheckEditNoTag = New DevExpress.XtraEditors.CheckEdit()
@@ -184,7 +183,6 @@ Partial Class FormStockTakeDet
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
         CType(Me.CERecordUniqueNotFound.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CEHideAllNotice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CheckEditSale.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CheckEditNoTag.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -807,7 +805,6 @@ Partial Class FormStockTakeDet
         'PanelControlNav
         '
         Me.PanelControlNav.Controls.Add(Me.CERecordUniqueNotFound)
-        Me.PanelControlNav.Controls.Add(Me.CheckEdit1)
         Me.PanelControlNav.Controls.Add(Me.CEHideAllNotice)
         Me.PanelControlNav.Controls.Add(Me.CheckEditSale)
         Me.PanelControlNav.Controls.Add(Me.CheckEditNoTag)
@@ -829,14 +826,6 @@ Partial Class FormStockTakeDet
         Me.CERecordUniqueNotFound.Properties.Caption = "Record Unique not Found"
         Me.CERecordUniqueNotFound.Size = New System.Drawing.Size(247, 19)
         Me.CERecordUniqueNotFound.TabIndex = 8910
-        '
-        'CheckEdit1
-        '
-        Me.CheckEdit1.Location = New System.Drawing.Point(557, 25)
-        Me.CheckEdit1.Name = "CheckEdit1"
-        Me.CheckEdit1.Properties.Caption = "Hide notice for sale product"
-        Me.CheckEdit1.Size = New System.Drawing.Size(156, 19)
-        Me.CheckEdit1.TabIndex = 8909
         '
         'CEHideAllNotice
         '
@@ -1521,7 +1510,6 @@ Partial Class FormStockTakeDet
         Me.PanelControlNav.ResumeLayout(False)
         Me.PanelControlNav.PerformLayout()
         CType(Me.CERecordUniqueNotFound.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CEHideAllNotice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CheckEditSale.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CheckEditNoTag.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1678,5 +1666,4 @@ Partial Class FormStockTakeDet
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents CEHideAllNotice As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents CERecordUniqueNotFound As DevExpress.XtraEditors.CheckEdit
-    Friend WithEvents CheckEdit1 As DevExpress.XtraEditors.CheckEdit
 End Class

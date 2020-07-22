@@ -24,6 +24,7 @@
     Public UseKeyboard As String = "-1"
     Public speed_barcode_read As Integer = 0
     Public speed_barcode_read_timer As Integer = 0
+    Public is_allow_record_unique_code As String = "2"
 
 
     Private Sub FormStockTakeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -118,13 +119,19 @@
             sales_until_period = DateTime.Parse(dto.Rows(0)("sales_until_period")).ToString("dd\/MM\/yyyy")
             is_record_unreg = dto.Rows(0)("is_record_unreg").ToString
 
+            'record unik code
+            If id_role_login = "1" Or id_role_login = "2" Or is_allow_record_unique_code = "1" Then
+                CERecordUniqueNotFound.Enabled = True
+            Else
+                CERecordUniqueNotFound.Enabled = False
+            End If
+            If is_allow_record_unique_code = "1" Then
+                CERecordUniqueNotFound.EditValue = True
+            End If
+
+
             viewDetail()
             allow_status()
-
-            'disable no tag
-            If FormStockTake.is_pre = "1" Then
-                CheckEditNoTag.Enabled = False
-            End If
         End If
     End Sub
 
@@ -734,7 +741,7 @@
                 is_unique_not_found = execute_query(query_u, 0, True, "", "", "", "")
 
                 'jika ada unik tdk sesuai dan no tag tidak dicentang
-                If is_unique_not_found = "1" And is_no_tag = "2" Then
+                If is_unique_not_found = "1" And CERecordUniqueNotFound.EditValue = False Then
                     stopCustomDialog("Unique code not found !")
                     makeSafeGV(GVScan)
                     GVScan.FocusedRowHandle = GVScan.RowCount - 1

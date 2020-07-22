@@ -27,6 +27,7 @@ Public Class FormStockTake
             PCSelectAll.Visible = False
 
             BtnExportStop.Visible = True
+            BtnCreateNewAllowRecordUniqueNotFound.Visible = True
 
             Dim is_stop_scan As String = execute_query("SELECT is_stop_scan FROM tb_m_user WHERE id_user = '" + id_user + "'", 0, True, "", "", "", "")
 
@@ -432,5 +433,12 @@ Public Class FormStockTake
 
             GVScan.ActiveFilterString = ""
         End If
+    End Sub
+
+    Private Sub BtnCreateNewAllowRecordUniqueNotFound_Click(sender As Object, e As EventArgs) Handles BtnCreateNewAllowRecordUniqueNotFound.Click
+        Cursor = Cursors.WaitCursor
+        FormStockTakeNew.is_allow_record_unique_code = "1"
+        FormStockTakeNew.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

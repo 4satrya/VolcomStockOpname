@@ -798,7 +798,7 @@
                             is_unique_not_found = execute_query(query_u, 0, True, "", "", "", "")
 
                             'jika ada unik tdk sesuai
-                            If is_unique_not_found = "1" And is_no_tag = "2" Then
+                            If is_unique_not_found = "1" And CERecordUniqueNotFound.EditValue = False Then
                                 stopCustomDialog("Unique code not found !")
                                 makeSafeGV(GVScan)
                                 GVScan.FocusedRowHandle = GVScan.RowCount - 1

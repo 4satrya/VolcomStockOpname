@@ -86,6 +86,7 @@ Partial Class FormVerStockTakeDet
         Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRefNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
+        Me.CEHideAllNotice = New DevExpress.XtraEditors.CheckEdit()
         Me.CEHideNotice12digit = New DevExpress.XtraEditors.CheckEdit()
         Me.CheckEditAllow = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnDelAll = New DevExpress.XtraEditors.SimpleButton()
@@ -166,7 +167,7 @@ Partial Class FormVerStockTakeDet
         Me.BtnAddToRpt = New DevExpress.XtraEditors.SimpleButton()
         Me.ContextMenuStripCompare = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CEHideAllNotice = New DevExpress.XtraEditors.CheckEdit()
+        Me.CERecordUniqueNotFound = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -204,6 +205,7 @@ Partial Class FormVerStockTakeDet
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
+        CType(Me.CEHideAllNotice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CEHideNotice12digit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CheckEditAllow.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CheckEditSale.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -228,7 +230,7 @@ Partial Class FormVerStockTakeDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         Me.ContextMenuStripCompare.SuspendLayout()
-        CType(Me.CEHideAllNotice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CERecordUniqueNotFound.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -242,7 +244,7 @@ Partial Class FormVerStockTakeDet
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(1042, 135)
+        Me.GroupControl1.Size = New System.Drawing.Size(1065, 135)
         Me.GroupControl1.TabIndex = 1
         '
         'LabelControl6
@@ -272,7 +274,7 @@ Partial Class FormVerStockTakeDet
         Me.PanelControlTopLeft.Controls.Add(Me.TxtNumber)
         Me.PanelControlTopLeft.Controls.Add(Me.LabelControl2)
         Me.PanelControlTopLeft.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlTopLeft.Location = New System.Drawing.Point(755, 2)
+        Me.PanelControlTopLeft.Location = New System.Drawing.Point(778, 2)
         Me.PanelControlTopLeft.Name = "PanelControlTopLeft"
         Me.PanelControlTopLeft.Size = New System.Drawing.Size(285, 131)
         Me.PanelControlTopLeft.TabIndex = 8903
@@ -378,7 +380,7 @@ Partial Class FormVerStockTakeDet
         Me.GroupControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.GroupControlBottom.Location = New System.Drawing.Point(0, 549)
         Me.GroupControlBottom.Name = "GroupControlBottom"
-        Me.GroupControlBottom.Size = New System.Drawing.Size(1042, 94)
+        Me.GroupControlBottom.Size = New System.Drawing.Size(1065, 94)
         Me.GroupControlBottom.TabIndex = 2
         '
         'PanelControl2
@@ -395,7 +397,7 @@ Partial Class FormVerStockTakeDet
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl2.Location = New System.Drawing.Point(20, 2)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1020, 45)
+        Me.PanelControl2.Size = New System.Drawing.Size(1043, 45)
         Me.PanelControl2.TabIndex = 8914
         '
         'PanelFontSize
@@ -405,7 +407,7 @@ Partial Class FormVerStockTakeDet
         Me.PanelFontSize.Controls.Add(Me.TxtFontSize)
         Me.PanelFontSize.Controls.Add(Me.LabelControl9)
         Me.PanelFontSize.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelFontSize.Location = New System.Drawing.Point(771, 2)
+        Me.PanelFontSize.Location = New System.Drawing.Point(794, 2)
         Me.PanelFontSize.Name = "PanelFontSize"
         Me.PanelFontSize.Size = New System.Drawing.Size(149, 41)
         Me.PanelFontSize.TabIndex = 8913
@@ -498,7 +500,7 @@ Partial Class FormVerStockTakeDet
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(920, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(943, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(98, 41)
         Me.BtnPrint.TabIndex = 1
@@ -511,7 +513,7 @@ Partial Class FormVerStockTakeDet
         Me.PCNote.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PCNote.Location = New System.Drawing.Point(20, 47)
         Me.PCNote.Name = "PCNote"
-        Me.PCNote.Size = New System.Drawing.Size(1020, 45)
+        Me.PCNote.Size = New System.Drawing.Size(1043, 45)
         Me.PCNote.TabIndex = 8917
         Me.PCNote.Visible = False
         '
@@ -537,7 +539,7 @@ Partial Class FormVerStockTakeDet
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl3.Location = New System.Drawing.Point(0, 135)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(1042, 414)
+        Me.GroupControl3.Size = New System.Drawing.Size(1065, 414)
         Me.GroupControl3.TabIndex = 3
         Me.GroupControl3.Text = " "
         '
@@ -547,7 +549,7 @@ Partial Class FormVerStockTakeDet
         Me.XTCStockTake.Location = New System.Drawing.Point(20, 2)
         Me.XTCStockTake.Name = "XTCStockTake"
         Me.XTCStockTake.SelectedTabPage = Me.XTPScan
-        Me.XTCStockTake.Size = New System.Drawing.Size(1020, 410)
+        Me.XTCStockTake.Size = New System.Drawing.Size(1043, 410)
         Me.XTCStockTake.TabIndex = 0
         Me.XTCStockTake.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScan, Me.XTPSummary, Me.XTPScanCompare, Me.XTPCondition, Me.XTPCompare})
         '
@@ -556,7 +558,7 @@ Partial Class FormVerStockTakeDet
         Me.XTPScan.Controls.Add(Me.GCScan)
         Me.XTPScan.Controls.Add(Me.PanelControlNav)
         Me.XTPScan.Name = "XTPScan"
-        Me.XTPScan.Size = New System.Drawing.Size(1014, 382)
+        Me.XTPScan.Size = New System.Drawing.Size(1037, 382)
         Me.XTPScan.Text = "Scan Result"
         '
         'GCScan
@@ -567,7 +569,7 @@ Partial Class FormVerStockTakeDet
         Me.GCScan.MainView = Me.GVScan
         Me.GCScan.Name = "GCScan"
         Me.GCScan.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCScan.Size = New System.Drawing.Size(1014, 336)
+        Me.GCScan.Size = New System.Drawing.Size(1037, 336)
         Me.GCScan.TabIndex = 1
         Me.GCScan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScan})
         '
@@ -855,13 +857,14 @@ Partial Class FormVerStockTakeDet
         '
         'PanelControlNav
         '
-        Me.PanelControlNav.Controls.Add(Me.CEHideAllNotice)
+        Me.PanelControlNav.Controls.Add(Me.CERecordUniqueNotFound)
         Me.PanelControlNav.Controls.Add(Me.CEHideNotice12digit)
-        Me.PanelControlNav.Controls.Add(Me.CheckEditAllow)
         Me.PanelControlNav.Controls.Add(Me.BtnDelAll)
+        Me.PanelControlNav.Controls.Add(Me.CEHideAllNotice)
         Me.PanelControlNav.Controls.Add(Me.CheckEditSale)
         Me.PanelControlNav.Controls.Add(Me.CheckEditNoTag)
         Me.PanelControlNav.Controls.Add(Me.CheckEditReject)
+        Me.PanelControlNav.Controls.Add(Me.CheckEditAllow)
         Me.PanelControlNav.Controls.Add(Me.TxtScan)
         Me.PanelControlNav.Controls.Add(Me.LabelControl4)
         Me.PanelControlNav.Controls.Add(Me.SimpleButton3)
@@ -869,12 +872,20 @@ Partial Class FormVerStockTakeDet
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNav.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlNav.Name = "PanelControlNav"
-        Me.PanelControlNav.Size = New System.Drawing.Size(1014, 46)
+        Me.PanelControlNav.Size = New System.Drawing.Size(1037, 46)
         Me.PanelControlNav.TabIndex = 0
+        '
+        'CEHideAllNotice
+        '
+        Me.CEHideAllNotice.Location = New System.Drawing.Point(424, 23)
+        Me.CEHideAllNotice.Name = "CEHideAllNotice"
+        Me.CEHideAllNotice.Properties.Caption = "Hide All Notice"
+        Me.CEHideAllNotice.Size = New System.Drawing.Size(93, 19)
+        Me.CEHideAllNotice.TabIndex = 8911
         '
         'CEHideNotice12digit
         '
-        Me.CEHideNotice12digit.Location = New System.Drawing.Point(533, 24)
+        Me.CEHideNotice12digit.Location = New System.Drawing.Point(515, 23)
         Me.CEHideNotice12digit.Name = "CEHideNotice12digit"
         Me.CEHideNotice12digit.Properties.Caption = "Hide Notice 12 digit"
         Me.CEHideNotice12digit.Size = New System.Drawing.Size(111, 19)
@@ -882,17 +893,17 @@ Partial Class FormVerStockTakeDet
         '
         'CheckEditAllow
         '
-        Me.CheckEditAllow.Location = New System.Drawing.Point(430, 24)
+        Me.CheckEditAllow.Location = New System.Drawing.Point(461, 5)
         Me.CheckEditAllow.Name = "CheckEditAllow"
         Me.CheckEditAllow.Properties.Caption = "Allow outside list"
-        Me.CheckEditAllow.Size = New System.Drawing.Size(150, 19)
+        Me.CheckEditAllow.Size = New System.Drawing.Size(105, 19)
         Me.CheckEditAllow.TabIndex = 8909
         '
         'BtnDelAll
         '
         Me.BtnDelAll.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDelAll.Image = CType(resources.GetObject("BtnDelAll.Image"), System.Drawing.Image)
-        Me.BtnDelAll.Location = New System.Drawing.Point(691, 2)
+        Me.BtnDelAll.Location = New System.Drawing.Point(714, 2)
         Me.BtnDelAll.Name = "BtnDelAll"
         Me.BtnDelAll.Size = New System.Drawing.Size(98, 42)
         Me.BtnDelAll.TabIndex = 8908
@@ -900,18 +911,18 @@ Partial Class FormVerStockTakeDet
         '
         'CheckEditSale
         '
-        Me.CheckEditSale.Location = New System.Drawing.Point(308, 24)
+        Me.CheckEditSale.Location = New System.Drawing.Point(308, 23)
         Me.CheckEditSale.Name = "CheckEditSale"
         Me.CheckEditSale.Properties.Caption = "Hide notice for sale"
-        Me.CheckEditSale.Size = New System.Drawing.Size(156, 19)
+        Me.CheckEditSale.Size = New System.Drawing.Size(113, 19)
         Me.CheckEditSale.TabIndex = 8906
         '
         'CheckEditNoTag
         '
-        Me.CheckEditNoTag.Location = New System.Drawing.Point(430, 5)
+        Me.CheckEditNoTag.Location = New System.Drawing.Point(404, 5)
         Me.CheckEditNoTag.Name = "CheckEditNoTag"
         Me.CheckEditNoTag.Properties.Caption = "No Tag"
-        Me.CheckEditNoTag.Size = New System.Drawing.Size(60, 19)
+        Me.CheckEditNoTag.Size = New System.Drawing.Size(58, 19)
         Me.CheckEditNoTag.TabIndex = 8907
         '
         'CheckEditReject
@@ -941,7 +952,7 @@ Partial Class FormVerStockTakeDet
         '
         Me.SimpleButton3.Dock = System.Windows.Forms.DockStyle.Right
         Me.SimpleButton3.Image = CType(resources.GetObject("SimpleButton3.Image"), System.Drawing.Image)
-        Me.SimpleButton3.Location = New System.Drawing.Point(789, 2)
+        Me.SimpleButton3.Location = New System.Drawing.Point(812, 2)
         Me.SimpleButton3.Name = "SimpleButton3"
         Me.SimpleButton3.Size = New System.Drawing.Size(126, 42)
         Me.SimpleButton3.TabIndex = 2
@@ -951,7 +962,7 @@ Partial Class FormVerStockTakeDet
         '
         Me.SimpleButton2.Dock = System.Windows.Forms.DockStyle.Right
         Me.SimpleButton2.Image = CType(resources.GetObject("SimpleButton2.Image"), System.Drawing.Image)
-        Me.SimpleButton2.Location = New System.Drawing.Point(915, 2)
+        Me.SimpleButton2.Location = New System.Drawing.Point(938, 2)
         Me.SimpleButton2.Name = "SimpleButton2"
         Me.SimpleButton2.Size = New System.Drawing.Size(97, 42)
         Me.SimpleButton2.TabIndex = 1
@@ -1642,19 +1653,19 @@ Partial Class FormVerStockTakeDet
         Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
         Me.ViewDetailToolStripMenuItem.Text = "View Detail"
         '
-        'CEHideAllNotice
+        'CERecordUniqueNotFound
         '
-        Me.CEHideAllNotice.Location = New System.Drawing.Point(533, 5)
-        Me.CEHideAllNotice.Name = "CEHideAllNotice"
-        Me.CEHideAllNotice.Properties.Caption = "Hide All Notice"
-        Me.CEHideAllNotice.Size = New System.Drawing.Size(111, 19)
-        Me.CEHideAllNotice.TabIndex = 8911
+        Me.CERecordUniqueNotFound.Location = New System.Drawing.Point(566, 5)
+        Me.CERecordUniqueNotFound.Name = "CERecordUniqueNotFound"
+        Me.CERecordUniqueNotFound.Properties.Caption = "Rec. Unique not Found"
+        Me.CERecordUniqueNotFound.Size = New System.Drawing.Size(136, 19)
+        Me.CERecordUniqueNotFound.TabIndex = 8911
         '
         'FormVerStockTakeDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1042, 643)
+        Me.ClientSize = New System.Drawing.Size(1065, 643)
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.GroupControlBottom)
         Me.Controls.Add(Me.GroupControl1)
@@ -1707,6 +1718,7 @@ Partial Class FormVerStockTakeDet
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
         Me.PanelControlNav.PerformLayout()
+        CType(Me.CEHideAllNotice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CEHideNotice12digit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CheckEditAllow.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CheckEditSale.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1731,7 +1743,7 @@ Partial Class FormVerStockTakeDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.ContextMenuStripCompare.ResumeLayout(False)
-        CType(Me.CEHideAllNotice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CERecordUniqueNotFound.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1882,4 +1894,5 @@ Partial Class FormVerStockTakeDet
     Friend WithEvents gridBanddiff As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents CEA4 As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents CEHideAllNotice As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents CERecordUniqueNotFound As DevExpress.XtraEditors.CheckEdit
 End Class

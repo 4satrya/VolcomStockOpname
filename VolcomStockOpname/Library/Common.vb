@@ -176,6 +176,9 @@ Module Common
         ElseIf opt = "7" Then 'WH stock take combine
             header_number_x = combine_header_number("SC", Integer.Parse(id_rpt), 5)
             increase_inc("7")
+        ElseIf opt = "8" Then
+            header_number_x = combine_header_number(st_user_code + "NT", Integer.Parse(id_rpt), 5)
+            increase_inc("8")
         End If
 
         Return header_number_x
@@ -207,6 +210,9 @@ Module Common
             execute_non_query(query, True, "", "", "", "")
         ElseIf opt = "7" Then 'WH stock take combinee
             query = "UPDATE tb_st_opt SET st_ver_comb_inc=(tb_st_opt.st_ver_comb_inc+1)"
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf opt = "8" Then
+            query = "UPDATE tb_st_opt SET st_no_tag_inc=(tb_st_opt.st_no_tag_inc+1)"
             execute_non_query(query, True, "", "", "", "")
         End If
     End Sub

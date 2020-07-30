@@ -243,10 +243,6 @@ Public Class FormFGBackupStockDet
                     '-- report status
                     FormMain.SplashScreenManager1.SetWaitFormDescription("Backup report status")
                     dic.Add("tb_lookup_report_status", "SELECT * FROM tb_lookup_report_status ")
-                    '-- tb_st_opt
-                    FormMain.SplashScreenManager1.SetWaitFormDescription("Backup option table")
-                    execute_non_query("UPDATE tb_st_opt SET soh_period='" + date_stock_DB + "', sales_until_period='" + date_sales_DB + "', is_record_unreg='" + is_record_unreg + "' ", False, app_host_main, app_username_main, app_password_main, app_database_main)
-                    dic.Add("tb_st_opt", "SELECT * FROM tb_st_opt ")
                     '-- transaction
                     FormMain.SplashScreenManager1.SetWaitFormDescription("Creating transaction table")
                     dic.Add("tb_st_trans", "SELECT * FROM tb_st_trans ")
@@ -255,13 +251,28 @@ Public Class FormFGBackupStockDet
                     dic.Add("tb_st_trans_ver", "SELECT * FROM tb_st_trans_ver ")
                     dic.Add("tb_st_trans_ver_det", "SELECT * FROM tb_st_trans_ver_det ")
                     dic.Add("tb_st_cat", "SELECT * FROM tb_st_cat ")
+                    dic.Add("tb_st_no_tag", "SELECT * FROM tb_st_no_tag ")
+                    dic.Add("tb_st_no_tag_det", "SELECT * FROM tb_st_no_tag_det ")
+                    dic.Add("tb_st_stop_scan_log", "SELECT * FROM tb_st_stop_scan_log ")
                     '-- stock
                     FormMain.SplashScreenManager1.SetWaitFormDescription("Backup stock")
                     If Not is_bof Then
                         execute_non_query("CALL generate_st('" + comp_in + "', '" + date_stock_DB + "', '" + id_drawer_def + "'); ", False, app_host_main, app_username_main, app_password_main, app_database_main)
                     End If
                     dic.Add("tb_st_stock", "SELECT * FROM tb_st_stock")
+                    '-- scan time
+                    Dim scan_time As String = execute_query("
+                        SELECT scan_time
+                        FROM tb_st_stop_opt
+                        WHERE soh_amount <= (SELECT SUM(qty) AS qty FROM tb_st_stock)
+                        ORDER BY id_st_stop_opt DESC
+                        LIMIT 1
+                    ", 0, False, app_host_main, app_username_main, app_password_main, app_database_main)
 
+                    '-- tb_st_opt
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Backup option table")
+                    execute_non_query("UPDATE tb_st_opt SET soh_period='" + date_stock_DB + "', sales_until_period='" + date_sales_DB + "', is_record_unreg='" + is_record_unreg + "', st_scan_time='" + scan_time + "' ", False, app_host_main, app_username_main, app_password_main, app_database_main)
+                    dic.Add("tb_st_opt", "SELECT * FROM tb_st_opt ")
                     If Not is_bof Then
                         '-- unique
                         execute_non_query("CALL generate_st_unique('" + comp_in + "')", False, app_host_main, app_username_main, app_password_main, app_database_main)

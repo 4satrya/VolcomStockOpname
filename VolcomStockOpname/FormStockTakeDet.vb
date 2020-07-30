@@ -26,6 +26,7 @@
     Public speed_barcode_read_timer As Integer = 0
     Public is_allow_record_unique_code As String = "2"
 
+    Public is_reject As String = "2"
 
     Private Sub FormStockTakeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'hide note
@@ -44,6 +45,53 @@
         viewAck()
         actionLoad()
         TxtScan.Focus()
+
+        'check login store
+        Dim is_login_store As String = "2"
+
+        Try
+            is_login_store = execute_query("SELECT is_login_store FROM tb_opt", 0, False, app_host, app_username, app_password, "db_opt")
+        Catch ex As Exception
+            is_login_store = "2"
+        End Try
+
+        If is_login_store = "1" Then
+            CheckEditReject.Visible = False
+            CheckEditNoTag.Visible = False
+            CERecordUniqueNotFound.Visible = False
+            CheckEditSale.Visible = False
+            CEHideAllNotice.Visible = False
+
+            SimpleButton3.Visible = False
+
+            CERecordUniqueNotFound.Checked = True
+            CEHideAllNotice.Checked = True
+
+            LookAndFeel.UseDefaultLookAndFeel = False
+            LookAndFeel.SkinMaskColor = Color.LightGreen
+
+            If is_reject = "1" Then
+                CheckEditReject.Checked = True
+
+                LookAndFeel.SkinMaskColor = Color.LightYellow
+            End If
+
+            GridColumnOK.Visible = False
+            GridColumnNoStock.Visible = False
+            GridColumnSale.Visible = False
+            GridColumnReject.Visible = False
+            GridColumnNoTag.Visible = False
+            GridColumnIniqueNotFound.Visible = False
+            GridColumnNoMaster.Visible = False
+            GridColumnRefNumber.Visible = False
+            GridColumnRemark.Visible = False
+
+            SetQtyToolStripMenuItem.Visible = False
+            DeleteItemToolStripMenuItem.Visible = False
+
+            XTPCondition.PageVisible = False
+        End If
+
         after_load = True
     End Sub
 
@@ -649,7 +697,18 @@
         If e.KeyCode = Keys.F2 Then
             add()
         ElseIf e.KeyCode = Keys.F3 Then
-            del()
+            'check login store
+            Dim is_login_store As String = "2"
+
+            Try
+                is_login_store = execute_query("SELECT is_login_store FROM tb_opt", 0, False, app_host, app_username, app_password, "db_opt")
+            Catch ex As Exception
+                is_login_store = "2"
+            End Try
+
+            If is_login_store = "2" Then
+                del()
+            End If
         ElseIf e.KeyCode = Keys.F4 Then
             print()
         End If

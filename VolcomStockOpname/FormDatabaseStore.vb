@@ -64,6 +64,8 @@
 
         GVData.ActiveFilterString = "[is_active] = '1'"
 
+        GVData.FocusedRowHandle = 0
+
         Cursor = Cursors.Default
     End Sub
 

@@ -358,7 +358,11 @@ Public Class FormStockTake
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
-        print_raw(GCScan, "")
+        If XTCProduct.SelectedTabPage.Name = "XTPScanList" Then
+            print_raw(GCScan, "")
+        ElseIf XTCProduct.SelectedTabPage.Name = "XTPNoTag" Then
+            print_raw(GCNoTag, "")
+        End If
         Cursor = Cursors.Default
     End Sub
 
@@ -388,7 +392,11 @@ Public Class FormStockTake
 
     Private Sub BtnList_Click(sender As Object, e As EventArgs) Handles BtnList.Click
         Cursor = Cursors.WaitCursor
-        FormStockTakeList.ShowDialog()
+        If XTCProduct.SelectedTabPage.Name = "XTPScanList" Then
+            FormStockTakeList.ShowDialog()
+        ElseIf XTCProduct.SelectedTabPage.Name = "XTPNoTag" Then
+            FormStockTakeListNoTag.ShowDialog()
+        End If
         Cursor = Cursors.Default
     End Sub
 

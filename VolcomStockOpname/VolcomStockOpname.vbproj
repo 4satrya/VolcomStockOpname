@@ -306,6 +306,12 @@
     <Compile Include="FormStockTakeList.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormStockTakeListNoTag.Designer.vb">
+      <DependentUpon>FormStockTakeListNoTag.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockTakeListNoTag.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormStockTakeNew.Designer.vb">
       <DependentUpon>FormStockTakeNew.vb</DependentUpon>
     </Compile>
@@ -426,6 +432,12 @@
     <Compile Include="ReportScanVerStockTakeSlip.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportStockTakeListNoTag.Designer.vb">
+      <DependentUpon>ReportStockTakeListNoTag.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportStockTakeListNoTag.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="WaitForm1.Designer.vb">
       <DependentUpon>WaitForm1.vb</DependentUpon>
     </Compile>
@@ -536,6 +548,9 @@
     <EmbeddedResource Include="FormStockTakeList.resx">
       <DependentUpon>FormStockTakeList.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormStockTakeListNoTag.resx">
+      <DependentUpon>FormStockTakeListNoTag.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormStockTakeNew.resx">
       <DependentUpon>FormStockTakeNew.vb</DependentUpon>
     </EmbeddedResource>
@@ -590,6 +605,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportScanVerStockTakeSlip.resx">
       <DependentUpon>ReportScanVerStockTakeSlip.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportStockTakeListNoTag.resx">
+      <DependentUpon>ReportStockTakeListNoTag.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitForm1.resx">
       <DependentUpon>WaitForm1.vb</DependentUpon>

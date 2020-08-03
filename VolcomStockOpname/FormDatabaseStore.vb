@@ -64,7 +64,14 @@
 
         GVData.ActiveFilterString = "[is_active] = '1'"
 
-        GVData.FocusedRowHandle = 0
+        'default
+        Try
+            Dim dt As DataTable = execute_query("SELECT CONCAT(comp_number, ' - ', comp_name) AS acc, IF(id_store_type = 1, 'Normal', IF(id_store_type = 2, 'Sale', '')) AS type FROM tb_m_comp", -1, False, app_host, app_username, app_password, GVData.GetFocusedRowCellValue("Database"))
+
+            TxtAcc.EditValue = dt.Rows(0)("acc").ToString
+            TxtDB.EditValue = dt.Rows(0)("type").ToString
+        Catch ex As Exception
+        End Try
 
         Cursor = Cursors.Default
     End Sub

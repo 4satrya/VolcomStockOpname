@@ -1,8 +1,20 @@
 ﻿Public Class FormDatabaseStore
     Dim url_import As String = ""
 
+    Private is_select_database As String = "2"
+
     Private Sub FormDatabaseStore_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
+
+    Private Sub FormDatabaseStore_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
+        FormMain.SplashScreenManager1.ShowWaitForm()
+
+        FormMain.SplashScreenManager1.SetWaitFormDescription("Loading database...")
+
         BtnConnect_Click(BtnConnect, New EventArgs)
+
+        FormMain.SplashScreenManager1.CloseWaitForm()
     End Sub
 
     Private Sub BtnConnect_Click(sender As Object, e As EventArgs) Handles BtnConnect.Click
@@ -77,7 +89,11 @@
     End Sub
 
     Private Sub FormDatabaseStore_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-        Dispose()
+        If is_select_database = "1" Then
+            Dispose()
+        Else
+            End
+        End If
     End Sub
 
     Private Sub GVData_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVData.FocusedRowChanged
@@ -164,6 +180,8 @@
                 Dim dataDb As DataTable = execute_query("SELECT * FROM tb_m_comp", -1, False, app_host, app_username, app_password, GVData.GetFocusedRowCellDisplayText("Database").ToString)
 
                 FormMain.LabelInfo.Text = "Active: " + dataDb.Rows(0)("comp_number").ToString + "; " + GVData.GetFocusedRowCellDisplayText("Database").ToString
+
+                is_select_database = "1"
 
                 Close()
 

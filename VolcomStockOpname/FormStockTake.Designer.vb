@@ -61,6 +61,7 @@ Partial Class FormStockTake
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnStopStockTake = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExportStop = New DevExpress.XtraEditors.SimpleButton()
         Me.PCSelectAll = New DevExpress.XtraEditors.PanelControl()
         Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
@@ -510,6 +511,7 @@ Partial Class FormStockTake
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnStopStockTake)
         Me.PanelControl1.Controls.Add(Me.BtnExportStop)
         Me.PanelControl1.Controls.Add(Me.PCSelectAll)
         Me.PanelControl1.Controls.Add(Me.PanelControl3)
@@ -528,15 +530,26 @@ Partial Class FormStockTake
         Me.PanelControl1.Size = New System.Drawing.Size(1524, 42)
         Me.PanelControl1.TabIndex = 1
         '
+        'BtnStopStockTake
+        '
+        Me.BtnStopStockTake.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnStopStockTake.Image = CType(resources.GetObject("BtnStopStockTake.Image"), System.Drawing.Image)
+        Me.BtnStopStockTake.Location = New System.Drawing.Point(426, 2)
+        Me.BtnStopStockTake.Name = "BtnStopStockTake"
+        Me.BtnStopStockTake.Size = New System.Drawing.Size(141, 38)
+        Me.BtnStopStockTake.TabIndex = 8917
+        Me.BtnStopStockTake.Text = "Selesai Stock Take"
+        Me.BtnStopStockTake.Visible = False
+        '
         'BtnExportStop
         '
         Me.BtnExportStop.Dock = System.Windows.Forms.DockStyle.Left
         Me.BtnExportStop.Image = CType(resources.GetObject("BtnExportStop.Image"), System.Drawing.Image)
         Me.BtnExportStop.Location = New System.Drawing.Point(311, 2)
         Me.BtnExportStop.Name = "BtnExportStop"
-        Me.BtnExportStop.Size = New System.Drawing.Size(141, 38)
+        Me.BtnExportStop.Size = New System.Drawing.Size(115, 38)
         Me.BtnExportStop.TabIndex = 10
-        Me.BtnExportStop.Text = "Export && Stop Scan"
+        Me.BtnExportStop.Text = "Selesai Scan"
         Me.BtnExportStop.Visible = False
         '
         'PCSelectAll
@@ -998,4 +1011,5 @@ Partial Class FormStockTake
     Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnStopStockTake As DevExpress.XtraEditors.SimpleButton
 End Class

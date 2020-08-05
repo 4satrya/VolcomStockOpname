@@ -28,6 +28,10 @@
 
     Public is_reject As String = "2"
 
+    Private is_login_store As String = "2"
+
+    Public is_no_edit As String = "2"
+
     Private Sub FormStockTakeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'hide note
         PCNote.Visible = False
@@ -40,20 +44,18 @@
         speed_barcode_read_timer = data_opt.Rows(0)("speed_barcode_read_timer")
         Timer1.Interval = speed_barcode_read_timer
 
-        viewWHStockSum()
-        viewReportStatus()
-        viewAck()
-        actionLoad()
-        TxtScan.Focus()
-
         'check login store
-        Dim is_login_store As String = "2"
-
         Try
             is_login_store = execute_query("SELECT is_login_store FROM tb_opt", 0, False, app_host, app_username, app_password, "db_opt")
         Catch ex As Exception
             is_login_store = "2"
         End Try
+
+        viewWHStockSum()
+        viewReportStatus()
+        viewAck()
+        actionLoad()
+        TxtScan.Focus()
 
         If is_login_store = "1" Then
             CheckEditReject.Visible = False
@@ -63,9 +65,6 @@
             CEHideAllNotice.Visible = False
 
             SimpleButton3.Visible = False
-
-            CERecordUniqueNotFound.Checked = True
-            CEHideAllNotice.Checked = True
 
             LookAndFeel.UseDefaultLookAndFeel = False
             LookAndFeel.SkinMaskColor = Color.LightGreen
@@ -385,6 +384,10 @@
             BtnPrintLetter.Visible = True
             BtnPrintLetter.SendToBack()
         End If
+
+        If is_login_store = "1" And is_no_edit = "1" Then
+            PanelControlNav.Visible = False
+        End If
     End Sub
 
     Private Sub BtnSetStatus_Click(sender As Object, e As EventArgs) Handles BtnSetStatus.Click
@@ -697,15 +700,6 @@
         If e.KeyCode = Keys.F2 Then
             add()
         ElseIf e.KeyCode = Keys.F3 Then
-            'check login store
-            Dim is_login_store As String = "2"
-
-            Try
-                is_login_store = execute_query("SELECT is_login_store FROM tb_opt", 0, False, app_host, app_username, app_password, "db_opt")
-            Catch ex As Exception
-                is_login_store = "2"
-            End Try
-
             If is_login_store = "2" Then
                 del()
             End If

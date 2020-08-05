@@ -27,6 +27,9 @@
                 LookAndFeel.SkinMaskColor = Color.LightGreen
                 Text = "Create New"
             End If
+
+            LabelControl1.Text = "Akun"
+            LabelControl2.Text = "Lokasi"
         End If
 
         viewWHStockSum()

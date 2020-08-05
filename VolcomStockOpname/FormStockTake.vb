@@ -32,12 +32,13 @@ Public Class FormStockTake
 
             BtnExportStop.Visible = True
 
-            Dim is_stop_scan As String = execute_query("SELECT is_stop_scan FROM tb_m_user WHERE id_user = '" + id_user + "'", 0, True, "", "", "", "")
+            Dim is_notif_ia As String = execute_query("
+                SELECT first_ia_notif
+                FROM tb_st_opt
+            ", 0, True, "", "", "", "")
 
-            If is_stop_scan = "1" Then
-                stopCustom("Access denied.")
-
-                BeginInvoke(New MethodInvoker(AddressOf Close))
+            If Not is_notif_ia = "" Then
+                BtnStopStockTake.Visible = True
             End If
         End If
 
@@ -144,6 +145,7 @@ Public Class FormStockTake
         If GVScan.RowCount > 0 And GVScan.FocusedRowHandle >= 0 Then
             If is_login_store = "1" Then
                 FormStockTakeDet.is_reject = GVScan.GetFocusedRowCellValue("is_reject").ToString
+                FormStockTakeDet.is_no_edit = "1"
             End If
 
             FormStockTakeDet.action = "upd"
@@ -425,70 +427,61 @@ Public Class FormStockTake
     End Sub
 
     Private Sub BtnExportStop_Click(sender As Object, e As EventArgs) Handles BtnExportStop.Click
-        'check scan time
-        Dim is_stop As String = execute_query("
-            SELECT IFNULL((
-                SELECT IF(tb_opt.st_scan_time >= tb_log.st_scan_time, 2, 1) AS is_stop
-                FROM (
-                    SELECT st_scan_time
-                    FROM tb_st_opt
-                    LIMIT 1
-                ) AS tb_opt, (
-                    SELECT TIMESTAMPDIFF(MINUTE, created_date, NOW()) AS st_scan_time
-                    FROM tb_st_stop_scan_log
-                    ORDER BY created_date ASC
-                    LIMIT 1
-                ) AS tb_log
-            ), 2) AS is_stop
-        ", 0, True, "", "", "", "")
+        export_store("1")
+    End Sub
 
-        If is_stop = "2" Then
-            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to export to .sql file and stop scan?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-            If confirm = DialogResult.Yes Then
-                'reload gv
-                LEViewUser.EditValue = "2"
+    Private Sub BtnStopStockTake_Click(sender As Object, e As EventArgs) Handles BtnStopStockTake.Click
+        export_store("2")
+    End Sub
 
-                XTCProduct.SelectedTabPage = XTPScanList
+    Sub export_store(opt As String)
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Apakah anda yakin akan selesai " + If(opt = "1", "scan", "stock take") + "?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = DialogResult.Yes Then
+            'reload gv
+            LEViewUser.EditValue = "2"
 
-                viewScan()
+            XTCProduct.SelectedTabPage = XTPScanList
 
-                XTCProduct.SelectedTabPage = XTPNoTag
+            viewScan()
 
-                viewScan()
+            XTCProduct.SelectedTabPage = XTPNoTag
 
-                'filter
-                makeSafeGV(GVScan)
+            viewScan()
 
-                GVScan.ActiveFilterString = ""
+            'filter
+            makeSafeGV(GVScan)
 
-                For i = 0 To GVScan.RowCount - 1
-                    If GVScan.IsValidRowHandle(i) Then
-                        If Not GVScan.GetRowCellValue(i, "id_report_status").ToString = "5" Then
-                            GVScan.SetRowCellValue(i, "is_select", "Yes")
-                        End If
+            GVScan.ActiveFilterString = ""
+
+            For i = 0 To GVScan.RowCount - 1
+                If GVScan.IsValidRowHandle(i) Then
+                    If Not GVScan.GetRowCellValue(i, "id_report_status").ToString = "5" Then
+                        GVScan.SetRowCellValue(i, "is_select", "Yes")
                     End If
-                Next
+                End If
+            Next
 
-                'export
-                GVScan.ActiveFilterString = "[is_select]='Yes' "
+            'export
+            GVScan.ActiveFilterString = "[is_select]='Yes' "
 
-                'filter no tag
-                makeSafeGV(GVNoTag)
+            'filter no tag
+            makeSafeGV(GVNoTag)
 
-                GVNoTag.ActiveFilterString = ""
+            GVNoTag.ActiveFilterString = ""
 
-                For i = 0 To GVNoTag.RowCount - 1
-                    If GVNoTag.IsValidRowHandle(i) Then
-                        If Not GVNoTag.GetRowCellValue(i, "id_report_status").ToString = "5" Then
-                            GVNoTag.SetRowCellValue(i, "is_select", "Yes")
-                        End If
+            For i = 0 To GVNoTag.RowCount - 1
+                If GVNoTag.IsValidRowHandle(i) Then
+                    If Not GVNoTag.GetRowCellValue(i, "id_report_status").ToString = "5" Then
+                        GVNoTag.SetRowCellValue(i, "is_select", "Yes")
                     End If
-                Next
+                End If
+            Next
 
-                'export no tag
-                GVNoTag.ActiveFilterString = "[is_select]='Yes' "
+            'export no tag
+            GVNoTag.ActiveFilterString = "[is_select]='Yes' "
 
-                If GVScan.RowCount > 0 Or GVNoTag.RowCount > 0 Then
+            If GVScan.RowCount > 0 Or GVNoTag.RowCount > 0 Then
+                Try
                     FormMain.SplashScreenManager1.ShowWaitForm()
                     '
                     Dim id_st_trans As String = ""
@@ -582,6 +575,17 @@ Public Class FormStockTake
                         End Using
                     End Using
 
+                    'create readme
+                    Dim path_readme As String = IO.Path.Combine(path_root, "BACA SAYA.txt")
+
+                    Dim fs_readme As IO.FileStream = IO.File.Create(path_readme)
+
+                    Dim info_readme As Byte() = New System.Text.UTF8Encoding(True).GetBytes("Mohon file " + fileName + " dikirimkan ke Internal Audit Volcom Indonesia.")
+
+                    fs_readme.Write(info_readme, 0, info_readme.Length)
+
+                    fs_readme.Close()
+
                     'store log
                     FormMain.SplashScreenManager1.SetWaitFormDescription("Save log")
                     execute_non_query("
@@ -591,18 +595,28 @@ Public Class FormStockTake
                     FormMain.SplashScreenManager1.CloseWaitForm()
                     openFile("\" + name_dir)
 
+                    If opt = "2" Then
+                        execute_non_query("
+                            UPDATE tb_st_opt SET is_active_db = '2'
+                        ", True, "", "", "", "")
+                    End If
+
                     infoCustom("Export completed.")
-                Else
-                    stopCustom("No scan data selected.")
-                End If
-
-                GVScan.ActiveFilterString = ""
-                GVNoTag.ActiveFilterString = ""
+                Catch ex As Exception
+                    stopCustom(ex.ToString)
+                End Try
+            Else
+                stopCustom("No scan data selected.")
             End If
-        Else
-            execute_non_query("UPDATE tb_st_opt SET is_active_db = 2", True, "", "", "", "")
 
-            stopCustom("Cannot export, because scan time's up.")
+            GVScan.ActiveFilterString = ""
+            GVNoTag.ActiveFilterString = ""
+
+            If opt = "2" Then
+                Close()
+
+                End
+            End If
         End If
     End Sub
 
@@ -616,34 +630,99 @@ Public Class FormStockTake
 
     Private Sub SBAddStore_Click(sender As Object, e As EventArgs) Handles SBAddStore.Click
         Cursor = Cursors.WaitCursor
-        XTCProduct.SelectedTabPage = XTPScanList
-        FormStockTakeNew.is_no_tag = "2"
-        FormStockTakeNew.is_reject = "2"
-        FormStockTakeNew.ShowDialog()
+        If check_ia_notif() Then
+            Dim data_continue As DataTable = execute_query("
+                SELECT *
+                FROM (
+                    SELECT COUNT(*) AS total_stop
+                FROM tb_st_stop_scan_log
+                ) AS total_stop, (
+                    SELECT first_ia_notif FROM tb_st_opt LIMIT 1
+                ) AS first_ia_notif
+            ", -1, True, "", "", "", "")
+
+            If (data_continue.Rows(0)("total_stop").ToString = "0") Or (Not data_continue.Rows(0)("total_stop").ToString = "0" And Not data_continue.Rows(0)("first_ia_notif").ToString = "") Then
+                XTCProduct.SelectedTabPage = XTPScanList
+                FormStockTakeNew.is_no_tag = "2"
+                FormStockTakeNew.is_reject = "2"
+                FormStockTakeNew.ShowDialog()
+            End If
+
+            If Not data_continue.Rows(0)("total_stop").ToString = "0" And Not data_continue.Rows(0)("first_ia_notif").ToString = "" Then
+                BtnStopStockTake.Visible = True
+            End If
+        Else
+            stopCustom("Cannot create, because scan time's up.")
+        End If
         Cursor = Cursors.Default
     End Sub
 
     Private Sub SBNoTagStore_Click(sender As Object, e As EventArgs) Handles SBNoTagStore.Click
         Cursor = Cursors.WaitCursor
-        XTCProduct.SelectedTabPage = XTPNoTag
-        FormStockTakeNew.is_no_tag = "1"
-        FormStockTakeNew.is_reject = "2"
-        FormStockTakeNew.ShowDialog()
+        If check_ia_notif() Then
+            Dim data_continue As DataTable = execute_query("
+                SELECT *
+                FROM (
+                    SELECT COUNT(*) AS total_stop
+                FROM tb_st_stop_scan_log
+                ) AS total_stop, (
+                    SELECT first_ia_notif FROM tb_st_opt LIMIT 1
+                ) AS first_ia_notif
+            ", -1, True, "", "", "", "")
+
+            If (data_continue.Rows(0)("total_stop").ToString = "0") Or (Not data_continue.Rows(0)("total_stop").ToString = "0" And Not data_continue.Rows(0)("first_ia_notif").ToString = "") Then
+                XTCProduct.SelectedTabPage = XTPNoTag
+                FormStockTakeNew.is_no_tag = "1"
+                FormStockTakeNew.is_reject = "2"
+                FormStockTakeNew.ShowDialog()
+            End If
+
+            If Not data_continue.Rows(0)("total_stop").ToString = "0" And Not data_continue.Rows(0)("first_ia_notif").ToString = "" Then
+                BtnStopStockTake.Visible = True
+            End If
+        Else
+            stopCustom("Cannot create, because scan time's up.")
+        End If
         Cursor = Cursors.Default
     End Sub
 
     Private Sub SBRejectStore_Click(sender As Object, e As EventArgs) Handles SBRejectStore.Click
         Cursor = Cursors.WaitCursor
-        XTCProduct.SelectedTabPage = XTPScanList
-        FormStockTakeNew.is_no_tag = "2"
-        FormStockTakeNew.is_reject = "1"
-        FormStockTakeNew.ShowDialog()
+        If check_ia_notif() Then
+            Dim data_continue As DataTable = execute_query("
+                SELECT *
+                FROM (
+                    SELECT COUNT(*) AS total_stop
+                FROM tb_st_stop_scan_log
+                ) AS total_stop, (
+                    SELECT first_ia_notif FROM tb_st_opt LIMIT 1
+                ) AS first_ia_notif
+            ", -1, True, "", "", "", "")
+
+            If (data_continue.Rows(0)("total_stop").ToString = "0") Or (Not data_continue.Rows(0)("total_stop").ToString = "0" And Not data_continue.Rows(0)("first_ia_notif").ToString = "") Then
+                XTCProduct.SelectedTabPage = XTPScanList
+                FormStockTakeNew.is_no_tag = "2"
+                FormStockTakeNew.is_reject = "1"
+                FormStockTakeNew.ShowDialog()
+            End If
+
+            If Not data_continue.Rows(0)("total_stop").ToString = "0" And Not data_continue.Rows(0)("first_ia_notif").ToString = "" Then
+                BtnStopStockTake.Visible = True
+            End If
+        Else
+            stopCustom("Cannot create, because scan time's up.")
+        End If
         Cursor = Cursors.Default
     End Sub
 
     Private Sub GVNoTag_DoubleClick(sender As Object, e As EventArgs) Handles GVNoTag.DoubleClick
         If GVNoTag.RowCount > 0 And GVNoTag.FocusedRowHandle >= 0 Then
             FormStockTakeNoTag.id_st_no_tag = GVNoTag.GetFocusedRowCellValue("id_st_no_tag").ToString
+
+            If is_login_store = "1" Then
+                FormStockTakeNoTag.is_no_edit = "1"
+            End If
+
             FormStockTakeNoTag.ShowDialog()
         End If
     End Sub
@@ -671,4 +750,37 @@ Public Class FormStockTake
     Private Sub GVNoTag_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVNoTag.FocusedRowChanged
         noEditNT()
     End Sub
+
+    Function check_ia_notif() As String
+        Dim out As Boolean = True
+
+        Dim query As String = "
+            SELECT *
+            FROM (
+	            SELECT first_ia_notif
+	            FROM tb_st_opt
+            ) AS first_ia_notif, (
+	            SELECT COUNT(*) AS total_stop
+	            FROM tb_st_stop_scan_log
+            ) AS total_stop, (
+                SELECT IF(st_scan_time >= TIMESTAMPDIFF(MINUTE, IFNULL(first_ia_notif, NOW()), NOW()), 2, 1) AS is_stop
+                FROM tb_st_opt
+            ) is_stop
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        'input first ia notif date
+        If Not data.Rows(0)("total_stop").ToString = "0" And data.Rows(0)("first_ia_notif").ToString = "" Then
+            FormInputDateNotif.ShowDialog()
+
+            data = execute_query(query, -1, True, "", "", "", "")
+        End If
+
+        If data.Rows(0)("is_stop").ToString = "1" Then
+            out = False
+        End If
+
+        Return out
+    End Function
 End Class

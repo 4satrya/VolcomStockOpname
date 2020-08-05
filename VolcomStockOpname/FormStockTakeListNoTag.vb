@@ -8,7 +8,7 @@
         End Try
 
         Dim query As String = "
-            SELECT 0 AS number, nt.no_tag_number, nt.remark, nt_det.code, nt_det.name, 1 AS qty
+            SELECT 0 AS number, nt.no_tag_number, nt.remark, nt_det.code, nt_det.name, nt_det.size, 1 AS qty
             FROM tb_st_no_tag_det AS nt_det
             LEFT JOIN tb_st_no_tag AS nt ON nt_det.id_st_no_tag = nt.id_st_no_tag
             WHERE nt.id_report_status != 5

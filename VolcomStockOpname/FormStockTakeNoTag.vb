@@ -3,6 +3,8 @@
 
     Private is_login_store As String = "2"
 
+    Public is_no_edit As String = "2"
+
     Private Sub FormStockTakeNoTag_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'check login store
         Try
@@ -20,10 +22,16 @@
         If is_login_store = "1" Then
             LookAndFeel.UseDefaultLookAndFeel = False
             LookAndFeel.SkinMaskColor = Color.LightPink
+
+            If is_no_edit = "1" Then
+                GroupControl2.Visible = False
+            End If
         End If
     End Sub
 
     Private Sub FormStockTakeNoTag_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        FormStockTake.viewScan()
+
         Dispose()
     End Sub
 
@@ -105,7 +113,7 @@
             End If
 
             Dim data_detail As DataTable = execute_query("
-                SELECT id_st_no_tag_det, 0 AS no, code, name, 1 AS qty, note
+                SELECT id_st_no_tag_det, 0 AS no, code, name, size, 1 AS qty, note
                 FROM tb_st_no_tag_det
                 WHERE id_st_no_tag = " + id_st_no_tag + "
             ", -1, True, "", "", "", "")

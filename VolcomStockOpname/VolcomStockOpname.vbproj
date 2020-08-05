@@ -186,6 +186,12 @@
     <Compile Include="FormHome.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormInputDateNotif.Designer.vb">
+      <DependentUpon>FormInputDateNotif.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormInputDateNotif.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormLogin.Designer.vb">
       <DependentUpon>FormLogin.vb</DependentUpon>
     </Compile>
@@ -487,6 +493,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormHome.resx">
       <DependentUpon>FormHome.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInputDateNotif.resx">
+      <DependentUpon>FormInputDateNotif.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.vb</DependentUpon>

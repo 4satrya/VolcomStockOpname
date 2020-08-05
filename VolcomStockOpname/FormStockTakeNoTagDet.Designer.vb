@@ -26,14 +26,17 @@ Partial Class FormStockTakeNoTagDet
         Me.TEName = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TECode = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.TESize = New DevExpress.XtraEditors.TextEdit()
         CType(Me.TEName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TESize.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SBClose
         '
         Me.SBClose.Image = CType(resources.GetObject("SBClose.Image"), System.Drawing.Image)
-        Me.SBClose.Location = New System.Drawing.Point(128, 112)
+        Me.SBClose.Location = New System.Drawing.Point(128, 172)
         Me.SBClose.Name = "SBClose"
         Me.SBClose.Size = New System.Drawing.Size(66, 23)
         Me.SBClose.TabIndex = 11
@@ -42,7 +45,7 @@ Partial Class FormStockTakeNoTagDet
         'SBSave
         '
         Me.SBSave.Image = CType(resources.GetObject("SBSave.Image"), System.Drawing.Image)
-        Me.SBSave.Location = New System.Drawing.Point(200, 112)
+        Me.SBSave.Location = New System.Drawing.Point(200, 172)
         Me.SBSave.Name = "SBSave"
         Me.SBSave.Size = New System.Drawing.Size(72, 23)
         Me.SBSave.TabIndex = 10
@@ -79,11 +82,29 @@ Partial Class FormStockTakeNoTagDet
         Me.TECode.Size = New System.Drawing.Size(260, 20)
         Me.TECode.TabIndex = 6
         '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(12, 117)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(19, 13)
+        Me.LabelControl3.TabIndex = 13
+        Me.LabelControl3.Text = "Size"
+        '
+        'TESize
+        '
+        Me.TESize.EditValue = ""
+        Me.TESize.Location = New System.Drawing.Point(12, 136)
+        Me.TESize.Name = "TESize"
+        Me.TESize.Size = New System.Drawing.Size(260, 20)
+        Me.TESize.TabIndex = 9
+        '
         'FormStockTakeNoTagDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(284, 150)
+        Me.ClientSize = New System.Drawing.Size(284, 209)
+        Me.Controls.Add(Me.LabelControl3)
+        Me.Controls.Add(Me.TESize)
         Me.Controls.Add(Me.SBClose)
         Me.Controls.Add(Me.SBSave)
         Me.Controls.Add(Me.LabelControl2)
@@ -95,6 +116,7 @@ Partial Class FormStockTakeNoTagDet
         Me.Text = "No Tag Detail"
         CType(Me.TEName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TESize.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -106,4 +128,6 @@ Partial Class FormStockTakeNoTagDet
     Friend WithEvents TEName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TECode As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TESize As DevExpress.XtraEditors.TextEdit
 End Class

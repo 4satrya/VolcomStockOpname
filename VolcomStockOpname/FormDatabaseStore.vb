@@ -44,19 +44,10 @@
                     'check scan time
                     If data.Rows(i)("is_active").ToString = "1" Then
                         Dim is_stop As String = execute_query("
-                            SELECT IFNULL((
-                                SELECT IF(tb_opt.st_scan_time >= tb_log.st_scan_time, 2, 1) AS is_stop
-                                FROM (
-                                    SELECT st_scan_time
-                                    FROM tb_st_opt
-                                    LIMIT 1
-                                ) AS tb_opt, (
-                                    SELECT TIMESTAMPDIFF(MINUTE, created_date, NOW()) AS st_scan_time
-                                    FROM tb_st_stop_scan_log
-                                    ORDER BY created_date ASC
-                                    LIMIT 1
-                                ) AS tb_log
-                            ), 2) AS is_stop
+                            SELECT IF(TIMESTAMPDIFF(MONTH, created_date, NOW()) > 0, 1, 2) AS is_stop
+                            FROM tb_st_stop_scan_log
+                            ORDER BY created_date ASC
+                            LIMIT 1
                         ", 0, False, app_host, app_username, app_password, data.Rows(i)("Database").ToString)
 
                         If is_stop = "1" Then

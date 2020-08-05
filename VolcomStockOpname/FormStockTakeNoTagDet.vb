@@ -25,12 +25,13 @@
         If TEName.Text = "" Or TECode.Text = "" Then
             stopCustom("Please check your input.")
         Else
-            execute_non_query("INSERT INTO tb_st_no_tag_det (id_st_no_tag, code, name) VALUES (" + id_st_no_tag + ", '" + addSlashes(TECode.EditValue) + "', '" + addSlashes(TEName.EditValue) + "')", True, "", "", "", "")
+            execute_non_query("INSERT INTO tb_st_no_tag_det (id_st_no_tag, code, name, size) VALUES (" + id_st_no_tag + ", '" + addSlashes(TECode.EditValue) + "', '" + addSlashes(TEName.EditValue) + "', '" + addSlashes(TESize.EditValue) + "')", True, "", "", "", "")
 
             FormStockTakeNoTag.form_load()
 
             TEName.EditValue = ""
             TECode.EditValue = ""
+            TESize.EditValue = ""
         End If
     End Sub
 

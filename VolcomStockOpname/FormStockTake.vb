@@ -427,15 +427,45 @@ Public Class FormStockTake
     End Sub
 
     Private Sub BtnExportStop_Click(sender As Object, e As EventArgs) Handles BtnExportStop.Click
-        export_store("1")
+        If check_ia_notif() Then
+            Dim data_continue As DataTable = execute_query("
+                SELECT *
+                FROM (
+                    SELECT COUNT(*) AS total_stop
+                FROM tb_st_stop_scan_log
+                ) AS total_stop, (
+                    SELECT first_ia_notif FROM tb_st_opt LIMIT 1
+                ) AS first_ia_notif
+            ", -1, True, "", "", "", "")
+
+            If (data_continue.Rows(0)("total_stop").ToString = "0") Or (Not data_continue.Rows(0)("total_stop").ToString = "0" And Not data_continue.Rows(0)("first_ia_notif").ToString = "") Then
+                export_store()
+            End If
+
+            If Not data_continue.Rows(0)("total_stop").ToString = "0" And Not data_continue.Rows(0)("first_ia_notif").ToString = "" Then
+                BtnStopStockTake.Visible = True
+            End If
+        Else
+            stopCustom("Cannot export, because scan time's up.")
+        End If
     End Sub
 
     Private Sub BtnStopStockTake_Click(sender As Object, e As EventArgs) Handles BtnStopStockTake.Click
-        export_store("2")
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Apakah anda yakin akan selesai stock take?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+        If confirm = DialogResult.Yes Then
+            execute_non_query("
+                UPDATE tb_st_opt SET is_active_db = '2'
+            ", True, "", "", "", "")
+
+            Close()
+
+            End
+        End If
     End Sub
 
-    Sub export_store(opt As String)
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Apakah anda yakin akan selesai " + If(opt = "1", "scan", "stock take") + "?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+    Sub export_store()
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Apakah anda yakin akan selesai scan?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = DialogResult.Yes Then
             'reload gv
             LEViewUser.EditValue = "2"
@@ -595,12 +625,6 @@ Public Class FormStockTake
                     FormMain.SplashScreenManager1.CloseWaitForm()
                     openFile("\" + name_dir)
 
-                    If opt = "2" Then
-                        execute_non_query("
-                            UPDATE tb_st_opt SET is_active_db = '2'
-                        ", True, "", "", "", "")
-                    End If
-
                     infoCustom("Export completed.")
                 Catch ex As Exception
                     stopCustom(ex.ToString)
@@ -611,12 +635,6 @@ Public Class FormStockTake
 
             GVScan.ActiveFilterString = ""
             GVNoTag.ActiveFilterString = ""
-
-            If opt = "2" Then
-                Close()
-
-                End
-            End If
         End If
     End Sub
 
@@ -765,7 +783,14 @@ Public Class FormStockTake
             ) AS total_stop, (
                 SELECT IF(st_scan_time >= TIMESTAMPDIFF(MINUTE, IFNULL(first_ia_notif, NOW()), NOW()), 2, 1) AS is_stop
                 FROM tb_st_opt
-            ) is_stop
+            ) is_stop, (
+                SELECT IFNULL((
+                    SELECT IF(TIMESTAMPDIFF(MONTH, created_date, NOW()) > 0, 1, 2)
+                    FROM tb_st_stop_scan_log
+                    ORDER BY created_date ASC
+                    LIMIT 1
+                ), 2) AS is_one_month
+            ) is_one_month
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -778,6 +803,10 @@ Public Class FormStockTake
         End If
 
         If data.Rows(0)("is_stop").ToString = "1" Then
+            out = False
+        End If
+
+        If data.Rows(0)("is_one_month").ToString = "1" Then
             out = False
         End If
 

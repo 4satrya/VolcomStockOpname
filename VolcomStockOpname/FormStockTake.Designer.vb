@@ -19,13 +19,14 @@ Partial Class FormStockTake
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormStockTake))
         Me.XTCStockTake = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPScan = New DevExpress.XtraTab.XtraTabPage()
         Me.XTCProduct = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPScanList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCScan = New DevExpress.XtraGrid.GridControl()
-        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip()
+        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ToolStripCancel = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVScan = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnId = New DevExpress.XtraGrid.Columns.GridColumn()

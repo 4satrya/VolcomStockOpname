@@ -46,6 +46,7 @@ Partial Class FormFGBackupStockDet
         Me.GridColumnAddress = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTCDetail = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -205,7 +206,7 @@ Partial Class FormFGBackupStockDet
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumnSOH, Me.GridColumn5, Me.GridColumnDrawer, Me.GridColumnCat, Me.GridColumnCompCat, Me.GridColumnAddress})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumnSOH, Me.GridColumn5, Me.GridColumnDrawer, Me.GridColumnCat, Me.GridColumnCompCat, Me.GridColumnAddress})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_soh", Me.GridColumnSOH, "{0:N0}")})
         Me.GVData.Name = "GVData"
@@ -325,6 +326,12 @@ Partial Class FormFGBackupStockDet
         Me.XTPSummary.Size = New System.Drawing.Size(797, 368)
         Me.XTPSummary.Text = "Summary"
         '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Id Store"
+        Me.GridColumn4.FieldName = "id_store"
+        Me.GridColumn4.Name = "GridColumn4"
+        '
         'FormFGBackupStockDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -384,4 +391,5 @@ Partial Class FormFGBackupStockDet
     Friend WithEvents DESalesUntil As DevExpress.XtraEditors.DateEdit
     Friend WithEvents CEManualRecord As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents GridColumnAddress As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

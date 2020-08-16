@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormStockTakeDet
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormStockTakeDet
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormStockTakeDet))
@@ -83,6 +83,8 @@ Partial Class FormStockTakeDet
         Me.GridColumnRefNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
+        Me.CERecordUniqueNotFound = New DevExpress.XtraEditors.CheckEdit()
+        Me.CEHideAllNotice = New DevExpress.XtraEditors.CheckEdit()
         Me.CheckEditSale = New DevExpress.XtraEditors.CheckEdit()
         Me.CheckEditNoTag = New DevExpress.XtraEditors.CheckEdit()
         Me.CheckEditReject = New DevExpress.XtraEditors.CheckEdit()
@@ -146,7 +148,6 @@ Partial Class FormStockTakeDet
         Me.BtnSetRemark = New DevExpress.XtraEditors.SimpleButton()
         Me.CESelect = New DevExpress.XtraEditors.CheckEdit()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.CEHideAllNotice = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -181,6 +182,8 @@ Partial Class FormStockTakeDet
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
+        CType(Me.CERecordUniqueNotFound.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEHideAllNotice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CheckEditSale.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CheckEditNoTag.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CheckEditReject.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -205,7 +208,6 @@ Partial Class FormStockTakeDet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.CESelect.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CEHideAllNotice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -802,6 +804,7 @@ Partial Class FormStockTakeDet
         '
         'PanelControlNav
         '
+        Me.PanelControlNav.Controls.Add(Me.CERecordUniqueNotFound)
         Me.PanelControlNav.Controls.Add(Me.CEHideAllNotice)
         Me.PanelControlNav.Controls.Add(Me.CheckEditSale)
         Me.PanelControlNav.Controls.Add(Me.CheckEditNoTag)
@@ -816,9 +819,25 @@ Partial Class FormStockTakeDet
         Me.PanelControlNav.Size = New System.Drawing.Size(1155, 46)
         Me.PanelControlNav.TabIndex = 0
         '
+        'CERecordUniqueNotFound
+        '
+        Me.CERecordUniqueNotFound.Location = New System.Drawing.Point(466, 4)
+        Me.CERecordUniqueNotFound.Name = "CERecordUniqueNotFound"
+        Me.CERecordUniqueNotFound.Properties.Caption = "Record Unique not Found"
+        Me.CERecordUniqueNotFound.Size = New System.Drawing.Size(247, 19)
+        Me.CERecordUniqueNotFound.TabIndex = 8910
+        '
+        'CEHideAllNotice
+        '
+        Me.CEHideAllNotice.Location = New System.Drawing.Point(466, 25)
+        Me.CEHideAllNotice.Name = "CEHideAllNotice"
+        Me.CEHideAllNotice.Properties.Caption = "Hide All Notice"
+        Me.CEHideAllNotice.Size = New System.Drawing.Size(98, 19)
+        Me.CEHideAllNotice.TabIndex = 8908
+        '
         'CheckEditSale
         '
-        Me.CheckEditSale.Location = New System.Drawing.Point(459, 14)
+        Me.CheckEditSale.Location = New System.Drawing.Point(308, 25)
         Me.CheckEditSale.Name = "CheckEditSale"
         Me.CheckEditSale.Properties.Caption = "Hide notice for sale product"
         Me.CheckEditSale.Size = New System.Drawing.Size(156, 19)
@@ -826,7 +845,7 @@ Partial Class FormStockTakeDet
         '
         'CheckEditNoTag
         '
-        Me.CheckEditNoTag.Location = New System.Drawing.Point(401, 14)
+        Me.CheckEditNoTag.Location = New System.Drawing.Point(404, 4)
         Me.CheckEditNoTag.Name = "CheckEditNoTag"
         Me.CheckEditNoTag.Properties.Caption = "No Tag"
         Me.CheckEditNoTag.Size = New System.Drawing.Size(60, 19)
@@ -834,7 +853,7 @@ Partial Class FormStockTakeDet
         '
         'CheckEditReject
         '
-        Me.CheckEditReject.Location = New System.Drawing.Point(308, 14)
+        Me.CheckEditReject.Location = New System.Drawing.Point(308, 4)
         Me.CheckEditReject.Name = "CheckEditReject"
         Me.CheckEditReject.Properties.Caption = "Reject Product"
         Me.CheckEditReject.Size = New System.Drawing.Size(98, 19)
@@ -1436,14 +1455,6 @@ Partial Class FormStockTakeDet
         Me.CESelect.Size = New System.Drawing.Size(68, 19)
         Me.CESelect.TabIndex = 0
         '
-        'CEHideAllNotice
-        '
-        Me.CEHideAllNotice.Location = New System.Drawing.Point(621, 14)
-        Me.CEHideAllNotice.Name = "CEHideAllNotice"
-        Me.CEHideAllNotice.Properties.Caption = "Hide All Notice"
-        Me.CEHideAllNotice.Size = New System.Drawing.Size(98, 19)
-        Me.CEHideAllNotice.TabIndex = 8908
-        '
         'FormStockTakeDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1456,7 +1467,7 @@ Partial Class FormStockTakeDet
         Me.MinimizeBox = False
         Me.Name = "FormStockTakeDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Stock Take "
+        Me.Text = " "
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
@@ -1498,6 +1509,8 @@ Partial Class FormStockTakeDet
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
         Me.PanelControlNav.PerformLayout()
+        CType(Me.CERecordUniqueNotFound.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEHideAllNotice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CheckEditSale.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CheckEditNoTag.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CheckEditReject.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1522,7 +1535,6 @@ Partial Class FormStockTakeDet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.CESelect.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CEHideAllNotice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1653,4 +1665,5 @@ Partial Class FormStockTakeDet
     Friend WithEvents TextEditNote As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents CEHideAllNotice As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents CERecordUniqueNotFound As DevExpress.XtraEditors.CheckEdit
 End Class

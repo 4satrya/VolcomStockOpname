@@ -1,4 +1,6 @@
 ﻿Public Class FormStockTakeNew
+    Public is_allow_record_unique_code As String = "2"
+
     Private Sub LabelControl1_Click(sender As Object, e As EventArgs) Handles LabelControl1.Click
 
     End Sub
@@ -33,6 +35,7 @@
         execute_non_query(query_numb, True, "", "", "", "")
 
         FormStockTake.viewScan()
+        FormStockTakeDet.is_allow_record_unique_code = is_allow_record_unique_code
         FormStockTakeDet.action = "upd"
         FormStockTakeDet.id_st_trans = id_new
         FormStockTakeDet.ShowDialog()

@@ -59,6 +59,17 @@
             NBWHST.Visible = True
             NBReport.Visible = False
             NBScanGlobal.Visible = False
+        ElseIf id_role_login = "5" Then
+            'STORE
+            NBExport.Visible = False
+            NBImport.Visible = False
+            NBStockTake.Visible = True
+            NBOpt.Visible = False
+            NBWHPreST.Visible = False
+            NBWHST.Visible = False
+            NBReport.Visible = False
+            NBScanGlobal.Visible = False
+            NBStock.Visible = False
         Else
             NBExport.Visible = False
             NBImport.Visible = False
@@ -86,28 +97,40 @@
             apply_skin()
             read_database_configuration()
             check_connection(True, "", "", "", "")
-            If id_user = "" And app_database <> "db_opt" Then
-                FormLogin.ShowDialog()
 
-                'current db
-                setInfoDb()
+            Dim is_login_store As String = "2"
+            Try
+                is_login_store = execute_query("SELECT is_login_store FROM tb_opt", 0, False, app_host, app_username, app_password, "db_opt")
+            Catch ex As Exception
+                is_login_store = "2"
+            End Try
 
-                'open dashboard
-                Try
-                    FormHome.MdiParent = Me
-                    FormHome.Show()
-                    FormHome.WindowState = FormWindowState.Maximized
-                    FormHome.Focus()
-                Catch ex As Exception
-                    errorConnection()
-                End Try
-                Cursor = Cursors.Default
+            If is_login_store = "1" Then
+                FormDatabaseStore.ShowDialog()
             Else
-                'initial server centre
-                initialServerCentre()
-                FormLogin.id_menu = "1"
-                FormLogin.is_first = "1"
-                FormLogin.ShowDialog()
+                If id_user = "" And app_database <> "db_opt" Then
+                    FormLogin.ShowDialog()
+
+                    'current db
+                    setInfoDb()
+
+                    'open dashboard
+                    Try
+                        FormHome.MdiParent = Me
+                        FormHome.Show()
+                        FormHome.WindowState = FormWindowState.Maximized
+                        FormHome.Focus()
+                    Catch ex As Exception
+                        errorConnection()
+                    End Try
+                    Cursor = Cursors.Default
+                Else
+                    'initial server centre
+                    initialServerCentre()
+                    FormLogin.id_menu = "1"
+                    FormLogin.is_first = "1"
+                    FormLogin.ShowDialog()
+                End If
             End If
         Catch ex As Exception
             FormDatabase.ShowDialog()

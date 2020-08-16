@@ -34,6 +34,7 @@ Partial Class FormStockTake
         Me.GridColumnLastUpdate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnUpdatedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnComp = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnqty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIsSelect = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -41,12 +42,14 @@ Partial Class FormStockTake
         Me.GridColumnIdReportStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnExportStop = New DevExpress.XtraEditors.SimpleButton()
+        Me.PCSelectAll = New DevExpress.XtraEditors.PanelControl()
+        Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.LEViewUser = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnList = New DevExpress.XtraEditors.SimpleButton()
-        Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnExport = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImport = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
@@ -61,6 +64,7 @@ Partial Class FormStockTake
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -71,8 +75,7 @@ Partial Class FormStockTake
         Me.BtnPrintCom = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreateCom = New DevExpress.XtraEditors.SimpleButton()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnCreateNewAllowRecordUniqueNotFound = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCStockTake, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStockTake.SuspendLayout()
         Me.XTPScan.SuspendLayout()
@@ -82,10 +85,12 @@ Partial Class FormStockTake
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.PCSelectAll, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCSelectAll.SuspendLayout()
+        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.LEViewUser.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabPage2.SuspendLayout()
         CType(Me.GCCombine, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCombine, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -101,7 +106,7 @@ Partial Class FormStockTake
         Me.XTCStockTake.Location = New System.Drawing.Point(0, 0)
         Me.XTCStockTake.Name = "XTCStockTake"
         Me.XTCStockTake.SelectedTabPage = Me.XTPScan
-        Me.XTCStockTake.Size = New System.Drawing.Size(1122, 522)
+        Me.XTCStockTake.Size = New System.Drawing.Size(1257, 522)
         Me.XTCStockTake.TabIndex = 0
         Me.XTCStockTake.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScan, Me.XtraTabPage2})
         '
@@ -110,7 +115,7 @@ Partial Class FormStockTake
         Me.XTPScan.Controls.Add(Me.GCScan)
         Me.XTPScan.Controls.Add(Me.PanelControl1)
         Me.XTPScan.Name = "XTPScan"
-        Me.XTPScan.Size = New System.Drawing.Size(1116, 494)
+        Me.XTPScan.Size = New System.Drawing.Size(1251, 494)
         Me.XTPScan.Text = "Scan"
         '
         'GCScan
@@ -121,7 +126,7 @@ Partial Class FormStockTake
         Me.GCScan.MainView = Me.GVScan
         Me.GCScan.Name = "GCScan"
         Me.GCScan.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCScan.Size = New System.Drawing.Size(1116, 452)
+        Me.GCScan.Size = New System.Drawing.Size(1251, 452)
         Me.GCScan.TabIndex = 0
         Me.GCScan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScan})
         '
@@ -219,6 +224,15 @@ Partial Class FormStockTake
         Me.GridColumn1.VisibleIndex = 8
         Me.GridColumn1.Width = 197
         '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Status Note"
+        Me.GridColumn11.FieldName = "report_status_note"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsColumn.AllowEdit = False
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 9
+        '
         'GridColumnComp
         '
         Me.GridColumnComp.Caption = "Account"
@@ -278,10 +292,12 @@ Partial Class FormStockTake
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnCreateNewAllowRecordUniqueNotFound)
+        Me.PanelControl1.Controls.Add(Me.BtnExportStop)
+        Me.PanelControl1.Controls.Add(Me.PCSelectAll)
         Me.PanelControl1.Controls.Add(Me.PanelControl3)
         Me.PanelControl1.Controls.Add(Me.BtnRefresh)
         Me.PanelControl1.Controls.Add(Me.BtnList)
-        Me.PanelControl1.Controls.Add(Me.CheckEdit1)
         Me.PanelControl1.Controls.Add(Me.BtnExport)
         Me.PanelControl1.Controls.Add(Me.BtnImport)
         Me.PanelControl1.Controls.Add(Me.BtnPrint)
@@ -289,8 +305,37 @@ Partial Class FormStockTake
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1116, 42)
+        Me.PanelControl1.Size = New System.Drawing.Size(1251, 42)
         Me.PanelControl1.TabIndex = 1
+        '
+        'BtnExportStop
+        '
+        Me.BtnExportStop.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnExportStop.Image = CType(resources.GetObject("BtnExportStop.Image"), System.Drawing.Image)
+        Me.BtnExportStop.Location = New System.Drawing.Point(311, 2)
+        Me.BtnExportStop.Name = "BtnExportStop"
+        Me.BtnExportStop.Size = New System.Drawing.Size(141, 38)
+        Me.BtnExportStop.TabIndex = 10
+        Me.BtnExportStop.Text = "Export && Stop Scan"
+        Me.BtnExportStop.Visible = False
+        '
+        'PCSelectAll
+        '
+        Me.PCSelectAll.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PCSelectAll.Controls.Add(Me.CheckEdit1)
+        Me.PCSelectAll.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PCSelectAll.Location = New System.Drawing.Point(219, 2)
+        Me.PCSelectAll.Name = "PCSelectAll"
+        Me.PCSelectAll.Size = New System.Drawing.Size(92, 38)
+        Me.PCSelectAll.TabIndex = 11
+        '
+        'CheckEdit1
+        '
+        Me.CheckEdit1.Location = New System.Drawing.Point(6, 9)
+        Me.CheckEdit1.Name = "CheckEdit1"
+        Me.CheckEdit1.Properties.Caption = "Select All"
+        Me.CheckEdit1.Size = New System.Drawing.Size(76, 19)
+        Me.CheckEdit1.TabIndex = 4
         '
         'PanelControl3
         '
@@ -298,7 +343,7 @@ Partial Class FormStockTake
         Me.PanelControl3.Controls.Add(Me.LEViewUser)
         Me.PanelControl3.Controls.Add(Me.LabelControl1)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl3.Location = New System.Drawing.Point(528, 2)
+        Me.PanelControl3.Location = New System.Drawing.Point(663, 2)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(204, 38)
         Me.PanelControl3.TabIndex = 9
@@ -324,7 +369,7 @@ Partial Class FormStockTake
         '
         Me.BtnRefresh.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnRefresh.Image = CType(resources.GetObject("BtnRefresh.Image"), System.Drawing.Image)
-        Me.BtnRefresh.Location = New System.Drawing.Point(732, 2)
+        Me.BtnRefresh.Location = New System.Drawing.Point(867, 2)
         Me.BtnRefresh.Name = "BtnRefresh"
         Me.BtnRefresh.Size = New System.Drawing.Size(97, 38)
         Me.BtnRefresh.TabIndex = 2
@@ -334,19 +379,11 @@ Partial Class FormStockTake
         '
         Me.BtnList.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnList.Image = CType(resources.GetObject("BtnList.Image"), System.Drawing.Image)
-        Me.BtnList.Location = New System.Drawing.Point(829, 2)
+        Me.BtnList.Location = New System.Drawing.Point(964, 2)
         Me.BtnList.Name = "BtnList"
         Me.BtnList.Size = New System.Drawing.Size(88, 38)
         Me.BtnList.TabIndex = 6
         Me.BtnList.Text = "List"
-        '
-        'CheckEdit1
-        '
-        Me.CheckEdit1.Location = New System.Drawing.Point(225, 11)
-        Me.CheckEdit1.Name = "CheckEdit1"
-        Me.CheckEdit1.Properties.Caption = "Select All"
-        Me.CheckEdit1.Size = New System.Drawing.Size(75, 19)
-        Me.CheckEdit1.TabIndex = 4
         '
         'BtnExport
         '
@@ -372,7 +409,7 @@ Partial Class FormStockTake
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(917, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(1052, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(88, 38)
         Me.BtnPrint.TabIndex = 5
@@ -382,7 +419,7 @@ Partial Class FormStockTake
         '
         Me.BtnNew.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnNew.Image = CType(resources.GetObject("BtnNew.Image"), System.Drawing.Image)
-        Me.BtnNew.Location = New System.Drawing.Point(1005, 2)
+        Me.BtnNew.Location = New System.Drawing.Point(1140, 2)
         Me.BtnNew.Name = "BtnNew"
         Me.BtnNew.Size = New System.Drawing.Size(109, 38)
         Me.BtnNew.TabIndex = 3
@@ -491,6 +528,15 @@ Partial Class FormStockTake
         Me.GridColumn8.VisibleIndex = 8
         Me.GridColumn8.Width = 215
         '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Status Note"
+        Me.GridColumn13.FieldName = "report_status_note"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.OptionsColumn.AllowEdit = False
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 9
+        '
         'GridColumn9
         '
         Me.GridColumn9.Caption = "Account"
@@ -577,29 +623,22 @@ Partial Class FormStockTake
         Me.BtnCreateCom.TabIndex = 3
         Me.BtnCreateCom.Text = "Create New "
         '
-        'GridColumn11
+        'BtnCreateNewAllowRecordUniqueNotFound
         '
-        Me.GridColumn11.Caption = "Status Note"
-        Me.GridColumn11.FieldName = "report_status_note"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.OptionsColumn.AllowEdit = False
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 9
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.Caption = "Status Note"
-        Me.GridColumn13.FieldName = "report_status_note"
-        Me.GridColumn13.Name = "GridColumn13"
-        Me.GridColumn13.OptionsColumn.AllowEdit = False
-        Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 9
+        Me.BtnCreateNewAllowRecordUniqueNotFound.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnCreateNewAllowRecordUniqueNotFound.Image = CType(resources.GetObject("BtnCreateNewAllowRecordUniqueNotFound.Image"), System.Drawing.Image)
+        Me.BtnCreateNewAllowRecordUniqueNotFound.Location = New System.Drawing.Point(452, 2)
+        Me.BtnCreateNewAllowRecordUniqueNotFound.Name = "BtnCreateNewAllowRecordUniqueNotFound"
+        Me.BtnCreateNewAllowRecordUniqueNotFound.Size = New System.Drawing.Size(178, 38)
+        Me.BtnCreateNewAllowRecordUniqueNotFound.TabIndex = 12
+        Me.BtnCreateNewAllowRecordUniqueNotFound.Text = "Record Unique Not Found"
+        Me.BtnCreateNewAllowRecordUniqueNotFound.Visible = False
         '
         'FormStockTake
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1122, 522)
+        Me.ClientSize = New System.Drawing.Size(1257, 522)
         Me.Controls.Add(Me.XTCStockTake)
         Me.Name = "FormStockTake"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -613,11 +652,13 @@ Partial Class FormStockTake
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        CType(Me.PCSelectAll, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCSelectAll.ResumeLayout(False)
+        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
         CType(Me.LEViewUser.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabPage2.ResumeLayout(False)
         CType(Me.GCCombine, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCombine, System.ComponentModel.ISupportInitialize).EndInit()
@@ -680,4 +721,7 @@ Partial Class FormStockTake
     Friend WithEvents ToolStripCancel As ToolStripMenuItem
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnExportStop As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PCSelectAll As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnCreateNewAllowRecordUniqueNotFound As DevExpress.XtraEditors.SimpleButton
 End Class

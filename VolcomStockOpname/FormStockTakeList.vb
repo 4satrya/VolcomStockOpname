@@ -1,4 +1,6 @@
 ﻿Public Class FormStockTakeList
+    Private is_login_store As String = "2"
+
     Private Sub FormStockTakeList_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
@@ -83,11 +85,41 @@
         FROM tb_st_trans_det std 
         INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
         WHERE " + cond_where + " AND std.is_no_master=1 AND st.is_pre=" + FormStockTake.is_pre + " "
+
+        If is_login_store = "1" Then
+            query = "
+            SELECT 'OK' AS `cat`,SUM(std.qty) AS `cat_val`
+            FROM tb_st_trans_det std 
+            INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
+            WHERE " + cond_where + " AND std.is_ok=1 AND st.is_pre=" + FormStockTake.is_pre + "
+            UNION ALL 
+            SELECT 'Reject' AS `cat`,SUM(std.qty) AS `cat_val`
+            FROM tb_st_trans_det std 
+            INNER JOIN tb_st_trans st ON st.id_st_trans = std.id_st_trans
+            WHERE " + cond_where + " AND std.is_reject=1 AND st.is_pre=" + FormStockTake.is_pre + "
+        "
+        End If
+
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCat.DataSource = data
     End Sub
 
     Private Sub FormStockTakeList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try
+            is_login_store = execute_query("SELECT is_login_store FROM tb_opt", 0, False, app_host, app_username, app_password, "db_opt")
+        Catch ex As Exception
+        End Try
+
+        If is_login_store = "1" Then
+            GVScan.Columns("is_ok_v").Visible = False
+            GVScan.Columns("is_no_stock_v").Visible = False
+            GVScan.Columns("is_sale_v").Visible = False
+            GVScan.Columns("is_reject_v").Visible = False
+            GVScan.Columns("is_no_tag_v").Visible = False
+            GVScan.Columns("is_unique_not_found_v").Visible = False
+            GVScan.Columns("is_no_master_v").Visible = False
+        End If
+
         viewDetail()
     End Sub
 
@@ -141,6 +173,16 @@
     Private Sub GVCat_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVCat.CustomColumnDisplayText
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub GVScan_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVScan.RowCellStyle
+        If is_login_store = "1" Then
+            e.Appearance.BackColor = Color.LightGreen
+
+            If GVScan.GetRowCellValue(e.RowHandle, "is_reject_v").ToString = "Yes" Then
+                e.Appearance.BackColor = Color.LightYellow
+            End If
         End If
     End Sub
 End Class

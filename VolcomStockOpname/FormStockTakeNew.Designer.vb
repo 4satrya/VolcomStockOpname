@@ -81,6 +81,8 @@ Partial Class FormStockTakeNew
         '
         'FormStockTakeNew
         '
+        Me.Appearance.BackColor = System.Drawing.SystemColors.Control
+        Me.Appearance.Options.UseBackColor = True
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(331, 166)

@@ -186,6 +186,12 @@
     <Compile Include="FormHome.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormInputDateNotif.Designer.vb">
+      <DependentUpon>FormInputDateNotif.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormInputDateNotif.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormLogin.Designer.vb">
       <DependentUpon>FormLogin.vb</DependentUpon>
     </Compile>
@@ -306,10 +312,28 @@
     <Compile Include="FormStockTakeList.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormStockTakeListNoTag.Designer.vb">
+      <DependentUpon>FormStockTakeListNoTag.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockTakeListNoTag.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormStockTakeNew.Designer.vb">
       <DependentUpon>FormStockTakeNew.vb</DependentUpon>
     </Compile>
     <Compile Include="FormStockTakeNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStockTakeNoTag.Designer.vb">
+      <DependentUpon>FormStockTakeNoTag.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockTakeNoTag.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStockTakeNoTagDet.Designer.vb">
+      <DependentUpon>FormStockTakeNoTagDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockTakeNoTagDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormVerStockTake.Designer.vb">
@@ -390,6 +414,12 @@
     <Compile Include="ReportScan.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportScanNoTag.Designer.vb">
+      <DependentUpon>ReportScanNoTag.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportScanNoTag.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportScanPreStockTake.Designer.vb">
       <DependentUpon>ReportScanPreStockTake.vb</DependentUpon>
     </Compile>
@@ -406,6 +436,12 @@
       <DependentUpon>ReportScanVerStockTakeSlip.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportScanVerStockTakeSlip.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportStockTakeListNoTag.Designer.vb">
+      <DependentUpon>ReportStockTakeListNoTag.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportStockTakeListNoTag.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="WaitForm1.Designer.vb">
@@ -457,6 +493,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormHome.resx">
       <DependentUpon>FormHome.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInputDateNotif.resx">
+      <DependentUpon>FormInputDateNotif.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.vb</DependentUpon>
@@ -518,8 +557,17 @@
     <EmbeddedResource Include="FormStockTakeList.resx">
       <DependentUpon>FormStockTakeList.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormStockTakeListNoTag.resx">
+      <DependentUpon>FormStockTakeListNoTag.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormStockTakeNew.resx">
       <DependentUpon>FormStockTakeNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStockTakeNoTag.resx">
+      <DependentUpon>FormStockTakeNoTag.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStockTakeNoTagDet.resx">
+      <DependentUpon>FormStockTakeNoTagDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormVerStockTake.resx">
       <DependentUpon>FormVerStockTake.vb</DependentUpon>
@@ -558,11 +606,17 @@
     <EmbeddedResource Include="ReportScan.resx">
       <DependentUpon>ReportScan.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportScanNoTag.resx">
+      <DependentUpon>ReportScanNoTag.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportScanPreStockTake.resx">
       <DependentUpon>ReportScanPreStockTake.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportScanVerStockTakeSlip.resx">
       <DependentUpon>ReportScanVerStockTakeSlip.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportStockTakeListNoTag.resx">
+      <DependentUpon>ReportStockTakeListNoTag.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitForm1.resx">
       <DependentUpon>WaitForm1.vb</DependentUpon>

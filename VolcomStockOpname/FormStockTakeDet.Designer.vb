@@ -19,7 +19,6 @@ Partial Class FormStockTakeDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormStockTakeDet))
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
@@ -53,7 +52,7 @@ Partial Class FormStockTakeDet
         Me.XTCStockTake = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPScan = New DevExpress.XtraTab.XtraTabPage()
         Me.GCScan = New DevExpress.XtraGrid.GridControl()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip()
         Me.SetQtyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SetToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteItemToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -115,7 +114,7 @@ Partial Class FormStockTakeDet
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.XTPCompare = New DevExpress.XtraTab.XtraTabPage()
         Me.GCCompare = New DevExpress.XtraGrid.GridControl()
-        Me.ContextMenuStripCompare = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ContextMenuStripCompare = New System.Windows.Forms.ContextMenuStrip()
         Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StoreRemarkToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BGVCompare = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
@@ -147,7 +146,7 @@ Partial Class FormStockTakeDet
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnSetRemark = New DevExpress.XtraEditors.SimpleButton()
         Me.CESelect = New DevExpress.XtraEditors.CheckEdit()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.Timer1 = New System.Windows.Forms.Timer()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -236,6 +235,7 @@ Partial Class FormStockTakeDet
         '
         Me.MERemark.Location = New System.Drawing.Point(92, 39)
         Me.MERemark.Name = "MERemark"
+        Me.MERemark.Properties.ReadOnly = True
         Me.MERemark.Size = New System.Drawing.Size(279, 41)
         Me.MERemark.TabIndex = 8904
         '
@@ -824,7 +824,7 @@ Partial Class FormStockTakeDet
         Me.CERecordUniqueNotFound.Location = New System.Drawing.Point(466, 4)
         Me.CERecordUniqueNotFound.Name = "CERecordUniqueNotFound"
         Me.CERecordUniqueNotFound.Properties.Caption = "Record Unique not Found"
-        Me.CERecordUniqueNotFound.Size = New System.Drawing.Size(247, 19)
+        Me.CERecordUniqueNotFound.Size = New System.Drawing.Size(163, 19)
         Me.CERecordUniqueNotFound.TabIndex = 8910
         '
         'CEHideAllNotice

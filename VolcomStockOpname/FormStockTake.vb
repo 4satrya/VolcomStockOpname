@@ -427,27 +427,29 @@ Public Class FormStockTake
     End Sub
 
     Private Sub BtnExportStop_Click(sender As Object, e As EventArgs) Handles BtnExportStop.Click
-        If check_ia_notif() Then
-            Dim data_continue As DataTable = execute_query("
-                SELECT *
-                FROM (
-                    SELECT COUNT(*) AS total_stop
-                FROM tb_st_stop_scan_log
-                ) AS total_stop, (
-                    SELECT first_ia_notif FROM tb_st_opt LIMIT 1
-                ) AS first_ia_notif
-            ", -1, True, "", "", "", "")
+        'If check_ia_notif() Then
+        Dim data_continue As DataTable = execute_query("
+            SELECT *
+            FROM (
+                SELECT COUNT(*) AS total_stop
+            FROM tb_st_stop_scan_log
+            ) AS total_stop, (
+                SELECT first_ia_notif FROM tb_st_opt LIMIT 1
+            ) AS first_ia_notif
+        ", -1, True, "", "", "", "")
 
-            If (data_continue.Rows(0)("total_stop").ToString = "0") Or (Not data_continue.Rows(0)("total_stop").ToString = "0" And Not data_continue.Rows(0)("first_ia_notif").ToString = "") Then
-                export_store()
-            End If
+        'If (data_continue.Rows(0)("total_stop").ToString = "0") Or (Not data_continue.Rows(0)("total_stop").ToString = "0" And Not data_continue.Rows(0)("first_ia_notif").ToString = "") Then
+        '    export_store()
+        'End If
 
-            If Not data_continue.Rows(0)("total_stop").ToString = "0" And Not data_continue.Rows(0)("first_ia_notif").ToString = "" Then
-                BtnStopStockTake.Visible = True
-            End If
-        Else
-            stopCustom("Cannot export, because scan time's up.")
+        export_store()
+
+        If Not data_continue.Rows(0)("total_stop").ToString = "0" And Not data_continue.Rows(0)("first_ia_notif").ToString = "" Then
+            BtnStopStockTake.Visible = True
         End If
+        'Else
+        'stopCustom("Cannot export, because scan time's up.")
+        'End If
     End Sub
 
     Private Sub BtnStopStockTake_Click(sender As Object, e As EventArgs) Handles BtnStopStockTake.Click

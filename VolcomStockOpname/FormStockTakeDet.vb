@@ -729,32 +729,39 @@
     End Sub
 
     Sub checkCode()
-        Dim code As String = addSlashes(TxtScan.Text)
-        Dim code_check As String = ""
-        If code.Length = 16 Then
-            code_check = code.Substring(0, 12)
-        Else
-            code_check = code
+        Dim nxt As Boolean = True
+
+        If is_login_store = "1" Then
+            nxt = FormStockTake.check_ia_notif()
         End If
 
-        'checedit reject
-        Dim is_reject As String = ""
-        If CheckEditReject.EditValue.ToString = "True" Then
-            is_reject = "1"
-        Else
-            is_reject = "2"
-        End If
+        If nxt Then
+            Dim code As String = addSlashes(TxtScan.Text)
+            Dim code_check As String = ""
+            If code.Length = 16 Then
+                code_check = code.Substring(0, 12)
+            Else
+                code_check = code
+            End If
 
-        'checkedit no tag
-        Dim is_no_tag As String = ""
-        If CheckEditNoTag.EditValue.ToString = "True" Then
-            is_no_tag = "1"
-        Else
-            is_no_tag = "2"
-        End If
+            'checedit reject
+            Dim is_reject As String = ""
+            If CheckEditReject.EditValue.ToString = "True" Then
+                is_reject = "1"
+            Else
+                is_reject = "2"
+            End If
 
-        'check di master
-        Dim query_check As String = "SELECT p.id_product, p.product_full_code AS `code`, d.design_code, d.design_display_name AS `name`, cd.code_detail_name AS `size`, d.is_old_design, IFNULL(st.qty,0) AS `qty`,
+            'checkedit no tag
+            Dim is_no_tag As String = ""
+            If CheckEditNoTag.EditValue.ToString = "True" Then
+                is_no_tag = "1"
+            Else
+                is_no_tag = "2"
+            End If
+
+            'check di master
+            Dim query_check As String = "SELECT p.id_product, p.product_full_code AS `code`, d.design_code, d.design_display_name AS `name`, cd.code_detail_name AS `size`, d.is_old_design, IFNULL(st.qty,0) AS `qty`,
             comp.id_comp_cat,IF(comp.id_comp_cat=5,wtyp.id_wh_type, styp.id_store_type) AS `id_acc_type` , prc.id_design_price, IF((IF(comp.id_comp_cat=5,wtyp.id_wh_type, styp.id_store_type))=1,IFNULL(fd.design_price,0),IFNULL(prc.design_price,0)) AS `design_price`, prc.id_design_cat, prc.design_cat,
             IF(IFNULL(st.qty,0)<=0,'1','2') AS `is_no_stock`, IF((IF(comp.id_comp_cat=5,wtyp.id_wh_type, styp.id_store_type))=1 AND prc.id_design_cat<>1 AND !ISNULL(prc.id_design_price),1,2) AS `is_sale`, '2' AS `is_no_master`
             FROM tb_m_product p 
@@ -779,152 +786,155 @@
             ) prc ON prc.id_design = d.id_design
             LEFT JOIN tb_m_design_first_del fd ON fd.id_design = d.id_design AND fd.id_comp = comp.id_comp
             WHERE p.product_full_code='" + code_check + "' "
-        Dim dt_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
-        If dt_check.Rows.Count > 0 Then
-            'ketemu
-            Dim code_saved As String = ""
-            Dim is_unique_not_found As String = "2"
-            Dim is_12_digit As String = "2"
-            If dt_check.Rows(0)("is_old_design") = "2" Then 'unique code
-                code_saved = code
-                Dim query_u As String = "SELECT IF(COUNT(*)>0,'2','1') AS `is_found` 
+            Dim dt_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+            If dt_check.Rows.Count > 0 Then
+                'ketemu
+                Dim code_saved As String = ""
+                Dim is_unique_not_found As String = "2"
+                Dim is_12_digit As String = "2"
+                If dt_check.Rows(0)("is_old_design") = "2" Then 'unique code
+                    code_saved = code
+                    Dim query_u As String = "SELECT IF(COUNT(*)>0,'2','1') AS `is_found` 
                     FROM tb_st_unique u
                     INNER JOIN tb_m_comp c ON c.id_comp = u.id_comp AND c.id_drawer_def=" + id_drawer + "
                     WHERE u.unique_code='" + code + "' "
-                is_unique_not_found = execute_query(query_u, 0, True, "", "", "", "")
+                    is_unique_not_found = execute_query(query_u, 0, True, "", "", "", "")
 
-                'jika ada unik tdk sesuai dan no tag tidak dicentang
-                If is_unique_not_found = "1" And CERecordUniqueNotFound.EditValue = False Then
-                    stopCustomDialog("Unique code not found !")
-                    makeSafeGV(GVScan)
-                    GVScan.FocusedRowHandle = GVScan.RowCount - 1
+                    'jika ada unik tdk sesuai dan no tag tidak dicentang
+                    If is_unique_not_found = "1" And CERecordUniqueNotFound.EditValue = False Then
+                        stopCustomDialog("Unique code not found !")
+                        makeSafeGV(GVScan)
+                        GVScan.FocusedRowHandle = GVScan.RowCount - 1
+                        TxtScan.Text = ""
+                        TxtScan.Focus()
+                        Exit Sub
+                    End If
+
+                    'CHECK DUPLICATE
+                    If code.Length = 16 Then
+                        makeSafeGV(GVScan)
+                        GVScan.ActiveFilterString = "[code]='" + code + "' "
+                        If GVScan.RowCount > 0 Then
+                            stopCustomDialog("Duplicate scan !")
+                            makeSafeGV(GVScan)
+                            GVScan.FocusedRowHandle = GVScan.RowCount - 1
+                            TxtScan.Text = ""
+                            TxtScan.Focus()
+                            Exit Sub
+                        Else
+                            makeSafeGV(GVScan)
+                        End If
+
+                        'cek di transaksi lain
+                        Dim qdup As String = "SELECT m.st_trans_number 
+                        FROM tb_st_trans_det d 
+                        INNER JOIN tb_st_trans m ON m.id_st_trans = d.id_st_trans
+                        WHERE d.`code`='" + code + "' AND m.id_report_status!=5 AND m.is_combine=2 LIMIT 1 "
+                        Dim ddup As DataTable = execute_query(qdup, -1, True, "", "", "", "")
+                        If ddup.Rows.Count > 0 Then
+                            stopCustomDialog("Already scanned in transaction number : " + ddup.Rows(0)("st_trans_number").ToString)
+                            makeSafeGV(GVScan)
+                            GVScan.FocusedRowHandle = GVScan.RowCount - 1
+                            TxtScan.Text = ""
+                            TxtScan.Focus()
+                            Exit Sub
+                        End If
+                    End If
+                ElseIf dt_check.Rows(0)("is_old_design") = "3" Then 'unique code peralihan
+                    code_saved = code
+                Else '
+                    code_saved = code
+                    If code.Length > 12 Then 'jika tidak 12 digit dicek duplikat
+                        is_12_digit = "2"
+                        makeSafeGV(GVScan)
+                        GVScan.ActiveFilterString = "[code]='" + code + "' "
+                        If GVScan.RowCount > 0 Then
+                            stopCustomDialog("Duplicate scan !")
+                            makeSafeGV(GVScan)
+                            GVScan.FocusedRowHandle = GVScan.RowCount - 1
+                            TxtScan.Text = ""
+                            TxtScan.Focus()
+                            Exit Sub
+                        Else
+                            makeSafeGV(GVScan)
+                        End If
+
+                        'cek di transaksi lain
+                        Dim qdup As String = "SELECT m.st_trans_number 
+                        FROM tb_st_trans_det d 
+                        INNER JOIN tb_st_trans m ON m.id_st_trans = d.id_st_trans
+                        WHERE d.`code`='" + code + "' AND m.id_report_status!=5 AND m.is_combine=2 LIMIT 1 "
+                        Dim ddup As DataTable = execute_query(qdup, -1, True, "", "", "", "")
+                        If ddup.Rows.Count > 0 Then
+                            stopCustomDialog("Already scanned in transaction number : " + ddup.Rows(0)("st_trans_number").ToString)
+                            makeSafeGV(GVScan)
+                            GVScan.FocusedRowHandle = GVScan.RowCount - 1
+                            TxtScan.Text = ""
+                            TxtScan.Focus()
+                            Exit Sub
+                        End If
+                    Else
+                        is_12_digit = "1"
+                    End If
+                End If
+
+                'temporary krn pake BOF
+                If is_12_digit = "1" And CEHideAllNotice.EditValue = False Then
+                    stopCustomDialog("SCAN BARCODE 12 DIGIT ")
+                End If
+
+                'check status
+                Dim is_ok As String = ""
+                If dt_check.Rows(0)("is_no_stock").ToString = "2" And dt_check.Rows(0)("is_no_master").ToString = "2" And dt_check.Rows(0)("is_sale").ToString = "2" And is_reject = "2" And is_no_tag = "2" And is_unique_not_found = "2" Then
+                    is_ok = "1"
+                Else
+                    is_ok = "2"
+                    Dim err_head As String = "PROBLEM PRODUCT : " + System.Environment.NewLine
+                    Dim err As String = ""
+                    If dt_check.Rows(0)("is_no_stock").ToString = "1" Then
+                        err += "- NO STOCK " + System.Environment.NewLine
+                    End If
+                    If dt_check.Rows(0)("is_sale").ToString = "1" And CheckEditSale.EditValue.ToString = "False" Then
+                        err += "- PRODUCT SALE " + System.Environment.NewLine
+                    End If
+                    If is_unique_not_found = "1" Then
+                        err += "- UNIQUE CODE NOT FOUND " + System.Environment.NewLine
+                    End If
+                    If err <> "" And CEHideAllNotice.EditValue = False Then
+                        stopCustomDialog(err_head + err)
+                    End If
+                End If
+
+                'insert 
+                Dim query_ins As String = "INSERT INTO tb_st_trans_det(id_st_trans, is_ok, is_no_stock, is_no_tag, is_sale, is_reject, is_unique_not_found, id_product, code, name, size, qty, id_design_price, design_price) 
+                VALUES ('" + id_st_trans + "', '" + is_ok + "', '" + dt_check.Rows(0)("is_no_stock").ToString + "', '" + is_no_tag + "', '" + dt_check.Rows(0)("is_sale").ToString + "','" + is_reject + "', '" + is_unique_not_found + "', '" + dt_check.Rows(0)("id_product").ToString + "','" + addSlashes(code_saved) + "', '" + addSlashes(dt_check.Rows(0)("name").ToString) + "','" + addSlashes(dt_check.Rows(0)("size").ToString) + "', 1, '" + dt_check.Rows(0)("id_design_price").ToString + "', '" + decimalSQL(dt_check.Rows(0)("design_price").ToString) + "') "
+                execute_non_query(query_ins, True, "", "", "", "")
+                updatedBy()
+                viewDetail()
+                GVScan.FocusedRowHandle = GVScan.RowCount - 1
+                TxtScan.Text = ""
+                TxtScan.Focus()
+            Else
+                If is_record_unreg = "2" Then
+                    stopCustomDialog("PRODUCT NOT FOUND IN MASTER LIST !")
                     TxtScan.Text = ""
                     TxtScan.Focus()
-                    Exit Sub
-                End If
-
-                'CHECK DUPLICATE
-                If code.Length = 16 Then
-                    makeSafeGV(GVScan)
-                    GVScan.ActiveFilterString = "[code]='" + code + "' "
-                    If GVScan.RowCount > 0 Then
-                        stopCustomDialog("Duplicate scan !")
-                        makeSafeGV(GVScan)
-                        GVScan.FocusedRowHandle = GVScan.RowCount - 1
-                        TxtScan.Text = ""
-                        TxtScan.Focus()
-                        Exit Sub
-                    Else
-                        makeSafeGV(GVScan)
-                    End If
-
-                    'cek di transaksi lain
-                    Dim qdup As String = "SELECT m.st_trans_number 
-                        FROM tb_st_trans_det d 
-                        INNER JOIN tb_st_trans m ON m.id_st_trans = d.id_st_trans
-                        WHERE d.`code`='" + code + "' AND m.id_report_status!=5 AND m.is_combine=2 LIMIT 1 "
-                    Dim ddup As DataTable = execute_query(qdup, -1, True, "", "", "", "")
-                    If ddup.Rows.Count > 0 Then
-                        stopCustomDialog("Already scanned in transaction number : " + ddup.Rows(0)("st_trans_number").ToString)
-                        makeSafeGV(GVScan)
-                        GVScan.FocusedRowHandle = GVScan.RowCount - 1
-                        TxtScan.Text = ""
-                        TxtScan.Focus()
-                        Exit Sub
-                    End If
-                End If
-            ElseIf dt_check.Rows(0)("is_old_design") = "3" Then 'unique code peralihan
-                code_saved = code
-            Else '
-                code_saved = code
-                If code.Length > 12 Then 'jika tidak 12 digit dicek duplikat
-                    is_12_digit = "2"
-                    makeSafeGV(GVScan)
-                    GVScan.ActiveFilterString = "[code]='" + code + "' "
-                    If GVScan.RowCount > 0 Then
-                        stopCustomDialog("Duplicate scan !")
-                        makeSafeGV(GVScan)
-                        GVScan.FocusedRowHandle = GVScan.RowCount - 1
-                        TxtScan.Text = ""
-                        TxtScan.Focus()
-                        Exit Sub
-                    Else
-                        makeSafeGV(GVScan)
-                    End If
-
-                    'cek di transaksi lain
-                    Dim qdup As String = "SELECT m.st_trans_number 
-                        FROM tb_st_trans_det d 
-                        INNER JOIN tb_st_trans m ON m.id_st_trans = d.id_st_trans
-                        WHERE d.`code`='" + code + "' AND m.id_report_status!=5 AND m.is_combine=2 LIMIT 1 "
-                    Dim ddup As DataTable = execute_query(qdup, -1, True, "", "", "", "")
-                    If ddup.Rows.Count > 0 Then
-                        stopCustomDialog("Already scanned in transaction number : " + ddup.Rows(0)("st_trans_number").ToString)
-                        makeSafeGV(GVScan)
-                        GVScan.FocusedRowHandle = GVScan.RowCount - 1
-                        TxtScan.Text = ""
-                        TxtScan.Focus()
-                        Exit Sub
-                    End If
                 Else
-                    is_12_digit = "1"
+                    stopCustomDialog("PRODUCT NOT FOUND IN MASTER LIST !")
+                    FormStockTakeFaik.ShowDialog()
+                    TxtScan.Text = ""
+                    TxtScan.Focus()
+                    'Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("PRODUCT NOT FOUND IN MASTER LIST !" + System.Environment.NewLine + "DO YOU WANT TO RECORD THIS PRODUCT ?", "SCAN FAILED", MessageBoxButtons.YesNo, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button3)
+                    'If confirm = DialogResult.Yes Then
+
+                    'Else
+                    '    TxtScan.Text = ""
+                    '    TxtScan.Focus()
+                    'End If
                 End If
             End If
-
-            'temporary krn pake BOF
-            If is_12_digit = "1" And CEHideAllNotice.EditValue = False Then
-                stopCustomDialog("SCAN BARCODE 12 DIGIT ")
-            End If
-
-            'check status
-            Dim is_ok As String = ""
-            If dt_check.Rows(0)("is_no_stock").ToString = "2" And dt_check.Rows(0)("is_no_master").ToString = "2" And dt_check.Rows(0)("is_sale").ToString = "2" And is_reject = "2" And is_no_tag = "2" And is_unique_not_found = "2" Then
-                is_ok = "1"
-            Else
-                is_ok = "2"
-                Dim err_head As String = "PROBLEM PRODUCT : " + System.Environment.NewLine
-                Dim err As String = ""
-                If dt_check.Rows(0)("is_no_stock").ToString = "1" Then
-                    err += "- NO STOCK " + System.Environment.NewLine
-                End If
-                If dt_check.Rows(0)("is_sale").ToString = "1" And CheckEditSale.EditValue.ToString = "False" Then
-                    err += "- PRODUCT SALE " + System.Environment.NewLine
-                End If
-                If is_unique_not_found = "1" Then
-                    err += "- UNIQUE CODE NOT FOUND " + System.Environment.NewLine
-                End If
-                If err <> "" And CEHideAllNotice.EditValue = False Then
-                    stopCustomDialog(err_head + err)
-                End If
-            End If
-
-            'insert 
-            Dim query_ins As String = "INSERT INTO tb_st_trans_det(id_st_trans, is_ok, is_no_stock, is_no_tag, is_sale, is_reject, is_unique_not_found, id_product, code, name, size, qty, id_design_price, design_price) 
-                VALUES ('" + id_st_trans + "', '" + is_ok + "', '" + dt_check.Rows(0)("is_no_stock").ToString + "', '" + is_no_tag + "', '" + dt_check.Rows(0)("is_sale").ToString + "','" + is_reject + "', '" + is_unique_not_found + "', '" + dt_check.Rows(0)("id_product").ToString + "','" + addSlashes(code_saved) + "', '" + addSlashes(dt_check.Rows(0)("name").ToString) + "','" + addSlashes(dt_check.Rows(0)("size").ToString) + "', 1, '" + dt_check.Rows(0)("id_design_price").ToString + "', '" + decimalSQL(dt_check.Rows(0)("design_price").ToString) + "') "
-            execute_non_query(query_ins, True, "", "", "", "")
-            updatedBy()
-            viewDetail()
-            GVScan.FocusedRowHandle = GVScan.RowCount - 1
-            TxtScan.Text = ""
-            TxtScan.Focus()
         Else
-            If is_record_unreg = "2" Then
-                stopCustomDialog("PRODUCT NOT FOUND IN MASTER LIST !")
-                TxtScan.Text = ""
-                TxtScan.Focus()
-            Else
-                stopCustomDialog("PRODUCT NOT FOUND IN MASTER LIST !")
-                FormStockTakeFaik.ShowDialog()
-                TxtScan.Text = ""
-                TxtScan.Focus()
-                'Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("PRODUCT NOT FOUND IN MASTER LIST !" + System.Environment.NewLine + "DO YOU WANT TO RECORD THIS PRODUCT ?", "SCAN FAILED", MessageBoxButtons.YesNo, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button3)
-                'If confirm = DialogResult.Yes Then
-
-                'Else
-                '    TxtScan.Text = ""
-                '    TxtScan.Focus()
-                'End If
-            End If
+            stopCustomDialog("CANNOT SCAN, BECAUSE SCAN TIME'S UP.")
         End If
     End Sub
 

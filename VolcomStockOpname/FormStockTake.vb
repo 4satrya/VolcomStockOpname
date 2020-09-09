@@ -276,7 +276,7 @@ Public Class FormStockTake
                 End Using
 
                 'copying data
-                Dim qv As String = "SELECT * FROM tb_st_trans_" + code_user_restore
+                Dim qv As String = "SELECT * FROM tb_st_trans_" + code_user_restore + " WHERE st_trans_number NOT IN (SELECT st_trans_number FROM tb_st_trans)"
                 Dim dv As DataTable = execute_query(qv, -1, True, "", "", "", "")
                 Dim jv As Integer = dv.Rows.Count
                 For j As Integer = 0 To dv.Rows.Count - 1
@@ -291,7 +291,7 @@ Public Class FormStockTake
                 'no tag
                 Dim table_no_tag As DataTable = execute_query("SHOW TABLES LIKE 'tb_st_no_tag_" + code_user_restore + "';", -1, True, "", "", "", "")
                 If table_no_tag.Rows.Count > 0 Then
-                    Dim qn As String = "SELECT * FROM tb_st_no_tag_" + code_user_restore
+                    Dim qn As String = "SELECT * FROM tb_st_no_tag_" + code_user_restore + " WHERE no_tag_number NOT IN (SELECT no_tag_number FROM tb_st_no_tag)"
                     Dim dn As DataTable = execute_query(qn, -1, True, "", "", "", "")
                     Dim kn As Integer = dn.Rows.Count
                     For k As Integer = 0 To dn.Rows.Count - 1
@@ -327,7 +327,7 @@ Public Class FormStockTake
         If GVScan.RowCount > 0 Then
             For i As Integer = 0 To ((GVScan.RowCount - 1) - GetGroupRowCount(GVScan))
                 Dim id_report_status As String = GVScan.GetRowCellValue(i, "id_report_status").ToString
-                If cek And id_report_status = "1" Then
+                If cek And id_report_status <> "5" Then
                     GVScan.SetRowCellValue(i, "is_select", "Yes")
                 Else
                     GVScan.SetRowCellValue(i, "is_select", "No")
@@ -337,7 +337,7 @@ Public Class FormStockTake
         If GVNoTag.RowCount > 0 Then
             For i As Integer = 0 To ((GVNoTag.RowCount - 1) - GetGroupRowCount(GVNoTag))
                 Dim id_report_status As String = GVNoTag.GetRowCellValue(i, "id_report_status").ToString
-                If cek And id_report_status = "1" Then
+                If cek And id_report_status <> "5" Then
                     GVNoTag.SetRowCellValue(i, "is_select", "Yes")
                 Else
                     GVNoTag.SetRowCellValue(i, "is_select", "No")

@@ -21,6 +21,7 @@
     Sub userPriv()
         If id_role_login = "1" Then
             'super admin
+            NBDashboard.Visible = True
             NBExport.Visible = True
             NBImport.Visible = True
             NBStockTake.Visible = True
@@ -31,6 +32,7 @@
             NBScanGlobal.Visible = True
         ElseIf id_role_login = "2" Then
             'IA
+            NBDashboard.Visible = True
             NBExport.Visible = True
             NBImport.Visible = True
             NBStockTake.Visible = True
@@ -41,6 +43,7 @@
             NBScanGlobal.Visible = True
         ElseIf id_role_login = "3" Then
             'WH ADMIN
+            NBDashboard.Visible = True
             NBExport.Visible = True
             NBImport.Visible = True
             NBStockTake.Visible = False
@@ -51,6 +54,7 @@
             NBScanGlobal.Visible = True
         ElseIf id_role_login = "4" Then
             'WH
+            NBDashboard.Visible = True
             NBExport.Visible = False
             NBImport.Visible = False
             NBStockTake.Visible = False
@@ -61,6 +65,7 @@
             NBScanGlobal.Visible = False
         ElseIf id_role_login = "5" Then
             'STORE
+            NBDashboard.Visible = False
             NBExport.Visible = False
             NBImport.Visible = False
             NBStockTake.Visible = True
@@ -71,6 +76,7 @@
             NBScanGlobal.Visible = False
             NBStock.Visible = False
         Else
+            NBDashboard.Visible = False
             NBExport.Visible = False
             NBImport.Visible = False
             NBStockTake.Visible = False

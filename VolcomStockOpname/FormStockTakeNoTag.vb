@@ -21,10 +21,15 @@
 
         If is_login_store = "1" Then
             LookAndFeel.UseDefaultLookAndFeel = False
-            LookAndFeel.SkinMaskColor = Color.LightPink
 
             If is_no_edit = "1" Then
                 GroupControl2.Visible = False
+
+                If GVScan.RowCount > 0 Then
+                    LookAndFeel.SkinMaskColor = Color.LightPink
+                End If
+            Else
+                LookAndFeel.SkinMaskColor = Color.LightPink
             End If
         End If
     End Sub

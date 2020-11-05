@@ -99,6 +99,7 @@ Partial Class FormStockTake
         Me.BtnPrintCom = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreateCom = New DevExpress.XtraEditors.SimpleButton()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.SBOpenFile = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCStockTake, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStockTake.SuspendLayout()
         Me.XTPScan.SuspendLayout()
@@ -136,7 +137,7 @@ Partial Class FormStockTake
         Me.XTCStockTake.Location = New System.Drawing.Point(0, 0)
         Me.XTCStockTake.Name = "XTCStockTake"
         Me.XTCStockTake.SelectedTabPage = Me.XTPScan
-        Me.XTCStockTake.Size = New System.Drawing.Size(1530, 522)
+        Me.XTCStockTake.Size = New System.Drawing.Size(1609, 522)
         Me.XTCStockTake.TabIndex = 0
         Me.XTCStockTake.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScan, Me.XtraTabPage2})
         '
@@ -145,7 +146,7 @@ Partial Class FormStockTake
         Me.XTPScan.Controls.Add(Me.XTCProduct)
         Me.XTPScan.Controls.Add(Me.PanelControl1)
         Me.XTPScan.Name = "XTPScan"
-        Me.XTPScan.Size = New System.Drawing.Size(1524, 494)
+        Me.XTPScan.Size = New System.Drawing.Size(1603, 494)
         Me.XTPScan.Text = "Scan"
         '
         'XTCProduct
@@ -155,7 +156,7 @@ Partial Class FormStockTake
         Me.XTCProduct.Location = New System.Drawing.Point(0, 42)
         Me.XTCProduct.Name = "XTCProduct"
         Me.XTCProduct.SelectedTabPage = Me.XTPScanList
-        Me.XTCProduct.Size = New System.Drawing.Size(1524, 452)
+        Me.XTCProduct.Size = New System.Drawing.Size(1603, 452)
         Me.XTCProduct.TabIndex = 2
         Me.XTCProduct.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScanList, Me.XTPNoTag})
         '
@@ -163,7 +164,7 @@ Partial Class FormStockTake
         '
         Me.XTPScanList.Controls.Add(Me.GCScan)
         Me.XTPScanList.Name = "XTPScanList"
-        Me.XTPScanList.Size = New System.Drawing.Size(1495, 446)
+        Me.XTPScanList.Size = New System.Drawing.Size(1574, 446)
         Me.XTPScanList.Text = "Scan List"
         '
         'GCScan
@@ -174,7 +175,7 @@ Partial Class FormStockTake
         Me.GCScan.MainView = Me.GVScan
         Me.GCScan.Name = "GCScan"
         Me.GCScan.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCScan.Size = New System.Drawing.Size(1495, 446)
+        Me.GCScan.Size = New System.Drawing.Size(1574, 446)
         Me.GCScan.TabIndex = 0
         Me.GCScan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScan})
         '
@@ -347,7 +348,7 @@ Partial Class FormStockTake
         '
         Me.XTPNoTag.Controls.Add(Me.GCNoTag)
         Me.XTPNoTag.Name = "XTPNoTag"
-        Me.XTPNoTag.Size = New System.Drawing.Size(1495, 446)
+        Me.XTPNoTag.Size = New System.Drawing.Size(1574, 446)
         Me.XTPNoTag.Text = "No Tag"
         '
         'GCNoTag
@@ -358,7 +359,7 @@ Partial Class FormStockTake
         Me.GCNoTag.MainView = Me.GVNoTag
         Me.GCNoTag.Name = "GCNoTag"
         Me.GCNoTag.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit3})
-        Me.GCNoTag.Size = New System.Drawing.Size(1495, 446)
+        Me.GCNoTag.Size = New System.Drawing.Size(1574, 446)
         Me.GCNoTag.TabIndex = 1
         Me.GCNoTag.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVNoTag})
         '
@@ -512,6 +513,7 @@ Partial Class FormStockTake
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SBOpenFile)
         Me.PanelControl1.Controls.Add(Me.BtnStopStockTake)
         Me.PanelControl1.Controls.Add(Me.BtnExportStop)
         Me.PanelControl1.Controls.Add(Me.PCSelectAll)
@@ -528,7 +530,7 @@ Partial Class FormStockTake
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1524, 42)
+        Me.PanelControl1.Size = New System.Drawing.Size(1603, 42)
         Me.PanelControl1.TabIndex = 1
         '
         'BtnStopStockTake
@@ -577,7 +579,7 @@ Partial Class FormStockTake
         Me.PanelControl3.Controls.Add(Me.LEViewUser)
         Me.PanelControl3.Controls.Add(Me.LabelControl1)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl3.Location = New System.Drawing.Point(633, 2)
+        Me.PanelControl3.Location = New System.Drawing.Point(712, 2)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(204, 38)
         Me.PanelControl3.TabIndex = 9
@@ -603,7 +605,7 @@ Partial Class FormStockTake
         '
         Me.BtnRefresh.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnRefresh.Image = CType(resources.GetObject("BtnRefresh.Image"), System.Drawing.Image)
-        Me.BtnRefresh.Location = New System.Drawing.Point(837, 2)
+        Me.BtnRefresh.Location = New System.Drawing.Point(916, 2)
         Me.BtnRefresh.Name = "BtnRefresh"
         Me.BtnRefresh.Size = New System.Drawing.Size(97, 38)
         Me.BtnRefresh.TabIndex = 2
@@ -613,7 +615,7 @@ Partial Class FormStockTake
         '
         Me.BtnList.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnList.Image = CType(resources.GetObject("BtnList.Image"), System.Drawing.Image)
-        Me.BtnList.Location = New System.Drawing.Point(934, 2)
+        Me.BtnList.Location = New System.Drawing.Point(1013, 2)
         Me.BtnList.Name = "BtnList"
         Me.BtnList.Size = New System.Drawing.Size(88, 38)
         Me.BtnList.TabIndex = 6
@@ -643,7 +645,7 @@ Partial Class FormStockTake
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(1022, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(1101, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(88, 38)
         Me.BtnPrint.TabIndex = 5
@@ -653,7 +655,7 @@ Partial Class FormStockTake
         '
         Me.SBRejectStore.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBRejectStore.Image = CType(resources.GetObject("SBRejectStore.Image"), System.Drawing.Image)
-        Me.SBRejectStore.Location = New System.Drawing.Point(1110, 2)
+        Me.SBRejectStore.Location = New System.Drawing.Point(1189, 2)
         Me.SBRejectStore.LookAndFeel.SkinMaskColor = System.Drawing.Color.Yellow
         Me.SBRejectStore.LookAndFeel.UseDefaultLookAndFeel = False
         Me.SBRejectStore.Name = "SBRejectStore"
@@ -665,7 +667,7 @@ Partial Class FormStockTake
         '
         Me.SBNoTagStore.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBNoTagStore.Image = CType(resources.GetObject("SBNoTagStore.Image"), System.Drawing.Image)
-        Me.SBNoTagStore.Location = New System.Drawing.Point(1207, 2)
+        Me.SBNoTagStore.Location = New System.Drawing.Point(1286, 2)
         Me.SBNoTagStore.LookAndFeel.SkinMaskColor = System.Drawing.Color.Red
         Me.SBNoTagStore.LookAndFeel.UseDefaultLookAndFeel = False
         Me.SBNoTagStore.Name = "SBNoTagStore"
@@ -677,7 +679,7 @@ Partial Class FormStockTake
         '
         Me.SBAddStore.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBAddStore.Image = CType(resources.GetObject("SBAddStore.Image"), System.Drawing.Image)
-        Me.SBAddStore.Location = New System.Drawing.Point(1304, 2)
+        Me.SBAddStore.Location = New System.Drawing.Point(1383, 2)
         Me.SBAddStore.LookAndFeel.SkinMaskColor = System.Drawing.Color.Green
         Me.SBAddStore.LookAndFeel.UseDefaultLookAndFeel = False
         Me.SBAddStore.Name = "SBAddStore"
@@ -689,7 +691,7 @@ Partial Class FormStockTake
         '
         Me.BtnNew.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnNew.Image = CType(resources.GetObject("BtnNew.Image"), System.Drawing.Image)
-        Me.BtnNew.Location = New System.Drawing.Point(1413, 2)
+        Me.BtnNew.Location = New System.Drawing.Point(1492, 2)
         Me.BtnNew.Name = "BtnNew"
         Me.BtnNew.Size = New System.Drawing.Size(109, 38)
         Me.BtnNew.TabIndex = 3
@@ -893,11 +895,22 @@ Partial Class FormStockTake
         Me.BtnCreateCom.TabIndex = 3
         Me.BtnCreateCom.Text = "Create New "
         '
+        'SBOpenFile
+        '
+        Me.SBOpenFile.Dock = System.Windows.Forms.DockStyle.Left
+        Me.SBOpenFile.Image = CType(resources.GetObject("SBOpenFile.Image"), System.Drawing.Image)
+        Me.SBOpenFile.Location = New System.Drawing.Point(567, 2)
+        Me.SBOpenFile.Name = "SBOpenFile"
+        Me.SBOpenFile.Size = New System.Drawing.Size(141, 38)
+        Me.SBOpenFile.TabIndex = 8918
+        Me.SBOpenFile.Text = "Open .sql Location"
+        Me.SBOpenFile.Visible = False
+        '
         'FormStockTake
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1530, 522)
+        Me.ClientSize = New System.Drawing.Size(1609, 522)
         Me.Controls.Add(Me.XTCStockTake)
         Me.Name = "FormStockTake"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -1013,4 +1026,5 @@ Partial Class FormStockTake
     Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnStopStockTake As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBOpenFile As DevExpress.XtraEditors.SimpleButton
 End Class

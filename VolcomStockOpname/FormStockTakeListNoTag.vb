@@ -19,6 +19,10 @@
         GCScan.DataSource = data
 
         GVScan.BestFitColumns()
+
+        If is_login_store = "1" Then
+            GVScan.Columns("remark").Caption = "Lokasi"
+        End If
     End Sub
 
     Private Sub GVScan_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVScan.CustomColumnDisplayText

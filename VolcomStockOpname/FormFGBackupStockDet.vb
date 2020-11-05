@@ -264,7 +264,7 @@ Public Class FormFGBackupStockDet
                     Dim scan_time As String = execute_query("
                         SELECT scan_time
                         FROM tb_st_stop_opt
-                        WHERE soh_amount <= (SELECT SUM(qty) AS qty FROM tb_st_stock)
+                        WHERE soh_amount <= IFNULL((SELECT SUM(qty) AS qty FROM tb_st_stock), 0)
                         ORDER BY id_st_stop_opt DESC
                         LIMIT 1
                     ", 0, False, app_host_main, app_username_main, app_password_main, app_database_main)

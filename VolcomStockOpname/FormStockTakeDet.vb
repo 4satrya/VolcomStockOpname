@@ -882,8 +882,10 @@
                 End If
 
                 'temporary krn pake BOF
-                If is_12_digit = "1" And CEHideAllNotice.EditValue = False Then
-                    stopCustomDialog("SCAN BARCODE 12 DIGIT ")
+                If Not is_login_store = "1" Then
+                    If is_12_digit = "1" And CEHideAllNotice.EditValue = False Then
+                        stopCustomDialog("SCAN BARCODE 12 DIGIT ")
+                    End If
                 End If
 
                 'check status
@@ -894,11 +896,13 @@
                     is_ok = "2"
                     Dim err_head As String = "PROBLEM PRODUCT : " + System.Environment.NewLine
                     Dim err As String = ""
-                    If dt_check.Rows(0)("is_no_stock").ToString = "1" Then
-                        err += "- NO STOCK " + System.Environment.NewLine
-                    End If
-                    If dt_check.Rows(0)("is_sale").ToString = "1" And CheckEditSale.EditValue.ToString = "False" Then
-                        err += "- PRODUCT SALE " + System.Environment.NewLine
+                    If Not is_login_store = "1" Then
+                        If dt_check.Rows(0)("is_no_stock").ToString = "1" Then
+                            err += "- NO STOCK " + System.Environment.NewLine
+                        End If
+                        If dt_check.Rows(0)("is_sale").ToString = "1" And CheckEditSale.EditValue.ToString = "False" Then
+                            err += "- PRODUCT SALE " + System.Environment.NewLine
+                        End If
                     End If
                     If is_unique_not_found = "1" Then
                         err += "- UNIQUE CODE NOT FOUND " + System.Environment.NewLine

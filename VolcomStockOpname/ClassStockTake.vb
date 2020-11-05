@@ -37,7 +37,7 @@
         Dim query As String = "SELECT st.id_wh_drawer, st.remark, c.id_comp,c.comp_number, c.comp_name, CONCAT(c.comp_number,' - ', c.comp_name) AS `comp`, c.address_primary,st.id_st_trans, st.st_trans_number, 
         st.st_trans_date, st.st_trans_by, ep.employee_code AS `prepared_by_code`, IF(up.is_external_user = 1, up.name_external, ep.employee_name) AS `prepared_by`, IF(up.is_external_user = 1, up.position_external, ep.employee_position) AS `prepared_position`, 
         st.st_trans_updated_by, e.employee_code, IF(u.is_external_user = 1, u.name_external, e.employee_name) AS employee_name, 
-        st.st_trans_updated, st.is_combine, st.id_report_status, rs.report_status, st.report_status_note, IFNULL(q.qty,0) AS `qty`, 'No' AS `is_select`, IFNULL(st.id_combine,0) AS `id_combine`, st.acknowledge_by, IF(uack.is_external_user = 1, uack.name_external, eack.employee_position) AS `ack_position`, st.approved_by, IFNULL(r.is_reject, 2) AS is_reject
+        st.st_trans_updated, st.is_combine, st.id_report_status, rs.report_status, st.report_status_note, IFNULL(q.qty,0) AS `qty`, 'No' AS `is_select`, IFNULL(st.id_combine,0) AS `id_combine`, st.acknowledge_by, IF(uack.is_external_user = 1, uack.name_external, eack.employee_position) AS `ack_position`, st.approved_by, r.is_reject AS is_reject
         FROM tb_st_trans st
         LEFT JOIN tb_lookup_report_status rs ON rs.id_report_status = st.id_report_status
         LEFT JOIN tb_m_user u ON u.id_user = st.st_trans_updated_by

@@ -118,6 +118,9 @@
             GVScan.Columns("is_no_tag_v").Visible = False
             GVScan.Columns("is_unique_not_found_v").Visible = False
             GVScan.Columns("is_no_master_v").Visible = False
+
+            GVScan.Columns("remark").Caption = "Lokasi"
+            GVSummaryScan.Columns("remark").Caption = "Lokasi"
         End If
 
         viewDetail()

@@ -40,6 +40,14 @@ Public Class FormStockTake
             If Not is_notif_ia = "" Then
                 BtnStopStockTake.Visible = True
             End If
+
+            Dim is_stop_scan As String = execute_query("
+                SELECT COUNT(*) AS total FROM tb_st_stop_scan_log
+            ", 0, True, "", "", "", "")
+
+            If Not is_stop_scan = "0" Then
+                SBOpenFile.Visible = True
+            End If
         End If
 
         'check login store
@@ -51,6 +59,9 @@ Public Class FormStockTake
 
         If is_login_store = "1" Then
             BtnNew.Visible = False
+
+            GVScan.Columns("remark").Caption = "Lokasi"
+            GVNoTag.Columns("remark").Caption = "Lokasi"
         Else
             SBAddStore.Visible = False
             SBNoTagStore.Visible = False
@@ -447,6 +458,14 @@ Public Class FormStockTake
         If Not data_continue.Rows(0)("total_stop").ToString = "0" And Not data_continue.Rows(0)("first_ia_notif").ToString = "" Then
             BtnStopStockTake.Visible = True
         End If
+
+        Dim is_stop_scan As String = execute_query("
+                SELECT COUNT(*) AS total FROM tb_st_stop_scan_log
+            ", 0, True, "", "", "", "")
+
+        If Not is_stop_scan = "0" Then
+            SBOpenFile.Visible = True
+        End If
         'Else
         'stopCustom("Cannot export, because scan time's up.")
         'End If
@@ -612,7 +631,14 @@ Public Class FormStockTake
 
                     Dim fs_readme As IO.FileStream = IO.File.Create(path_readme)
 
-                    Dim info_readme As Byte() = New System.Text.UTF8Encoding(True).GetBytes("Mohon file " + fileName + " dikirimkan ke Internal Audit Volcom Indonesia.")
+                    Dim readme_txt As String = "Mohon file " + fileName + " dikirimkan ke Internal Audit Volcom Indonesia dengan cara sebagai berikut:
+
+1. Buka program email di komputer Anda
+2. Lampirkan file tersebut di atas : """ + fileName + """ dengan cara ""di-Select attahcment"" atau ""di-copy lalu paste""
+3. Setelah file tersebut terlampir di program email Anda, kirimkan ke alamat email agung@volcom.co.id
+4. Check sent item dan konfirmasikan telah diterima oleh Internal Audit Volcom Indonesia"
+
+                    Dim info_readme As Byte() = New System.Text.UTF8Encoding(True).GetBytes(readme_txt)
 
                     fs_readme.Write(info_readme, 0, info_readme.Length)
 
@@ -749,10 +775,10 @@ Public Class FormStockTake
 
     Private Sub GVScan_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVScan.RowCellStyle
         If is_login_store = "1" Then
-            e.Appearance.BackColor = Color.LightGreen
-
             If GVScan.GetRowCellValue(e.RowHandle, "is_reject").ToString = "1" Then
                 e.Appearance.BackColor = Color.LightYellow
+            ElseIf GVScan.GetRowCellValue(e.RowHandle, "is_reject").ToString = "2" Then
+                e.Appearance.BackColor = Color.LightGreen
             End If
         End If
     End Sub
@@ -763,7 +789,9 @@ Public Class FormStockTake
 
     Private Sub GVNoTag_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVNoTag.RowCellStyle
         If is_login_store = "1" Then
-            e.Appearance.BackColor = Color.LightPink
+            If Not GVNoTag.GetRowCellValue(e.RowHandle, "qty").ToString = "0" Then
+                e.Appearance.BackColor = Color.LightPink
+            End If
         End If
     End Sub
 
@@ -814,4 +842,12 @@ Public Class FormStockTake
 
         Return out
     End Function
+
+    Private Sub SBOpenFile_Click(sender As Object, e As EventArgs) Handles SBOpenFile.Click
+        Dim dbc_str As String() = Split(app_database, "_")
+        Dim header_number_x As String = combine_header_number("", Integer.Parse(get_setup_field("file_inc")) - 1, 0)
+        Dim name_dir = dbc_str(1) + "_" + dbc_str(2) + "_" + st_user_code + "_" + header_number_x
+
+        openFile("\" + name_dir)
+    End Sub
 End Class

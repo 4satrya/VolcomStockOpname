@@ -29,9 +29,9 @@ Partial Class FormStockTakeListNoTag
         Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDescription = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
         CType(Me.GCScan, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -128,6 +128,14 @@ Partial Class FormStockTakeListNoTag
         Me.GridColumnDescription.VisibleIndex = 4
         Me.GridColumnDescription.Width = 338
         '
+        'GridColumnSize
+        '
+        Me.GridColumnSize.Caption = "Size"
+        Me.GridColumnSize.FieldName = "size"
+        Me.GridColumnSize.Name = "GridColumnSize"
+        Me.GridColumnSize.Visible = True
+        Me.GridColumnSize.VisibleIndex = 5
+        '
         'GridColumnQty
         '
         Me.GridColumnQty.Caption = "Qty"
@@ -145,14 +153,6 @@ Partial Class FormStockTakeListNoTag
         Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
         Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
         Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
-        '
-        'GridColumnSize
-        '
-        Me.GridColumnSize.Caption = "Size"
-        Me.GridColumnSize.FieldName = "size"
-        Me.GridColumnSize.Name = "GridColumnSize"
-        Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 5
         '
         'FormStockTakeListNoTag
         '

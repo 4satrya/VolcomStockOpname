@@ -67,12 +67,13 @@
             SimpleButton3.Visible = False
 
             LookAndFeel.UseDefaultLookAndFeel = False
-            LookAndFeel.SkinMaskColor = Color.LightGreen
 
             If is_reject = "1" Then
                 CheckEditReject.Checked = True
 
                 LookAndFeel.SkinMaskColor = Color.LightYellow
+            ElseIf is_reject = "2" Then
+                LookAndFeel.SkinMaskColor = Color.LightGreen
             End If
 
             GridColumnOK.Visible = False
@@ -89,6 +90,8 @@
             DeleteItemToolStripMenuItem.Visible = False
 
             XTPCondition.PageVisible = False
+
+            LabelControl6.Text = "Lokasi"
         End If
 
         after_load = True

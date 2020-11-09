@@ -247,7 +247,12 @@ Public Class FormStockTake
     Sub openFile(ByVal additional As String)
         Cursor = Cursors.WaitCursor
         Dim path_root As String = Application.StartupPath + "\download\scan" + additional
-        Process.Start("explorer.exe", path_root)
+
+        Dim open_folder As ProcessStartInfo = New ProcessStartInfo()
+        open_folder.WindowStyle = ProcessWindowStyle.Maximized
+        open_folder.FileName = "explorer.exe"
+        open_folder.Arguments = path_root
+        Process.Start(open_folder)
         Cursor = Cursors.Default
     End Sub
 

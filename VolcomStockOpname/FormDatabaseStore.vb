@@ -107,7 +107,7 @@
         Me.Cursor = Cursors.WaitCursor
         Dim fdlg As OpenFileDialog = New OpenFileDialog()
         fdlg.Title = "Select sql file To import"
-        fdlg.InitialDirectory = Application.StartupPath + "\download"
+        fdlg.InitialDirectory = "C:\"
         fdlg.Filter = "SQL File|*.sql;"
         fdlg.FilterIndex = 0
         fdlg.RestoreDirectory = True

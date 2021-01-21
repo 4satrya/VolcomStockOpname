@@ -352,6 +352,9 @@
                 BtnSetStatus.Enabled = False
                 PanelControlNav.Visible = False
                 MERemark.Enabled = False
+                If id_role_login = "1" Or id_role_login = "2" Then
+                    MERemark.ReadOnly = True
+                End If
                 TextEditNote.Enabled = False
             Else
                 LEStatus.Enabled = True
@@ -360,6 +363,9 @@
                 BtnSetStatus.Enabled = True
                 PanelControlNav.Visible = True
                 MERemark.Enabled = True
+                If id_role_login = "1" Or id_role_login = "2" Then
+                    MERemark.ReadOnly = False
+                End If
                 TextEditNote.Enabled = True
             End If
         Else
@@ -371,6 +377,9 @@
                 TxtApp.Enabled = False
                 BtnSetStatus.Enabled = False
                 MERemark.Enabled = False
+                If id_role_login = "1" Or id_role_login = "2" Then
+                    MERemark.ReadOnly = True
+                End If
                 TextEditNote.Enabled = False
             Else
                 LEStatus.Enabled = True
@@ -378,6 +387,9 @@
                 TxtApp.Enabled = True
                 BtnSetStatus.Enabled = True
                 MERemark.Enabled = True
+                If id_role_login = "1" Or id_role_login = "2" Then
+                    MERemark.ReadOnly = False
+                End If
                 TextEditNote.Enabled = True
             End If
         End If

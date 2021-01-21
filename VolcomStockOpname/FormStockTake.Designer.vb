@@ -62,6 +62,7 @@ Partial Class FormStockTake
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBOpenFile = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnStopStockTake = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExportStop = New DevExpress.XtraEditors.SimpleButton()
         Me.PCSelectAll = New DevExpress.XtraEditors.PanelControl()
@@ -98,8 +99,8 @@ Partial Class FormStockTake
         Me.BtnRefCom = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrintCom = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreateCom = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnCombineAllScan = New DevExpress.XtraEditors.SimpleButton()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
-        Me.SBOpenFile = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCStockTake, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStockTake.SuspendLayout()
         Me.XTPScan.SuspendLayout()
@@ -533,6 +534,17 @@ Partial Class FormStockTake
         Me.PanelControl1.Size = New System.Drawing.Size(1603, 42)
         Me.PanelControl1.TabIndex = 1
         '
+        'SBOpenFile
+        '
+        Me.SBOpenFile.Dock = System.Windows.Forms.DockStyle.Left
+        Me.SBOpenFile.Image = CType(resources.GetObject("SBOpenFile.Image"), System.Drawing.Image)
+        Me.SBOpenFile.Location = New System.Drawing.Point(567, 2)
+        Me.SBOpenFile.Name = "SBOpenFile"
+        Me.SBOpenFile.Size = New System.Drawing.Size(141, 38)
+        Me.SBOpenFile.TabIndex = 8918
+        Me.SBOpenFile.Text = "Open .sql Location"
+        Me.SBOpenFile.Visible = False
+        '
         'BtnStopStockTake
         '
         Me.BtnStopStockTake.Dock = System.Windows.Forms.DockStyle.Left
@@ -702,7 +714,7 @@ Partial Class FormStockTake
         Me.XtraTabPage2.Controls.Add(Me.GCCombine)
         Me.XtraTabPage2.Controls.Add(Me.PanelControl2)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1524, 494)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1603, 494)
         Me.XtraTabPage2.Text = "Combine"
         '
         'GCCombine
@@ -713,7 +725,7 @@ Partial Class FormStockTake
         Me.GCCombine.MainView = Me.GVCombine
         Me.GCCombine.Name = "GCCombine"
         Me.GCCombine.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2})
-        Me.GCCombine.Size = New System.Drawing.Size(1524, 452)
+        Me.GCCombine.Size = New System.Drawing.Size(1603, 452)
         Me.GCCombine.TabIndex = 1
         Me.GCCombine.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCombine})
         '
@@ -859,17 +871,18 @@ Partial Class FormStockTake
         Me.PanelControl2.Controls.Add(Me.BtnRefCom)
         Me.PanelControl2.Controls.Add(Me.BtnPrintCom)
         Me.PanelControl2.Controls.Add(Me.BtnCreateCom)
+        Me.PanelControl2.Controls.Add(Me.BtnCombineAllScan)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1524, 42)
+        Me.PanelControl2.Size = New System.Drawing.Size(1603, 42)
         Me.PanelControl2.TabIndex = 2
         '
         'BtnRefCom
         '
         Me.BtnRefCom.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnRefCom.Image = CType(resources.GetObject("BtnRefCom.Image"), System.Drawing.Image)
-        Me.BtnRefCom.Location = New System.Drawing.Point(1225, 2)
+        Me.BtnRefCom.Location = New System.Drawing.Point(1168, 2)
         Me.BtnRefCom.Name = "BtnRefCom"
         Me.BtnRefCom.Size = New System.Drawing.Size(97, 38)
         Me.BtnRefCom.TabIndex = 2
@@ -879,7 +892,7 @@ Partial Class FormStockTake
         '
         Me.BtnPrintCom.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrintCom.Image = CType(resources.GetObject("BtnPrintCom.Image"), System.Drawing.Image)
-        Me.BtnPrintCom.Location = New System.Drawing.Point(1322, 2)
+        Me.BtnPrintCom.Location = New System.Drawing.Point(1265, 2)
         Me.BtnPrintCom.Name = "BtnPrintCom"
         Me.BtnPrintCom.Size = New System.Drawing.Size(91, 38)
         Me.BtnPrintCom.TabIndex = 4
@@ -889,22 +902,21 @@ Partial Class FormStockTake
         '
         Me.BtnCreateCom.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCreateCom.Image = CType(resources.GetObject("BtnCreateCom.Image"), System.Drawing.Image)
-        Me.BtnCreateCom.Location = New System.Drawing.Point(1413, 2)
+        Me.BtnCreateCom.Location = New System.Drawing.Point(1356, 2)
         Me.BtnCreateCom.Name = "BtnCreateCom"
         Me.BtnCreateCom.Size = New System.Drawing.Size(109, 38)
         Me.BtnCreateCom.TabIndex = 3
         Me.BtnCreateCom.Text = "Create New "
         '
-        'SBOpenFile
+        'BtnCombineAllScan
         '
-        Me.SBOpenFile.Dock = System.Windows.Forms.DockStyle.Left
-        Me.SBOpenFile.Image = CType(resources.GetObject("SBOpenFile.Image"), System.Drawing.Image)
-        Me.SBOpenFile.Location = New System.Drawing.Point(567, 2)
-        Me.SBOpenFile.Name = "SBOpenFile"
-        Me.SBOpenFile.Size = New System.Drawing.Size(141, 38)
-        Me.SBOpenFile.TabIndex = 8918
-        Me.SBOpenFile.Text = "Open .sql Location"
-        Me.SBOpenFile.Visible = False
+        Me.BtnCombineAllScan.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCombineAllScan.Image = CType(resources.GetObject("BtnCombineAllScan.Image"), System.Drawing.Image)
+        Me.BtnCombineAllScan.Location = New System.Drawing.Point(1465, 2)
+        Me.BtnCombineAllScan.Name = "BtnCombineAllScan"
+        Me.BtnCombineAllScan.Size = New System.Drawing.Size(136, 38)
+        Me.BtnCombineAllScan.TabIndex = 5
+        Me.BtnCombineAllScan.Text = "Combine All Scan"
         '
         'FormStockTake
         '
@@ -1027,4 +1039,5 @@ Partial Class FormStockTake
     Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnStopStockTake As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SBOpenFile As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnCombineAllScan As DevExpress.XtraEditors.SimpleButton
 End Class

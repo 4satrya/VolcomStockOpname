@@ -855,4 +855,20 @@ Public Class FormStockTake
 
         openFile("\" + name_dir)
     End Sub
+
+    Private Sub BtnCombineAllScan_Click(sender As Object, e As EventArgs) Handles BtnCombineAllScan.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to combine all scan?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+        If confirm = DialogResult.Yes Then
+            Dim id_combine_in As String = execute_query("SELECT IFNULL(GROUP_CONCAT(DISTINCT s.id_st_trans),0) AS `id_combine_in` 
+            FROM tb_st_trans s WHERE s.is_combine=1 AND s.id_report_status!=5 ", 0, True, "", "", "", "")
+            If id_combine_in <> "0" Then
+                Dim qry As String = "UPDATE tb_st_trans SET id_report_status ='5', st_trans_updated_by=" + id_user + ", acknowledge_by=" + id_user + ", approved_by='" + id_user + "', report_status_note='replace with new combine' WHERE id_st_trans IN (" + id_combine_in + "); 
+                UPDATE tb_st_trans SET id_combine=NULL WHERE id_combine IN(" + id_combine_in + "); "
+                execute_non_query(qry, True, "", "", "", "")
+            End If
+            FormStockTakeCombine.is_combine_all = True
+            FormStockTakeCombine.ShowDialog()
+        End If
+    End Sub
 End Class

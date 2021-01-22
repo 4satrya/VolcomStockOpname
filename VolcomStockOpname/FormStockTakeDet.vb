@@ -940,7 +940,9 @@
                     TxtScan.Focus()
                 Else
                     stopCustomDialog("PRODUCT NOT FOUND IN MASTER LIST !")
-                    FormStockTakeFaik.ShowDialog()
+                    If is_login_store = "2" Then
+                        FormStockTakeFaik.ShowDialog()
+                    End If
                     TxtScan.Text = ""
                     TxtScan.Focus()
                     'Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("PRODUCT NOT FOUND IN MASTER LIST !" + System.Environment.NewLine + "DO YOU WANT TO RECORD THIS PRODUCT ?", "SCAN FAILED", MessageBoxButtons.YesNo, MessageBoxIcon.Stop, MessageBoxDefaultButton.Button3)

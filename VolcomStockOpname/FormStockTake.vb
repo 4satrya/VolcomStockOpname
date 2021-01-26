@@ -8,6 +8,7 @@ Public Class FormStockTake
         Cursor = Cursors.WaitCursor
         FormStockTakeNew.is_reject = "2"
         FormStockTakeNew.is_no_tag = "2"
+        FormStockTakeNew.is_un_reg = "2"
         FormStockTakeNew.ShowDialog()
         Cursor = Cursors.Default
     End Sub
@@ -62,16 +63,19 @@ Public Class FormStockTake
 
             GVScan.Columns("remark").Caption = "Lokasi"
             GVNoTag.Columns("remark").Caption = "Lokasi"
+            GVUnReg.Columns("remark").Caption = "Lokasi"
         Else
             SBAddStore.Visible = False
             SBNoTagStore.Visible = False
             SBRejectStore.Visible = False
 
             XTPNoTag.PageVisible = False
+            XTPUnReg.PageVisible = False
         End If
 
         If id_role_login = "1" Then
             XTPNoTag.PageVisible = True
+            XTPUnReg.PageVisible = True
         End If
     End Sub
 
@@ -112,6 +116,19 @@ Public Class FormStockTake
             GCNoTag.DataSource = data
             GVNoTag.FocusedRowHandle = 0
             noEditNT()
+        ElseIf XTCProduct.SelectedTabPage.Name = "XTPUnReg" Then
+            'user view
+            Dim cond_user As String = ""
+            If LEViewUser.EditValue.ToString = "1" Then
+                cond_user = "AND st.un_reg_by='" + id_user + "' "
+            End If
+
+            Dim stake As New ClassStockTake()
+            Dim query As String = stake.queryTransMainUN(cond_user, "2")
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCUnReg.DataSource = data
+            GVUnReg.FocusedRowHandle = 0
+            noEditUN()
         End If
         Cursor = Cursors.Default
     End Sub
@@ -148,6 +165,17 @@ Public Class FormStockTake
                 GVNoTag.Columns("is_select").OptionsColumn.AllowEdit = False
             Else
                 GVNoTag.Columns("is_select").OptionsColumn.AllowEdit = True
+            End If
+        End If
+    End Sub
+
+    Sub noEditUN()
+        If GVUnReg.RowCount > 0 Then
+            Dim alloc_cek As String = GVUnReg.GetFocusedRowCellValue("id_report_status").ToString
+            If alloc_cek = "5" Then
+                GVUnReg.Columns("is_select").OptionsColumn.AllowEdit = False
+            Else
+                GVUnReg.Columns("is_select").OptionsColumn.AllowEdit = True
             End If
         End If
     End Sub
@@ -320,6 +348,22 @@ Public Class FormStockTake
                         execute_non_query(query_ins_det, True, "", "", "", "")
                     Next
                 End If
+                'un reg
+                Dim table_un_reg As DataTable = execute_query("SHOW TABLES LIKE 'tb_st_un_reg_" + code_user_restore + "';", -1, True, "", "", "", "")
+                If table_un_reg.Rows.Count > 0 Then
+                    Dim qn As String = "SELECT * FROM tb_st_un_reg_" + code_user_restore + " WHERE un_reg_number NOT IN (SELECT un_reg_number FROM tb_st_un_reg)"
+                    Dim dn As DataTable = execute_query(qn, -1, True, "", "", "", "")
+                    Dim kn As Integer = dn.Rows.Count
+                    For k As Integer = 0 To dn.Rows.Count - 1
+                        FormMain.SplashScreenManager1.SetWaitFormDescription("Copying data un_reg " + (k + 1).ToString + " of " + kn.ToString + " ...")
+                        Dim query_ins As String = "INSERT INTO tb_st_un_reg(id_wh_drawer, un_reg_number, remark, un_reg_date, un_reg_by, un_reg_updated_date, un_reg_updated_by, id_report_status) 
+                        SELECT id_wh_drawer, un_reg_number, remark, un_reg_date, un_reg_by, un_reg_updated_date, un_reg_updated_by, id_report_status FROM tb_st_un_reg_" + code_user_restore.ToLower + " WHERE id_st_un_reg=" + dn.Rows(k)("id_st_un_reg").ToString + "; SELECT LAST_INSERT_ID(); "
+                        Dim id_st_new As String = execute_query(query_ins, 0, True, "", "", "", "")
+                        Dim query_ins_det As String = "INSERT INTO tb_st_un_reg_det(id_st_un_reg, code, name, note) 
+                        SELECT '" + id_st_new + "', code, name, note FROM tb_st_un_reg_det_" + code_user_restore.ToLower + " WHERE id_st_un_reg=" + dn.Rows(k)("id_st_un_reg").ToString + ";"
+                        execute_non_query(query_ins_det, True, "", "", "", "")
+                    Next
+                End If
                 viewScan()
                 FormMain.SplashScreenManager1.CloseWaitForm()
             Catch ex As Exception
@@ -360,6 +404,16 @@ Public Class FormStockTake
                 End If
             Next
         End If
+        If GVUnReg.RowCount > 0 Then
+            For i As Integer = 0 To ((GVUnReg.RowCount - 1) - GetGroupRowCount(GVUnReg))
+                Dim id_report_status As String = GVUnReg.GetRowCellValue(i, "id_report_status").ToString
+                If cek And id_report_status <> "5" Then
+                    GVUnReg.SetRowCellValue(i, "is_select", "Yes")
+                Else
+                    GVUnReg.SetRowCellValue(i, "is_select", "No")
+                End If
+            Next
+        End If
     End Sub
 
     Private Sub BtnCombine_Click(sender As Object, e As EventArgs)
@@ -380,6 +434,8 @@ Public Class FormStockTake
             print_raw(GCScan, "")
         ElseIf XTCProduct.SelectedTabPage.Name = "XTPNoTag" Then
             print_raw(GCNoTag, "")
+        ElseIf XTCProduct.SelectedTabPage.Name = "XTPUnReg" Then
+            print_raw(GCUnReg, "")
         End If
         Cursor = Cursors.Default
     End Sub
@@ -414,6 +470,8 @@ Public Class FormStockTake
             FormStockTakeList.ShowDialog()
         ElseIf XTCProduct.SelectedTabPage.Name = "XTPNoTag" Then
             FormStockTakeListNoTag.ShowDialog()
+        ElseIf XTCProduct.SelectedTabPage.Name = "XTPUnReg" Then
+            FormStockTakeListUnReg.ShowDialog()
         End If
         Cursor = Cursors.Default
     End Sub
@@ -504,6 +562,10 @@ Public Class FormStockTake
 
             viewScan()
 
+            XTCProduct.SelectedTabPage = XTPUnReg
+
+            viewScan()
+
             'filter
             makeSafeGV(GVScan)
 
@@ -536,7 +598,23 @@ Public Class FormStockTake
             'export no tag
             GVNoTag.ActiveFilterString = "[is_select]='Yes' "
 
-            If GVScan.RowCount > 0 Or GVNoTag.RowCount > 0 Then
+            'filter un reg
+            makeSafeGV(GVUnReg)
+
+            GVUnReg.ActiveFilterString = ""
+
+            For i = 0 To GVUnReg.RowCount - 1
+                If GVUnReg.IsValidRowHandle(i) Then
+                    If Not GVUnReg.GetRowCellValue(i, "id_report_status").ToString = "5" Then
+                        GVUnReg.SetRowCellValue(i, "is_select", "Yes")
+                    End If
+                End If
+            Next
+
+            'export no tag
+            GVUnReg.ActiveFilterString = "[is_select]='Yes' "
+
+            If GVScan.RowCount > 0 Or GVNoTag.RowCount > 0 Or GVUnReg.RowCount > 0 Then
                 Try
                     FormMain.SplashScreenManager1.ShowWaitForm()
                     '
@@ -567,6 +645,20 @@ Public Class FormStockTake
                         id_st_no_tag = "id_st_no_tag='' "
                     End If
 
+                    '
+                    Dim id_st_un_reg As String = ""
+                    For i As Integer = 0 To ((GVUnReg.RowCount - 1) - GetGroupRowCount(GVUnReg))
+                        If GVUnReg.GetRowCellValue(i, "is_select").ToString = "Yes" Then
+                            If i > 0 Then
+                                id_st_un_reg += "OR "
+                            End If
+                            id_st_un_reg += "id_st_un_reg='" + GVUnReg.GetRowCellValue(i, "id_st_un_reg").ToString + "' "
+                        End If
+                    Next
+                    If id_st_un_reg = "" Then
+                        id_st_un_reg = "id_st_un_reg='' "
+                    End If
+
                     'create table copy
                     Dim query_copy_trans As String = "DROP TABLE IF EXISTS tb_st_trans_" + st_user_code + "; CREATE TABLE IF NOT EXISTS tb_st_trans_" + st_user_code + " SELECT * FROM tb_st_trans WHERE id_st_trans>0 AND (" + id_st_trans + "); 
                 truncate table tb_st_trans_" + st_user_code + "; 
@@ -586,6 +678,16 @@ Public Class FormStockTake
             truncate table tb_st_no_tag_det_" + st_user_code + "; 
             INSERT tb_st_no_tag_det_" + st_user_code + " SELECT * FROM tb_st_no_tag_det WHERE id_st_no_tag>0 AND (" + id_st_no_tag + "); "
                     execute_non_query(query_copy_trans_det_nt, True, "", "", "", "")
+
+                    'create table copy un reg
+                    Dim query_copy_trans_un As String = "DROP TABLE IF EXISTS tb_st_un_reg_" + st_user_code + "; CREATE TABLE IF NOT EXISTS tb_st_un_reg_" + st_user_code + " SELECT * FROM tb_st_un_reg WHERE id_st_un_reg>0 AND (" + id_st_un_reg + "); 
+                truncate table tb_st_un_reg_" + st_user_code + "; 
+                INSERT tb_st_un_reg_" + st_user_code + " SELECT * FROM tb_st_un_reg WHERE id_st_un_reg>0 AND (" + id_st_un_reg + "); "
+                    execute_non_query(query_copy_trans_un, True, "", "", "", "")
+                    Dim query_copy_trans_det_un As String = "DROP TABLE IF EXISTS tb_st_un_reg_det_" + st_user_code + "; CREATE TABLE IF NOT EXISTS tb_st_un_reg_det_" + st_user_code + " SELECT * FROM tb_st_un_reg_det WHERE id_st_un_reg>0 AND (" + id_st_un_reg + "); 
+            truncate table tb_st_un_reg_det_" + st_user_code + "; 
+            INSERT tb_st_un_reg_det_" + st_user_code + " SELECT * FROM tb_st_un_reg_det WHERE id_st_un_reg>0 AND (" + id_st_un_reg + "); "
+                    execute_non_query(query_copy_trans_det_un, True, "", "", "", "")
 
                     'connection string
                     FormMain.SplashScreenManager1.SetWaitFormDescription("Check connection ...")
@@ -607,6 +709,8 @@ Public Class FormStockTake
                     dic.Add("tb_st_trans_det_" + st_user_code.ToLower, "SELECT * FROM tb_st_trans_det_" + st_user_code.ToLower)
                     dic.Add("tb_st_no_tag_" + st_user_code.ToLower, "SELECT * FROM tb_st_no_tag_" + st_user_code.ToLower)
                     dic.Add("tb_st_no_tag_det_" + st_user_code.ToLower, "SELECT * FROM tb_st_no_tag_det_" + st_user_code.ToLower)
+                    dic.Add("tb_st_un_reg_" + st_user_code.ToLower, "SELECT * FROM tb_st_un_reg_" + st_user_code.ToLower)
+                    dic.Add("tb_st_un_reg_det_" + st_user_code.ToLower, "SELECT * FROM tb_st_un_reg_det_" + st_user_code.ToLower)
 
                     'dump
                     FormMain.SplashScreenManager1.SetWaitFormDescription("Creating dump")
@@ -696,6 +800,7 @@ Public Class FormStockTake
                 XTCProduct.SelectedTabPage = XTPScanList
                 FormStockTakeNew.is_no_tag = "2"
                 FormStockTakeNew.is_reject = "2"
+                FormStockTakeNew.is_un_reg = "2"
                 FormStockTakeNew.ShowDialog()
             End If
 
@@ -725,6 +830,7 @@ Public Class FormStockTake
                 XTCProduct.SelectedTabPage = XTPNoTag
                 FormStockTakeNew.is_no_tag = "1"
                 FormStockTakeNew.is_reject = "2"
+                FormStockTakeNew.is_un_reg = "2"
                 FormStockTakeNew.ShowDialog()
             End If
 
@@ -754,6 +860,7 @@ Public Class FormStockTake
                 XTCProduct.SelectedTabPage = XTPScanList
                 FormStockTakeNew.is_no_tag = "2"
                 FormStockTakeNew.is_reject = "1"
+                FormStockTakeNew.is_un_reg = "2"
                 FormStockTakeNew.ShowDialog()
             End If
 
@@ -778,6 +885,18 @@ Public Class FormStockTake
         End If
     End Sub
 
+    Private Sub GVUnReg_DoubleClick(sender As Object, e As EventArgs) Handles GVUnReg.DoubleClick
+        If GVUnReg.RowCount > 0 And GVUnReg.FocusedRowHandle >= 0 Then
+            FormStockTakeUnReg.id_st_un_reg = GVUnReg.GetFocusedRowCellValue("id_st_un_reg").ToString
+
+            If is_login_store = "1" Then
+                FormStockTakeUnReg.is_no_edit = "1"
+            End If
+
+            FormStockTakeUnReg.ShowDialog()
+        End If
+    End Sub
+
     Private Sub GVScan_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVScan.RowCellStyle
         If is_login_store = "1" Then
             If GVScan.GetRowCellValue(e.RowHandle, "is_reject").ToString = "1" Then
@@ -795,13 +914,25 @@ Public Class FormStockTake
     Private Sub GVNoTag_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVNoTag.RowCellStyle
         If is_login_store = "1" Then
             If Not GVNoTag.GetRowCellValue(e.RowHandle, "qty").ToString = "0" Then
-                e.Appearance.BackColor = Color.LightPink
+                e.Appearance.BackColor = Color.LightBlue
             End If
         End If
     End Sub
 
     Private Sub GVNoTag_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVNoTag.FocusedRowChanged
         noEditNT()
+    End Sub
+
+    Private Sub GVUnReg_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVUnReg.RowCellStyle
+        If is_login_store = "1" Then
+            If Not GVUnReg.GetRowCellValue(e.RowHandle, "qty").ToString = "0" Then
+                e.Appearance.BackColor = Color.LightPink
+            End If
+        End If
+    End Sub
+
+    Private Sub GVUnReg_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVUnReg.FocusedRowChanged
+        noEditUN()
     End Sub
 
     Function check_ia_notif() As String
@@ -870,5 +1001,35 @@ Public Class FormStockTake
             FormStockTakeCombine.is_combine_all = True
             FormStockTakeCombine.ShowDialog()
         End If
+    End Sub
+
+    Private Sub SBUnreg_Click(sender As Object, e As EventArgs) Handles SBUnreg.Click
+        Cursor = Cursors.WaitCursor
+        If check_ia_notif() Then
+            Dim data_continue As DataTable = execute_query("
+                SELECT *
+                FROM (
+                    SELECT COUNT(*) AS total_stop
+                FROM tb_st_stop_scan_log
+                ) AS total_stop, (
+                    SELECT first_ia_notif FROM tb_st_opt LIMIT 1
+                ) AS first_ia_notif
+            ", -1, True, "", "", "", "")
+
+            If (data_continue.Rows(0)("total_stop").ToString = "0") Or (Not data_continue.Rows(0)("total_stop").ToString = "0" And Not data_continue.Rows(0)("first_ia_notif").ToString = "") Then
+                XTCProduct.SelectedTabPage = XTPUnReg
+                FormStockTakeNew.is_no_tag = "2"
+                FormStockTakeNew.is_reject = "2"
+                FormStockTakeNew.is_un_reg = "1"
+                FormStockTakeNew.ShowDialog()
+            End If
+
+            If Not data_continue.Rows(0)("total_stop").ToString = "0" And Not data_continue.Rows(0)("first_ia_notif").ToString = "" Then
+                BtnStopStockTake.Visible = True
+            End If
+        Else
+            stopCustom("Cannot create, because scan time's up.")
+        End If
+        Cursor = Cursors.Default
     End Sub
 End Class

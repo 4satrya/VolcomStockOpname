@@ -318,6 +318,12 @@
     <Compile Include="FormStockTakeListNoTag.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormStockTakeListUnReg.Designer.vb">
+      <DependentUpon>FormStockTakeListUnReg.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockTakeListUnReg.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormStockTakeNew.Designer.vb">
       <DependentUpon>FormStockTakeNew.vb</DependentUpon>
     </Compile>
@@ -334,6 +340,18 @@
       <DependentUpon>FormStockTakeNoTagDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormStockTakeNoTagDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStockTakeUnReg.Designer.vb">
+      <DependentUpon>FormStockTakeUnReg.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockTakeUnReg.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStockTakeUnRegDet.Designer.vb">
+      <DependentUpon>FormStockTakeUnRegDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStockTakeUnRegDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormVerStockTake.Designer.vb">
@@ -560,6 +578,9 @@
     <EmbeddedResource Include="FormStockTakeListNoTag.resx">
       <DependentUpon>FormStockTakeListNoTag.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormStockTakeListUnReg.resx">
+      <DependentUpon>FormStockTakeListUnReg.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormStockTakeNew.resx">
       <DependentUpon>FormStockTakeNew.vb</DependentUpon>
     </EmbeddedResource>
@@ -568,6 +589,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormStockTakeNoTagDet.resx">
       <DependentUpon>FormStockTakeNoTagDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStockTakeUnReg.resx">
+      <DependentUpon>FormStockTakeUnReg.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStockTakeUnRegDet.resx">
+      <DependentUpon>FormStockTakeUnRegDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormVerStockTake.resx">
       <DependentUpon>FormVerStockTake.vb</DependentUpon>

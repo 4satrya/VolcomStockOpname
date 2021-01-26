@@ -26,10 +26,10 @@
                 GroupControl2.Visible = False
 
                 If GVScan.RowCount > 0 Then
-                    LookAndFeel.SkinMaskColor = Color.LightPink
+                    LookAndFeel.SkinMaskColor = Color.LightBlue
                 End If
             Else
-                LookAndFeel.SkinMaskColor = Color.LightPink
+                LookAndFeel.SkinMaskColor = Color.LightBlue
             End If
         End If
     End Sub

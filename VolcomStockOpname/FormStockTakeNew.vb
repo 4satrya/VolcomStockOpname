@@ -3,6 +3,7 @@
 
     Public is_reject As String = "2"
     Public is_no_tag As String = "2"
+    Public is_un_reg As String = "2"
 
     Private Sub FormStockTakeNew_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'check login store
@@ -21,8 +22,11 @@
                 LookAndFeel.SkinMaskColor = Color.LightYellow
                 Text = "Reject"
             ElseIf is_no_tag = "1" Then
-                LookAndFeel.SkinMaskColor = Color.LightPink
+                LookAndFeel.SkinMaskColor = Color.LightBlue
                 Text = "No Tag"
+            ElseIf is_un_reg = "1" Then
+                LookAndFeel.SkinMaskColor = Color.LightPink
+                Text = "Un-Reg"
             Else
                 LookAndFeel.SkinMaskColor = Color.LightGreen
                 Text = "Create New"
@@ -51,7 +55,33 @@
 
     Private Sub BtnCreate_Click(sender As Object, e As EventArgs) Handles BtnCreate.Click
         Cursor = Cursors.WaitCursor
-        If is_no_tag = "2" Then
+        If is_no_tag = "1" Then
+            Dim query As String = "INSERT INTO tb_st_no_tag (id_wh_drawer, no_tag_number, remark, no_tag_date, no_tag_by) VALUES ('" + SLEWHStockSum.EditValue.ToString + "', '', '" + addSlashes(MERemark.Text.ToString) + "', NOW(), '" + id_user + "'); SELECT LAST_INSERT_ID();"
+
+            Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
+
+            'update number
+            Dim trans_number As String = getTransNumber(id_new)
+            Dim query_numb As String = "UPDATE tb_st_no_tag SET no_tag_number='" + trans_number + "' WHERE id_st_no_tag='" + id_new + "' "
+            execute_non_query(query_numb, True, "", "", "", "")
+
+            FormStockTakeNoTag.id_st_no_tag = id_new
+            FormStockTakeNoTag.ShowDialog()
+            Close()
+        ElseIf is_un_reg = "1" Then
+            Dim query As String = "INSERT INTO tb_st_un_reg (id_wh_drawer, un_reg_number, remark, un_reg_date, un_reg_by) VALUES ('" + SLEWHStockSum.EditValue.ToString + "', '', '" + addSlashes(MERemark.Text.ToString) + "', NOW(), '" + id_user + "'); SELECT LAST_INSERT_ID();"
+
+            Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
+
+            'update number
+            Dim trans_number As String = getTransNumber(id_new)
+            Dim query_numb As String = "UPDATE tb_st_un_reg SET un_reg_number='" + trans_number + "' WHERE id_st_un_reg='" + id_new + "' "
+            execute_non_query(query_numb, True, "", "", "", "")
+
+            FormStockTakeUnReg.id_st_un_reg = id_new
+            FormStockTakeUnReg.ShowDialog()
+            Close()
+        Else
             Dim query As String = "INSERT INTO tb_st_trans (id_wh_drawer, st_trans_number, remark, st_trans_date, st_trans_by, is_combine,is_pre) 
             VALUES ('" + SLEWHStockSum.EditValue.ToString + "', '', '" + addSlashes(MERemark.Text.ToString) + "', NOW(), '" + id_user + "', 2," + FormStockTake.is_pre + "); SELECT LAST_INSERT_ID(); "
             Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
@@ -70,32 +100,21 @@
             End If
             FormStockTakeDet.ShowDialog()
             Close()
-        Else
-            Dim query As String = "INSERT INTO tb_st_no_tag (id_wh_drawer, no_tag_number, remark, no_tag_date, no_tag_by) VALUES ('" + SLEWHStockSum.EditValue.ToString + "', '', '" + addSlashes(MERemark.Text.ToString) + "', NOW(), '" + id_user + "'); SELECT LAST_INSERT_ID();"
-
-            Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
-
-            'update number
-            Dim trans_number As String = getTransNumber(id_new)
-            Dim query_numb As String = "UPDATE tb_st_no_tag SET no_tag_number='" + trans_number + "' WHERE id_st_no_tag='" + id_new + "' "
-            execute_non_query(query_numb, True, "", "", "", "")
-
-            FormStockTakeNoTag.id_st_no_tag = id_new
-            FormStockTakeNoTag.ShowDialog()
-            Close()
         End If
         Cursor = Cursors.Default
     End Sub
 
     Function getTransNumber(ByVal id_report As String)
-        If is_no_tag = "2" Then
+        If is_no_tag = "1" Then
+            Return header_number("8", id_report)
+        ElseIf is_un_reg = "1" Then
+            Return header_number("9", id_report)
+        Else
             If FormStockTake.is_pre = "1" Then 'wh pre stock take
                 Return header_number("4", id_report)
             Else 'stock take
                 Return header_number("1", id_report)
             End If
-        Else
-            Return header_number("8", id_report)
         End If
     End Function
 

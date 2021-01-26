@@ -61,6 +61,23 @@ Partial Class FormStockTake
         Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPUnReg = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCUnReg = New DevExpress.XtraGrid.GridControl()
+        Me.GVUnReg = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SBOpenFile = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnStopStockTake = New DevExpress.XtraEditors.SimpleButton()
@@ -75,8 +92,9 @@ Partial Class FormStockTake
         Me.BtnExport = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImport = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.SBRejectStore = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBUnreg = New DevExpress.XtraEditors.SimpleButton()
         Me.SBNoTagStore = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBRejectStore = New DevExpress.XtraEditors.SimpleButton()
         Me.SBAddStore = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnNew = New DevExpress.XtraEditors.SimpleButton()
         Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
@@ -115,6 +133,10 @@ Partial Class FormStockTake
         CType(Me.GCNoTag, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVNoTag, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPUnReg.SuspendLayout()
+        CType(Me.GCUnReg, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVUnReg, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PCSelectAll, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -159,7 +181,7 @@ Partial Class FormStockTake
         Me.XTCProduct.SelectedTabPage = Me.XTPScanList
         Me.XTCProduct.Size = New System.Drawing.Size(1603, 452)
         Me.XTCProduct.TabIndex = 2
-        Me.XTCProduct.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScanList, Me.XTPNoTag})
+        Me.XTCProduct.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScanList, Me.XTPNoTag, Me.XTPUnReg})
         '
         'XTPScanList
         '
@@ -512,6 +534,173 @@ Partial Class FormStockTake
         Me.GridColumn26.VisibleIndex = 2
         Me.GridColumn26.Width = 168
         '
+        'XTPUnReg
+        '
+        Me.XTPUnReg.Controls.Add(Me.GCUnReg)
+        Me.XTPUnReg.Name = "XTPUnReg"
+        Me.XTPUnReg.Size = New System.Drawing.Size(1574, 446)
+        Me.XTPUnReg.Text = "Un-Reg"
+        '
+        'GCUnReg
+        '
+        Me.GCUnReg.ContextMenuStrip = Me.ContextMenuStrip
+        Me.GCUnReg.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCUnReg.Location = New System.Drawing.Point(0, 0)
+        Me.GCUnReg.MainView = Me.GVUnReg
+        Me.GCUnReg.Name = "GCUnReg"
+        Me.GCUnReg.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit4})
+        Me.GCUnReg.Size = New System.Drawing.Size(1574, 446)
+        Me.GCUnReg.TabIndex = 2
+        Me.GCUnReg.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVUnReg})
+        '
+        'GVUnReg
+        '
+        Me.GVUnReg.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38, Me.GridColumn39, Me.GridColumn40})
+        Me.GVUnReg.GridControl = Me.GCUnReg
+        Me.GVUnReg.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumn37, "{0:n0}")})
+        Me.GVUnReg.Name = "GVUnReg"
+        Me.GVUnReg.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVUnReg.OptionsView.ShowFooter = True
+        Me.GVUnReg.OptionsView.ShowGroupedColumns = True
+        Me.GVUnReg.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "Id"
+        Me.GridColumn28.FieldName = "id_st_un_reg"
+        Me.GridColumn28.Name = "GridColumn28"
+        Me.GridColumn28.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "Number"
+        Me.GridColumn29.FieldName = "un_reg_number"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.OptionsColumn.AllowEdit = False
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 0
+        Me.GridColumn29.Width = 115
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "Created Date"
+        Me.GridColumn30.DisplayFormat.FormatString = "dd MMMM yyyy hh:mm tt"
+        Me.GridColumn30.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn30.FieldName = "un_reg_date"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.OptionsColumn.AllowEdit = False
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 4
+        Me.GridColumn30.Width = 267
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.Caption = "Prepared by"
+        Me.GridColumn31.FieldName = "prepared_by"
+        Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.OptionsColumn.AllowEdit = False
+        Me.GridColumn31.Visible = True
+        Me.GridColumn31.VisibleIndex = 5
+        Me.GridColumn31.Width = 159
+        '
+        'GridColumn32
+        '
+        Me.GridColumn32.Caption = "Last Updated"
+        Me.GridColumn32.DisplayFormat.FormatString = "dd MMMM yyyy hh:mm tt"
+        Me.GridColumn32.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn32.FieldName = "un_reg_updated_date"
+        Me.GridColumn32.Name = "GridColumn32"
+        Me.GridColumn32.OptionsColumn.AllowEdit = False
+        Me.GridColumn32.Visible = True
+        Me.GridColumn32.VisibleIndex = 6
+        Me.GridColumn32.Width = 259
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.Caption = "Updated By"
+        Me.GridColumn33.FieldName = "employee_name"
+        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.OptionsColumn.AllowEdit = False
+        Me.GridColumn33.Visible = True
+        Me.GridColumn33.VisibleIndex = 7
+        Me.GridColumn33.Width = 120
+        '
+        'GridColumn34
+        '
+        Me.GridColumn34.Caption = "Status"
+        Me.GridColumn34.FieldName = "report_status"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.OptionsColumn.AllowEdit = False
+        Me.GridColumn34.Visible = True
+        Me.GridColumn34.VisibleIndex = 8
+        Me.GridColumn34.Width = 197
+        '
+        'GridColumn35
+        '
+        Me.GridColumn35.Caption = "Status Note"
+        Me.GridColumn35.FieldName = "report_status_note"
+        Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.OptionsColumn.AllowEdit = False
+        Me.GridColumn35.Visible = True
+        Me.GridColumn35.VisibleIndex = 9
+        '
+        'GridColumn36
+        '
+        Me.GridColumn36.Caption = "Account"
+        Me.GridColumn36.FieldName = "comp"
+        Me.GridColumn36.Name = "GridColumn36"
+        Me.GridColumn36.OptionsColumn.AllowEdit = False
+        Me.GridColumn36.Visible = True
+        Me.GridColumn36.VisibleIndex = 1
+        Me.GridColumn36.Width = 203
+        '
+        'GridColumn37
+        '
+        Me.GridColumn37.Caption = "Qty"
+        Me.GridColumn37.DisplayFormat.FormatString = "N0"
+        Me.GridColumn37.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn37.FieldName = "qty"
+        Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.OptionsColumn.AllowEdit = False
+        Me.GridColumn37.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
+        Me.GridColumn37.Visible = True
+        Me.GridColumn37.VisibleIndex = 3
+        Me.GridColumn37.Width = 58
+        '
+        'GridColumn38
+        '
+        Me.GridColumn38.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn38.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn38.Caption = "Select"
+        Me.GridColumn38.ColumnEdit = Me.RepositoryItemCheckEdit4
+        Me.GridColumn38.FieldName = "is_select"
+        Me.GridColumn38.Name = "GridColumn38"
+        Me.GridColumn38.Visible = True
+        Me.GridColumn38.VisibleIndex = 10
+        Me.GridColumn38.Width = 70
+        '
+        'RepositoryItemCheckEdit4
+        '
+        Me.RepositoryItemCheckEdit4.AutoHeight = False
+        Me.RepositoryItemCheckEdit4.Name = "RepositoryItemCheckEdit4"
+        Me.RepositoryItemCheckEdit4.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit4.ValueUnchecked = "No"
+        '
+        'GridColumn39
+        '
+        Me.GridColumn39.Caption = "Id Report Status"
+        Me.GridColumn39.FieldName = "id_report_status"
+        Me.GridColumn39.Name = "GridColumn39"
+        '
+        'GridColumn40
+        '
+        Me.GridColumn40.Caption = "Remark"
+        Me.GridColumn40.FieldName = "remark"
+        Me.GridColumn40.Name = "GridColumn40"
+        Me.GridColumn40.Visible = True
+        Me.GridColumn40.VisibleIndex = 2
+        Me.GridColumn40.Width = 168
+        '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.SBOpenFile)
@@ -524,8 +713,9 @@ Partial Class FormStockTake
         Me.PanelControl1.Controls.Add(Me.BtnExport)
         Me.PanelControl1.Controls.Add(Me.BtnImport)
         Me.PanelControl1.Controls.Add(Me.BtnPrint)
-        Me.PanelControl1.Controls.Add(Me.SBRejectStore)
+        Me.PanelControl1.Controls.Add(Me.SBUnreg)
         Me.PanelControl1.Controls.Add(Me.SBNoTagStore)
+        Me.PanelControl1.Controls.Add(Me.SBRejectStore)
         Me.PanelControl1.Controls.Add(Me.SBAddStore)
         Me.PanelControl1.Controls.Add(Me.BtnNew)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
@@ -591,7 +781,7 @@ Partial Class FormStockTake
         Me.PanelControl3.Controls.Add(Me.LEViewUser)
         Me.PanelControl3.Controls.Add(Me.LabelControl1)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl3.Location = New System.Drawing.Point(712, 2)
+        Me.PanelControl3.Location = New System.Drawing.Point(615, 2)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(204, 38)
         Me.PanelControl3.TabIndex = 9
@@ -617,7 +807,7 @@ Partial Class FormStockTake
         '
         Me.BtnRefresh.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnRefresh.Image = CType(resources.GetObject("BtnRefresh.Image"), System.Drawing.Image)
-        Me.BtnRefresh.Location = New System.Drawing.Point(916, 2)
+        Me.BtnRefresh.Location = New System.Drawing.Point(819, 2)
         Me.BtnRefresh.Name = "BtnRefresh"
         Me.BtnRefresh.Size = New System.Drawing.Size(97, 38)
         Me.BtnRefresh.TabIndex = 2
@@ -627,7 +817,7 @@ Partial Class FormStockTake
         '
         Me.BtnList.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnList.Image = CType(resources.GetObject("BtnList.Image"), System.Drawing.Image)
-        Me.BtnList.Location = New System.Drawing.Point(1013, 2)
+        Me.BtnList.Location = New System.Drawing.Point(916, 2)
         Me.BtnList.Name = "BtnList"
         Me.BtnList.Size = New System.Drawing.Size(88, 38)
         Me.BtnList.TabIndex = 6
@@ -657,35 +847,47 @@ Partial Class FormStockTake
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(1101, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(1004, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(88, 38)
         Me.BtnPrint.TabIndex = 5
         Me.BtnPrint.Text = "Print"
         '
+        'SBUnreg
+        '
+        Me.SBUnreg.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBUnreg.Image = CType(resources.GetObject("SBUnreg.Image"), System.Drawing.Image)
+        Me.SBUnreg.Location = New System.Drawing.Point(1092, 2)
+        Me.SBUnreg.LookAndFeel.SkinMaskColor = System.Drawing.Color.Red
+        Me.SBUnreg.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.SBUnreg.Name = "SBUnreg"
+        Me.SBUnreg.Size = New System.Drawing.Size(97, 38)
+        Me.SBUnreg.TabIndex = 8919
+        Me.SBUnreg.Text = "Un-Reg"
+        '
+        'SBNoTagStore
+        '
+        Me.SBNoTagStore.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBNoTagStore.Image = CType(resources.GetObject("SBNoTagStore.Image"), System.Drawing.Image)
+        Me.SBNoTagStore.Location = New System.Drawing.Point(1189, 2)
+        Me.SBNoTagStore.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.SBNoTagStore.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.SBNoTagStore.Name = "SBNoTagStore"
+        Me.SBNoTagStore.Size = New System.Drawing.Size(97, 38)
+        Me.SBNoTagStore.TabIndex = 8915
+        Me.SBNoTagStore.Text = "No Tag"
+        '
         'SBRejectStore
         '
         Me.SBRejectStore.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBRejectStore.Image = CType(resources.GetObject("SBRejectStore.Image"), System.Drawing.Image)
-        Me.SBRejectStore.Location = New System.Drawing.Point(1189, 2)
+        Me.SBRejectStore.Location = New System.Drawing.Point(1286, 2)
         Me.SBRejectStore.LookAndFeel.SkinMaskColor = System.Drawing.Color.Yellow
         Me.SBRejectStore.LookAndFeel.UseDefaultLookAndFeel = False
         Me.SBRejectStore.Name = "SBRejectStore"
         Me.SBRejectStore.Size = New System.Drawing.Size(97, 38)
         Me.SBRejectStore.TabIndex = 8916
         Me.SBRejectStore.Text = "Reject"
-        '
-        'SBNoTagStore
-        '
-        Me.SBNoTagStore.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBNoTagStore.Image = CType(resources.GetObject("SBNoTagStore.Image"), System.Drawing.Image)
-        Me.SBNoTagStore.Location = New System.Drawing.Point(1286, 2)
-        Me.SBNoTagStore.LookAndFeel.SkinMaskColor = System.Drawing.Color.Red
-        Me.SBNoTagStore.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.SBNoTagStore.Name = "SBNoTagStore"
-        Me.SBNoTagStore.Size = New System.Drawing.Size(97, 38)
-        Me.SBNoTagStore.TabIndex = 8915
-        Me.SBNoTagStore.Text = "No Tag"
         '
         'SBAddStore
         '
@@ -941,6 +1143,10 @@ Partial Class FormStockTake
         CType(Me.GCNoTag, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVNoTag, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPUnReg.ResumeLayout(False)
+        CType(Me.GCUnReg, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVUnReg, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.PCSelectAll, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1040,4 +1246,22 @@ Partial Class FormStockTake
     Friend WithEvents BtnStopStockTake As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SBOpenFile As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnCombineAllScan As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBUnreg As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents XTPUnReg As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCUnReg As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVUnReg As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

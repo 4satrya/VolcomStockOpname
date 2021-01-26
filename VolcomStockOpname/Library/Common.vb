@@ -179,6 +179,9 @@ Module Common
         ElseIf opt = "8" Then
             header_number_x = combine_header_number(st_user_code + "NT", Integer.Parse(id_rpt), 5)
             increase_inc("8")
+        ElseIf opt = "9" Then
+            header_number_x = combine_header_number(st_user_code + "UN", Integer.Parse(id_rpt), 5)
+            increase_inc("9")
         End If
 
         Return header_number_x

@@ -12,7 +12,7 @@
         End Try
 
         If is_login_store = "1" Then
-            LookAndFeel.SkinMaskColor = Color.LightPink
+            LookAndFeel.SkinMaskColor = Color.LightBlue
             LookAndFeel.UseDefaultLookAndFeel = False
         End If
     End Sub

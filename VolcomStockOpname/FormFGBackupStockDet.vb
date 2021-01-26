@@ -253,6 +253,8 @@ Public Class FormFGBackupStockDet
                     dic.Add("tb_st_cat", "SELECT * FROM tb_st_cat ")
                     dic.Add("tb_st_no_tag", "SELECT * FROM tb_st_no_tag ")
                     dic.Add("tb_st_no_tag_det", "SELECT * FROM tb_st_no_tag_det ")
+                    dic.Add("tb_st_un_reg", "SELECT * FROM tb_st_un_reg ")
+                    dic.Add("tb_st_un_reg_det", "SELECT * FROM tb_st_un_reg_det ")
                     dic.Add("tb_st_stop_scan_log", "SELECT * FROM tb_st_stop_scan_log ")
                     '-- stock
                     FormMain.SplashScreenManager1.SetWaitFormDescription("Backup stock")

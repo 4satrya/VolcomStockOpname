@@ -68,6 +68,7 @@ Public Class FormStockTake
             SBAddStore.Visible = False
             SBNoTagStore.Visible = False
             SBRejectStore.Visible = False
+            SBUnreg.Visible = False
 
             XTPNoTag.PageVisible = False
             XTPUnReg.PageVisible = False

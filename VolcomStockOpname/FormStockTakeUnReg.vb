@@ -28,6 +28,12 @@
         PCNote.Visible = False
         GroupControlBottom.Height = 49
 
+        viewWHStockSum()
+        viewReportStatus()
+        viewAck()
+
+        form_load()
+
         'check login store
         Try
             is_login_store = execute_query("SELECT is_login_store FROM tb_opt", 0, False, app_host, app_username, app_password, "db_opt")
@@ -48,12 +54,6 @@
                 LookAndFeel.SkinMaskColor = Color.LightPink
             End If
         End If
-
-        viewWHStockSum()
-        viewReportStatus()
-        viewAck()
-
-        form_load()
 
         TxtScan.Focus()
     End Sub
@@ -153,6 +153,18 @@
 
                 If d_dup1.Rows.Count > 0 Then
                     messages = "Already scanned in transaction number : " + d_dup1.Rows(0)("number").ToString
+                End If
+
+                Dim q_dup2 As String = "
+                    SELECT *
+                    FROM tb_st_unique
+                    WHERE unique_code = '" + code + "'
+                "
+
+                Dim d_dup2 As DataTable = execute_query(q_dup2, -1, True, "", "", "", "")
+
+                If d_dup2.Rows.Count > 0 Then
+                    messages = "Please scan in menu scan list use 'Create New' or 'Reject'"
                 End If
             End If
 

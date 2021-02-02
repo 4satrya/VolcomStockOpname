@@ -1,10 +1,15 @@
 ﻿Public Class FormDatabaseStore
     Dim url_import As String = ""
 
+    Public is_from_close As String = ""
+
     Private is_select_database As String = "2"
 
     Private Sub FormDatabaseStore_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        If is_from_close = "1" Then
+            BtnConnect.Visible = False
+            BtnImport.Visible = False
+        End If
     End Sub
 
     Private Sub FormDatabaseStore_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
@@ -80,7 +85,7 @@
     End Sub
 
     Private Sub FormDatabaseStore_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-        If is_select_database = "1" Then
+        If is_select_database = "1" Or Not id_user = "" Then
             Dispose()
         Else
             End
@@ -164,22 +169,51 @@
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         If GVData.RowCount > 0 Then
-            Try
-                write_database_configuration(app_host, app_username, app_password, GVData.GetFocusedRowCellDisplayText("Database").ToString)
-                read_database_configuration()
+            Dim is_continue As Boolean = True
 
-                Dim dataDb As DataTable = execute_query("SELECT * FROM tb_m_comp", -1, False, app_host, app_username, app_password, GVData.GetFocusedRowCellDisplayText("Database").ToString)
+            If is_from_close = "1" Then
+                is_continue = False
 
-                FormMain.LabelInfo.Text = "Active: " + dataDb.Rows(0)("comp_number").ToString + "; " + GVData.GetFocusedRowCellDisplayText("Database").ToString
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Apakah anda yakin akan pindah ke Akun: " + TxtAcc.Text + ", Tipe: " + TxtDB.Text + "?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
-                is_select_database = "1"
+                If confirm = DialogResult.Yes Then
+                    is_continue = True
+                End If
+            End If
 
-                Close()
+            Dim usr_found As DataTable = execute_query("SELECT * FROM tb_m_user WHERE id_user = '" + id_user + "'", -1, False, app_host, app_username, app_password, GVData.GetFocusedRowCellDisplayText("Database").ToString)
 
-                FormLogin.ShowDialog()
-            Catch ex As Exception
-                stopCustom("Connection error.")
-            End Try
+            If usr_found.Rows.Count = 0 And Not id_user = "" Then
+                stopCustom("User tidak terdaftar.")
+
+                is_continue = False
+            End If
+
+            If is_continue Then
+                Try
+                    write_database_configuration(app_host, app_username, app_password, GVData.GetFocusedRowCellDisplayText("Database").ToString)
+                    read_database_configuration()
+
+                    Dim dataDb As DataTable = execute_query("SELECT * FROM tb_m_comp", -1, False, app_host, app_username, app_password, GVData.GetFocusedRowCellDisplayText("Database").ToString)
+
+                    FormMain.LabelInfo.Text = "Active: " + dataDb.Rows(0)("comp_number").ToString + "; " + GVData.GetFocusedRowCellDisplayText("Database").ToString
+
+                    is_select_database = "1"
+
+                    Close()
+
+                    If id_user = "" Then
+                        FormLogin.ShowDialog()
+                    Else
+                        FormStockTake.MdiParent = FormMain
+                        FormStockTake.Show()
+                        FormStockTake.WindowState = FormWindowState.Maximized
+                        FormStockTake.Focus()
+                    End If
+                Catch ex As Exception
+                    stopCustom("Connection error.")
+                End Try
+            End If
         Else
             stopCustom("Please select database.")
         End If

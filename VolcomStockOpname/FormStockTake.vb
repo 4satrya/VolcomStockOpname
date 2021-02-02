@@ -543,8 +543,6 @@ Public Class FormStockTake
                 UPDATE tb_st_opt SET is_active_db = '2'
             ", True, "", "", "", "")
 
-            Close()
-
             End
         End If
     End Sub
@@ -1032,5 +1030,63 @@ Public Class FormStockTake
             stopCustom("Cannot create, because scan time's up.")
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub FormStockTake_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
+
+        If is_login_store = "1" Then
+            Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Convert Zero Datetime=True", app_host, app_username, app_password)
+
+            Dim connection As New MySql.Data.MySqlClient.MySqlConnection(connection_string)
+            connection.Open()
+            Dim data As New DataTable
+            Dim adapter As New MySql.Data.MySqlClient.MySqlDataAdapter("SHOW DATABASES", connection)
+            adapter.Fill(data)
+            adapter.Dispose()
+            data.Dispose()
+            connection.Close()
+            connection.Dispose()
+
+            data.Columns.Add("is_active", GetType(String))
+
+            For i = 0 To data.Rows.Count - 1
+                data.Rows(i)("is_active") = 2
+
+                Try
+                    data.Rows(i)("is_active") = execute_query("SELECT is_active_db FROM tb_st_opt LIMIT 1", 0, False, app_host, app_username, app_password, data.Rows(i)("Database").ToString)
+
+                    'check scan time
+                    If data.Rows(i)("is_active").ToString = "1" Then
+                        Dim is_stop As String = execute_query("
+                            SELECT IF(TIMESTAMPDIFF(MONTH, created_date, NOW()) > 0, 1, 2) AS is_stop
+                            FROM tb_st_stop_scan_log
+                            ORDER BY created_date ASC
+                            LIMIT 1
+                        ", 0, False, app_host, app_username, app_password, data.Rows(i)("Database").ToString)
+
+                        If is_stop = "1" Then
+                            execute_non_query("UPDATE tb_st_opt SET is_active_db = 2", False, app_host, app_username, app_password, data.Rows(i)("Database").ToString)
+
+                            data.Rows(i)("is_active") = 2
+                        End If
+                    End If
+                Catch ex As Exception
+                End Try
+            Next
+
+            Dim total_active As Integer = 0
+
+            For i = 0 To data.Rows.Count - 1
+                If data.Rows(i)("is_active").ToString = "1" Then
+                    total_active = total_active + 1
+                End If
+            Next
+
+            If total_active > 1 Then
+                FormDatabaseStore.is_from_close = "1"
+                FormDatabaseStore.ShowDialog()
+            End If
+        End If
     End Sub
 End Class

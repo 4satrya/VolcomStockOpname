@@ -318,4 +318,8 @@
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub FormMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        End
+    End Sub
 End Class

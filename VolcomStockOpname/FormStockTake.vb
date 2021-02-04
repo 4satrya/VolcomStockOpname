@@ -344,8 +344,8 @@ Public Class FormStockTake
                         Dim query_ins As String = "INSERT INTO tb_st_no_tag(id_wh_drawer, no_tag_number, remark, no_tag_date, no_tag_by, no_tag_updated_date, no_tag_updated_by, id_report_status) 
                         SELECT id_wh_drawer, no_tag_number, remark, no_tag_date, no_tag_by, no_tag_updated_date, no_tag_updated_by, id_report_status FROM tb_st_no_tag_" + code_user_restore.ToLower + " WHERE id_st_no_tag=" + dn.Rows(k)("id_st_no_tag").ToString + "; SELECT LAST_INSERT_ID(); "
                         Dim id_st_new As String = execute_query(query_ins, 0, True, "", "", "", "")
-                        Dim query_ins_det As String = "INSERT INTO tb_st_no_tag_det(id_st_no_tag, code, name, note) 
-                        SELECT '" + id_st_new + "', code, name, note FROM tb_st_no_tag_det_" + code_user_restore.ToLower + " WHERE id_st_no_tag=" + dn.Rows(k)("id_st_no_tag").ToString + ";"
+                        Dim query_ins_det As String = "INSERT INTO tb_st_no_tag_det(id_st_no_tag, code, name, size, note) 
+                        SELECT '" + id_st_new + "', code, name, size, note FROM tb_st_no_tag_det_" + code_user_restore.ToLower + " WHERE id_st_no_tag=" + dn.Rows(k)("id_st_no_tag").ToString + ";"
                         execute_non_query(query_ins_det, True, "", "", "", "")
                     Next
                 End If
@@ -360,8 +360,8 @@ Public Class FormStockTake
                         Dim query_ins As String = "INSERT INTO tb_st_un_reg(id_wh_drawer, un_reg_number, remark, un_reg_date, un_reg_by, un_reg_updated_date, un_reg_updated_by, id_report_status) 
                         SELECT id_wh_drawer, un_reg_number, remark, un_reg_date, un_reg_by, un_reg_updated_date, un_reg_updated_by, id_report_status FROM tb_st_un_reg_" + code_user_restore.ToLower + " WHERE id_st_un_reg=" + dn.Rows(k)("id_st_un_reg").ToString + "; SELECT LAST_INSERT_ID(); "
                         Dim id_st_new As String = execute_query(query_ins, 0, True, "", "", "", "")
-                        Dim query_ins_det As String = "INSERT INTO tb_st_un_reg_det(id_st_un_reg, code, name, note) 
-                        SELECT '" + id_st_new + "', code, name, note FROM tb_st_un_reg_det_" + code_user_restore.ToLower + " WHERE id_st_un_reg=" + dn.Rows(k)("id_st_un_reg").ToString + ";"
+                        Dim query_ins_det As String = "INSERT INTO tb_st_un_reg_det(id_st_un_reg, code, name, size, note) 
+                        SELECT '" + id_st_new + "', code, name, size, note FROM tb_st_un_reg_det_" + code_user_restore.ToLower + " WHERE id_st_un_reg=" + dn.Rows(k)("id_st_un_reg").ToString + ";"
                         execute_non_query(query_ins_det, True, "", "", "", "")
                     Next
                 End If

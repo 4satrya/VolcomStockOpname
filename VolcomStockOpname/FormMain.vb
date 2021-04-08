@@ -112,7 +112,27 @@
             End Try
 
             If is_login_store = "1" Then
-                FormDatabaseStore.ShowDialog()
+                Dim arguments As String() = Environment.GetCommandLineArgs()
+
+                Dim cnt As Boolean = False
+
+                Try
+                    If arguments(1) = "afc0265d404f7b661296ffd9d69188f8" Then
+                        cnt = True
+                    Else
+                        cnt = False
+                    End If
+                Catch ex As Exception
+                    cnt = False
+                End Try
+
+                If cnt Then
+                    FormDatabaseStore.ShowDialog()
+                Else
+                    stopCustom("Please use Launcher Volcom ERP")
+
+                    End
+                End If
             Else
                 If id_user = "" And app_database <> "db_opt" Then
                     FormLogin.ShowDialog()

@@ -64,6 +64,9 @@ Public Class FormStockTake
             GVScan.Columns("remark").Caption = "Lokasi"
             GVNoTag.Columns("remark").Caption = "Lokasi"
             GVUnReg.Columns("remark").Caption = "Lokasi"
+
+            SBImportForCombine.Visible = True
+            SBExportForCombine.Visible = True
         Else
             SBAddStore.Visible = False
             SBNoTagStore.Visible = False
@@ -72,6 +75,9 @@ Public Class FormStockTake
 
             XTPNoTag.PageVisible = False
             XTPUnReg.PageVisible = False
+
+            SBImportForCombine.Visible = False
+            SBExportForCombine.Visible = False
         End If
 
         If id_role_login = "1" Then
@@ -1088,5 +1094,310 @@ Public Class FormStockTake
                 FormDatabaseStore.ShowDialog()
             End If
         End If
+    End Sub
+
+    Private Sub SBImportForCombine_Click(sender As Object, e As EventArgs) Handles SBImportForCombine.Click
+        Dim url_import As String = ""
+
+        Dim fdlg As OpenFileDialog = New OpenFileDialog()
+
+        fdlg.Title = "Select sql file To import"
+        fdlg.InitialDirectory = My.Computer.FileSystem.SpecialDirectories.Desktop
+        fdlg.Filter = "SQL File | *.sql;"
+        fdlg.FilterIndex = 0
+        fdlg.RestoreDirectory = True
+
+        If fdlg.ShowDialog() = DialogResult.OK Then
+            Try
+                FormMain.SplashScreenManager1.ShowWaitForm()
+
+                url_import = fdlg.FileName.ToString
+
+                Dim file_read As String = My.Computer.FileSystem.ReadAllText(url_import)
+
+                Dim b As Byte() = Convert.FromBase64String(file_read)
+
+                file_read = System.Text.Encoding.UTF8.GetString(b)
+
+                Dim data_read As IO.StringReader = New IO.StringReader(file_read)
+
+                Dim xml_data As DataSet = New DataSet
+
+                xml_data.ReadXml(data_read)
+
+                Dim data_report As DataTable = New DataTable
+
+                data_report.Columns.Add("st_trans_number", GetType(String))
+                data_report.Columns.Add("remark", GetType(String))
+                data_report.Columns.Add("code", GetType(String))
+                data_report.Columns.Add("name", GetType(String))
+                data_report.Columns.Add("size", GetType(String))
+                data_report.Columns.Add("id_design_price", GetType(String))
+                data_report.Columns.Add("is_reject", GetType(String))
+                data_report.Columns.Add("design_price", GetType(String))
+                data_report.Columns.Add("status", GetType(String))
+
+                Dim table_db As DataTable = xml_data.Tables("db")
+                Dim table_header As DataTable = xml_data.Tables("tb_st_trans")
+                Dim table_detail As DataTable = xml_data.Tables("tb_st_trans_det")
+
+                If table_db.Rows(0)("name").ToString = app_database Then
+                    Dim list_header_duplicate As List(Of String) = New List(Of String)
+                    Dim list_detail_duplicate As List(Of String) = New List(Of String)
+
+                    Dim already_header_data As DataTable = execute_query("SELECT st_trans_number FROM tb_st_trans", -1, True, "", "", "", "")
+                    Dim already_detail_data As DataTable = execute_query("SELECT id_st_trans_det, id_st_trans_det_ref, id_st_trans, is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, is_no_tag, id_product, code, name, size, qty, id_design_price, design_price, note FROM tb_st_trans_det", -1, True, "", "", "", "")
+
+                    For i = 0 To table_header.Rows.Count - 1
+                        For j = 0 To already_header_data.Rows.Count - 1
+                            If table_header.Rows(i)("st_trans_number").ToString = already_header_data.Rows(j)("st_trans_number").ToString Then
+                                list_header_duplicate.Add(table_header.Rows(i)("st_trans_number").ToString)
+                            End If
+                        Next
+                    Next
+
+                    For i = 0 To table_detail.Rows.Count - 1
+                        For j = 0 To already_detail_data.Rows.Count - 1
+                            If table_detail.Rows(i)("code").ToString.Length = 16 Then
+                                If table_detail.Rows(i)("code").ToString = already_detail_data.Rows(j)("code").ToString Then
+                                    list_detail_duplicate.Add(table_detail.Rows(i)("code").ToString)
+                                End If
+                            End If
+                        Next
+                    Next
+
+                    'insert
+                    For i = 0 To table_header.Rows.Count - 1
+                        If Not list_header_duplicate.Contains(table_header.Rows(i)("st_trans_number").ToString) Then
+                            If Not table_header.Rows(i)("st_trans_by").ToString = id_user Then
+                                Dim id_wh_drawer As String = table_header.Rows(i)("id_wh_drawer").ToString
+                                Dim st_trans_number As String = table_header.Rows(i)("st_trans_number").ToString
+                                Dim remark As String = table_header.Rows(i)("remark").ToString
+                                Dim st_trans_date As String = Date.Parse(table_header.Rows(i)("st_trans_date").ToString).ToString("yyyy-MM-dd HH:mm:ss")
+                                Dim st_trans_by As String = table_header.Rows(i)("st_trans_by").ToString
+                                Dim st_trans_updated As String = Date.Parse(table_header.Rows(i)("st_trans_updated").ToString).ToString("yyyy-MM-dd HH:mm:ss")
+                                Dim st_trans_updated_by As String = table_header.Rows(i)("st_trans_updated_by").ToString
+                                Dim is_combine As String = table_header.Rows(i)("is_combine").ToString
+                                Dim id_report_status As String = table_header.Rows(i)("id_report_status").ToString
+                                Dim report_status_note As String = If(table_header.Rows(i)("report_status_note").ToString = "", "NULL", "'" + table_header.Rows(i)("report_status_note").ToString + "'")
+                                Dim id_combine As String = If(table_header.Rows(i)("id_combine").ToString = "", "NULL", "'" + table_header.Rows(i)("id_combine").ToString + "'")
+                                Dim acknowledge_by As String = If(table_header.Rows(i)("acknowledge_by").ToString = "", "NULL", "'" + table_header.Rows(i)("acknowledge_by").ToString + "'")
+                                Dim approved_by As String = If(table_header.Rows(i)("approved_by").ToString = "", "NULL", "'" + table_header.Rows(i)("approved_by").ToString + "'")
+                                Dim is_pre As String = table_header.Rows(i)("is_pre").ToString
+
+                                Dim query As String = "INSERT INTO tb_st_trans (id_wh_drawer, st_trans_number, remark, st_trans_date, st_trans_by, st_trans_updated, st_trans_updated_by, is_combine, id_report_status, report_status_note, id_combine, acknowledge_by, approved_by, is_pre) VALUES ('" + id_wh_drawer + "', '" + st_trans_number + "', '" + remark + "', '" + st_trans_date + "', '" + st_trans_by + "', '" + st_trans_updated + "', '" + st_trans_updated_by + "', '" + is_combine + "', '" + id_report_status + ", " + report_status_note + ", " + id_combine + ", " + acknowledge_by + ", " + approved_by + "', '" + is_pre + "'); SELECT LAST_INSERT_ID();"
+
+                                Dim id_st_trans As String = execute_query(query, 0, True, "", "", "", "")
+
+                                Dim inserted As Integer = 0
+
+                                For j = 0 To table_detail.Rows.Count - 1
+                                    If table_header.Rows(i)("id_st_trans").ToString = table_detail.Rows(j)("id_st_trans").ToString Then
+                                        If Not list_detail_duplicate.Contains(table_detail.Rows(j)("code").ToString) Then
+                                            inserted += 1
+
+                                            Dim id_st_trans_det_ref As String = table_detail.Rows(j)("id_st_trans_det_ref").ToString
+                                            Dim is_ok As String = table_detail.Rows(j)("is_ok").ToString
+                                            Dim is_no_stock As String = table_detail.Rows(j)("is_no_stock").ToString
+                                            Dim is_no_master As String = table_detail.Rows(j)("is_no_master").ToString
+                                            Dim is_sale As String = table_detail.Rows(j)("is_sale").ToString
+                                            Dim is_reject As String = table_detail.Rows(j)("is_reject").ToString
+                                            Dim is_unique_not_found As String = table_detail.Rows(j)("is_unique_not_found").ToString
+                                            Dim is_no_tag As String = table_detail.Rows(j)("is_no_tag").ToString
+                                            Dim id_product As String = table_detail.Rows(j)("id_product").ToString
+                                            Dim code As String = table_detail.Rows(j)("code").ToString
+                                            Dim name As String = table_detail.Rows(j)("name").ToString
+                                            Dim size As String = table_detail.Rows(j)("size").ToString
+                                            Dim qty As String = table_detail.Rows(j)("qty").ToString
+                                            Dim id_design_price As String = table_detail.Rows(j)("id_design_price").ToString
+                                            Dim design_price As String = table_detail.Rows(j)("design_price").ToString
+                                            Dim note As String = table_detail.Rows(j)("note").ToString
+
+                                            execute_non_query("INSERT tb_st_trans_det (id_st_trans_det_ref, id_st_trans, is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, is_no_tag, id_product, code, name, size, qty, id_design_price, design_price, note) VALUES ('" + id_st_trans_det_ref + "', '" + id_st_trans + "', '" + is_ok + "', '" + is_no_stock + "', '" + is_no_master + "', '" + is_sale + "', '" + is_reject + "', '" + is_unique_not_found + "', '" + is_no_tag + "', '" + id_product + "', '" + code + "', '" + name + "', '" + size + "', '" + qty + "', '" + id_design_price + "', '" + design_price + "', '" + note + "')", True, "", "", "", "")
+                                        Else
+                                            'insert report
+                                            data_report.Rows.Add(
+                                                table_header.Rows(i)("st_trans_number").ToString,
+                                                table_header.Rows(i)("remark").ToString,
+                                                table_detail.Rows(j)("code").ToString,
+                                                table_detail.Rows(j)("name").ToString,
+                                                table_detail.Rows(j)("size").ToString,
+                                                table_detail.Rows(j)("id_design_price").ToString,
+                                                table_detail.Rows(j)("is_reject").ToString,
+                                                table_detail.Rows(j)("design_price").ToString,
+                                                "Code Already exist"
+                                            )
+                                        End If
+                                    End If
+                                Next
+
+                                'delete zero
+                                If inserted = 0 Then
+                                    execute_non_query("DELETE FROM tb_st_trans WHERE id_st_trans = '" + id_st_trans + "'", True, "", "", "", "")
+                                End If
+                            Else
+                                'insert report
+                                For j = 0 To table_detail.Rows.Count - 1
+                                    If table_header.Rows(i)("id_st_trans").ToString = table_detail.Rows(j)("id_st_trans").ToString Then
+                                        data_report.Rows.Add(
+                                            table_header.Rows(i)("st_trans_number").ToString,
+                                            table_header.Rows(i)("remark").ToString,
+                                            table_detail.Rows(j)("code").ToString,
+                                            table_detail.Rows(j)("name").ToString,
+                                            table_detail.Rows(j)("size").ToString,
+                                            table_detail.Rows(j)("id_design_price").ToString,
+                                            table_detail.Rows(j)("is_reject").ToString,
+                                            table_detail.Rows(j)("design_price").ToString,
+                                            "Same user"
+                                        )
+                                    End If
+                                Next
+                            End If
+                        Else
+                            'insert report
+                            For j = 0 To table_detail.Rows.Count - 1
+                                If table_header.Rows(i)("id_st_trans").ToString = table_detail.Rows(j)("id_st_trans").ToString Then
+                                    data_report.Rows.Add(
+                                        table_header.Rows(i)("st_trans_number").ToString,
+                                        table_header.Rows(i)("remark").ToString,
+                                        table_detail.Rows(j)("code").ToString,
+                                        table_detail.Rows(j)("name").ToString,
+                                        table_detail.Rows(j)("size").ToString,
+                                        table_detail.Rows(j)("id_design_price").ToString,
+                                        table_detail.Rows(j)("is_reject").ToString,
+                                        table_detail.Rows(j)("design_price").ToString,
+                                        "Number Already exist"
+                                    )
+                                End If
+                            Next
+                        End If
+                    Next
+
+                    'insert report
+                    For i = 0 To data_report.Rows.Count - 1
+                        Dim query As String = "INSERT INTO tb_st_import_report (st_trans_number, remark, code, name, size, id_design_price, is_reject, design_price, `status`, created_at) VALUES ('" + data_report.Rows(i)("st_trans_number").ToString + "', '" + data_report.Rows(i)("remark").ToString + "', '" + data_report.Rows(i)("code").ToString + "', '" + data_report.Rows(i)("name").ToString + "', '" + data_report.Rows(i)("size").ToString + "', '" + data_report.Rows(i)("id_design_price").ToString + "', '" + data_report.Rows(i)("is_reject").ToString + "', '" + data_report.Rows(i)("design_price").ToString + "', '" + data_report.Rows(i)("status").ToString + "', NOW())"
+
+                        execute_non_query(query, True, "", "", "", "")
+                    Next
+
+                    LEViewUser.EditValue = "2"
+
+                    viewScan()
+
+                    FormMain.SplashScreenManager1.CloseWaitForm()
+
+                    infoCustom("File imported.")
+
+                    If data_report.Rows.Count > 0 Then
+                        warningCustom("Some data cannot imported.")
+
+                        FormStockTakeList.XTCStockTake.SelectedTabPage = FormStockTakeList.XTPErrorImport
+
+                        FormStockTakeList.ShowDialog()
+                    End If
+                Else
+                    FormMain.SplashScreenManager1.CloseWaitForm()
+
+                    stopCustom("File import not matched.")
+                End If
+            Catch ex As Exception
+                FormMain.SplashScreenManager1.CloseWaitForm()
+
+                stopCustom("Import error." + Environment.NewLine + ex.ToString)
+            End Try
+        End If
+    End Sub
+
+    Private Sub SBExportForCombine_Click(sender As Object, e As EventArgs) Handles SBExportForCombine.Click
+        Dim exported As String = ""
+
+        FormMain.SplashScreenManager1.ShowWaitForm()
+
+        Dim query_head As String = "SELECT id_st_trans, id_wh_drawer, st_trans_number, remark, st_trans_date, st_trans_by, st_trans_updated, st_trans_updated_by, is_combine, id_report_status, report_status_note, id_combine, acknowledge_by, approved_by, is_pre FROM tb_st_trans"
+        Dim data_head As DataTable = execute_query(query_head, -1, True, "", "", "", "")
+
+        Dim query_detail As String = "SELECT id_st_trans_det, id_st_trans_det_ref, id_st_trans, is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, is_no_tag, id_product, code, name, size, qty, id_design_price, design_price, note FROM tb_st_trans_det"
+        Dim data_detail As DataTable = execute_query(query_detail, -1, True, "", "", "", "")
+
+        'header
+        exported += "<?xml version=""1.0"" encoding=""UTF-8""?><root><db><name>" + app_database + "</name></db>"
+
+        For i = 0 To data_head.Rows.Count - 1
+            Dim id_st_trans As String = data_head.Rows(i)("id_st_trans").ToString
+            Dim id_wh_drawer As String = data_head.Rows(i)("id_wh_drawer").ToString
+            Dim st_trans_number As String = data_head.Rows(i)("st_trans_number").ToString
+            Dim remark As String = data_head.Rows(i)("remark").ToString
+            Dim st_trans_date As String = data_head.Rows(i)("st_trans_date").ToString
+            Dim st_trans_by As String = data_head.Rows(i)("st_trans_by").ToString
+            Dim st_trans_updated As String = data_head.Rows(i)("st_trans_updated").ToString
+            Dim st_trans_updated_by As String = data_head.Rows(i)("st_trans_updated_by").ToString
+            Dim is_combine As String = data_head.Rows(i)("is_combine").ToString
+            Dim id_report_status As String = data_head.Rows(i)("id_report_status").ToString
+            Dim report_status_note As String = data_head.Rows(i)("report_status_note").ToString
+            Dim id_combine As String = data_head.Rows(i)("id_combine").ToString
+            Dim acknowledge_by As String = data_head.Rows(i)("acknowledge_by").ToString
+            Dim approved_by As String = data_head.Rows(i)("approved_by").ToString
+            Dim is_pre As String = data_head.Rows(i)("is_pre").ToString
+
+            exported += "<tb_st_trans><id_st_trans>" + id_st_trans + "</id_st_trans><id_wh_drawer>" + id_wh_drawer + "</id_wh_drawer><st_trans_number>" + st_trans_number + "</st_trans_number><remark>" + remark + "</remark><st_trans_date>" + st_trans_date + "</st_trans_date><st_trans_by>" + st_trans_by + "</st_trans_by><st_trans_updated>" + st_trans_updated + "</st_trans_updated><st_trans_updated_by>" + st_trans_updated_by + "</st_trans_updated_by><is_combine>" + is_combine + "</is_combine><id_report_status>" + id_report_status + "</id_report_status><report_status_note>" + report_status_note + "</report_status_note><id_combine>" + id_combine + "</id_combine><acknowledge_by>" + acknowledge_by + "</acknowledge_by><approved_by>" + approved_by + "</approved_by><is_pre>" + is_pre + "</is_pre></tb_st_trans>"
+        Next
+
+        'detail
+        For i = 0 To data_detail.Rows.Count - 1
+            Dim id_st_trans_det As String = data_detail.Rows(i)("id_st_trans_det").ToString
+            Dim id_st_trans_det_ref As String = data_detail.Rows(i)("id_st_trans_det_ref").ToString
+            Dim id_st_trans As String = data_detail.Rows(i)("id_st_trans").ToString
+            Dim is_ok As String = data_detail.Rows(i)("is_ok").ToString
+            Dim is_no_stock As String = data_detail.Rows(i)("is_no_stock").ToString
+            Dim is_no_master As String = data_detail.Rows(i)("is_no_master").ToString
+            Dim is_sale As String = data_detail.Rows(i)("is_sale").ToString
+            Dim is_reject As String = data_detail.Rows(i)("is_reject").ToString
+            Dim is_unique_not_found As String = data_detail.Rows(i)("is_unique_not_found").ToString
+            Dim is_no_tag As String = data_detail.Rows(i)("is_no_tag").ToString
+            Dim id_product As String = data_detail.Rows(i)("id_product").ToString
+            Dim code As String = data_detail.Rows(i)("code").ToString
+            Dim name As String = data_detail.Rows(i)("name").ToString
+            Dim size As String = data_detail.Rows(i)("size").ToString
+            Dim qty As String = data_detail.Rows(i)("qty").ToString
+            Dim id_design_price As String = data_detail.Rows(i)("id_design_price").ToString
+            Dim design_price As String = data_detail.Rows(i)("design_price").ToString
+            Dim note As String = data_detail.Rows(i)("note").ToString
+
+            exported += "<tb_st_trans_det><id_st_trans_det>" + id_st_trans_det + "</id_st_trans_det><id_st_trans_det_ref>" + id_st_trans_det_ref + "</id_st_trans_det_ref><id_st_trans>" + id_st_trans + "</id_st_trans><is_ok>" + is_ok + "</is_ok><is_no_stock>" + is_no_stock + "</is_no_stock><is_no_master>" + is_no_master + "</is_no_master><is_sale>" + is_sale + "</is_sale><is_reject>" + is_reject + "</is_reject><is_unique_not_found>" + is_unique_not_found + "</is_unique_not_found><is_no_tag>" + is_no_tag + "</is_no_tag><id_product>" + id_product + "</id_product><code>" + code + "</code><name>" + name + "</name><size>" + size + "</size><qty>" + qty + "</qty><id_design_price>" + id_design_price + "</id_design_price><design_price>" + design_price + "</design_price><note>" + note + "</note></tb_st_trans_det>"
+        Next
+
+        exported += "</root>"
+
+        'save file
+        Dim folder_date As String = DateTime.Now.ToString("yyyy-MM-dd HHmmss")
+
+        Dim path_root As String = Application.StartupPath + "\download\export\" + folder_date
+
+        If Not IO.Directory.Exists(path_root) Then
+            System.IO.Directory.CreateDirectory(path_root)
+        End If
+
+        Dim path_exported As String = IO.Path.Combine(path_root, "FILE_IMPORT_" + st_user_code + ".sql")
+
+        Dim fs_exported As IO.FileStream = IO.File.Create(path_exported)
+
+        Dim info_exported As Byte() = New System.Text.UTF8Encoding(True).GetBytes(System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(exported)))
+
+        fs_exported.Write(info_exported, 0, info_exported.Length)
+
+        fs_exported.Close()
+
+        'open
+        Dim open_folder As ProcessStartInfo = New ProcessStartInfo()
+
+        open_folder.WindowStyle = ProcessWindowStyle.Maximized
+        open_folder.FileName = "explorer.exe"
+        open_folder.Arguments = path_root
+
+        FormMain.SplashScreenManager1.CloseWaitForm()
+
+        infoCustom("File exported.")
+
+        Process.Start(open_folder)
     End Sub
 End Class

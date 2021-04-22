@@ -126,7 +126,7 @@
                     cnt = False
                 End Try
 
-                cnt = True
+                'cnt = True
 
                 If cnt Then
                     FormDatabaseStore.ShowDialog()

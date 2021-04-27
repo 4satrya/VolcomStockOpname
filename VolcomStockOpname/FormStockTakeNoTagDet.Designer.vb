@@ -27,10 +27,14 @@ Partial Class FormStockTakeNoTagDet
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TECode = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.TESize = New DevExpress.XtraEditors.TextEdit()
+        Me.SLUESize = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.TEName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TESize.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLUESize.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SBClose
@@ -64,6 +68,7 @@ Partial Class FormStockTakeNoTagDet
         Me.TEName.EditValue = ""
         Me.TEName.Location = New System.Drawing.Point(12, 81)
         Me.TEName.Name = "TEName"
+        Me.TEName.Properties.ReadOnly = True
         Me.TEName.Size = New System.Drawing.Size(260, 20)
         Me.TEName.TabIndex = 8
         '
@@ -90,21 +95,44 @@ Partial Class FormStockTakeNoTagDet
         Me.LabelControl3.TabIndex = 13
         Me.LabelControl3.Text = "Size"
         '
-        'TESize
+        'SLUESize
         '
-        Me.TESize.EditValue = ""
-        Me.TESize.Location = New System.Drawing.Point(12, 136)
-        Me.TESize.Name = "TESize"
-        Me.TESize.Size = New System.Drawing.Size(260, 20)
-        Me.TESize.TabIndex = 9
+        Me.SLUESize.Location = New System.Drawing.Point(12, 136)
+        Me.SLUESize.Name = "SLUESize"
+        Me.SLUESize.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUESize.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLUESize.Size = New System.Drawing.Size(260, 20)
+        Me.SLUESize.TabIndex = 14
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Code"
+        Me.GridColumn1.FieldName = "code"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Size"
+        Me.GridColumn2.FieldName = "display_name"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
         '
         'FormStockTakeNoTagDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(284, 209)
+        Me.Controls.Add(Me.SLUESize)
         Me.Controls.Add(Me.LabelControl3)
-        Me.Controls.Add(Me.TESize)
         Me.Controls.Add(Me.SBClose)
         Me.Controls.Add(Me.SBSave)
         Me.Controls.Add(Me.LabelControl2)
@@ -116,7 +144,8 @@ Partial Class FormStockTakeNoTagDet
         Me.Text = "No Tag Detail"
         CType(Me.TEName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TESize.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLUESize.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -129,5 +158,8 @@ Partial Class FormStockTakeNoTagDet
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TECode As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TESize As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents SLUESize As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

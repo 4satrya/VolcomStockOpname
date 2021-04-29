@@ -253,7 +253,7 @@ Public Class FormStockTake
                         Using mb As New MySqlBackup(cmd)
                             cmd.Connection = conn
                             conn.Open()
-                            mb.ExportInfo.AddCreateDatabase = False
+                            mb.ExportInfo.AddCreateDatabase = True
                             mb.ExportInfo.ExportTableStructure = True
                             mb.ExportInfo.ExportRows = True
                             mb.ExportInfo.TablesToBeExportedDic = dic

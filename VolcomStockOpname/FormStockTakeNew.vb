@@ -56,7 +56,7 @@
     Private Sub BtnCreate_Click(sender As Object, e As EventArgs) Handles BtnCreate.Click
         Cursor = Cursors.WaitCursor
         If is_no_tag = "1" Then
-            Dim query As String = "INSERT INTO tb_st_no_tag (id_wh_drawer, no_tag_number, remark, no_tag_date, no_tag_by) VALUES ('" + SLEWHStockSum.EditValue.ToString + "', '', '" + addSlashes(MERemark.Text.ToString) + "', NOW(), '" + id_user + "'); SELECT LAST_INSERT_ID();"
+            Dim query As String = "INSERT INTO tb_st_no_tag (id_wh_drawer, no_tag_number, remark, no_tag_date, no_tag_by, app_id) VALUES ('" + SLEWHStockSum.EditValue.ToString + "', '', '" + addSlashes(MERemark.Text.ToString) + "', NOW(), '" + id_user + "', '" + app_id + "'); SELECT LAST_INSERT_ID();"
 
             Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
 
@@ -69,7 +69,7 @@
             FormStockTakeNoTag.ShowDialog()
             Close()
         ElseIf is_un_reg = "1" Then
-            Dim query As String = "INSERT INTO tb_st_un_reg (id_wh_drawer, un_reg_number, remark, un_reg_date, un_reg_by) VALUES ('" + SLEWHStockSum.EditValue.ToString + "', '', '" + addSlashes(MERemark.Text.ToString) + "', NOW(), '" + id_user + "'); SELECT LAST_INSERT_ID();"
+            Dim query As String = "INSERT INTO tb_st_un_reg (id_wh_drawer, un_reg_number, remark, un_reg_date, un_reg_by, app_id) VALUES ('" + SLEWHStockSum.EditValue.ToString + "', '', '" + addSlashes(MERemark.Text.ToString) + "', NOW(), '" + id_user + "', '" + app_id + "'); SELECT LAST_INSERT_ID();"
 
             Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
 

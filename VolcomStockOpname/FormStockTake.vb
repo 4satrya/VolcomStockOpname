@@ -332,8 +332,8 @@ Public Class FormStockTake
                 Dim jv As Integer = dv.Rows.Count
                 For j As Integer = 0 To dv.Rows.Count - 1
                     FormMain.SplashScreenManager1.SetWaitFormDescription("Copying data " + (j + 1).ToString + " of " + jv.ToString + " ...")
-                    Dim query_ins As String = "INSERT INTO tb_st_trans(id_wh_drawer, st_trans_number, remark, st_trans_date, st_trans_by, st_trans_updated, st_trans_updated_by, is_combine, id_report_status) 
-                    SELECT id_wh_drawer, st_trans_number, remark, st_trans_date, st_trans_by, st_trans_updated, st_trans_updated_by, is_combine, id_report_status FROM tb_st_trans_" + code_user_restore.ToLower + " WHERE id_st_trans=" + dv.Rows(j)("id_st_trans").ToString + "; SELECT LAST_INSERT_ID(); "
+                    Dim query_ins As String = "INSERT INTO tb_st_trans(id_wh_drawer, st_trans_number, remark, st_trans_date, st_trans_by, st_trans_updated, st_trans_updated_by, is_combine, id_report_status, app_id) 
+                    SELECT id_wh_drawer, st_trans_number, remark, st_trans_date, st_trans_by, st_trans_updated, st_trans_updated_by, is_combine, id_report_status, app_id FROM tb_st_trans_" + code_user_restore.ToLower + " WHERE id_st_trans=" + dv.Rows(j)("id_st_trans").ToString + "; SELECT LAST_INSERT_ID(); "
                     Dim id_st_new As String = execute_query(query_ins, 0, True, "", "", "", "")
                     Dim query_ins_det As String = "INSERT INTO tb_st_trans_det(id_st_trans, is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, is_no_tag, id_product, code, name, size, qty, id_design_price, design_price, note) 
                     SELECT '" + id_st_new + "', is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, is_no_tag, id_product, code, name, size, qty, id_design_price, design_price, note FROM tb_st_trans_det_" + code_user_restore.ToLower + " WHERE id_st_trans=" + dv.Rows(j)("id_st_trans").ToString + ";"
@@ -342,13 +342,13 @@ Public Class FormStockTake
                 'no tag
                 Dim table_no_tag As DataTable = execute_query("SHOW TABLES LIKE 'tb_st_no_tag_" + code_user_restore + "';", -1, True, "", "", "", "")
                 If table_no_tag.Rows.Count > 0 Then
-                    Dim qn As String = "SELECT * FROM tb_st_no_tag_" + code_user_restore + " WHERE no_tag_number NOT IN (SELECT no_tag_number FROM tb_st_no_tag)"
+                    Dim qn As String = "SELECT * FROM tb_st_no_tag_" + code_user_restore + " WHERE CONCAT(no_tag_number, '-', app_id) NOT IN (SELECT CONCAT(no_tag_number, '-', app_id) FROM tb_st_no_tag)"
                     Dim dn As DataTable = execute_query(qn, -1, True, "", "", "", "")
                     Dim kn As Integer = dn.Rows.Count
                     For k As Integer = 0 To dn.Rows.Count - 1
                         FormMain.SplashScreenManager1.SetWaitFormDescription("Copying data no tag " + (k + 1).ToString + " of " + kn.ToString + " ...")
-                        Dim query_ins As String = "INSERT INTO tb_st_no_tag(id_wh_drawer, no_tag_number, remark, no_tag_date, no_tag_by, no_tag_updated_date, no_tag_updated_by, id_report_status) 
-                        SELECT id_wh_drawer, no_tag_number, remark, no_tag_date, no_tag_by, no_tag_updated_date, no_tag_updated_by, id_report_status FROM tb_st_no_tag_" + code_user_restore.ToLower + " WHERE id_st_no_tag=" + dn.Rows(k)("id_st_no_tag").ToString + "; SELECT LAST_INSERT_ID(); "
+                        Dim query_ins As String = "INSERT INTO tb_st_no_tag(id_wh_drawer, no_tag_number, remark, no_tag_date, no_tag_by, no_tag_updated_date, no_tag_updated_by, id_report_status, app_id) 
+                        SELECT id_wh_drawer, no_tag_number, remark, no_tag_date, no_tag_by, no_tag_updated_date, no_tag_updated_by, id_report_status, app_id FROM tb_st_no_tag_" + code_user_restore.ToLower + " WHERE id_st_no_tag=" + dn.Rows(k)("id_st_no_tag").ToString + "; SELECT LAST_INSERT_ID(); "
                         Dim id_st_new As String = execute_query(query_ins, 0, True, "", "", "", "")
                         Dim query_ins_det As String = "INSERT INTO tb_st_no_tag_det(id_st_no_tag, code, name, size, note) 
                         SELECT '" + id_st_new + "', code, name, size, note FROM tb_st_no_tag_det_" + code_user_restore.ToLower + " WHERE id_st_no_tag=" + dn.Rows(k)("id_st_no_tag").ToString + ";"
@@ -358,13 +358,13 @@ Public Class FormStockTake
                 'un reg
                 Dim table_un_reg As DataTable = execute_query("SHOW TABLES LIKE 'tb_st_un_reg_" + code_user_restore + "';", -1, True, "", "", "", "")
                 If table_un_reg.Rows.Count > 0 Then
-                    Dim qn As String = "SELECT * FROM tb_st_un_reg_" + code_user_restore + " WHERE un_reg_number NOT IN (SELECT un_reg_number FROM tb_st_un_reg)"
+                    Dim qn As String = "SELECT * FROM tb_st_un_reg_" + code_user_restore + " WHERE CONCAT(un_reg_number, '-', app_id) NOT IN (SELECT CONCAT(un_reg_number, '-', app_id) FROM tb_st_un_reg)"
                     Dim dn As DataTable = execute_query(qn, -1, True, "", "", "", "")
                     Dim kn As Integer = dn.Rows.Count
                     For k As Integer = 0 To dn.Rows.Count - 1
                         FormMain.SplashScreenManager1.SetWaitFormDescription("Copying data un_reg " + (k + 1).ToString + " of " + kn.ToString + " ...")
-                        Dim query_ins As String = "INSERT INTO tb_st_un_reg(id_wh_drawer, un_reg_number, remark, un_reg_date, un_reg_by, un_reg_updated_date, un_reg_updated_by, id_report_status) 
-                        SELECT id_wh_drawer, un_reg_number, remark, un_reg_date, un_reg_by, un_reg_updated_date, un_reg_updated_by, id_report_status FROM tb_st_un_reg_" + code_user_restore.ToLower + " WHERE id_st_un_reg=" + dn.Rows(k)("id_st_un_reg").ToString + "; SELECT LAST_INSERT_ID(); "
+                        Dim query_ins As String = "INSERT INTO tb_st_un_reg(id_wh_drawer, un_reg_number, remark, un_reg_date, un_reg_by, un_reg_updated_date, un_reg_updated_by, id_report_status, app_id) 
+                        SELECT id_wh_drawer, un_reg_number, remark, un_reg_date, un_reg_by, un_reg_updated_date, un_reg_updated_by, id_report_status, app_id FROM tb_st_un_reg_" + code_user_restore.ToLower + " WHERE id_st_un_reg=" + dn.Rows(k)("id_st_un_reg").ToString + "; SELECT LAST_INSERT_ID(); "
                         Dim id_st_new As String = execute_query(query_ins, 0, True, "", "", "", "")
                         Dim query_ins_det As String = "INSERT INTO tb_st_un_reg_det(id_st_un_reg, code, name, size, note) 
                         SELECT '" + id_st_new + "', code, name, size, note FROM tb_st_un_reg_det_" + code_user_restore.ToLower + " WHERE id_st_un_reg=" + dn.Rows(k)("id_st_un_reg").ToString + ";"
@@ -724,7 +724,7 @@ Public Class FormStockTake
                             Using mb As New MySqlBackup(cmd)
                                 cmd.Connection = conn
                                 conn.Open()
-                                mb.ExportInfo.AddCreateDatabase = False
+                                mb.ExportInfo.AddCreateDatabase = True
                                 mb.ExportInfo.ExportTableStructure = True
                                 mb.ExportInfo.ExportRows = True
                                 mb.ExportInfo.TablesToBeExportedDic = dic

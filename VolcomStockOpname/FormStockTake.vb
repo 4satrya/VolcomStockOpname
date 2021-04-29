@@ -327,7 +327,7 @@ Public Class FormStockTake
                 End Using
 
                 'copying data
-                Dim qv As String = "SELECT * FROM tb_st_trans_" + code_user_restore + " WHERE st_trans_number NOT IN (SELECT st_trans_number FROM tb_st_trans)"
+                Dim qv As String = "SELECT * FROM tb_st_trans_" + code_user_restore + " WHERE CONCAT(st_trans_number, '-', app_id) NOT IN (SELECT CONCAT(st_trans_number, '-', app_id) FROM tb_st_trans)"
                 Dim dv As DataTable = execute_query(qv, -1, True, "", "", "", "")
                 Dim jv As Integer = dv.Rows.Count
                 For j As Integer = 0 To dv.Rows.Count - 1
@@ -1142,19 +1142,10 @@ Public Class FormStockTake
                 Dim table_detail As DataTable = xml_data.Tables("tb_st_trans_det")
 
                 If table_db.Rows(0)("name").ToString = app_database Then
-                    Dim list_header_duplicate As List(Of String) = New List(Of String)
                     Dim list_detail_duplicate As List(Of String) = New List(Of String)
 
                     Dim already_header_data As DataTable = execute_query("SELECT st_trans_number FROM tb_st_trans", -1, True, "", "", "", "")
                     Dim already_detail_data As DataTable = execute_query("SELECT id_st_trans_det, id_st_trans_det_ref, id_st_trans, is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, is_no_tag, id_product, code, name, size, qty, id_design_price, design_price, note FROM tb_st_trans_det", -1, True, "", "", "", "")
-
-                    For i = 0 To table_header.Rows.Count - 1
-                        For j = 0 To already_header_data.Rows.Count - 1
-                            If table_header.Rows(i)("st_trans_number").ToString = already_header_data.Rows(j)("st_trans_number").ToString Then
-                                list_header_duplicate.Add(table_header.Rows(i)("st_trans_number").ToString)
-                            End If
-                        Next
-                    Next
 
                     For i = 0 To table_detail.Rows.Count - 1
                         For j = 0 To already_detail_data.Rows.Count - 1
@@ -1168,77 +1159,54 @@ Public Class FormStockTake
 
                     'insert
                     For i = 0 To table_header.Rows.Count - 1
-                        If Not list_header_duplicate.Contains(table_header.Rows(i)("st_trans_number").ToString) Then
-                            If Not table_header.Rows(i)("st_trans_by").ToString = id_user Then
-                                Dim id_wh_drawer As String = table_header.Rows(i)("id_wh_drawer").ToString
-                                Dim st_trans_number As String = table_header.Rows(i)("st_trans_number").ToString
-                                Dim remark As String = table_header.Rows(i)("remark").ToString
-                                Dim st_trans_date As String = Date.Parse(table_header.Rows(i)("st_trans_date").ToString).ToString("yyyy-MM-dd HH:mm:ss")
-                                Dim st_trans_by As String = table_header.Rows(i)("st_trans_by").ToString
-                                Dim st_trans_updated As String = Date.Parse(table_header.Rows(i)("st_trans_updated").ToString).ToString("yyyy-MM-dd HH:mm:ss")
-                                Dim st_trans_updated_by As String = table_header.Rows(i)("st_trans_updated_by").ToString
-                                Dim is_combine As String = table_header.Rows(i)("is_combine").ToString
-                                Dim id_report_status As String = table_header.Rows(i)("id_report_status").ToString
-                                Dim report_status_note As String = If(table_header.Rows(i)("report_status_note").ToString = "", "NULL", "'" + table_header.Rows(i)("report_status_note").ToString + "'")
-                                Dim id_combine As String = If(table_header.Rows(i)("id_combine").ToString = "", "NULL", "'" + table_header.Rows(i)("id_combine").ToString + "'")
-                                Dim acknowledge_by As String = If(table_header.Rows(i)("acknowledge_by").ToString = "", "NULL", "'" + table_header.Rows(i)("acknowledge_by").ToString + "'")
-                                Dim approved_by As String = If(table_header.Rows(i)("approved_by").ToString = "", "NULL", "'" + table_header.Rows(i)("approved_by").ToString + "'")
-                                Dim is_pre As String = table_header.Rows(i)("is_pre").ToString
+                        If Not table_header.Rows(i)("app_id").ToString = app_id Then
+                            Dim id_wh_drawer As String = table_header.Rows(i)("id_wh_drawer").ToString
+                            Dim st_trans_number As String = table_header.Rows(i)("st_trans_number").ToString
+                            Dim remark As String = table_header.Rows(i)("remark").ToString
+                            Dim st_trans_date As String = Date.Parse(table_header.Rows(i)("st_trans_date").ToString).ToString("yyyy-MM-dd HH:mm:ss")
+                            Dim st_trans_by As String = table_header.Rows(i)("st_trans_by").ToString
+                            Dim st_trans_updated As String = Date.Parse(table_header.Rows(i)("st_trans_updated").ToString).ToString("yyyy-MM-dd HH:mm:ss")
+                            Dim st_trans_updated_by As String = table_header.Rows(i)("st_trans_updated_by").ToString
+                            Dim is_combine As String = table_header.Rows(i)("is_combine").ToString
+                            Dim id_report_status As String = table_header.Rows(i)("id_report_status").ToString
+                            Dim report_status_note As String = If(table_header.Rows(i)("report_status_note").ToString = "", "NULL", "'" + table_header.Rows(i)("report_status_note").ToString + "'")
+                            Dim id_combine As String = If(table_header.Rows(i)("id_combine").ToString = "", "NULL", "'" + table_header.Rows(i)("id_combine").ToString + "'")
+                            Dim acknowledge_by As String = If(table_header.Rows(i)("acknowledge_by").ToString = "", "NULL", "'" + table_header.Rows(i)("acknowledge_by").ToString + "'")
+                            Dim approved_by As String = If(table_header.Rows(i)("approved_by").ToString = "", "NULL", "'" + table_header.Rows(i)("approved_by").ToString + "'")
+                            Dim is_pre As String = table_header.Rows(i)("is_pre").ToString
+                            Dim app_id_from As String = table_header.Rows(i)("app_id").ToString
 
-                                Dim query As String = "INSERT INTO tb_st_trans (id_wh_drawer, st_trans_number, remark, st_trans_date, st_trans_by, st_trans_updated, st_trans_updated_by, is_combine, id_report_status, report_status_note, id_combine, acknowledge_by, approved_by, is_pre) VALUES ('" + id_wh_drawer + "', '" + st_trans_number + "', '" + remark + "', '" + st_trans_date + "', '" + st_trans_by + "', '" + st_trans_updated + "', '" + st_trans_updated_by + "', '" + is_combine + "', '" + id_report_status + ", " + report_status_note + ", " + id_combine + ", " + acknowledge_by + ", " + approved_by + "', '" + is_pre + "'); SELECT LAST_INSERT_ID();"
+                            Dim query As String = "INSERT INTO tb_st_trans (id_wh_drawer, st_trans_number, remark, st_trans_date, st_trans_by, st_trans_updated, st_trans_updated_by, is_combine, id_report_status, report_status_note, id_combine, acknowledge_by, approved_by, is_pre, app_id) VALUES ('" + id_wh_drawer + "', '" + st_trans_number + "', '" + remark + "', '" + st_trans_date + "', '" + st_trans_by + "', '" + st_trans_updated + "', '" + st_trans_updated_by + "', '" + is_combine + "', '" + id_report_status + "', " + report_status_note + ", " + id_combine + ", " + acknowledge_by + ", " + approved_by + ", '" + is_pre + "', '" + app_id_from + "'); SELECT LAST_INSERT_ID();"
 
-                                Dim id_st_trans As String = execute_query(query, 0, True, "", "", "", "")
+                            Dim id_st_trans As String = execute_query(query, 0, True, "", "", "", "")
 
-                                Dim inserted As Integer = 0
+                            Dim inserted As Integer = 0
 
-                                For j = 0 To table_detail.Rows.Count - 1
-                                    If table_header.Rows(i)("id_st_trans").ToString = table_detail.Rows(j)("id_st_trans").ToString Then
-                                        If Not list_detail_duplicate.Contains(table_detail.Rows(j)("code").ToString) Then
-                                            inserted += 1
+                            For j = 0 To table_detail.Rows.Count - 1
+                                If table_header.Rows(i)("id_st_trans").ToString = table_detail.Rows(j)("id_st_trans").ToString Then
+                                    If Not list_detail_duplicate.Contains(table_detail.Rows(j)("code").ToString) Then
+                                        inserted += 1
 
-                                            Dim id_st_trans_det_ref As String = table_detail.Rows(j)("id_st_trans_det_ref").ToString
-                                            Dim is_ok As String = table_detail.Rows(j)("is_ok").ToString
-                                            Dim is_no_stock As String = table_detail.Rows(j)("is_no_stock").ToString
-                                            Dim is_no_master As String = table_detail.Rows(j)("is_no_master").ToString
-                                            Dim is_sale As String = table_detail.Rows(j)("is_sale").ToString
-                                            Dim is_reject As String = table_detail.Rows(j)("is_reject").ToString
-                                            Dim is_unique_not_found As String = table_detail.Rows(j)("is_unique_not_found").ToString
-                                            Dim is_no_tag As String = table_detail.Rows(j)("is_no_tag").ToString
-                                            Dim id_product As String = table_detail.Rows(j)("id_product").ToString
-                                            Dim code As String = table_detail.Rows(j)("code").ToString
-                                            Dim name As String = table_detail.Rows(j)("name").ToString
-                                            Dim size As String = table_detail.Rows(j)("size").ToString
-                                            Dim qty As String = table_detail.Rows(j)("qty").ToString
-                                            Dim id_design_price As String = table_detail.Rows(j)("id_design_price").ToString
-                                            Dim design_price As String = table_detail.Rows(j)("design_price").ToString
-                                            Dim note As String = table_detail.Rows(j)("note").ToString
+                                        Dim id_st_trans_det_ref As String = table_detail.Rows(j)("id_st_trans_det_ref").ToString
+                                        Dim is_ok As String = table_detail.Rows(j)("is_ok").ToString
+                                        Dim is_no_stock As String = table_detail.Rows(j)("is_no_stock").ToString
+                                        Dim is_no_master As String = table_detail.Rows(j)("is_no_master").ToString
+                                        Dim is_sale As String = table_detail.Rows(j)("is_sale").ToString
+                                        Dim is_reject As String = table_detail.Rows(j)("is_reject").ToString
+                                        Dim is_unique_not_found As String = table_detail.Rows(j)("is_unique_not_found").ToString
+                                        Dim is_no_tag As String = table_detail.Rows(j)("is_no_tag").ToString
+                                        Dim id_product As String = table_detail.Rows(j)("id_product").ToString
+                                        Dim code As String = table_detail.Rows(j)("code").ToString
+                                        Dim name As String = table_detail.Rows(j)("name").ToString
+                                        Dim size As String = table_detail.Rows(j)("size").ToString
+                                        Dim qty As String = table_detail.Rows(j)("qty").ToString
+                                        Dim id_design_price As String = table_detail.Rows(j)("id_design_price").ToString
+                                        Dim design_price As String = table_detail.Rows(j)("design_price").ToString
+                                        Dim note As String = table_detail.Rows(j)("note").ToString
 
-                                            execute_non_query("INSERT tb_st_trans_det (id_st_trans_det_ref, id_st_trans, is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, is_no_tag, id_product, code, name, size, qty, id_design_price, design_price, note) VALUES ('" + id_st_trans_det_ref + "', '" + id_st_trans + "', '" + is_ok + "', '" + is_no_stock + "', '" + is_no_master + "', '" + is_sale + "', '" + is_reject + "', '" + is_unique_not_found + "', '" + is_no_tag + "', '" + id_product + "', '" + code + "', '" + name + "', '" + size + "', '" + qty + "', '" + id_design_price + "', '" + design_price + "', '" + note + "')", True, "", "", "", "")
-                                        Else
-                                            'insert report
-                                            data_report.Rows.Add(
-                                                table_header.Rows(i)("st_trans_number").ToString,
-                                                table_header.Rows(i)("remark").ToString,
-                                                table_detail.Rows(j)("code").ToString,
-                                                table_detail.Rows(j)("name").ToString,
-                                                table_detail.Rows(j)("size").ToString,
-                                                table_detail.Rows(j)("id_design_price").ToString,
-                                                table_detail.Rows(j)("is_reject").ToString,
-                                                table_detail.Rows(j)("design_price").ToString,
-                                                "Code Already exist"
-                                            )
-                                        End If
-                                    End If
-                                Next
-
-                                'delete zero
-                                If inserted = 0 Then
-                                    execute_non_query("DELETE FROM tb_st_trans WHERE id_st_trans = '" + id_st_trans + "'", True, "", "", "", "")
-                                End If
-                            Else
-                                'insert report
-                                For j = 0 To table_detail.Rows.Count - 1
-                                    If table_header.Rows(i)("id_st_trans").ToString = table_detail.Rows(j)("id_st_trans").ToString Then
+                                        execute_non_query("INSERT tb_st_trans_det (id_st_trans_det_ref, id_st_trans, is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, is_no_tag, id_product, code, name, size, qty, id_design_price, design_price, note) VALUES ('" + id_st_trans_det_ref + "', '" + id_st_trans + "', '" + is_ok + "', '" + is_no_stock + "', '" + is_no_master + "', '" + is_sale + "', '" + is_reject + "', '" + is_unique_not_found + "', '" + is_no_tag + "', '" + id_product + "', '" + code + "', '" + name + "', '" + size + "', '" + qty + "', '" + id_design_price + "', '" + design_price + "', '" + note + "')", True, "", "", "", "")
+                                    Else
+                                        'insert report
                                         data_report.Rows.Add(
                                             table_header.Rows(i)("st_trans_number").ToString,
                                             table_header.Rows(i)("remark").ToString,
@@ -1248,10 +1216,15 @@ Public Class FormStockTake
                                             table_detail.Rows(j)("id_design_price").ToString,
                                             table_detail.Rows(j)("is_reject").ToString,
                                             table_detail.Rows(j)("design_price").ToString,
-                                            "Same user"
+                                            "Code Already exist"
                                         )
                                     End If
-                                Next
+                                End If
+                            Next
+
+                            'delete zero
+                            If inserted = 0 Then
+                                execute_non_query("DELETE FROM tb_st_trans WHERE id_st_trans = '" + id_st_trans + "'", True, "", "", "", "")
                             End If
                         Else
                             'insert report
@@ -1266,7 +1239,7 @@ Public Class FormStockTake
                                         table_detail.Rows(j)("id_design_price").ToString,
                                         table_detail.Rows(j)("is_reject").ToString,
                                         table_detail.Rows(j)("design_price").ToString,
-                                        "Number Already exist"
+                                        "Same application id"
                                     )
                                 End If
                             Next
@@ -1313,7 +1286,7 @@ Public Class FormStockTake
 
         FormMain.SplashScreenManager1.ShowWaitForm()
 
-        Dim query_head As String = "SELECT id_st_trans, id_wh_drawer, st_trans_number, remark, st_trans_date, st_trans_by, st_trans_updated, st_trans_updated_by, is_combine, id_report_status, report_status_note, id_combine, acknowledge_by, approved_by, is_pre FROM tb_st_trans"
+        Dim query_head As String = "SELECT id_st_trans, id_wh_drawer, st_trans_number, remark, st_trans_date, st_trans_by, st_trans_updated, st_trans_updated_by, is_combine, id_report_status, report_status_note, id_combine, acknowledge_by, approved_by, is_pre, app_id FROM tb_st_trans"
         Dim data_head As DataTable = execute_query(query_head, -1, True, "", "", "", "")
 
         Dim query_detail As String = "SELECT id_st_trans_det, id_st_trans_det_ref, id_st_trans, is_ok, is_no_stock, is_no_master, is_sale, is_reject, is_unique_not_found, is_no_tag, id_product, code, name, size, qty, id_design_price, design_price, note FROM tb_st_trans_det"
@@ -1338,8 +1311,9 @@ Public Class FormStockTake
             Dim acknowledge_by As String = data_head.Rows(i)("acknowledge_by").ToString
             Dim approved_by As String = data_head.Rows(i)("approved_by").ToString
             Dim is_pre As String = data_head.Rows(i)("is_pre").ToString
+            Dim app_id_from As String = data_head.Rows(i)("app_id").ToString
 
-            exported += "<tb_st_trans><id_st_trans>" + id_st_trans + "</id_st_trans><id_wh_drawer>" + id_wh_drawer + "</id_wh_drawer><st_trans_number>" + st_trans_number + "</st_trans_number><remark>" + remark + "</remark><st_trans_date>" + st_trans_date + "</st_trans_date><st_trans_by>" + st_trans_by + "</st_trans_by><st_trans_updated>" + st_trans_updated + "</st_trans_updated><st_trans_updated_by>" + st_trans_updated_by + "</st_trans_updated_by><is_combine>" + is_combine + "</is_combine><id_report_status>" + id_report_status + "</id_report_status><report_status_note>" + report_status_note + "</report_status_note><id_combine>" + id_combine + "</id_combine><acknowledge_by>" + acknowledge_by + "</acknowledge_by><approved_by>" + approved_by + "</approved_by><is_pre>" + is_pre + "</is_pre></tb_st_trans>"
+            exported += "<tb_st_trans><id_st_trans>" + id_st_trans + "</id_st_trans><id_wh_drawer>" + id_wh_drawer + "</id_wh_drawer><st_trans_number>" + st_trans_number + "</st_trans_number><remark>" + remark + "</remark><st_trans_date>" + st_trans_date + "</st_trans_date><st_trans_by>" + st_trans_by + "</st_trans_by><st_trans_updated>" + st_trans_updated + "</st_trans_updated><st_trans_updated_by>" + st_trans_updated_by + "</st_trans_updated_by><is_combine>" + is_combine + "</is_combine><id_report_status>" + id_report_status + "</id_report_status><report_status_note>" + report_status_note + "</report_status_note><id_combine>" + id_combine + "</id_combine><acknowledge_by>" + acknowledge_by + "</acknowledge_by><approved_by>" + approved_by + "</approved_by><is_pre>" + is_pre + "</is_pre><app_id>" + app_id_from + "</app_id></tb_st_trans>"
         Next
 
         'detail

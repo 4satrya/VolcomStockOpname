@@ -82,8 +82,8 @@
             FormStockTakeUnReg.ShowDialog()
             Close()
         Else
-            Dim query As String = "INSERT INTO tb_st_trans (id_wh_drawer, st_trans_number, remark, st_trans_date, st_trans_by, is_combine,is_pre) 
-            VALUES ('" + SLEWHStockSum.EditValue.ToString + "', '', '" + addSlashes(MERemark.Text.ToString) + "', NOW(), '" + id_user + "', 2," + FormStockTake.is_pre + "); SELECT LAST_INSERT_ID(); "
+            Dim query As String = "INSERT INTO tb_st_trans (id_wh_drawer, st_trans_number, remark, st_trans_date, st_trans_by, is_combine,is_pre,app_id) 
+            VALUES ('" + SLEWHStockSum.EditValue.ToString + "', '', '" + addSlashes(MERemark.Text.ToString) + "', NOW(), '" + id_user + "', 2," + FormStockTake.is_pre + ",'" + app_id + "'); SELECT LAST_INSERT_ID(); "
             Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
 
             'update number

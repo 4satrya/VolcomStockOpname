@@ -16,11 +16,23 @@
             LookAndFeel.UseDefaultLookAndFeel = False
         End If
 
-        viewSearchLookupQuery(SLUESize, "
-            (SELECT '' AS display_name)
-            UNION ALL
-            (SELECT display_name FROM tb_m_code_detail WHERE id_code = 33)
-        ", "display_name", "display_name", "display_name")
+        view_size("")
+    End Sub
+
+    Sub view_size(id_design As String)
+        If id_design = "" Then
+            viewSearchLookupQuery(SLUESize, "
+                (SELECT '' AS display_name)
+                UNION ALL
+                (SELECT display_name FROM tb_m_code_detail WHERE id_code = 33)
+            ", "display_name", "display_name", "display_name")
+        Else
+            viewSearchLookupQuery(SLUESize, "
+                (SELECT '' AS display_name)
+                UNION ALL
+                (SELECT display_name FROM tb_m_code_detail WHERE id_code = 33 AND `code` IN (SELECT product_code FROM tb_m_product WHERE id_design = " + id_design + "))
+            ", "display_name", "display_name", "display_name")
+        End If
     End Sub
 
     Private Sub SBClose_Click(sender As Object, e As EventArgs) Handles SBClose.Click
@@ -70,11 +82,9 @@
             Dim product_count As String = execute_query("SELECT COUNT(*) FROM tb_m_product WHERE LEFT(product_full_code, " + length + ") = '" + TECode.EditValue.ToString + "'", 0, True, "", "", "", "")
 
             If Not product_count = "0" Then
-                Dim design_name As String = execute_query("SELECT design_display_name FROM tb_m_design WHERE design_code = LEFT('" + TECode.EditValue.ToString + "', 9)", 0, True, "", "", "", "")
+                Dim data_design As DataTable = execute_query("SELECT id_design, design_display_name FROM tb_m_design WHERE design_code = LEFT('" + TECode.EditValue.ToString + "', 9)", -1, True, "", "", "", "")
 
-                TEName.EditValue = design_name
-
-                SLUESize.ReadOnly = False
+                TEName.EditValue = data_design.Rows(0)("design_display_name").ToString
 
                 If length = "12" Then
                     Dim size As String = execute_query("
@@ -84,9 +94,15 @@
                         WHERE p.product_full_code = '" + TECode.EditValue.ToString + "'
                     ", 0, True, "", "", "", "")
 
+                    view_size("")
+
                     SLUESize.EditValue = size
 
                     SLUESize.ReadOnly = True
+                ElseIf length = "9" Then
+                    view_size(data_design.Rows(0)("id_design").ToString)
+
+                    SLUESize.ReadOnly = False
                 End If
             Else
                 stopCustom("Product not found.")

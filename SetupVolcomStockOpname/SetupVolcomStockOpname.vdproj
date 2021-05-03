@@ -951,6 +951,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_95655E3CE4C14726A8405FE2A168C81E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_95C6E02A805CD5D52D5F8AC237CC5816"
         "OwnerKey" = "8:_53242A43656C4EB590E31FA99A39037B"
         "MsmSig" = "8:_UNDEFINED"
@@ -3987,6 +3993,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_95655E3CE4C14726A8405FE2A168C81E"
+            {
+            "SourcePath" = "8:\\\\SEPTIAN-PC\\Manual Sistem\\FILE STOCKTAKE REMOTE\\config.txt"
+            "TargetName" = "8:config.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_72FAB481F86B48EE9B2E98FF5AC2069E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_95C6E02A805CD5D52D5F8AC237CC5816"
             {
             "AssemblyRegister" = "3:1"
@@ -5013,15 +5039,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Volcom Stock Take"
-        "ProductCode" = "8:{00C541C6-F093-40AE-8B6A-6EC84A39C5CD}"
-        "PackageCode" = "8:{4C8C44C9-E354-4EA3-90BF-FF863A44F79C}"
+        "ProductCode" = "8:{BA2ED675-8F73-41DE-B4B8-7BD7A68EF9CC}"
+        "PackageCode" = "8:{38F4F2C5-06EA-4293-B5F0-7DD2FB26EC7F}"
         "UpgradeCode" = "8:{948E77FE-2B0C-4F31-B608-9559A7257742}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.1.44"
+        "ProductVersion" = "8:1.1.45"
         "Manufacturer" = "8:Volcom Indonesia"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

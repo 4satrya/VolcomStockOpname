@@ -104,39 +104,82 @@
             read_database_configuration()
             check_connection(True, "", "", "", "")
 
-            Dim is_login_store As String = "2"
             Try
-                is_login_store = execute_query("SELECT is_login_store FROM tb_opt", 0, False, app_host, app_username, app_password, "db_opt")
+                Dim reader As IO.StreamReader = My.Computer.FileSystem.OpenTextFileReader(Application.StartupPath() + "\config.txt")
+                Dim line As String
+
+                Do
+                    line = reader.ReadLine
+                    '
+                    If line.Contains("APP_ID") Then
+                        app_id = line.Substring(9)
+                    End If
+                    '
+                Loop Until line Is Nothing
+
+                reader.Close()
             Catch ex As Exception
-                is_login_store = "2"
             End Try
 
-            If is_login_store = "1" Then
-                FormDatabaseStore.ShowDialog()
-            Else
-                If id_user = "" And app_database <> "db_opt" Then
-                    FormLogin.ShowDialog()
+            If Not app_id = "" Then
+                Dim is_login_store As String = "2"
+                Try
+                    is_login_store = execute_query("SELECT is_login_store FROM tb_opt", 0, False, app_host, app_username, app_password, "db_opt")
+                Catch ex As Exception
+                    is_login_store = "2"
+                End Try
 
-                    'current db
-                    setInfoDb()
+                If is_login_store = "1" Then
+                    Dim arguments As String() = Environment.GetCommandLineArgs()
 
-                    'open dashboard
+                    Dim cnt As Boolean = False
+
                     Try
-                        FormHome.MdiParent = Me
-                        FormHome.Show()
-                        FormHome.WindowState = FormWindowState.Maximized
-                        FormHome.Focus()
+                        If arguments(1) = "afc0265d404f7b661296ffd9d69188f8" Then
+                            cnt = True
+                        Else
+                            cnt = False
+                        End If
                     Catch ex As Exception
-                        errorConnection()
+                        cnt = False
                     End Try
-                    Cursor = Cursors.Default
+
+                    If cnt Then
+                        FormDatabaseStore.ShowDialog()
+                    Else
+                        stopCustom("Please use Volcom Stock Take")
+
+                        End
+                    End If
                 Else
-                    'initial server centre
-                    initialServerCentre()
-                    FormLogin.id_menu = "1"
-                    FormLogin.is_first = "1"
-                    FormLogin.ShowDialog()
+                    If id_user = "" And app_database <> "db_opt" Then
+                        FormLogin.ShowDialog()
+
+                        'current db
+                        setInfoDb()
+
+                        'open dashboard
+                        Try
+                            FormHome.MdiParent = Me
+                            FormHome.Show()
+                            FormHome.WindowState = FormWindowState.Maximized
+                            FormHome.Focus()
+                        Catch ex As Exception
+                            errorConnection()
+                        End Try
+                        Cursor = Cursors.Default
+                    Else
+                        'initial server centre
+                        initialServerCentre()
+                        FormLogin.id_menu = "1"
+                        FormLogin.is_first = "1"
+                        FormLogin.ShowDialog()
+                    End If
                 End If
+            Else
+                stopCustom("APP_ID not set")
+
+                End
             End If
         Catch ex As Exception
             FormDatabase.ShowDialog()

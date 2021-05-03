@@ -25,6 +25,7 @@ Module Common
     Public is_change_pass_user As String = ""
     Public again_awb As String = ""
     Public st_user_code As String = ""
+    Public app_id As String = ""
 
     Function getOptMain() As DataTable
         Dim query As String = "SELECT * FROM tb_opt"

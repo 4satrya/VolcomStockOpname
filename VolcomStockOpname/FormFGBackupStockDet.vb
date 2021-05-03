@@ -256,6 +256,7 @@ Public Class FormFGBackupStockDet
                     dic.Add("tb_st_un_reg", "SELECT * FROM tb_st_un_reg ")
                     dic.Add("tb_st_un_reg_det", "SELECT * FROM tb_st_un_reg_det ")
                     dic.Add("tb_st_stop_scan_log", "SELECT * FROM tb_st_stop_scan_log ")
+                    dic.Add("tb_st_import_report", "SELECT * FROM tb_st_import_report ")
                     '-- stock
                     FormMain.SplashScreenManager1.SetWaitFormDescription("Backup stock")
                     If Not is_bof Then

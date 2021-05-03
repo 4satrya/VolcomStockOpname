@@ -73,6 +73,23 @@ Partial Class FormStockTakeList
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.XTPErrorImport = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCErrorImport = New DevExpress.XtraGrid.GridControl()
+        Me.GVErrorImport = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
         CType(Me.XTCStockTake, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -90,6 +107,10 @@ Partial Class FormStockTakeList
         CType(Me.GVCat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPErrorImport.SuspendLayout()
+        CType(Me.GCErrorImport, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVErrorImport, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl2
@@ -120,7 +141,7 @@ Partial Class FormStockTakeList
         Me.XTCStockTake.SelectedTabPage = Me.XTPScan
         Me.XTCStockTake.Size = New System.Drawing.Size(1106, 499)
         Me.XTCStockTake.TabIndex = 3
-        Me.XTCStockTake.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScan, Me.XTPSummary, Me.XTPCondition})
+        Me.XTCStockTake.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScan, Me.XTPSummary, Me.XTPCondition, Me.XTPErrorImport})
         '
         'XTPScan
         '
@@ -620,6 +641,178 @@ Partial Class FormStockTakeList
         Me.RepositoryItemTextEdit2.Name = "RepositoryItemTextEdit2"
         Me.RepositoryItemTextEdit2.NullText = "-"
         '
+        'XTPErrorImport
+        '
+        Me.XTPErrorImport.Controls.Add(Me.GCErrorImport)
+        Me.XTPErrorImport.Name = "XTPErrorImport"
+        Me.XTPErrorImport.Size = New System.Drawing.Size(1100, 471)
+        Me.XTPErrorImport.Text = "Error Import"
+        '
+        'GCErrorImport
+        '
+        Me.GCErrorImport.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCErrorImport.Location = New System.Drawing.Point(0, 0)
+        Me.GCErrorImport.MainView = Me.GVErrorImport
+        Me.GCErrorImport.Name = "GCErrorImport"
+        Me.GCErrorImport.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2})
+        Me.GCErrorImport.Size = New System.Drawing.Size(1100, 471)
+        Me.GCErrorImport.TabIndex = 3
+        Me.GCErrorImport.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVErrorImport})
+        '
+        'GVErrorImport
+        '
+        Me.GVErrorImport.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumnStatus, Me.GridColumn15})
+        Me.GVErrorImport.GridControl = Me.GCErrorImport
+        Me.GVErrorImport.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumn8, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumn10, "{0:n0}")})
+        Me.GVErrorImport.Name = "GVErrorImport"
+        Me.GVErrorImport.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVErrorImport.OptionsBehavior.Editable = False
+        Me.GVErrorImport.OptionsMenu.ShowConditionalFormattingItem = True
+        Me.GVErrorImport.OptionsView.ShowFooter = True
+        Me.GVErrorImport.OptionsView.ShowGroupedColumns = True
+        Me.GVErrorImport.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "No"
+        Me.GridColumn4.FieldName = "no"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 0
+        Me.GridColumn4.Width = 44
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Scanned Code"
+        Me.GridColumn5.FieldName = "code"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.AllowEdit = False
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 3
+        Me.GridColumn5.Width = 170
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Description"
+        Me.GridColumn6.FieldName = "name"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 4
+        Me.GridColumn6.Width = 338
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Size"
+        Me.GridColumn7.FieldName = "size"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 5
+        Me.GridColumn7.Width = 70
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Qty"
+        Me.GridColumn8.DisplayFormat.FormatString = "N0"
+        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn8.FieldName = "qty"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
+        Me.GridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 8
+        Me.GridColumn8.Width = 69
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Price"
+        Me.GridColumn9.DisplayFormat.FormatString = "N0"
+        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn9.FieldName = "design_price"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 9
+        Me.GridColumn9.Width = 149
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Amount"
+        Me.GridColumn10.DisplayFormat.FormatString = "n0"
+        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn10.FieldName = "amount"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.OptionsColumn.AllowEdit = False
+        Me.GridColumn10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:n0}")})
+        Me.GridColumn10.UnboundExpression = "[design_price] * [qty]"
+        Me.GridColumn10.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 10
+        Me.GridColumn10.Width = 239
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Product Status"
+        Me.GridColumn11.FieldName = "design_cat"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 7
+        Me.GridColumn11.Width = 90
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Price Type"
+        Me.GridColumn12.FieldName = "design_price_type"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 6
+        Me.GridColumn12.Width = 76
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Remark"
+        Me.GridColumn13.FieldName = "remark"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.OptionsColumn.AllowEdit = False
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 2
+        Me.GridColumn13.Width = 93
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Number"
+        Me.GridColumn14.FieldName = "st_trans_number"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 1
+        Me.GridColumn14.Width = 82
+        '
+        'GridColumnStatus
+        '
+        Me.GridColumnStatus.Caption = "Status"
+        Me.GridColumnStatus.FieldName = "status"
+        Me.GridColumnStatus.Name = "GridColumnStatus"
+        Me.GridColumnStatus.Visible = True
+        Me.GridColumnStatus.VisibleIndex = 11
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Imported At"
+        Me.GridColumn15.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn15.FieldName = "created_at"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 12
+        '
+        'RepositoryItemCheckEdit2
+        '
+        Me.RepositoryItemCheckEdit2.AutoHeight = False
+        Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
+        Me.RepositoryItemCheckEdit2.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit2.ValueUnchecked = "No"
+        '
         'FormStockTakeList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -649,6 +842,10 @@ Partial Class FormStockTakeList
         CType(Me.GVCat, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPErrorImport.ResumeLayout(False)
+        CType(Me.GCErrorImport, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVErrorImport, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -706,4 +903,21 @@ Partial Class FormStockTakeList
     Friend WithEvents GridColumnRemarkSmr As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents GridColumnType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPErrorImport As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCErrorImport As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVErrorImport As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

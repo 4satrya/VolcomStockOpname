@@ -121,6 +121,13 @@
 
             GVScan.Columns("remark").Caption = "Lokasi"
             GVSummaryScan.Columns("remark").Caption = "Lokasi"
+
+            Try
+                view_error_import()
+            Catch ex As Exception
+            End Try
+
+            XTPErrorImport.PageVisible = True
         End If
 
         viewDetail()
@@ -141,8 +148,11 @@
         ElseIf XTCStockTake.SelectedTabPageIndex = 2 Then
             GVCat.BestFitColumns()
             print_raw(GCCat, "")
-            Cursor = Cursors.Default
+        ElseIf XTCStockTake.SelectedTabPageIndex = 3 Then
+            GVErrorImport.BestFitColumns()
+            print_raw(GCErrorImport, "")
         End If
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub XTCStockTake_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCStockTake.SelectedPageChanged
@@ -186,6 +196,36 @@
             If GVScan.GetRowCellValue(e.RowHandle, "is_reject_v").ToString = "Yes" Then
                 e.Appearance.BackColor = Color.LightYellow
             End If
+        End If
+    End Sub
+
+    Sub view_error_import()
+        Dim query As String = "
+            SELECT 0 AS `no`, 1 AS qty, `std`.* , cat.design_cat, typ.design_price_type
+            FROM tb_st_import_report AS `std`
+            LEFT JOIN tb_m_design_price prc ON prc.id_design_price = std.id_design_price
+            LEFT JOIN tb_lookup_design_price_type typ ON typ.id_design_price_type = prc.id_design_price_type
+            LEFT JOIN tb_lookup_design_cat cat ON cat.id_design_cat = typ.id_design_cat
+            ORDER BY `std`.created_at DESC
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        'numbering
+        For i = 0 To data.Rows.Count - 1
+            data.Rows(i)("no") = i + 1
+        Next
+
+        GCErrorImport.DataSource = data
+
+        GVErrorImport.BestFitColumns()
+    End Sub
+
+    Private Sub GVErrorImport_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVErrorImport.RowCellStyle
+        e.Appearance.BackColor = Color.LightGreen
+
+        If GVErrorImport.GetRowCellValue(e.RowHandle, "is_reject").ToString = "1" Then
+            e.Appearance.BackColor = Color.LightYellow
         End If
     End Sub
 End Class

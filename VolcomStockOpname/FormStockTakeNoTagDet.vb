@@ -15,6 +15,24 @@
             LookAndFeel.SkinMaskColor = Color.LightBlue
             LookAndFeel.UseDefaultLookAndFeel = False
         End If
+
+        view_size("")
+    End Sub
+
+    Sub view_size(id_design As String)
+        If id_design = "" Then
+            viewSearchLookupQuery(SLUESize, "
+                (SELECT '' AS display_name)
+                UNION ALL
+                (SELECT display_name FROM tb_m_code_detail WHERE id_code = 33)
+            ", "display_name", "display_name", "display_name")
+        Else
+            viewSearchLookupQuery(SLUESize, "
+                (SELECT '' AS display_name)
+                UNION ALL
+                (SELECT display_name FROM tb_m_code_detail WHERE id_code = 33 AND `code` IN (SELECT product_code FROM tb_m_product WHERE id_design = " + id_design + "))
+            ", "display_name", "display_name", "display_name")
+        End If
     End Sub
 
     Private Sub SBClose_Click(sender As Object, e As EventArgs) Handles SBClose.Click
@@ -22,16 +40,16 @@
     End Sub
 
     Private Sub SBSave_Click(sender As Object, e As EventArgs) Handles SBSave.Click
-        If TEName.Text = "" Or TECode.Text = "" Then
+        If TEName.Text = "" Or TECode.Text = "" Or SLUESize.Text = "" Then
             stopCustom("Please check your input.")
         Else
-            execute_non_query("INSERT INTO tb_st_no_tag_det (id_st_no_tag, code, name, size) VALUES (" + id_st_no_tag + ", '" + addSlashes(TECode.EditValue) + "', '" + addSlashes(TEName.EditValue) + "', '" + addSlashes(TESize.EditValue) + "')", True, "", "", "", "")
+            execute_non_query("INSERT INTO tb_st_no_tag_det (id_st_no_tag, code, name, size) VALUES (" + id_st_no_tag + ", '" + addSlashes(TECode.EditValue) + "', '" + addSlashes(TEName.EditValue) + "', '" + addSlashes(SLUESize.EditValue) + "')", True, "", "", "", "")
 
             FormStockTakeNoTag.form_load()
 
             TEName.EditValue = ""
             TECode.EditValue = ""
-            TESize.EditValue = ""
+            SLUESize.EditValue = ""
         End If
     End Sub
 
@@ -47,7 +65,50 @@
 
     Private Sub TECode_KeyDown(sender As Object, e As KeyEventArgs) Handles TECode.KeyDown
         If e.KeyCode = Keys.Enter Then
-            SBSave_Click(SBSave, New EventArgs)
+            check_product()
+        Else
+            TEName.EditValue = ""
+            SLUESize.EditValue = ""
+        End If
+    End Sub
+
+    Sub check_product()
+        Dim length As String = TECode.EditValue.ToString.Length.ToString
+
+        TEName.EditValue = ""
+        SLUESize.EditValue = ""
+
+        If length = "9" Or length = "12" Then
+            Dim product_count As String = execute_query("SELECT COUNT(*) FROM tb_m_product WHERE LEFT(product_full_code, " + length + ") = '" + TECode.EditValue.ToString + "'", 0, True, "", "", "", "")
+
+            If Not product_count = "0" Then
+                Dim data_design As DataTable = execute_query("SELECT id_design, design_display_name FROM tb_m_design WHERE design_code = LEFT('" + TECode.EditValue.ToString + "', 9)", -1, True, "", "", "", "")
+
+                TEName.EditValue = data_design.Rows(0)("design_display_name").ToString
+
+                If length = "12" Then
+                    Dim size As String = execute_query("
+                        SELECT d.display_name
+                        FROM tb_m_product AS p
+                        LEFT JOIN tb_m_code_detail AS d ON p.product_code = d.code AND d.id_code = 33
+                        WHERE p.product_full_code = '" + TECode.EditValue.ToString + "'
+                    ", 0, True, "", "", "", "")
+
+                    view_size("")
+
+                    SLUESize.EditValue = size
+
+                    SLUESize.ReadOnly = True
+                ElseIf length = "9" Then
+                    view_size(data_design.Rows(0)("id_design").ToString)
+
+                    SLUESize.ReadOnly = False
+                End If
+            Else
+                stopCustom("Product not found.")
+            End If
+        Else
+            stopCustom("Please input 9 or 12 digit code.")
         End If
     End Sub
 End Class

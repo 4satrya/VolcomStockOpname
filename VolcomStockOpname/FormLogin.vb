@@ -132,23 +132,23 @@ Public Class FormLogin
     End Sub
 
     Private Sub SimpleButton1_Click_1(sender As Object, e As EventArgs) Handles BtnReset.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to reset to default setting ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = DialogResult.Yes Then
-            Cursor = Cursors.WaitCursor
-            Try
-                write_database_configuration("localhost", "root", "mtvolcom14", "db_opt")
-                read_database_configuration()
-                Try
-                    FormFGBackupStockDet.Close()
-                Catch ex As Exception
-                End Try
-                infoCustom("Setup database success, please open again this application")
-                Application.Exit()
-                'FormMain.LoginToolStripMenuItem.Visible = True
-            Catch ex As Exception
-                DevExpress.XtraEditors.XtraMessageBox.Show("Connection failed : " + ex.ToString + "", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            End Try
-            Cursor = Cursors.Default
-        End If
+        'Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to reset to default setting ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        'If confirm = DialogResult.Yes Then
+        '    Cursor = Cursors.WaitCursor
+        '    Try
+        '        write_database_configuration("localhost", "root", "", "db_opt")
+        '        read_database_configuration()
+        '        Try
+        '            FormFGBackupStockDet.Close()
+        '        Catch ex As Exception
+        '        End Try
+        '        infoCustom("Setup database success, please open again this application")
+        '        Application.Exit()
+        '        'FormMain.LoginToolStripMenuItem.Visible = True
+        '    Catch ex As Exception
+        '        DevExpress.XtraEditors.XtraMessageBox.Show("Connection failed : " + ex.ToString + "", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '    End Try
+        '    Cursor = Cursors.Default
+        'End If
     End Sub
 End Class

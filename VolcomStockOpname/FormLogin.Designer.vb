@@ -100,6 +100,7 @@ Partial Class FormLogin
         Me.BtnReset.Size = New System.Drawing.Size(120, 24)
         Me.BtnReset.TabIndex = 5
         Me.BtnReset.Text = "Default Setting"
+        Me.BtnReset.Visible = False
         '
         'LabelVersion
         '

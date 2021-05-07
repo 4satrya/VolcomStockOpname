@@ -1351,7 +1351,11 @@ Public Class FormStockTake
             System.IO.Directory.CreateDirectory(path_root)
         End If
 
-        Dim path_exported As String = IO.Path.Combine(path_root, "FILE_IMPORT_" + st_user_code + ".sql")
+        Dim dbc_str As String() = Split(app_database, "_")
+
+        Dim name_dir = dbc_str(1) + "_" + dbc_str(2)
+
+        Dim path_exported As String = IO.Path.Combine(path_root, "FILE_IMPORT_" + st_user_code + "_" + name_dir + ".sql")
 
         Dim fs_exported As IO.FileStream = IO.File.Create(path_exported)
 

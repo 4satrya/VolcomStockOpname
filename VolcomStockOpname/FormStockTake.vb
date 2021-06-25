@@ -327,7 +327,7 @@ Public Class FormStockTake
                 End Using
 
                 'copying data
-                Dim qv As String = "SELECT * FROM tb_st_trans_" + code_user_restore + " WHERE CONCAT(st_trans_number, '-', app_id) NOT IN (SELECT CONCAT(st_trans_number, '-', app_id) FROM tb_st_trans)"
+                Dim qv As String = "SELECT * FROM tb_st_trans_" + code_user_restore + " WHERE CONCAT(st_trans_number, '-', IFNULL(app_id, '1')) NOT IN (SELECT CONCAT(st_trans_number, '-', IFNULL(app_id, '1')) FROM tb_st_trans)"
                 Dim dv As DataTable = execute_query(qv, -1, True, "", "", "", "")
                 Dim jv As Integer = dv.Rows.Count
                 For j As Integer = 0 To dv.Rows.Count - 1
